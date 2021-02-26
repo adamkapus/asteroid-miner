@@ -1,2 +1,3 @@
 Ez egy text file
 Változtattam rajta
+help
