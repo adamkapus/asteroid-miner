@@ -1,6 +1,6 @@
 package szkeleton;
 
-public class Main {
+public class Szkeleton {
 
 	public static void main(String[] args) {
 
