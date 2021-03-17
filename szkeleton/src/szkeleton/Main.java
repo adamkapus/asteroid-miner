@@ -6,7 +6,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		//KA
 
-		//Zsolt
+		//Zsolt merge conflict pls
 
 	}
 
