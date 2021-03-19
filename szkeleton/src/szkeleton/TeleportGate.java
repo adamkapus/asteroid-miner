@@ -31,4 +31,5 @@ public class TeleportGate extends Place {
     }
     @Override
     public void Step(){}
+
 }

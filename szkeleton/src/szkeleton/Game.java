@@ -11,4 +11,6 @@ public class Game {
     public void AddRobot(Robot robot) {}
     public void SettlerDied(Settler settler) {}
     public void RobotDied(Robot robot) {}
+
+    public Map GetMap(){return map;}
 }

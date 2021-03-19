@@ -92,6 +92,7 @@ public class Asteroid extends Place{
 
         CheckResource();
     }
+
     private void CheckResource(){
         int[] currentResources = new int[0];
         for(Entity e : entity)
@@ -119,4 +120,6 @@ public class Asteroid extends Place{
             state = State.CLOSE;
         timeCurrent = 0;
     }
+
+    public int GetLayers(){return layers;}
 }

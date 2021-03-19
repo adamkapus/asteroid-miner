@@ -1,15 +1,17 @@
 package szkeleton;
 
+import java.util.ArrayList;
+
 abstract public class Resource {
     protected boolean radioactive;
 
     public boolean IsRadioactive(){
         return this.radioactive;
     }
-    public int[] RemoveFromList(int[] I, Settler s){
+    public ArrayList<Resource> RemoveFromList(ArrayList<Resource> I, Settler s){
         return I;
     }
-    public int[] AddToList(int[] I){
+    public ArrayList<Resource> AddToList(ArrayList<Resource> I){
         return I;
     }
 
