@@ -71,13 +71,12 @@ public class Asteroid extends Place{
     public void InsertResource(Resource r){
         resource = r;
     }
-    public void RemoveResource(Resource r){} // ez kell?
+    public void RemoveResource(){
+        resource = null;
+    }
     public void Blow(){
         for(Entity e: entity)
             e.BlownUp();
-    }
-    public void CheckReqResource(){
-        // ez mit tud?
     }
     @Override
     public void Placed(){}
@@ -87,17 +86,17 @@ public class Asteroid extends Place{
         if (timeCurrent == timeLimit)
             ChangeState();
         if (state == State.CLOSE && layers == 0 && resource != null){}
-            //resource.Sublimate(); a resource-nak kéne szublimálás függvény!!!
+            //resource.Sublimate(); //a resource-nak kéne szublimálás függvény!!!
         if (resource != null && resource.IsRadioactive() && layers == 0)
             Blow();
 
         CheckResource();
     }
     private void CheckResource(){
-        int[] currentResources = new int[0]; // ezt nem lenne egyszerűbb ArrayList-el?
+        int[] currentResources = new int[0];
         for(Entity e : entity)
             currentResources = e.UpdateResourceList(currentResources);
-        int[] allResources = map.GetAllResources(); // am ezt is lehetne ArrayList-el
+        int[] allResources = map.GetAllResources();
         java.util.Map<Integer, Integer> resMap = new HashMap<>();
         for(int i = 0; i < allResources.length; i++)
             resMap.put(allResources[i], 0);
