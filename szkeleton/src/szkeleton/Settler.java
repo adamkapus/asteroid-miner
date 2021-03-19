@@ -78,27 +78,49 @@ public class Settler extends Entity{
         resources.remove(r);
     }
     public void Step() {
-        System.out.println("1 -- Mozgás\n" + "2 -- Fúrás\n" + "3 -- Bányászás\n" + "4 -- Robot építés\n" + "5 -- Teleportkapu-pár építés\n" + "6 -- Teleportkapu lehelyezés\n" + "7 -- Nyersanyag lehelyezés aszteroidába");
+        System.out.println("1 -- Mozgás\n"
+                            + "2 -- Fúrás\n"
+                            + "3 -- Bányászás\n"
+                            + "4 -- Robot építés\n"
+                            + "5 -- Teleportkapu-pár építés\n"
+                            + "6 -- Teleportkapu lehelyezés\n"
+                            + "7 -- Nyersanyag lehelyezés aszteroidába");
 
         Scanner in = new Scanner(System.in);
         String choice = in.nextLine();
 
-        //itt mit kéne hívni? gondolom, nem közvetlen a Move(), Drill(), stb fv-eket
         switch (choice){
             case "1":
+                // vagy valami alapján el kéne dönteni, hova mozgunk (Robotban is)
+                if(this.place.placeID == 1)
+                    this.Move(2);
+                else this.Move(1);
                 break;
             case "2":
+                this.Drill();
                 break;
             case "3":
+                this.Mine();
                 break;
             case "4":
+                this.BuildRobot();
                 break;
             case "5":
+                this.BuildTeleport();
                 break;
             case "6":
+                this.PlaceDownTeleport();
                 break;
             case "7":
+                //szintén valami alapáján el kéne dönteni, melyiket rakjuk le, kérhetünk egy számot
+                // itt még nyilván kell kivételkezelés
+                System.out.println("Melyik nyersanyagot?");
+                Scanner input = new Scanner(System.in);
+                String res = input.nextLine();
+                this.PlaceResource(Integer.parseInt(res));
                 break;
+            default:
+                System.out.println("Nincs ilyen opció");
         }
     }
 }

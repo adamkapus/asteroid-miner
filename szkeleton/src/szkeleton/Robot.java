@@ -25,9 +25,15 @@ public class Robot extends Entity{
         //itt mit kéne hívni? gondolom, nem közvetlen a Move(), Drill(), stb fv-eket
         switch (choice){
             case "1":
+                if(this.place.placeID == 1)
+                    this.Move(2);
+                else this.Move(1);
                 break;
             case "2":
+                this.Drill();
                 break;
+            default:
+                System.out.println("Nincs ilyen opció");
         }
     }
 }
