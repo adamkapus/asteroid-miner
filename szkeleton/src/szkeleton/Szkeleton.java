@@ -7,6 +7,9 @@ public class Szkeleton {
 	private int numberOfScenarios = 40; //pl.
 	private boolean szkeletonIsRunning = true;
 	
+	private String keregKerdes = "0-e a kereg?";
+	private String stb;
+	
 	public Szkeleton() {}
 
 	public void runSzkeleton() {
@@ -16,18 +19,22 @@ public class Szkeleton {
 		while(szkeletonIsRunning) {
 			int sequenceNumber = readSequenceNumberFromUser();
 			if(sequenceNumber == 0) {
+				System.out.println("Kilepes valasztva\n");
 				szkeletonIsRunning = false;
 			}
-			System.out.println("Szekvenciaszam beolvasva: " + sequenceNumber + "\n");
+			else {
+				System.out.println("Szekvenciaszam beolvasva: " + sequenceNumber + "\n");
+				runSequence(sequenceNumber);
+			}
 		}
 
 	}
 	
 	private void printSequenceOptions() {
 		System.out.println("0 a kilepeshez\n"
-				+ "Settler move scenario -- 1\n"
-				+ "Robot move scenario -- 2\n"
-				+ "stb -- 3\n");
+				+ "1 -- Settler move scenario\n"
+				+ "2 -- Robot move scenario\n"
+				+ "3 -- stb -- 3\n");
 	}
 	
 	private int readSequenceNumberFromUser() {
@@ -64,9 +71,64 @@ public class Szkeleton {
 		return number;
 	}
 	
+	private boolean askQuestionFromUser(String question) {
+		
+		System.out.println(question + " igen-nel vagy nem-mel valaszolj kerlek!\n");
+		
+		boolean validAnswerread = false;
+		boolean answer = false;
+		
+		// Using Scanner for Getting Input from User 
+		Scanner in = new Scanner(System.in);
+		
+		while(!validAnswerread) {
+	        String s = in.nextLine(); 
+	        
+	        if(s.equals("igen") || s.equals("nem")) {
+	        	validAnswerread = true;
+	        	if(s.equals("igen")) {
+	        		answer = true;
+	        	}
+	        	else {
+	        		answer = false;
+	        	}
+	        }
+	        else {
+	        	validAnswerread = false;
+	        	System.out.println("Kerlek jol valaszolj pls!\n");
+	        	}
+	        
+		}
+		
+		
+		return answer;
+	}
+	
+	
+	private void runSequence(int seq) {
+		switch(seq) {
+		  case 1:
+		    scenario1();
+		    break;
+		  case 2:
+		    scenario2();
+		    break;
+		  case 3:
+			scenario2();
+			break;
+		   
+		}
+
+	}
 	
 	private void scenario1() {
-		
+		boolean test = askQuestionFromUser(keregKerdes);
+		if(test) {
+			System.out.println("Igent valaszolt");
+		}
+		else {
+			System.out.println("Nemet valaszolt");
+		}
 	}
 	
 	private void scenario2() {
@@ -76,5 +138,6 @@ public class Szkeleton {
 	private void scenario3() {
 		
 	}
+	
 
 }
