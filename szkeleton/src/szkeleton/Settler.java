@@ -6,6 +6,15 @@ import java.util.Scanner;
 public class Settler extends Entity{
     private ArrayList<TeleportGate> gates = new ArrayList<>();
     private ArrayList<Resource> resources = new ArrayList<>();
+    
+    public Settler(String name, Game g, Place p) {
+    	super(name, g, p);
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	System.out.println(name +".Settler()");
+    	
+    	Szkeleton.indentDepth--;
+
+    }
 
     @Override
     public ArrayList<Resource> UpdateResourceList(ArrayList<Resource> l){
@@ -28,7 +37,14 @@ public class Settler extends Entity{
         game.SettlerDied(this);
     }
     public void BlownUp() {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	System.out.println(name +".BlownUp()");
+    	
+    	Szkeleton.indentDepth++;
         this.Die();
+        
+        
+        Szkeleton.indentDepth--;
     }
 
     //ide nem Resource-t kéne átadni? mert azt kéne az Insetrnek továbbadni
@@ -48,7 +64,7 @@ public class Settler extends Entity{
             r.RemoveFromList(resources, this);
         }
         if(resources.isEmpty()){    //miért kell ez a feltétel? (Build Robot szekvencia) ha nem fogy el az összes nyersanyag, miért ne lehetne építeni? (teleportkapunál is ugyanez
-            Robot r = new Robot();
+            Robot r = new Robot("r1", game, place);
             place.AcceptEntity(r);
         }
         // MB: Itt csak létre kell hoznod a listát a szükséges nyersanyagtípusok id-jeivel. Minden nyersanyagra meghívod a removeos
