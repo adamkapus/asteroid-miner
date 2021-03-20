@@ -14,8 +14,8 @@ public class Map implements Steppable{
     }
 
     public void SolarStorm() { // Az összes place-en lejátszódik az a szcenárió, amikor napvihar van
-        for (int i = 0; i < places.length; i++) {
-            places[i].HitByStorm();
+        for (Place place : places) {
+            place.HitByStorm();
         }
     }
 
@@ -25,8 +25,8 @@ public class Map implements Steppable{
         game.Win();
     }
     public void Step() { // Az összes place-en meghívja a Step() függvényt
-        for (int i = 0; i < places.length; i++) {
-            places[i].Step();
+        for (Place place : places) {
+            place.Step();
         }
         Random random = new Random();
         if(random.nextInt(100) < 5) { // 5% az esélye, hogy napvihar keletkezik
@@ -39,12 +39,12 @@ public class Map implements Steppable{
     }
 
     public void Connect() {
-        for (int i= 0; i < places.length; i++) {
+        for (Place place : places) {
             Random random = new Random();
             int ran = random.nextInt(places.length);
-            if(!places[i].GetNeighbor(places[ran].placeID).equals(places[ran])  /*Ha még nem szomszédok, akkor...*/) {
-                places[i].AddNeighbor(places[ran]); //Beálítom egymás szomszédjának a két place-t
-                places[ran].AddNeighbor(places[i]);
+            if (!place.GetNeighbor(places[ran].placeID).equals(places[ran])  /*Ha még nem szomszédok, akkor...*/) {
+                place.AddNeighbor(places[ran]); //Beálítom egymás szomszédjának a két place-t
+                places[ran].AddNeighbor(place);
             }
         }
     }
