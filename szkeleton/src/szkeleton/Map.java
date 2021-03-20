@@ -1,17 +1,22 @@
 package szkeleton;
 
-import java.util.Random;
+import java.util.*;
 
 public class Map implements Steppable{
-    private int[] allResources;
-    private Place[] places;
+    private ArrayList<Integer> allResources;
+    private ArrayList<Place> places;
     Game game;
     
     
     //KA: a map konstruktoraban kene letrehozni az aszteroidakat, a place-eket nem kapja meg parameterkent
-    public Map(int[] allResources, Place[] places, Game game) {
-        this.allResources = allResources;
-        this.places = places;
+    public Map(Game game) {
+        allResources = new ArrayList<>();
+        places = new ArrayList<>();
+        Random ran = new Random();
+        for (int i = 0; i < ran.nextInt(31) + 20; i++) { // 20-50 között lesz az aszteroidák száma
+        //    Asteroid newasteroid = new Asteroid(); Errort dob, mert a konstruktorban kéne Resource, de az itt nincs,
+        //    places.add(newasteroid);                úgyis az aszteroidban kéne new Resource-szal új nyersanyagot csinálni
+        }
         this.game = game;
     }
 
@@ -21,7 +26,7 @@ public class Map implements Steppable{
         }
     }
 
-    public int[] GetAllResources() {return allResources;}
+    public ArrayList<Integer>  GetAllResources() {return allResources;}
 
     public void EnpughResources() {
         game.Win();
@@ -37,16 +42,16 @@ public class Map implements Steppable{
     }
     public Place GetRandomPlace() { // Visszaad egy random place-t
         Random ran = new Random();
-        return places[ran.nextInt(places.length)];
+        return places.get(ran.nextInt(places.size()));
     }
 
     public void Connect() {
         for (Place place : places) {
             Random random = new Random();
-            int ran = random.nextInt(places.length);
-            if (!place.GetNeighbor(places[ran].placeID).equals(places[ran])  /*Ha még nem szomszédok, akkor...*/) {
-                place.AddNeighbor(places[ran]); //Beálítom egymás szomszédjának a két place-t
-                places[ran].AddNeighbor(place);
+            int ran = random.nextInt(places.size());
+            if (!place.GetNeighbor(places.get(ran).placeID).equals(places.get(ran))  /*Ha még nem szomszédok, akkor...*/) {
+                place.AddNeighbor(places.get(ran)); //Beálítom egymás szomszédjának a két place-t
+                places.get(ran).AddNeighbor(place);
             }
         }
     }
