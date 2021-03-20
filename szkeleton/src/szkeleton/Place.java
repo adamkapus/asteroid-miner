@@ -27,6 +27,7 @@ abstract public class Place implements Steppable {
         neighbors.add(p);
         p.Placed();
     }
+
     public Place GetNeighbor(int placeId){
         for(Place p : neighbors)
             if (p.placeID == placeId)
