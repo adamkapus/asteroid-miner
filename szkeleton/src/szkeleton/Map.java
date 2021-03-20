@@ -28,6 +28,10 @@ public class Map implements Steppable{
         for (int i = 0; i < places.length; i++) {
             places[i].Step();
         }
+        Random random = new Random();
+        if(random.nextInt(100) < 5) { // 5% az esélye, hogy napvihar keletkezik
+            SolarStorm();
+        }
     }
     public Place GetRandomPlace() { // Visszaad egy random place-t
         Random ran = new Random();
