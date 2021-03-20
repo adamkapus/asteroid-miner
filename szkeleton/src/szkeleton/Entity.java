@@ -5,7 +5,16 @@ import java.util.ArrayList;
 public abstract class Entity implements Steppable {
     protected Place place;
     protected Game game;
-
+    
+    String name;
+    
+    public Entity(String n, Game g, Place p) {
+    	this.name = n;
+    	this.game = g;
+    	this.place = p;
+    }
+    
+    
     public void Move(int asteroidID) {
         Asteroid neighbour = (Asteroid) place.GetNeighbor(place.placeID);
         //Teleport kapura hogy mozgunk? plusz ha itt talaportra kattint -> crash

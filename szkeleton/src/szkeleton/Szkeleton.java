@@ -1,5 +1,7 @@
 package szkeleton;
 
+
+
 import java.util.Scanner;
 
 //coal -10
@@ -8,10 +10,12 @@ import java.util.Scanner;
 //uran -13
 
 
+
 public class Szkeleton {
 	
 	private int numberOfScenarios = 40; //pl.
 	private boolean szkeletonIsRunning = true;
+	public static int indentDepth = 0;
 	
 	private String keregKerdes = "0-e a kereg?";
 	private String stb;
@@ -40,7 +44,9 @@ public class Szkeleton {
 		System.out.println("0 a kilepeshez\n"
 				+ "1 -- Settler move scenario\n"
 				+ "2 -- Robot move scenario\n"
-				+ "3 -- stb -- 3\n");
+				+ "3 -- stb\n"
+				+ "12 -- Settler blown up\n");
+				
 	}
 	
 	private int readSequenceNumberFromUser() {
@@ -122,9 +128,16 @@ public class Szkeleton {
 		  case 3:
 			scenario2();
 			break;
+		  case 12:
+				scenario12();
+				break;
 		   
 		}
 
+	}
+	
+	public static void writeTabs(int tabs) {
+		System.out.print(tabs);
 	}
 	
 	private void scenario1() {
@@ -142,6 +155,26 @@ public class Szkeleton {
 	}
 	
 	private void scenario3() {
+		
+	}
+	
+	private void scenario12() {
+		indentDepth++;
+		
+		Game g = new Game("g1");
+		
+		Asteroid a1 = new Asteroid(1, null, null);
+
+		//ToDo
+		indentDepth++;
+		Settler s1 = new Settler("s1" , g, a1);
+
+		indentDepth++;
+		a1.AcceptEntity(s1);
+		
+		indentDepth++;
+		s1.BlownUp();
+		
 		
 	}
 	

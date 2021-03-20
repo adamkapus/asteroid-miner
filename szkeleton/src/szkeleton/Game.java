@@ -6,6 +6,19 @@ public class Game {
     private ArrayList<Settler> settlers;
     private ArrayList<Robot> robots;
     private Map map;
+    
+    private String name;
+    
+    public  Game(String n) {
+    	name = n;
+    	settlers = new ArrayList<Settler>();
+    	robots = new ArrayList<Robot>();
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	System.out.println(name +".Game()");
+    	
+    	
+    	Szkeleton.indentDepth--;
+    }
 
     public void Win() {
     	System.out.println("Jatek megnyerve\n");

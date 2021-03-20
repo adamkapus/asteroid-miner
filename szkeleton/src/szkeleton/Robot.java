@@ -3,7 +3,16 @@ package szkeleton;
 import java.util.Scanner;
 
 public class Robot extends Entity{
+	
+	public Robot(String name, Game g, Place p) {
+    	super(name, g, p);
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	System.out.println(name +".Robot()");
+    	
+    	Szkeleton.indentDepth--;
 
+    }
+	
     public void Die() {
         game.RobotDied(this);
     }
