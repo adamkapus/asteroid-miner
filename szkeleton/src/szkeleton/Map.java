@@ -10,7 +10,7 @@ public class Map implements Steppable {
     //KA: a map konstruktoraban kene letrehozni az aszteroidakat, a place-eket nem kapja meg parameterkent
     public Map(Game game) {
         allResources = new ArrayList<>();
-        allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13); allResources.add(14);
+        allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
         places = new ArrayList<>();
         Random ran = new Random();
         for (int i = 0; i < ran.nextInt(31) + 20; i++) { // 20-50 között lesz az aszteroidák száma
