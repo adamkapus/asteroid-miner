@@ -6,7 +6,9 @@ public class Map implements Steppable{
     private int[] allResources;
     private Place[] places;
     Game game;
-
+    
+    
+    //KA: a map konstruktoraban kene letrehozni az aszteroidakat, a place-eket nem kapja meg parameterkent
     public Map(int[] allResources, Place[] places, Game game) {
         this.allResources = allResources;
         this.places = places;
