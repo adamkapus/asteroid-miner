@@ -19,4 +19,8 @@ abstract public class Resource {
         return I;
     }
 
+    // MB: a removeFromList és az addToList paraméterezése ArrayList<Integer> kéne hogy legyen. Különben nem fogunk tudni
+    // dolgozni vele az aszteroidában meg a settlerben
+    // ja meg ide is kell szublimálásos függvény ami itt nem csinál semmit, csak az icewater-ben
+
 }

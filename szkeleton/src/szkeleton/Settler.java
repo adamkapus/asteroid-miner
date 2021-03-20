@@ -37,6 +37,8 @@ public class Settler extends Entity{
         if(a.GetLayers() == 0 /*&& ((Asteroid)place).isEmpty*/){  //kéne az aszteroidának egy isEmpty változó
             //a.InsertResource(n);
         }
+        // MB: nem kell isEmpty. Ha nem üres az aszteroida eldobódik a nyersanyag. Az int mondja meg hogy hányadik indexű
+        // nyersanyagot tesszük bele az aszteroidába. De azt már itt megkapod paraméterül
     }
     public void AddResource(Resource r) {
         resources.add(r);
@@ -49,6 +51,9 @@ public class Settler extends Entity{
             Robot r = new Robot();
             place.AcceptEntity(r);
         }
+        // MB: Itt csak létre kell hoznod a listát a szükséges nyersanyagtípusok id-jeivel. Minden nyersanyagra meghívod a removeos
+        // függvényt, amiről azok vagy leszedik magukat vagy nem. Amikor ezzel végeztek, és ha a lista üres (tehát megvan minden anyag)
+        // akkor építhatünk egyébként nem.
     }
     public void UseTeleport() {
         TeleportGate destination = ((TeleportGate) place).GetPair();
@@ -61,7 +66,7 @@ public class Settler extends Entity{
         }
         if(resources.isEmpty()){
 
-            // párban építjük, vagy sehogy?
+            // párban építjük, vagy sehogy? MB: aha
             Map m = this.game.GetMap();
             TeleportGate gate1 = new TeleportGate(1, m);
             TeleportGate gate2 = new TeleportGate(2, m);
@@ -92,6 +97,8 @@ public class Settler extends Entity{
         switch (choice){
             case "1":
                 // vagy valami alapján el kéne dönteni, hova mozgunk (Robotban is)
+                // MB: itt a felhasználó dönt, a robotban majd random
+                // De egyébként itt nincs olyan hogy drill, mine mag placeresource. Azokat majd az actionben megmondja
                 if(this.place.placeID == 1)
                     this.Move(2);
                 else this.Move(1);

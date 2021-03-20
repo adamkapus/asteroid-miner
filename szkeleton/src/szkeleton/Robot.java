@@ -9,6 +9,7 @@ public class Robot extends Entity{
     }
     public void BlownUp() {
         //Itt csak Asteroid-ra mehetünk?
+        // MB: nem, azt nem tudjuk, hogy a random szomszéd aszteroida-e. Legyen csak Place
         Asteroid destination = (Asteroid)place.GetRandomNeighbor();
         place.RemoveEntity(this);
         destination.AcceptEntity(this);
@@ -23,6 +24,7 @@ public class Robot extends Entity{
         String choice = in.nextLine();
 
         //itt mit kéne hívni? gondolom, nem közvetlen a Move(), Drill(), stb fv-eket
+        // MB: random vagy move vagy action(this)
         switch (choice){
             case "1":
                 if(this.place.placeID == 1)

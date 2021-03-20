@@ -18,7 +18,8 @@ public class TeleportGate extends Place {
     }
     @Override
     public void Action(Settler s){
-        s.UseTeleport();
+        if (pairIsPlaced)
+            s.UseTeleport();
     }
     @Override
     public void Action(Robot r){}

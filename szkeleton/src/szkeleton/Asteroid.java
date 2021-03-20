@@ -94,24 +94,24 @@ public class Asteroid extends Place{
     }
 
     private void CheckResource(){
-        int[] currentResources = new int[0];
+        /*ArrayList<Integer> currentResources = new ArrayList<>();
         for(Entity e : entity)
             currentResources = e.UpdateResourceList(currentResources);
-        int[] allResources = map.GetAllResources();
+        ArrayList<Integer> allResources = map.GetAllResources();
         java.util.Map<Integer, Integer> resMap = new HashMap<>();
-        for(int i = 0; i < allResources.length; i++)
-            resMap.put(allResources[i], 0);
-        for(int i = 0; i < currentResources.length; i++)
-            resMap.put(currentResources[i], resMap.get(currentResources[i]) + 1);
+        for(int i = 0; i < allResources.size(); i++)
+            resMap.put(allResources.get(i), 0);
+        for(int i = 0; i < currentResources.size(); i++)
+            resMap.put(currentResources.get(i), resMap.get(currentResources.get(i)) + 1);
         boolean hasAllResources = true;
-        for (int i = 0; i < allResources.length; i++){
-            if (resMap.get(allResources[i]) < 3) {
+        for (int i = 0; i < allResources.size(); i++){
+            if (resMap.get(allResources.get(i)) < 3) {
                 hasAllResources = false;
                 break;
             }
         }
         if (hasAllResources)
-            map.EnpughResources();
+            map.EnpughResources();*/
     }
     private void ChangeState(){
         if (state == State.CLOSE)
