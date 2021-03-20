@@ -57,7 +57,7 @@ public class Map implements Steppable {
         for (Place place : places) {
             Random random = new Random();
             int ran = random.nextInt(places.size());
-            if (!place.GetNeighbor(places.get(ran).placeID).equals(places.get(ran))  /*Ha még nem szomszédok, akkor...*/) { //PlaceID alapján kéne
+            if (place.GetNeighbor(places.get(ran).placeID).placeID == places.get(ran).placeID)  /*Ha még nem szomszédok, akkor...*/ { //PlaceID alapján kéne
                 place.AddNeighbor(places.get(ran)); //Beálítom egymás szomszédjának a két place-t
                 places.get(ran).AddNeighbor(place);
             }
