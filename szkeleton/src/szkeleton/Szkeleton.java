@@ -2,6 +2,12 @@ package szkeleton;
 
 import java.util.Scanner;
 
+//coal -10
+//icewater -11
+//iron -12
+//uran -13
+
+
 public class Szkeleton {
 	
 	private int numberOfScenarios = 40; //pl.
