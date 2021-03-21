@@ -39,20 +39,24 @@ public class Game {
     	//konstruktornak masnak kene lennie
     	//map = new Map(this);
 
-        Map map = new Map("map", this);
+        Map map = new Map("map", this, 2);
 
-
+        Szkeleton.indentDepth++;
     	map.Connect();
 
     	//Most ket jatekos letrehozasa
+    	Szkeleton.indentDepth++;
     	Place p1 = map.GetRandomPlace();
+    	Szkeleton.indentDepth++;
     	Place p2 = map.GetRandomPlace();
 
     	//konstrukotr kene
-    	//Settler s1 = new Settler(this,p1);
-    	//Settler s2 = new Settler(this,p2);
-    	//settlers.add(s1);
-    	//Settlers.add(s2);
+    	Szkeleton.indentDepth++;
+    	Settler s1 = new Settler("s1",this,p1);
+    	Szkeleton.indentDepth++;
+    	Settler s2 = new Settler("s2",this,p2);
+    	settlers.add(s1);
+    	settlers.add(s2);
         Szkeleton.indentDepth--;
 
     }
