@@ -13,29 +13,38 @@ public class Settler extends Entity{
     	System.out.println(name +".Settler()");
     	
     	Szkeleton.indentDepth--;
-
     }
 
-    @Override
-    public ArrayList<Resource> UpdateResourceList(ArrayList<Resource> l){
+    public void Action() { place.Action(this); }
 
-        ArrayList<Resource> updated = new ArrayList<>();
+    @Override
+    public ArrayList<Integer> UpdateResourceList(ArrayList<Integer> l){
+
         if(resources.size() > 0) {
             for (Resource r : resources) {
-                updated.addAll(r.AddToList(l));
+                //r.AddToList(l);
             }
         }
 
-        return updated;
+        return l;
     }
 
     public void Mine() {
         Asteroid a = (Asteroid)place;
         a.MinedBy(this);
     }
+
     public void Die() {
+
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Die()");
+
+        Szkeleton.indentDepth++;
         game.SettlerDied(this);
+
+        Szkeleton.indentDepth--;
     }
+
     public void BlownUp() {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
     	System.out.println(name +".BlownUp()");
@@ -43,23 +52,22 @@ public class Settler extends Entity{
     	Szkeleton.indentDepth++;
         this.Die();
         
-        
         Szkeleton.indentDepth--;
     }
 
-    //ide nem Resource-t kéne átadni? mert azt kéne az Insetrnek továbbadni
     public void PlaceResource(int n) {
         Asteroid a = (Asteroid) place;
-        if(a.GetLayers() == 0 /*&& ((Asteroid)place).isEmpty*/){  //kéne az aszteroidának egy isEmpty változó
-            //a.InsertResource(n);
+        if(a.GetLayers() == 0){
+            a.InsertResource(resources.get(n));
         }
-        // MB: nem kell isEmpty. Ha nem üres az aszteroida eldobódik a nyersanyag. Az int mondja meg hogy hányadik indexű
-        // nyersanyagot tesszük bele az aszteroidába. De azt már itt megkapod paraméterül
     }
+
     public void AddResource(Resource r) {
         resources.add(r);
     }
+
     public void BuildRobot() {
+        /*
         for(Resource r : resources){
             r.RemoveFromList(resources, this);
         }
@@ -67,9 +75,23 @@ public class Settler extends Entity{
             Robot r = new Robot("r1", game, place);
             place.AcceptEntity(r);
         }
-        // MB: Itt csak létre kell hoznod a listát a szükséges nyersanyagtípusok id-jeivel. Minden nyersanyagra meghívod a removeos
-        // függvényt, amiről azok vagy leszedik magukat vagy nem. Amikor ezzel végeztek, és ha a lista üres (tehát megvan minden anyag)
-        // akkor építhatünk egyébként nem.
+        */
+
+        ArrayList<Integer> req = new ArrayList<>();
+        req.add(10);     //szén
+        req.add(12);     //vas
+        req.add(13);     //urán
+
+        for(Resource r : resources){
+            // Resource-ban a RemoveFromList Integer listát kéne, várjon
+            // r.RemoveFromList(req, this);      //a szükséges nyersanyagok csekkolása
+            req.remove(r);                      //törlés az inventory-ból
+        }
+
+        if(req.isEmpty()){
+            Robot r = new Robot("r1", game, place);
+            place.AcceptEntity(r);
+        }
     }
     public void UseTeleport() {
         TeleportGate destination = ((TeleportGate) place).GetPair();
@@ -80,12 +102,11 @@ public class Settler extends Entity{
         for(Resource r : resources){
             r.RemoveFromList(resources, this);
         }
-        if(resources.isEmpty()){
 
-            // párban építjük, vagy sehogy? MB: aha
+        if(resources.isEmpty()){
             Map m = this.game.GetMap();
-            TeleportGate gate1 = new TeleportGate(1, m);
-            TeleportGate gate2 = new TeleportGate(2, m);
+            TeleportGate gate1 = new TeleportGate("tg1",1, m);
+            TeleportGate gate2 = new TeleportGate("tg2",2, m);
 
             gate1.SetPair(gate2);
             gate2.SetPair(gate1);
@@ -100,50 +121,38 @@ public class Settler extends Entity{
     }
     public void Step() {
         System.out.println("1 -- Mozgás\n"
-                            + "2 -- Fúrás\n"
-                            + "3 -- Bányászás\n"
-                            + "4 -- Robot építés\n"
-                            + "5 -- Teleportkapu-pár építés\n"
-                            + "6 -- Teleportkapu lehelyezés\n"
-                            + "7 -- Nyersanyag lehelyezés aszteroidába");
+                + "2 -- Interakció az aszteroidával\n"
+                + "3 -- Robot építés\n"
+                + "4 -- Teleportkapu-pár építés\n"
+                + "5 -- Teleportkapu lehelyezés");
 
         Scanner in = new Scanner(System.in);
-        String choice = in.nextLine();
-
-        switch (choice){
-            case "1":
-                // vagy valami alapján el kéne dönteni, hova mozgunk (Robotban is)
-                // MB: itt a felhasználó dönt, a robotban majd random
-                // De egyébként itt nincs olyan hogy drill, mine mag placeresource. Azokat majd az actionben megmondja
-                if(this.place.placeID == 1)
-                    this.Move(2);
-                else this.Move(1);
-                break;
-            case "2":
-                this.Drill();
-                break;
-            case "3":
-                this.Mine();
-                break;
-            case "4":
-                this.BuildRobot();
-                break;
-            case "5":
-                this.BuildTeleport();
-                break;
-            case "6":
-                this.PlaceDownTeleport();
-                break;
-            case "7":
-                //szintén valami alapáján el kéne dönteni, melyiket rakjuk le, kérhetünk egy számot
-                // itt még nyilván kell kivételkezelés
-                System.out.println("Melyik nyersanyagot?");
-                Scanner input = new Scanner(System.in);
-                String res = input.nextLine();
-                this.PlaceResource(Integer.parseInt(res));
-                break;
-            default:
-                System.out.println("Nincs ilyen opció");
+        String str = in.nextLine();
+        int choice = Integer.parseInt(str);
+        try {
+            switch (choice) {
+                case 1:
+                    System.out.println("Válassz aszteroidát!");
+                    Scanner input = new Scanner(System.in);
+                    String strid = in.nextLine();
+                    int id = Integer.parseInt(strid);
+                    this.Move(id);
+                    break;
+                case 2:
+                    place.Action(this);
+                    break;
+                case 3:
+                    this.BuildRobot();
+                    break;
+                case 4:
+                    this.BuildTeleport();
+                    break;
+                case 5:
+                    this.PlaceDownTeleport();
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Nem jó számot adtál meg");
         }
     }
 }

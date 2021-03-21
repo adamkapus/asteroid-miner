@@ -6,9 +6,10 @@ public class Map implements Steppable {
     private ArrayList<Integer> allResources;
     private ArrayList<Place> places;
     Game game;
-
+    private String name;
     //KA: a map konstruktoraban kene letrehozni az aszteroidakat, a place-eket nem kapja meg parameterkent
-    public Map(Game game) {
+    public Map(String n, Game game) {
+        name = n;
         allResources = new ArrayList<>();
         allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13); allResources.add(14);
         places = new ArrayList<>();
@@ -21,10 +22,15 @@ public class Map implements Steppable {
                 case 3 -> new Uran();
                 default -> null;
             };
-            Asteroid newasteroid = new Asteroid(i, this, resource);
+            Asteroid newasteroid = new Asteroid("asteroid",i, this, resource);
             places.add(newasteroid);
         }
         this.game = game;
+
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Map()");
+
+        Szkeleton.indentDepth--;
     }
 
     public void SolarStorm() { // Az összes place-en lejátszódik az a szcenárió, amikor napvihar van
@@ -49,11 +55,22 @@ public class Map implements Steppable {
     }
 
     public Place GetRandomPlace() { // Visszaad egy random place-t
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".GetRandomPlace()");
+
+        Szkeleton.indentDepth++;
         Random ran = new Random();
+
+        Szkeleton.indentDepth--;
+
         return places.get(ran.nextInt(places.size()));
     }
 
     public void Connect() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Connect()");
+
+        Szkeleton.indentDepth++;
         for (Place place : places) {
             Random random = new Random();
             int ran = random.nextInt(places.size());
@@ -62,5 +79,7 @@ public class Map implements Steppable {
                 places.get(ran).AddNeighbor(place);
             }
         }
+
+        Szkeleton.indentDepth--;
     }
 }

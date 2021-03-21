@@ -15,8 +15,7 @@ public class Game {
     	robots = new ArrayList<Robot>();
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
     	System.out.println(name +".Game()");
-    	
-    	
+
     	Szkeleton.indentDepth--;
     }
 
@@ -27,8 +26,16 @@ public class Game {
     	System.out.println("Jatek elveszitve\n");
     }
     public void NewGame() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".NewGame()");
+
+        Szkeleton.indentDepth++;
     	//konstruktornak masnak kene lennie
     	//map = new Map(this);
+
+        Map map = new Map("map", this);
+
+
     	map.Connect();
 
     	//Most ket jatekos letrehozasa
@@ -40,7 +47,7 @@ public class Game {
     	//Settler s2 = new Settler(this,p2);
     	//settlers.add(s1);
     	//Settlers.add(s2);
-
+        Szkeleton.indentDepth--;
 
     }
     public void AddRobot(Robot robot) {

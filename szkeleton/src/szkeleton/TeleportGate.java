@@ -4,8 +4,8 @@ public class TeleportGate extends Place {
     private boolean pairIsPlaced;
     private TeleportGate pair;
 
-    public TeleportGate(int id, Map m){
-        super(id, m);
+    public TeleportGate(String name, int id, Map m){
+        super(name, id, m);
         pairIsPlaced = false;
         pair = null;
     }
