@@ -173,4 +173,11 @@ public class Asteroid extends Place{
         Szkeleton.indentDepth--;
         return layers;
     }
+    
+    public void SetLayers(int newLayers) {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".SetLayers()");
+        layers = newLayers;
+        Szkeleton.indentDepth--;
+    }
 }

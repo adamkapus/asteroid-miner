@@ -12,6 +12,7 @@ public class Map implements Steppable {
         this.name = name;
         this.game = game;
         allResources = new ArrayList<>();
+        places = new ArrayList<>();
         allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Map()");
@@ -45,9 +46,14 @@ public class Map implements Steppable {
     }
 
     public void SolarStorm() { // Az összes place-en lejátszódik az a szcenárió, amikor napvihar van
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".SolarStorm()");
         for (Place place : places) {
+        	Szkeleton.indentDepth++;
             place.HitByStorm();
         }
+        
+        Szkeleton.indentDepth--;
     }
 
     public ArrayList<Integer>  GetAllResources() {return allResources;}
@@ -93,5 +99,13 @@ public class Map implements Steppable {
         }
 
         Szkeleton.indentDepth--;
+    }
+    
+    public void AddPlace(Place p) {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".AddPlace()");
+    	places.add(p);
+    	
+    	Szkeleton.indentDepth--;
     }
 }

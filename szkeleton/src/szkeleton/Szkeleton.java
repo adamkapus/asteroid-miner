@@ -155,6 +155,12 @@ public class Szkeleton {
 			case 8:
 				scenario8();
 				break;
+			case 9:
+				scenario9();
+				break;
+			case 10:
+				scenario10();
+				break;
 			case 11:
 				scenario11();
 				break;
@@ -184,6 +190,12 @@ public class Szkeleton {
 				break;
 			case 20:
 				scenario20();
+				break;
+			case 21:
+				scenario21();
+				break;
+			case 22:
+				scenario22();
 				break;
 			case 23:
 				scenario23();
@@ -216,14 +228,21 @@ public class Szkeleton {
 		System.out.print("\t");
 	}
 	
+	
+	//Asteroid hit by solarstorm, without resource and layers
 	private void scenario1() {
-		boolean test = askQuestionFromUser(keregKerdes);
-		if(test) {
-			System.out.println("Igent valaszolt");
-		}
-		else {
-			System.out.println("Nemet valaszolt");
-		}
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
+		indentDepth++;
+		Asteroid a1 = new Asteroid("a1", 10, m, null);
+		indentDepth++;
+		a1.SetLayers(0);
+		indentDepth++;
+		m.AddPlace(a1);
+		indentDepth++;
+		m.SolarStorm();
 	}
 	
 	private void scenario2() { // Asteroid step Raioaktive
@@ -344,12 +363,44 @@ public class Szkeleton {
 
 	// robot hit by storm, asteroid with resource
 	private void scenario9() {
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
+		indentDepth++;
+		Iron i = new Iron();
+		indentDepth++;
+		Asteroid a1 = new Asteroid("a1", 10, m, i);
 		
+		indentDepth++;
+		Robot s1 = new Robot("r1",g, a1 );
+		
+		indentDepth++;
+		a1.SetLayers(0);
+		indentDepth++;
+		m.AddPlace(a1);
+		indentDepth++;
+		m.SolarStorm();
 	}
 	
 	//robot hit by storm, teleportgate
 	private void scenario10() {
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
 		
+		indentDepth++;
+		TeleportGate t1 = new TeleportGate("t1", 10, m);
+		
+		indentDepth++;
+		Robot s1 = new Robot("r1",g, t1 );
+		
+		indentDepth++;
+		m.AddPlace(t1);
+		
+		indentDepth++;
+		m.SolarStorm();
 	}
 
 	private void scenario11() { // Robot Moves
@@ -517,14 +568,14 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s1 = new Settler("s1,",g,a1);
 		indentDepth++;
-		a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
+		//a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
 
 		indentDepth++;
 		Asteroid a2 = new Asteroid("a1", 11, null, null);
 		indentDepth++;
 		Settler s2 = new Settler("s2,",g,a2);
 		indentDepth++;
-		a2.AcceptEntity(s2); //ITT IS, MINT FELJEBB
+		//a2.AcceptEntity(s2); //ITT IS, MINT FELJEBB
 
 		indentDepth++;
 		g.AddSettler(s1);
@@ -550,12 +601,44 @@ public class Szkeleton {
 
 	//settler hit by storm, asteroid with resource
 	private void scenario21() {
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
+		indentDepth++;
+		Iron i = new Iron();
+		indentDepth++;
+		Asteroid a1 = new Asteroid("a1", 10, m, i);
+		indentDepth++;
+		a1.SetLayers(0);
+		indentDepth++;
 		
+		indentDepth++;
+		Settler s1 = new Settler("s1",g, a1 );
+		
+		m.AddPlace(a1);
+		indentDepth++;
+		m.SolarStorm();
 	}
 	
 	//settler hit by storm, teleportgate
 	private void scenario22() {
-	
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
+		
+		indentDepth++;
+		TeleportGate t1 = new TeleportGate("t1", 10, m);
+		
+		indentDepth++;
+		Settler s1 = new Settler("s1",g, t1 );
+		
+		indentDepth++;
+		m.AddPlace(t1);
+		
+		indentDepth++;
+		m.SolarStorm();
 	}
 	private void scenario23() { // Settler Place Resource not empty
 		Iron iron = new Iron();
