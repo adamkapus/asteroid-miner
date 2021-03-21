@@ -8,12 +8,21 @@ public class Iron extends Resource{
         return this.radioactive;
     }
 
-    public ArrayList<Resource> RemoveFromList(ArrayList<Resource> I, Settler s){
-        I.remove(this);
+    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
+        ArrayList<Integer> newList = new ArrayList<>();
+        boolean found = false;
+        for (Integer i : I){
+            if (found)
+                newList.add(i);
+            else if (i == 12){
+                found = true;
+            }
+            else
+                newList.add(i);
+        }
         return I;}
-    public ArrayList<Resource> AddToList(ArrayList<Resource> I){
-        Iron iron= new Iron();
-        I.add(iron);
+    public ArrayList<Integer> AddToList(ArrayList<Integer> I){
+        I.add(12);
         return I;
     }
 }

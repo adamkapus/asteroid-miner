@@ -125,7 +125,7 @@ public class Settler extends Entity{
     public void BuildTeleport() {
         // MB: amikor változtatjuk a listát nem használhatunk for_each-et. Az csak akkor megy ha nem válzotik a lista hossza!
         for(Resource r : resources){
-            r.RemoveFromList(resources, this);
+            //r.RemoveFromList(resources, this);
         }
 
         if(resources.isEmpty()){

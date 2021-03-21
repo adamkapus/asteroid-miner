@@ -8,12 +8,9 @@ public class Coal extends Resource{
         return this.radioactive;
     }
 
-    public ArrayList<Resource> RemoveFromList(ArrayList<Resource> I, Settler s){
-        I.remove(this);
+    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
         return I;}
-    public ArrayList<Resource> AddToList(ArrayList<Resource> I){
-        Coal coal= new Coal();
-        I.add(coal);
+    public ArrayList<Integer> AddToList(ArrayList<Integer> I){
         return I;
     }
 }

@@ -9,13 +9,12 @@ public class IceWater extends Resource{
         return this.radioactive;
     }
 
-    public ArrayList<Resource> RemoveFromList(ArrayList<Resource> I, Settler s){
-        I.remove(this);
+    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
         return I;}
-    public ArrayList<Resource> AddToList(ArrayList<Resource> I){
-        IceWater water= new IceWater();
-        I.add(water);
+    public ArrayList<Integer> AddToList(ArrayList<Integer> I){
         return I;
     }
-    public void Sublimation(){}
+    public void Sublimation(Settler s){
+        s.RemoveResource(this);
+    }
 }

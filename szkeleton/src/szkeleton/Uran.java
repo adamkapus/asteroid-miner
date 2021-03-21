@@ -9,12 +9,9 @@ public class Uran extends Resource{
         return this.radioactive;
     }
 
-    public ArrayList<Resource> RemoveFromList(ArrayList<Resource> I, Settler s){
-        I.remove(this);
+    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
         return I;}
-    public ArrayList<Resource> AddToList(ArrayList<Resource> I){
-        Uran uran= new Uran();
-        I.add(uran);
+    public ArrayList<Integer> AddToList(ArrayList<Integer> I){
         return I;
     }
 }
