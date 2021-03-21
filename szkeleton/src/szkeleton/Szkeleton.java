@@ -353,6 +353,7 @@ public class Szkeleton {
 		
 	}
 
+	// Build teleport with enough resource
 	private void scenario15(){
 		indentDepth++;
 		Asteroid a = new Asteroid("a", 0, null, null);
@@ -378,6 +379,7 @@ public class Szkeleton {
 		s1.BuildTeleport();
 	}
 
+	// Build teleport without enough resource
 	private void scenario16(){
 		indentDepth++;
 		Asteroid a = new Asteroid("a", 0, null, null);
@@ -395,6 +397,7 @@ public class Szkeleton {
 		s1.BuildTeleport();
 	}
 
+	// Cannot build teleport
 	private void scenario17() {
 		indentDepth++;
 		Asteroid a = new Asteroid("a", 0, null, null);
@@ -491,12 +494,8 @@ public class Szkeleton {
 
 	private void scenario25() { // Settler Moves
 		Game game = new Game("Game");
-		Map map = new Map("Map", game);
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
-		map.AddPlace(asteroid2);
-		map.AddPlace(asteroid1);
-		map.Connect();
 		Settler settler = new Settler("Telepes", game, asteroid1);
 		asteroid1.AcceptEntity(settler);
 		settler.Move(1);
@@ -516,6 +515,7 @@ public class Szkeleton {
 		settler.PlaceResource(13);
 	}
 
+	// Place down teleportgate
 	private void scenario28(){
 		indentDepth++;
 		Asteroid a = new Asteroid("a", 0, null, null);
@@ -535,6 +535,7 @@ public class Szkeleton {
 		s.PlaceDownTeleport();
 	}
 
+	// use teleport
 	private void scenario29(){
 		indentDepth++;
 		TeleportGate tg1 = new TeleportGate("tg1", 0, null);

@@ -47,7 +47,7 @@ abstract public class Place implements Steppable {
         Szkeleton.indentDepth--;
     }
 
-    public Place GetNeighbor(int placeId) {
+    public Place GetNeighbor(int placeId){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".GetNeighbor()");
         Szkeleton.indentDepth--;
