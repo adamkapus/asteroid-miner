@@ -24,6 +24,6 @@ abstract public class Resource {
     // ja meg ide is kell szublimálásos függvény ami itt nem csinál semmit, csak az icewater-ben
 
     // szublimálás
-    public void Sublimation(Settler s){}
+    public void Sublimation(Asteroid a){}
 
 }

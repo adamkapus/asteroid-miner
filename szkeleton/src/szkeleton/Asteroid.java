@@ -55,6 +55,7 @@ public class Asteroid extends Place{
                 s.Mine();
             }
             else if (num == 3){
+                System.out.println("Hányas számú nyersanyagot szeretnéd letenni?");
                 str = in.nextLine();
                 num = Integer.parseInt(str);
                 if (num >= 0 && num < 10) {
@@ -128,8 +129,8 @@ public class Asteroid extends Place{
         timeCurrent++;
         if (timeCurrent == timeLimit)
             ChangeState();
-        if (state == State.CLOSE && layers == 0 && resource != null){}
-            //resource.Sublimate(); //a resource-nak kéne szublimálás függvény!!!
+        if (state == State.CLOSE && layers == 0 && resource != null)
+            resource.Sublimation(this);
         if (resource != null && resource.IsRadioactive() && layers == 0) {
             Szkeleton.indentDepth++;
             Blow();
@@ -140,25 +141,24 @@ public class Asteroid extends Place{
     }
 
     private void CheckResource(){
-        /*ArrayList<Integer> currentResources = new ArrayList<>();
+        ArrayList<Integer> currentResources = new ArrayList<>();
         for(Entity e : entity)
             currentResources = e.UpdateResourceList(currentResources);
         ArrayList<Integer> allResources = map.GetAllResources();
         java.util.Map<Integer, Integer> resMap = new HashMap<>();
-        for(int i = 0; i < allResources.size(); i++)
-            resMap.put(allResources.get(i), 0);
-        for(int i = 0; i < currentResources.size(); i++)
-            resMap.put(currentResources.get(i), resMap.get(currentResources.get(i)) + 1);
+        for (Integer allResource : allResources) resMap.put(allResource, 0);
+        for (Integer currentResource : currentResources) resMap.put(currentResource, resMap.get(currentResource) + 1);
         boolean hasAllResources = true;
-        for (int i = 0; i < allResources.size(); i++){
-            if (resMap.get(allResources.get(i)) < 3) {
+        for (Integer allResource : allResources) {
+            if (resMap.get(allResource) < 3) {
                 hasAllResources = false;
                 break;
             }
         }
         if (hasAllResources)
-            map.EnpughResources();*/
+            map.EnpughResources();
     }
+
     private void ChangeState(){
         if (state == State.CLOSE)
             state = State.FAR;

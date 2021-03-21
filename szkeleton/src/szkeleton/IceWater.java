@@ -14,7 +14,7 @@ public class IceWater extends Resource{
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
         return I;
     }
-    public void Sublimation(Settler s){
-        s.RemoveResource(this);
+    public void Sublimation(Asteroid a){
+        a.RemoveResource();
     }
 }

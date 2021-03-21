@@ -129,6 +129,8 @@ public class Settler extends Entity{
         Szkeleton.indentDepth--;
     }
     public void BuildTeleport() {
+        if (gates.size() != 0)
+            return;
         // MB: amikor változtatjuk a listát nem használhatunk for_each-et. Az csak akkor megy ha nem válzotik a lista hossza!
 
         Szkeleton.writeTabs(Szkeleton.indentDepth);
