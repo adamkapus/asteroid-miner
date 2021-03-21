@@ -8,7 +8,7 @@ public class Iron extends Resource{
         return this.radioactive;
     }
 
-    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I){
+    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -16,6 +16,7 @@ public class Iron extends Resource{
                 newList.add(i);
             else if (i == 12){
                 found = true;
+                s.RemoveResource(this);
             }
             else
                 newList.add(i);

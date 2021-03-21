@@ -9,7 +9,7 @@ public class IceWater extends Resource{
         return this.radioactive;
     }
 
-    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I){
+    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -17,6 +17,7 @@ public class IceWater extends Resource{
                 newList.add(i);
             else if (i == 11){
                 found = true;
+                s.RemoveResource(this);
             }
             else
                 newList.add(i);
