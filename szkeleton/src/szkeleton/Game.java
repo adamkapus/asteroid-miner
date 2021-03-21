@@ -20,10 +20,16 @@ public class Game {
     }
 
     public void Win() {
-    	System.out.println("Jatek megnyerve\n");
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Win()");
+    	//System.out.println("Jatek megnyerve\n");
+        Szkeleton.indentDepth--;
     }
     public void Lose() {
-    	System.out.println("Jatek elveszitve\n");
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Lose()");
+    	//System.out.println("Jatek elveszitve\n");
+    	Szkeleton.indentDepth--;
     }
     public void NewGame() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -54,12 +60,17 @@ public class Game {
     	robots.add(robot);
     }
     public void SettlerDied(Settler settler) {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".SettlerDied()");
     	settlers.remove(settler);
+    	
+    	Szkeleton.indentDepth++;
+    	this.Lose();
 
-
+    	
     	///KENE MINDEN OSZTALYNAK (ami komparalhato) equals(object o) FUGGVENY!!
 
-
+    	 Szkeleton.indentDepth--;
     }
     public void RobotDied(Robot robot) {
     	robots.remove(robot);
@@ -78,5 +89,16 @@ public class Game {
     	}
 
     	map.Step();
+    }
+    
+    
+    //KA: nincs rajta a diagramon, scenario epiteshez kell
+    
+    public void AddSettler(Settler s) {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".AddSettler()");
+        Szkeleton.indentDepth--;
+        
+        settlers.add(s);
     }
 }

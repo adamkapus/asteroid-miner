@@ -10,12 +10,12 @@ abstract public class Place implements Steppable {
     protected Map map;
     protected List<Entity> entity;
     protected String name;
-
+    /*
     public Place(int id, Map m){
     String name;
 
     public Place(String n, int id, Map m){
-        name = n;
+        name = n;*/
     public Place(String name, int id, Map m){
         placeID = id;
         neighbors = new ArrayList<>();

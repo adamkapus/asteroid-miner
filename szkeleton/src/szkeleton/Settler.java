@@ -106,10 +106,7 @@ public class Settler extends Entity{
 
         if(resources.isEmpty()){
             Map m = this.game.GetMap();
-            TeleportGate gate1 = new TeleportGate(1, m);
-            TeleportGate gate2 = new TeleportGate(2, m);
-            TeleportGate gate1 = new TeleportGate("tg1",1, m);
-            TeleportGate gate2 = new TeleportGate("tg2",2, m);
+            
             TeleportGate gate1 = new TeleportGate("tg1", 1, m);
             TeleportGate gate2 = new TeleportGate("tg2", 2, m);
 
