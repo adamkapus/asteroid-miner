@@ -392,6 +392,8 @@ public class Szkeleton {
 	
 	//settler hit by storm, teleportgate
 	private void scenario22() {
+	
+	}
 		
 
 	private void scenario25() {
