@@ -158,6 +158,8 @@ public class Szkeleton {
 			case 19:
 				scenario19();
 				break;
+			case 26:
+				scenario26(); break;
 			case 28:
 				scenario28();
 				break;
@@ -368,13 +370,27 @@ public class Szkeleton {
 		s1.Die();
 	}
 
-	private void scenario25() {
+	private void scenario25() { // Settler Moves
 		Game game = new Game("Game");
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
 		Settler settler = new Settler("Telepes", game, asteroid1);
 		asteroid1.AcceptEntity(settler);
 		settler.Move(1);
+	}
+
+	private void scenario26() { // Settler Place Resource not empty
+		Iron iron = new Iron();
+		Asteroid asteroid = new Asteroid("Asteroid", 1, null, iron);
+		Settler settler = new Settler("Telepes", null, asteroid);
+		settler.PlaceResource(10);
+	}
+
+	private void scenario27() { // Settler place Resource
+		Uran u = new Uran();
+		Asteroid a = new Asteroid("Asteroid", 1, null, null);
+		Settler settler = new Settler("Telepes", null, a);
+		settler.PlaceResource(13);
 	}
 
 	private void scenario28(){

@@ -8,13 +8,24 @@ public class Map implements Steppable {
     Game game;
     private String name;
     //KA: a map konstruktoraban kene letrehozni az aszteroidakat, a place-eket nem kapja meg parameterkent
-    public Map(String n, Game game) {
+    public Map(String name, Game game) {
+        this.name = name;
+        this.game = game;
+        allResources = new ArrayList<>();
+        allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Map()");
+
+        Szkeleton.indentDepth--;
+    }
+
+    public Map(String n, Game game, int numOfAst) {
         name = n;
         allResources = new ArrayList<>();
         allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
         places = new ArrayList<>();
         Random ran = new Random();
-        for (int i = 0; i < ran.nextInt(31) + 20; i++) { // 20-50 között lesz az aszteroidák száma
+        for (int i = 0; i < numOfAst; i++) {
             Resource resource = switch (ran.nextInt(5)) {
                 case 0 -> new Coal();
                 case 1 -> new IceWater();
@@ -28,7 +39,7 @@ public class Map implements Steppable {
         this.game = game;
 
         Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Map()");
+        System.out.println(name +".Map(int)");
 
         Szkeleton.indentDepth--;
     }
