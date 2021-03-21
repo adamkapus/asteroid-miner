@@ -230,12 +230,11 @@ public class Szkeleton {
 		indentDepth++;
 		Game g = new Game("g1");
 		
-		Asteroid a1 = new Asteroid(1, null, null);
+		
 
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 1, null, null);
 		
-		Asteroid a1 = new Asteroid("a1", 1, null, null);
 
 		indentDepth++;
 		Settler s1 = new Settler("s1" , g, a1);
