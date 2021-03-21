@@ -140,6 +140,12 @@ public class Szkeleton {
 			case 17:
 				scenario17();
 				break;
+			case 18:
+				scenario18();
+				break;
+			case 19:
+				scenario19();
+				break;
 			case 28:
 				scenario28();
 				break;
@@ -245,6 +251,56 @@ public class Szkeleton {
 		s1.AddTeleportGate(tg);
 		indentDepth++;
 		s1.BuildTeleport();
+	}
+	
+	private void scenario18() {
+		indentDepth++;
+		Game g = new Game("g1");
+		
+		indentDepth++;
+		Coal c1 = new Coal();
+		indentDepth++;
+		Asteroid a1 = new Asteroid("a1", 10, null, c1);
+		indentDepth++;
+		Settler s1 = new Settler("s1,",g,a1);
+		indentDepth++;
+		a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
+		
+		
+		indentDepth++;
+		g.AddSettler(s1);
+		
+		indentDepth++;
+		s1.Die();
+	}
+	
+	private void scenario19() {
+		indentDepth++;
+		Game g = new Game("g1");
+		
+		indentDepth++;
+		Coal c1 = new Coal();
+		indentDepth++;
+		Asteroid a1 = new Asteroid("a1", 10, null, c1);
+		indentDepth++;
+		Settler s1 = new Settler("s1,",g,a1);
+		indentDepth++;
+		a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
+		
+		indentDepth++;
+		Asteroid a2 = new Asteroid("a1", 11, null, null);
+		indentDepth++;
+		Settler s2 = new Settler("s2,",g,a2);
+		indentDepth++;
+		a2.AcceptEntity(s2);
+		
+		indentDepth++;
+		g.AddSettler(s1);
+		indentDepth++;
+		g.AddSettler(s2);
+		
+		indentDepth++;
+		s1.Die();
 	}
 
 	private void scenario28(){
