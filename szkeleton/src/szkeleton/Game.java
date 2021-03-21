@@ -61,7 +61,11 @@ public class Game {
 
     }
     public void AddRobot(Robot robot) {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".AddRobot()");
+
     	robots.add(robot);
+    	Szkeleton.indentDepth--;
     }
     public void SettlerDied(Settler settler) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -77,22 +81,32 @@ public class Game {
     	 Szkeleton.indentDepth--;
     }
     public void RobotDied(Robot robot) {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".RemoveRobot()");
     	robots.remove(robot);
+    	
+    	Szkeleton.indentDepth--;
     }
 
     public Map GetMap(){return map;}
 
     //KA ez sincs rajta a diagramon, de valami hasonlo kene
     public void OneRound() {
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".OneRound()");
     	for(int i =0; i < settlers.size(); i++) {
+    		Szkeleton.indentDepth++;
     		settlers.get(i).Step();
     	}
 
     	for(int i =0; i < settlers.size(); i++) {
+    		Szkeleton.indentDepth++;
     		robots.get(i).Step();
     	}
-
+    	Szkeleton.indentDepth++;
     	map.Step();
+    	
+    	Szkeleton.indentDepth--;
     }
     
     
