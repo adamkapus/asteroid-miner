@@ -23,6 +23,7 @@ public class Uran extends Resource{
         }
         return I;}
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
+        I.add(13);
         return I;
     }
 }

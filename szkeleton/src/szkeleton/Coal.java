@@ -22,6 +22,7 @@ public class Coal extends Resource{
         }
         return I;}
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
+        I.add(10);
         return I;
     }
 }

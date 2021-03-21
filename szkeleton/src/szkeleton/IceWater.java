@@ -23,6 +23,7 @@ public class IceWater extends Resource{
         }
         return I;}
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
+        I.add(11);
         return I;
     }
     public void Sublimation(Asteroid a){
