@@ -45,6 +45,8 @@ public class Szkeleton {
 				+ "1 -- Settler move scenario\n"
 				+ "2 -- Robot move scenario\n"
 				+ "3 -- stb\n"
+				+ "12 -- Settler blown up\n"
+				+ "25 -- Settler move scenario\n"
 				+ "5 -- New game\n"
 				+ "7 -- Robot blown up\n"
 				+ "12 -- Settler blown up\n");
@@ -136,6 +138,8 @@ public class Szkeleton {
 			case 7:
 				scenario7();
 				break;
+			case 11:
+				scenario11(); break;
 			case 12:
 				scenario12();
 				break;
@@ -157,6 +161,8 @@ public class Szkeleton {
 			case 28:
 				scenario28();
 				break;
+			case 25:
+				scenario25(); break;
 			case 29:
 				scenario29();
 				break;
@@ -165,7 +171,8 @@ public class Szkeleton {
 	}
 	
 	public static void writeTabs(int tabs) {
-		System.out.print(tabs);
+		for (int i = 0; i < tabs; i++)
+		System.out.print("\t");
 	}
 	
 	private void scenario1() {
@@ -225,16 +232,25 @@ public class Szkeleton {
 
 	}
 
+	private void scenario11() { // Robot Moves
+		Game game = new Game("Game");
+		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
+		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		Robot robot = new Robot("Robot", game, asteroid1);
+		asteroid1.AcceptEntity(robot);
+		robot.Move(1);
+	}
+
 	//Setler blown up
 	private void scenario12() {
 		indentDepth++;
 		Game g = new Game("g1");
 		
-		
+
 
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 1, null, null);
-		
+
 
 		indentDepth++;
 		Settler s1 = new Settler("s1" , g, a1);
@@ -301,11 +317,11 @@ public class Szkeleton {
 		indentDepth++;
 		s1.BuildTeleport();
 	}
-	
+
 	private void scenario18() {
 		indentDepth++;
 		Game g = new Game("g1");
-		
+
 		indentDepth++;
 		Coal c1 = new Coal();
 		indentDepth++;
@@ -314,19 +330,19 @@ public class Szkeleton {
 		Settler s1 = new Settler("s1,",g,a1);
 		indentDepth++;
 		a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
-		
-		
+
+
 		indentDepth++;
 		g.AddSettler(s1);
-		
+
 		indentDepth++;
 		s1.Die();
 	}
-	
+
 	private void scenario19() {
 		indentDepth++;
 		Game g = new Game("g1");
-		
+
 		indentDepth++;
 		Coal c1 = new Coal();
 		indentDepth++;
@@ -335,21 +351,30 @@ public class Szkeleton {
 		Settler s1 = new Settler("s1,",g,a1);
 		indentDepth++;
 		a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
-		
+
 		indentDepth++;
 		Asteroid a2 = new Asteroid("a1", 11, null, null);
 		indentDepth++;
 		Settler s2 = new Settler("s2,",g,a2);
 		indentDepth++;
 		a2.AcceptEntity(s2);
-		
+
 		indentDepth++;
 		g.AddSettler(s1);
 		indentDepth++;
 		g.AddSettler(s2);
-		
+
 		indentDepth++;
 		s1.Die();
+	}
+
+	private void scenario25() {
+		Game game = new Game("Game");
+		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
+		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		Settler settler = new Settler("Telepes", game, asteroid1);
+		asteroid1.AcceptEntity(settler);
+		settler.Move(1);
 	}
 
 	private void scenario28(){

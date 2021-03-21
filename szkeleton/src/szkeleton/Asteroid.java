@@ -17,8 +17,6 @@ public class Asteroid extends Place{
     public Asteroid(String name, int id, szkeleton.Map m, Resource r){
         super(name, id, m);
         Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Asteroid()");
-
         System.out.println(name + ".Asteroid()");
         Szkeleton.indentDepth--;
         Random ran = new Random();
