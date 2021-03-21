@@ -565,9 +565,7 @@ public class Szkeleton {
 		Asteroid a1 = new Asteroid("a1", 10, null, c1);
 		indentDepth++;
 		Settler s1 = new Settler("s1,",g,a1);
-		indentDepth++;
-		a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
-
+		 
 
 		indentDepth++;
 		g.AddSettler(s1);
@@ -590,14 +588,12 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s1 = new Settler("s1,",g,a1);
 		indentDepth++;
-		//a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
-
+		
 		indentDepth++;
 		Asteroid a2 = new Asteroid("a1", 11, null, null);
 		indentDepth++;
 		Settler s2 = new Settler("s2,",g,a2);
-		indentDepth++;
-		//a2.AcceptEntity(s2); //ITT IS, MINT FELJEBB
+		
 
 		indentDepth++;
 		g.AddSettler(s1);
