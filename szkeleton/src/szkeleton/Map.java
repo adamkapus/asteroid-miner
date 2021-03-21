@@ -59,7 +59,8 @@ public class Map implements Steppable {
     public Place GetRandomPlace() { // Visszaad egy random place-t
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".GetRandomPlace()");
-
+        
+        //EZ ITT KELL?
         Szkeleton.indentDepth++;
         Random ran = new Random();
 

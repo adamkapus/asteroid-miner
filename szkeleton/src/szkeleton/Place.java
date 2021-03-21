@@ -28,8 +28,6 @@ abstract public class Place implements Steppable {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AcceptEntity()");
 
-        Szkeleton.indentDepth++;
-        System.out.println(name + ".AcceptEntity()");
         entity.add(e);
         Szkeleton.indentDepth--;
     }
@@ -37,8 +35,6 @@ abstract public class Place implements Steppable {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".RemoveEntity()");
 
-        Szkeleton.indentDepth++;
-        System.out.println(name + ".RemoveEntity()");
         entity.remove(e);
 
         Szkeleton.indentDepth--;
@@ -46,9 +42,7 @@ abstract public class Place implements Steppable {
     public void AddNeighbor(Place p){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AddNeighbor()");
-
-        Szkeleton.indentDepth++;
-        System.out.println(name + ".AddNeighbor()");
+        
         neighbors.add(p);
         Szkeleton.indentDepth++;
         p.Placed();
@@ -70,9 +64,6 @@ abstract public class Place implements Steppable {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".GetRandomNeighbor()");
 
-        Szkeleton.indentDepth++;
-        System.out.println(name + ".GetRandomNeighbor()");
-        Szkeleton.indentDepth--;
         Random r = new Random();
 
         Szkeleton.indentDepth--;

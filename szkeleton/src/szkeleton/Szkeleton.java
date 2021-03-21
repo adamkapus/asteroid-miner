@@ -224,6 +224,16 @@ public class Szkeleton {
 
 
 	}
+	
+	// robot hit by storm, asteroid with resource
+	private void scenario9() {
+		
+	}
+	
+	//robot hit by storm, teleportgate
+	private void scenario10() {
+		
+	}
 
 	//Setler blown up
 	private void scenario12() {
@@ -302,6 +312,8 @@ public class Szkeleton {
 		s1.BuildTeleport();
 	}
 	
+	
+	//settler died game over
 	private void scenario18() {
 		indentDepth++;
 		Game g = new Game("g1");
@@ -323,6 +335,7 @@ public class Szkeleton {
 		s1.Die();
 	}
 	
+	//settler died no game over
 	private void scenario19() {
 		indentDepth++;
 		Game g = new Game("g1");
@@ -341,7 +354,7 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s2 = new Settler("s2,",g,a2);
 		indentDepth++;
-		a2.AcceptEntity(s2);
+		a2.AcceptEntity(s2); //ITT IS, MINT FELJEBB
 		
 		indentDepth++;
 		g.AddSettler(s1);
@@ -350,6 +363,16 @@ public class Szkeleton {
 		
 		indentDepth++;
 		s1.Die();
+	}
+	
+	//settler hit by storm, asteroid with resource
+	private void scenario21() {
+		
+	}
+	
+	//settler hit by storm, teleportgate
+	private void scenario22() {
+		
 	}
 
 	private void scenario28(){
