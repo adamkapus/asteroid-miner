@@ -10,6 +10,8 @@ public class IceWater extends Resource{
     }
 
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println("RemoveFromList(IceWater)");
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -22,13 +24,21 @@ public class IceWater extends Resource{
             else
                 newList.add(i);
         }
+        Szkeleton.indentDepth--;
         return newList;
     }
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println("AddToList(IceWater)");
         I.add(11);
+        Szkeleton.indentDepth--;
         return I;
     }
     public void Sublimation(Asteroid a){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println("IceWater.Sublimation()");
         a.RemoveResource();
+        Szkeleton.indentDepth--;
+        return;
     }
 }

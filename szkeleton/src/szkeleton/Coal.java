@@ -9,6 +9,8 @@ public class Coal extends Resource{
     }
 
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println("RemoveFromList(Coal)");
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -21,10 +23,14 @@ public class Coal extends Resource{
             else
                 newList.add(i);
         }
+        Szkeleton.indentDepth--;
         return newList;
     }
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println("AddToList(Coal)");
         I.add(10);
+        Szkeleton.indentDepth--;
         return I;
     }
 }

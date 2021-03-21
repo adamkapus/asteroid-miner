@@ -10,6 +10,8 @@ public class Uran extends Resource{
     }
 
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println("RemoveFromList(Uran)");
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -22,10 +24,14 @@ public class Uran extends Resource{
             else
                 newList.add(i);
         }
+        Szkeleton.indentDepth--;
         return newList;
     }
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println("AddToList(Uran)");
         I.add(13);
+        Szkeleton.indentDepth--;
         return I;
     }
 }
