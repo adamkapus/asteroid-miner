@@ -42,23 +42,36 @@ public class Szkeleton {
 	
 	private void printSequenceOptions() {
 		System.out.println("0 a kilepeshez\n"
-				+ "1 -- \n"
+				+ "1 -- Asteroid hit by solar storm,  asteroid without resource and layers\n"
 				+ "2 -- Asteroid Step Radioactive Asteroid\n"
-				+ "3 -- stb\n"
+				+ "3 -- Asteoid Step: IceWater Sublimates\n"
+				+ "4 -- IceWater Sublimates\n"
 				+ "5 -- New game\n"
 				+ "6 -- Normal asteroid step\n"
 				+ "7 -- Robot blown up\n"
 				+ "8 -- Robot drills\n"
+				+ "9 -- Robot hit by Solar Storm, asteroid with resource\n\n"
+				+ "10 -- Robot hit by storm, teleportgate\n"
+				+ "11 -- Robot moves\n"
 				+ "12 -- Settler blown up\n"
-				+ ""
-				+ ""
-				+ ""
-				+ ""
-				+ "25 -- Settler move scenario\n"
-				+ "20 -- Settler drills"
-				+ ""
-				+ ""
-				+ "");
+				+ "13 -- Settler build robot with resource\n\n"
+				+ "14 -- Settler build robot without resource\n"
+				+ "15 -- Settler Build Teleport With Enough Resources\n"
+				+ "16 -- Settler Build Teleport Without Enough Resource\n"
+				+ "17 -- Settler Cannot Build Teleport\n"
+				+ "18 -- Settler died, game over\n"
+				+ "19 -- Settler died, no game over\n"
+				+ "20 -- Settler drills\n"
+				+ "21 -- Settler hit by solar storm, asteroid with resource\n"
+				+ "22 -- Settler hit by storm, teleportgate\n"
+				+ "23 -- Settler mine with resourcen"
+				+ "24 -- Settler mine without resource\n"
+				+ "25 -- Settler move \n"
+				+ "26 -- Settler Place resource: Not empty\n"
+				+ "27 -- Settler Place resource\n"
+				+ "28 -- Settler Place Teleport\n"
+				+ "29 -- Settler Use Teleport\n"
+				);
 				
 	}
 	
@@ -532,7 +545,6 @@ public class Szkeleton {
 	
 	
 	//settler died game over
-
 	private void scenario18() {
 		indentDepth++;
 		Game g = new Game("g1");
