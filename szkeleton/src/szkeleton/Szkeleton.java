@@ -42,16 +42,23 @@ public class Szkeleton {
 	
 	private void printSequenceOptions() {
 		System.out.println("0 a kilepeshez\n"
-				+ "1 -- Settler move scenario\n"
-				+ "2 -- Robot move scenario\n"
+				+ "1 -- \n"
+				+ "2 -- Asteroid Step Radioactive Asteroid\n"
 				+ "3 -- stb\n"
 				+ "5 -- New game\n"
 				+ "6 -- Normal asteroid step\n"
 				+ "7 -- Robot blown up\n"
 				+ "8 -- Robot drills\n"
 				+ "12 -- Settler blown up\n"
+				+ ""
+				+ ""
+				+ ""
+				+ ""
 				+ "25 -- Settler move scenario\n"
-				+ "20 -- Settler drills");
+				+ "20 -- Settler drills"
+				+ ""
+				+ ""
+				+ "");
 				
 	}
 	
@@ -117,8 +124,7 @@ public class Szkeleton {
 	        	}
 	        
 		}
-		
-		
+
 		return answer;
 	}
 	
@@ -132,7 +138,7 @@ public class Szkeleton {
 		    	scenario2();
 		    	break;
 		  	case 3:
-				scenario2();
+				scenario3();
 				break;
 			case 5:
 				scenario5();
@@ -171,6 +177,8 @@ public class Szkeleton {
 				break;
 			case 26:
 				scenario26(); break;
+			case 27:
+				scenario27(); break;
 			case 28:
 				scenario28();
 				break;
@@ -198,12 +206,38 @@ public class Szkeleton {
 		}
 	}
 	
-	private void scenario2() {
-		
+	private void scenario2() { // Asteroid step Raioaktive
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
+		indentDepth++;
+		Uran u = new Uran();
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 1, m, u);
+		indentDepth++;
+		Settler s = new Settler("s1", g, a);
+		indentDepth++;
+		a.AcceptEntity(s);
+		indentDepth++;
+		a.Step();
 	}
 	
-	private void scenario3() {
-		
+	private void scenario3() { // Asteroid Step IceWater
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
+		indentDepth++;
+		IceWater iw = new IceWater();
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 1, m, iw);
+		indentDepth++;
+		Settler s = new Settler("s1", g, a);
+		indentDepth++;
+		a.AcceptEntity(s);
+		indentDepth++;
+		a.Step();
 	}
 
 	//New game
