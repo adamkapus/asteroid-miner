@@ -106,9 +106,14 @@ public class Settler extends Entity{
         req.add(12);     //vas
         req.add(13);     //urán
 
-        for(Resource r : resources){
-            r.RemoveFromList(req, this);     //a szükséges nyersanyagok csekkolása
-            req.remove(r);                      //törlés az inventory-ból
+        ListIterator<Resource> rIter = resources.listIterator();
+        while (rIter.hasNext() || req.size() == 1){
+            try {
+                req = rIter.next().RemoveFromList(req, this);
+            }
+            catch (Exception e){
+                rIter = resources.listIterator();
+            }
         }
 
         if(req.isEmpty()){

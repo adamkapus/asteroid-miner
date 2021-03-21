@@ -296,6 +296,8 @@ public class Szkeleton {
 		indentDepth++;
 		IceWater iw = new IceWater();
 		indentDepth++;
+		Map m = new Map("m", null);
+		indentDepth++;
 		Asteroid a = new Asteroid("a", 1,null, iw);
 		indentDepth++;
 		a.Step();
@@ -672,9 +674,11 @@ public class Szkeleton {
 		Game game = new Game("Game");
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		asteroid1.AddNeighbor(asteroid2);
+		asteroid2.AddNeighbor(asteroid1);
 		Settler settler = new Settler("Telepes", game, asteroid1);
 		asteroid1.AcceptEntity(settler);
-		settler.Move(1);
+		settler.Move(2);
 	}
 
 	private void scenario26() { // Settler Place Resource not empty
