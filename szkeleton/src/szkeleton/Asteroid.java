@@ -14,8 +14,11 @@ public class Asteroid extends Place{
     private Resource resource;
     private State state;
 
-    public Asteroid(int id, szkeleton.Map m, Resource r){
-        super(id, m);
+    public Asteroid(String name, int id, szkeleton.Map m, Resource r){
+        super(name, id, m);
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Asteroid()");
+        Szkeleton.indentDepth--;
         Random ran = new Random();
         timeLimit = ran.nextInt(50 - 5) + 5; // random int between 5 and 50
         timeCurrent = 0;
@@ -28,69 +31,111 @@ public class Asteroid extends Place{
     }
 
     public void ReduceRockLayer(){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".ReduceRockLayer()");
+        Szkeleton.indentDepth--;
         if (layers >= 0) layers--;
     }
     @Override
     public void Action(Settler s){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Action()");
         System.out.println("1 - Fúrás; 2 - Bányászás; 3 - Nyersanyaglerakás\n");
         Scanner in = new Scanner(System.in);
         String str = in.nextLine();
         try {
             int num = Integer.parseInt(str);
-            if (num == 1)
+            if (num == 1) {
+                Szkeleton.indentDepth++;
                 s.Drill();
-            else if (num == 2)
+            }
+            else if (num == 2) {
+                Szkeleton.indentDepth++;
                 s.Mine();
+            }
             else if (num == 3){
                 str = in.nextLine();
                 num = Integer.parseInt(str);
-                if (num >= 0 && num < 10)
+                if (num >= 0 && num < 10) {
+                    Szkeleton.indentDepth++;
                     s.PlaceResource(num);
+                }
             }
         }
         catch (Exception e){
             System.out.println("Nem jó számot adtál meg, buktad a körödet!");
         }
+        Szkeleton.indentDepth--;
     }
     @Override
     public void Action(Robot r){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Action()");
+        Szkeleton.indentDepth++;
         r.Drill();
+        Szkeleton.indentDepth--;
     }
     @Override
     public void HitByStorm(){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".HitByStorm()");
         if (layers != 0 && resource != null){
-            for(Entity e : entity)
+            for(Entity e : entity) {
+                Szkeleton.indentDepth++;
                 e.Die();
+            }
         }
+        Szkeleton.indentDepth--;
     }
     public Resource MinedBy(Settler s){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".MinedBy()");
         Resource rTemp = resource;
         resource = null;
+        Szkeleton.indentDepth--;
         return rTemp;
     }
     public void InsertResource(Resource r){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".InsertResource()");
+        Szkeleton.indentDepth--;
         resource = r;
     }
     public void RemoveResource(){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".RemoveResource()");
+        Szkeleton.indentDepth--;
         resource = null;
     }
     public void Blow(){
-        for(Entity e: entity)
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Blow()");
+        for(Entity e: entity) {
+            Szkeleton.indentDepth++;
             e.BlownUp();
+        }
+        Szkeleton.indentDepth--;
     }
     @Override
-    public void Placed(){}
+    public void Placed(){
+        Szkeleton.indentDepth--;
+    }
     @Override
     public void Step(){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Step()");
         timeCurrent++;
         if (timeCurrent == timeLimit)
             ChangeState();
         if (state == State.CLOSE && layers == 0 && resource != null){}
             //resource.Sublimate(); //a resource-nak kéne szublimálás függvény!!!
-        if (resource != null && resource.IsRadioactive() && layers == 0)
+        if (resource != null && resource.IsRadioactive() && layers == 0) {
+            Szkeleton.indentDepth++;
             Blow();
+        }
 
         CheckResource();
+        Szkeleton.indentDepth--;
     }
 
     private void CheckResource(){
@@ -121,5 +166,10 @@ public class Asteroid extends Place{
         timeCurrent = 0;
     }
 
-    public int GetLayers(){return layers;}
+    public int GetLayers(){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".GetLayers()");
+        Szkeleton.indentDepth--;
+        return layers;
+    }
 }
