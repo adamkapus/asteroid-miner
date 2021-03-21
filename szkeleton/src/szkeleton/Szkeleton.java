@@ -491,8 +491,12 @@ public class Szkeleton {
 
 	private void scenario25() { // Settler Moves
 		Game game = new Game("Game");
+		Map map = new Map("Map", game);
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		map.AddPlace(asteroid2);
+		map.AddPlace(asteroid1);
+		map.Connect();
 		Settler settler = new Settler("Telepes", game, asteroid1);
 		asteroid1.AcceptEntity(settler);
 		settler.Move(1);
