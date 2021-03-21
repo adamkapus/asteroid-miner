@@ -1,6 +1,7 @@
 package szkeleton;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Settler extends Entity{
@@ -131,7 +132,6 @@ public class Settler extends Entity{
     public void BuildTeleport() {
         if (gates.size() != 0)
             return;
-        // MB: amikor változtatjuk a listát nem használhatunk for_each-et. Az csak akkor megy ha nem válzotik a lista hossza!
 
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".BuildTeleport()");
@@ -139,17 +139,18 @@ public class Settler extends Entity{
         Szkeleton.indentDepth++;
         ArrayList<Integer> req = new ArrayList<>();
         req.add(11);     //vízjég
-        req.add(11);     //vízjég
         req.add(12);     //vas
         req.add(12);     //vas
-        req.add(12);     //vas
-        req.add(12);     //vas
-        req.add(13);     //urán
         req.add(13);     //urán
 
-        for(Resource r : resources){
-            r.RemoveFromList(req, this);     //a szükséges nyersanyagok csekkolása
-            req.remove(r);                      //törlés az inventory-ból
+        ListIterator<Resource> rIter = resources.listIterator();
+        while (rIter.hasNext() || req.size() == 1){
+            try {
+                req = rIter.next().RemoveFromList(req, this);
+            }
+            catch (Exception e){
+                rIter = resources.listIterator();
+            }
         }
 
         if(resources.isEmpty()){

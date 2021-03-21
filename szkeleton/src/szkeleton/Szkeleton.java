@@ -474,9 +474,13 @@ public class Szkeleton {
 	// Build teleport with enough resource
 	private void scenario15(){
 		indentDepth++;
-		Asteroid a = new Asteroid("a", 0, null, null);
+		Game g = new Game("g");
 		indentDepth++;
-		Settler s1 = new Settler("s1", null, a);
+		Map m = new Map("m", g, 0);
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 0, m, null);
+		indentDepth++;
+		Settler s1 = new Settler("s1", g, a);
 		indentDepth++;
 		Iron i1 = new Iron();
 		indentDepth++;

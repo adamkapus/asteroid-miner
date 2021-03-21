@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 abstract public class Place implements Steppable {
-    protected int placeID;
-    protected List<Place> neighbors;
-    protected Map map;
-    protected List<Entity> entity;
-    protected String name;
+    protected int placeID; // unique id
+    protected List<Place> neighbors; // neighbors
+    protected Map map; // map it is on
+    protected List<Entity> entity; // entities on this place
+    protected String name; // name
 
 
 
@@ -21,6 +21,7 @@ abstract public class Place implements Steppable {
         this.name = name;
     }
 
+    // entity moves here
     public void AcceptEntity(Entity e){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AcceptEntity()");
@@ -28,6 +29,7 @@ abstract public class Place implements Steppable {
         entity.add(e);
         Szkeleton.indentDepth--;
     }
+    // entity moves away
     public void RemoveEntity(Entity e){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".RemoveEntity()");
@@ -36,6 +38,7 @@ abstract public class Place implements Steppable {
 
         Szkeleton.indentDepth--;
     }
+    // add a new neighbor to the place
     public void AddNeighbor(Place p){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AddNeighbor()");
@@ -46,7 +49,7 @@ abstract public class Place implements Steppable {
 
         Szkeleton.indentDepth--;
     }
-
+    // get a certain neighbor
     public Place GetNeighbor(int placeId){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".GetNeighbor()");
@@ -56,7 +59,7 @@ abstract public class Place implements Steppable {
                 return p;
         return null;
     }
-
+    // get a random neighbor
     public Place GetRandomNeighbor(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".GetRandomNeighbor()");

@@ -4,16 +4,18 @@ import java.io.Console;
 import java.util.*;
 
 public class Asteroid extends Place{
+    // state machine for asteroid state to the star
     private enum State {
         CLOSE, FAR
     }
 
-    private int timeLimit;
-    private int timeCurrent;
-    private int layers;
-    private Resource resource;
-    private State state;
+    private int timeLimit; // change state when this number is reached
+    private int timeCurrent; // time since last state change
+    private int layers; // number of layers
+    private Resource resource; // resource inside the asteroid
+    private State state; // current state
 
+    // create asteroid with name, unique id, current map, resource to be inside
     public Asteroid(String name, int id, szkeleton.Map m, Resource r){
         super(name, id, m);
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -31,18 +33,20 @@ public class Asteroid extends Place{
         Szkeleton.indentDepth--;
     }
 
+    // reduce the number of layers
     public void ReduceRockLayer(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".ReduceRockLayer()");
         Szkeleton.indentDepth--;
         if (layers >= 0) layers--;
     }
+    // do action with settler
     @Override
     public void Action(Settler s){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Action()");
         System.out.println("1 - Fúrás; 2 - Bányászás; 3 - Nyersanyaglerakás\n");
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in); // get number from the user
         String str = in.nextLine();
         try {
             int num = Integer.parseInt(str);
@@ -56,7 +60,7 @@ public class Asteroid extends Place{
             }
             else if (num == 3){
                 System.out.println("Hányas számú nyersanyagot szeretnéd letenni?");
-                str = in.nextLine();
+                str = in.nextLine(); // get another number from user
                 num = Integer.parseInt(str);
                 if (num >= 0 && num < 10) {
                     Szkeleton.indentDepth++;
@@ -69,14 +73,16 @@ public class Asteroid extends Place{
         }
         Szkeleton.indentDepth--;
     }
+    // do action with robot
     @Override
     public void Action(Robot r){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Action()");
         Szkeleton.indentDepth++;
-        r.Drill();
+        r.Drill(); // robot can only drill
         Szkeleton.indentDepth--;
     }
+    // asteroid is hit by storm
     @Override
     public void HitByStorm(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -89,6 +95,7 @@ public class Asteroid extends Place{
         }
         Szkeleton.indentDepth--;
     }
+    // asteroid is mined by settler
     public Resource MinedBy(Settler s){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".MinedBy()");
@@ -97,22 +104,25 @@ public class Asteroid extends Place{
         Szkeleton.indentDepth--;
         return rTemp;
     }
+    // resource is placed inside the asteroid
     public void InsertResource(Resource r){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".InsertResource()");
         Szkeleton.indentDepth--;
         resource = r;
     }
+    // remove the current resource from the asteroid
     public void RemoveResource(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".RemoveResource()");
         Szkeleton.indentDepth--;
         resource = null;
     }
-    public void Blow(){
+    // all entities are blown up
+    public void Blow() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Blow()");
-        for(Entity e: entity) {
+        for (Entity e : entity) {
             Szkeleton.indentDepth++;
             e.BlownUp();
         }
@@ -122,24 +132,30 @@ public class Asteroid extends Place{
     public void Placed(){
         Szkeleton.indentDepth--;
     }
+    // asteroid makes its turn
     @Override
     public void Step(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Step()");
         timeCurrent++;
+        // change state if required
         if (timeCurrent == timeLimit)
             ChangeState();
+        // sublimate the resource if conditions are met
         if (state == State.CLOSE && layers == 0 && resource != null)
             resource.Sublimation(this);
+        // detonate the entities if conditions are met
         if (resource != null && resource.IsRadioactive() && layers == 0) {
             Szkeleton.indentDepth++;
             Blow();
         }
 
+        // check the victory condition
         CheckResource();
         Szkeleton.indentDepth--;
     }
 
+    // check the victory condition
     private void CheckResource(){
         ArrayList<Integer> currentResources = new ArrayList<>();
         for(Entity e : entity)

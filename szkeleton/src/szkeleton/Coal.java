@@ -21,7 +21,8 @@ public class Coal extends Resource{
             else
                 newList.add(i);
         }
-        return I;}
+        return newList;
+    }
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
         I.add(10);
         return I;
