@@ -29,6 +29,7 @@ public class IceWater extends Resource{
         return I;
     }
     public void Sublimation(Asteroid a){
+        System.out.println(".Sublimate()");
         a.RemoveResource();
     }
 }

@@ -298,7 +298,9 @@ public class Szkeleton {
 		indentDepth++;
 		Map m = new Map("m", null);
 		indentDepth++;
-		Asteroid a = new Asteroid("a", 1,null, iw);
+		Asteroid a = new Asteroid("a", 1,m, iw);
+		a.SetLayers(0);
+		a.SetStateToClose();
 		indentDepth++;
 		a.Step();
 	}
