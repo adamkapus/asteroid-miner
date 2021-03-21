@@ -11,7 +11,7 @@ public class Map implements Steppable {
     public Map(String n, Game game) {
         name = n;
         allResources = new ArrayList<>();
-        allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13); allResources.add(14);
+        allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
         places = new ArrayList<>();
         Random ran = new Random();
         for (int i = 0; i < ran.nextInt(31) + 20; i++) { // 20-50 között lesz az aszteroidák száma
@@ -22,8 +22,6 @@ public class Map implements Steppable {
                 case 3 -> new Uran();
                 default -> null;
             };
-            
-            //Asteroid newasteroid = new Asteroid("asteroid",i, this, resource);
             Asteroid newasteroid = new Asteroid("a", i, this, resource);
             places.add(newasteroid);
         }

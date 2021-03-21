@@ -18,7 +18,6 @@ public class Asteroid extends Place{
         super(name, id, m);
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Asteroid()");
-
         Random ran = new Random();
         timeLimit = ran.nextInt(50 - 5) + 5; // random int between 5 and 50
         timeCurrent = 0;
