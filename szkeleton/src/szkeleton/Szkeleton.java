@@ -45,6 +45,8 @@ public class Szkeleton {
 				+ "1 -- Settler move scenario\n"
 				+ "2 -- Robot move scenario\n"
 				+ "3 -- stb\n"
+				+ "5 -- New game\n"
+				+ "7 -- Robot blown up\n"
 				+ "12 -- Settler blown up\n");
 				
 	}
@@ -119,16 +121,22 @@ public class Szkeleton {
 	
 	private void runSequence(int seq) {
 		switch(seq) {
-		  case 1:
-		    scenario1();
-		    break;
-		  case 2:
-		    scenario2();
-		    break;
-		  case 3:
-			scenario2();
-			break;
-		  case 12:
+		  	case 1:
+		    	scenario1();
+		    	break;
+		  	case 2:
+		    	scenario2();
+		    	break;
+		  	case 3:
+				scenario2();
+				break;
+			case 5:
+				scenario5();
+				break;
+			case 7:
+				scenario7();
+				break;
+			case 12:
 				scenario12();
 				break;
 			case 15:
@@ -177,22 +185,64 @@ public class Szkeleton {
 	private void scenario3() {
 		
 	}
-	
+
+	//New game
+	private void scenario5(){
+
+		indentDepth++;
+		Game g = new Game("g1");
+
+		indentDepth++;
+		g.NewGame();
+		// map.Connect-ből probléma:
+		// Cannot read field "placeID" because the return value of "szkeleton.Place.GetNeighbor(int)" is null
+		// A Game NewGame() fv-e még nincs kész, ebből jonne az egész scenario
+		// ...
+
+	}
+
+	//Robot blown up
+	private void scenario7(){
+
+		indentDepth++;
+		Game g = new Game("g1");
+
+		indentDepth++;
+		Asteroid a1 = new Asteroid("a1",1, null, null);
+
+		indentDepth++;
+		Asteroid a2 = new Asteroid("a2", 2, null, null);
+
+		indentDepth++;
+		a1.AddNeighbor(a2);
+		a2.AddNeighbor(a1);
+		Robot r = new Robot("r1", g, a1);
+
+		indentDepth++;
+		a1.AcceptEntity(r);
+		r.BlownUp();
+
+
+	}
+
+	//Setler blown up
 	private void scenario12() {
 		indentDepth++;
-		
 		Game g = new Game("g1");
+		
+		Asteroid a1 = new Asteroid(1, null, null);
+
+		indentDepth++;
+		Asteroid a1 = new Asteroid("a1", 1, null, null);
 		
 		Asteroid a1 = new Asteroid("a1", 1, null, null);
 
-		//ToDo
 		indentDepth++;
 		Settler s1 = new Settler("s1" , g, a1);
 
 		indentDepth++;
 		a1.AcceptEntity(s1);
-		
-		indentDepth++;
+
 		s1.BlownUp();
 		
 		
