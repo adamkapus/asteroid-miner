@@ -27,19 +27,26 @@ public class Settler extends Entity{
 
     @Override
     public ArrayList<Integer> UpdateResourceList(ArrayList<Integer> l){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".UpdateResourceList()");
 
         if(resources.size() > 0) {
             for (Resource r : resources) {
-                //r.AddToList(l);
+                r.AddToList(l);
             }
         }
 
+        Szkeleton.indentDepth--;
         return l;
     }
 
     public void Mine() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Mine()");
         Asteroid a = (Asteroid)place;
         a.MinedBy(this);
+
+        Szkeleton.indentDepth--;
     }
 
     public void Die() {
@@ -99,8 +106,7 @@ public class Settler extends Entity{
         req.add(13);     //urán
 
         for(Resource r : resources){
-            // Resource-ban a RemoveFromList Integer listát kéne, várjon
-            // r.RemoveFromList(req, this);      //a szükséges nyersanyagok csekkolása
+            r.RemoveFromList(req, this);     //a szükséges nyersanyagok csekkolása
             req.remove(r);                      //törlés az inventory-ból
         }
 
@@ -124,8 +130,24 @@ public class Settler extends Entity{
     }
     public void BuildTeleport() {
         // MB: amikor változtatjuk a listát nem használhatunk for_each-et. Az csak akkor megy ha nem válzotik a lista hossza!
+
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".BuildTeleport()");
+
+        Szkeleton.indentDepth++;
+        ArrayList<Integer> req = new ArrayList<>();
+        req.add(11);     //vízjég
+        req.add(11);     //vízjég
+        req.add(12);     //vas
+        req.add(12);     //vas
+        req.add(12);     //vas
+        req.add(12);     //vas
+        req.add(13);     //urán
+        req.add(13);     //urán
+
         for(Resource r : resources){
-            //r.RemoveFromList(resources, this);
+            r.RemoveFromList(req, this);     //a szükséges nyersanyagok csekkolása
+            req.remove(r);                      //törlés az inventory-ból
         }
 
         if(resources.isEmpty()){
@@ -138,10 +160,19 @@ public class Settler extends Entity{
             gate1.SetPair(gate2);
             gate2.SetPair(gate1);
         }
+
+        Szkeleton.indentDepth--;
     }
+
     public void PlaceDownTeleport() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".BuildTeleport()");
+
+        Szkeleton.indentDepth++;
         TeleportGate placeable = gates.get(gates.size() - 1);
         place.AddNeighbor(placeable);
+
+        Szkeleton.indentDepth--;
     }
     public void RemoveResource(Resource r) {
         resources.remove(r);
@@ -183,6 +214,12 @@ public class Settler extends Entity{
         }
     }
     public void AddTeleportGate(TeleportGate tg){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".AddTeleportGate()");
+
+        Szkeleton.indentDepth++;
         gates.add(tg);
+
+        Szkeleton.indentDepth--;
     }
 }
