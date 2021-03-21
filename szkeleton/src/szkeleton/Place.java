@@ -9,15 +9,19 @@ abstract public class Place implements Steppable {
     protected List<Place> neighbors;
     protected Map map;
     protected List<Entity> entity;
+    protected String name;
 
+    public Place(int id, Map m){
     String name;
 
     public Place(String n, int id, Map m){
         name = n;
+    public Place(String name, int id, Map m){
         placeID = id;
         neighbors = new ArrayList<>();
         map = m;
         entity = new ArrayList<>();
+        this.name = name;
     }
 
     public void AcceptEntity(Entity e){
@@ -25,13 +29,16 @@ abstract public class Place implements Steppable {
         System.out.println(name +".AcceptEntity()");
 
         Szkeleton.indentDepth++;
+        System.out.println(name + ".AcceptEntity()");
         entity.add(e);
+        Szkeleton.indentDepth--;
     }
     public void RemoveEntity(Entity e){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".RemoveEntity()");
 
         Szkeleton.indentDepth++;
+        System.out.println(name + ".RemoveEntity()");
         entity.remove(e);
 
         Szkeleton.indentDepth--;
@@ -41,23 +48,31 @@ abstract public class Place implements Steppable {
         System.out.println(name +".AddNeighbor()");
 
         Szkeleton.indentDepth++;
+        System.out.println(name + ".AddNeighbor()");
         neighbors.add(p);
+        Szkeleton.indentDepth++;
         p.Placed();
 
         Szkeleton.indentDepth--;
     }
 
     public Place GetNeighbor(int placeId){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".GetNeighbor()");
+        Szkeleton.indentDepth--;
         for(Place p : neighbors)
             if (p.placeID == placeId)
                 return p;
         return null;
     }
+
     public Place GetRandomNeighbor(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".GetRandomNeighbor()");
 
         Szkeleton.indentDepth++;
+        System.out.println(name + ".GetRandomNeighbor()");
+        Szkeleton.indentDepth--;
         Random r = new Random();
 
         Szkeleton.indentDepth--;

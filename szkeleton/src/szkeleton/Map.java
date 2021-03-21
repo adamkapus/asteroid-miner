@@ -22,7 +22,9 @@ public class Map implements Steppable {
                 case 3 -> new Uran();
                 default -> null;
             };
+            Asteroid newasteroid = new Asteroid(i, this, resource);
             Asteroid newasteroid = new Asteroid("asteroid",i, this, resource);
+            Asteroid newasteroid = new Asteroid("a", i, this, resource);
             places.add(newasteroid);
         }
         this.game = game;

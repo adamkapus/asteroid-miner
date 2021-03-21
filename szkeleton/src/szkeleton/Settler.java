@@ -99,14 +99,19 @@ public class Settler extends Entity{
         destination.AcceptEntity(this);
     }
     public void BuildTeleport() {
+        // MB: amikor változtatjuk a listát nem használhatunk for_each-et. Az csak akkor megy ha nem válzotik a lista hossza!
         for(Resource r : resources){
             r.RemoveFromList(resources, this);
         }
 
         if(resources.isEmpty()){
             Map m = this.game.GetMap();
+            TeleportGate gate1 = new TeleportGate(1, m);
+            TeleportGate gate2 = new TeleportGate(2, m);
             TeleportGate gate1 = new TeleportGate("tg1",1, m);
             TeleportGate gate2 = new TeleportGate("tg2",2, m);
+            TeleportGate gate1 = new TeleportGate("tg1", 1, m);
+            TeleportGate gate2 = new TeleportGate("tg2", 2, m);
 
             gate1.SetPair(gate2);
             gate2.SetPair(gate1);
@@ -154,5 +159,8 @@ public class Settler extends Entity{
         } catch (Exception e) {
             System.out.println("Nem jó számot adtál meg");
         }
+    }
+    public void AddTeleportGate(TeleportGate tg){
+        gates.add(tg);
     }
 }

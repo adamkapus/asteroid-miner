@@ -139,7 +139,21 @@ public class Szkeleton {
 			case 12:
 				scenario12();
 				break;
-		   
+			case 15:
+				scenario15();
+				break;
+			case 16:
+				scenario16();
+				break;
+			case 17:
+				scenario17();
+				break;
+			case 28:
+				scenario28();
+				break;
+			case 29:
+				scenario29();
+				break;
 		}
 
 	}
@@ -209,8 +223,12 @@ public class Szkeleton {
 	private void scenario12() {
 		indentDepth++;
 		Game g = new Game("g1");
+		
+		Asteroid a1 = new Asteroid(1, null, null);
 
 		indentDepth++;
+		Asteroid a1 = new Asteroid("a1", 1, null, null);
+		
 		Asteroid a1 = new Asteroid("a1", 1, null, null);
 
 		indentDepth++;
@@ -223,6 +241,98 @@ public class Szkeleton {
 		
 		
 	}
-	
+
+	private void scenario15(){
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 0, null, null);
+		indentDepth++;
+		Settler s1 = new Settler("s1", null, a);
+		indentDepth++;
+		Iron i1 = new Iron();
+		indentDepth++;
+		Iron i2 = new Iron();
+		indentDepth++;
+		IceWater iw = new IceWater();
+		indentDepth++;
+		Uran u = new Uran();
+		indentDepth++;
+		s1.AddResource(i1);
+		indentDepth++;
+		s1.AddResource(i2);
+		indentDepth++;
+		s1.AddResource(iw);
+		indentDepth++;
+		s1.AddResource(u);
+		indentDepth++;
+		s1.BuildTeleport();
+	}
+
+	private void scenario16(){
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 0, null, null);
+		indentDepth++;
+		Settler s1 = new Settler("s1", null, a);
+		indentDepth++;
+		Iron i = new Iron();
+		indentDepth++;
+		IceWater iw = new IceWater();
+		indentDepth++;
+		s1.AddResource(i);
+		indentDepth++;
+		s1.AddResource(iw);
+		indentDepth++;
+		s1.BuildTeleport();
+	}
+
+	private void scenario17() {
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 0, null, null);
+		indentDepth++;
+		Settler s1 = new Settler("s1", null, a);
+		indentDepth++;
+		TeleportGate tg = new TeleportGate("tg", 0, null);
+		indentDepth++;
+		s1.AddTeleportGate(tg);
+		indentDepth++;
+		s1.BuildTeleport();
+	}
+
+	private void scenario28(){
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 0, null, null);
+		indentDepth++;
+		Settler s = new Settler("s", null, a);
+		indentDepth++;
+		TeleportGate tg1 = new TeleportGate("tg1", 1, null);
+		indentDepth++;
+		TeleportGate tg2 = new TeleportGate("tg2", 2, null);
+		indentDepth++;
+		tg1.SetPair(tg2);
+		indentDepth++;
+		tg2.SetPair(tg1);
+		indentDepth++;
+		s.AddTeleportGate(tg1);
+		indentDepth++;
+		s.PlaceDownTeleport();
+	}
+
+	private void scenario29(){
+		indentDepth++;
+		TeleportGate tg1 = new TeleportGate("tg1", 0, null);
+		indentDepth++;
+		TeleportGate tg2 = new TeleportGate("tg2", 1, null);
+		indentDepth++;
+		tg1.SetPair(tg2);
+		indentDepth++;
+		tg2.SetPair(tg1);
+		indentDepth++;
+		tg1.SetPairIsPlaced();
+		indentDepth++;
+		tg2.SetPairIsPlaced();
+		indentDepth++;
+		Settler s = new Settler("s", null, tg1);
+		indentDepth++;
+		s.Action();
+	}
 
 }
