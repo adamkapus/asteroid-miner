@@ -422,9 +422,11 @@ public class Szkeleton {
 		Game game = new Game("Game");
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		asteroid1.AddNeighbor(asteroid2);
+		asteroid2.AddNeighbor(asteroid1);
 		Robot robot = new Robot("Robot", game, asteroid1);
 		asteroid1.AcceptEntity(robot);
-		robot.Move(1);
+		robot.Move(2);
 	}
 
 	//Setler blown up
