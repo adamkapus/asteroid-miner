@@ -140,6 +140,9 @@ public class Szkeleton {
 		  	case 3:
 				scenario3();
 				break;
+			case 4:
+				scenario4();
+				break;
 			case 5:
 				scenario5();
 				break;
@@ -153,9 +156,16 @@ public class Szkeleton {
 				scenario8();
 				break;
 			case 11:
-				scenario11(); break;
+				scenario11();
+				break;
 			case 12:
 				scenario12();
+				break;
+			case 13:
+				scenario13();
+				break;
+			case 14:
+				scenario14();
 				break;
 			case 15:
 				scenario15();
@@ -175,15 +185,25 @@ public class Szkeleton {
 			case 20:
 				scenario20();
 				break;
+			case 23:
+				scenario23();
+				break;
+			case 24:
+				scenario24();
+				break;
+			case 25:
+				scenario25();
+				break;
 			case 26:
-				scenario26(); break;
+				scenario26();
+				break;
 			case 27:
-				scenario27(); break;
+				scenario27();
+				break;
 			case 28:
 				scenario28();
 				break;
-			case 25:
-				scenario25(); break;
+
 			case 29:
 				scenario29();
 				break;
@@ -239,6 +259,16 @@ public class Szkeleton {
 		indentDepth++;
 		a.Step();
 	}
+	//EZ SZTEM VAGY FÖLÖSLEGES VAGY NEM JÓ
+	private void scenario4(){//Icewater Sublimates
+		indentDepth++;
+		IceWater iw = new IceWater();
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 1,null, iw);
+		indentDepth++;
+		a.Step();
+	}
+
 
 	//New game
 	private void scenario5(){
@@ -351,6 +381,43 @@ public class Szkeleton {
 		s1.BlownUp();
 		
 		
+	}
+	private void scenario13(){//Build robot with resource
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 0, null, null);
+		indentDepth++;
+		Settler s1 = new Settler("s1", null, a);
+		indentDepth++;
+		Iron i1 = new Iron();
+		indentDepth++;
+		Uran u1= new Uran();
+		indentDepth++;
+		Coal c1 = new Coal();
+		indentDepth++;
+		s1.AddResource(i1);
+		indentDepth++;
+		s1.AddResource(u1);
+		indentDepth++;
+		s1.AddResource(c1);
+		indentDepth++;
+		s1.BuildRobot();
+	}
+
+	private void scenario14(){//Build robot without resource
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 0, null, null);
+		indentDepth++;
+		Settler s1 = new Settler("s1", null, a);
+		indentDepth++;
+		Iron i1 = new Iron();
+		indentDepth++;
+		Uran u1= new Uran();
+		indentDepth++;
+		s1.AddResource(i1);
+		indentDepth++;
+		s1.AddResource(u1);
+		indentDepth++;
+		s1.BuildRobot();
 	}
 
 	// Build teleport with enough resource
@@ -490,7 +557,17 @@ public class Szkeleton {
 	private void scenario22() {
 	
 	}
-		
+	private void scenario23() { // Settler Place Resource not empty
+		Iron iron = new Iron();
+		Asteroid asteroid = new Asteroid("Asteroid", 1, null, iron);
+		Settler s = new Settler("s1", null, asteroid);
+		s.Action();
+	}
+	private void scenario24() { // Settler Place Resource not empty
+		Asteroid asteroid = new Asteroid("Asteroid", 1, null, null);
+		Settler s = new Settler("Telepes", null, asteroid);
+		s.Action();
+	}
 
 	private void scenario25() { // Settler Moves
 		Game game = new Game("Game");

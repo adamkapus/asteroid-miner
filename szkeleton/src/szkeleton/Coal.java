@@ -8,7 +8,18 @@ public class Coal extends Resource{
         return this.radioactive;
     }
 
-    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
+    public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I){
+        ArrayList<Integer> newList = new ArrayList<>();
+        boolean found = false;
+        for (Integer i : I){
+            if (found)
+                newList.add(i);
+            else if (i == 10){
+                found = true;
+            }
+            else
+                newList.add(i);
+        }
         return I;}
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
         return I;
