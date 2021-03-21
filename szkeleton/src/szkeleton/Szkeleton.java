@@ -298,7 +298,9 @@ public class Szkeleton {
 		indentDepth++;
 		Map m = new Map("m", null);
 		indentDepth++;
-		Asteroid a = new Asteroid("a", 1,null, iw);
+		Asteroid a = new Asteroid("a", 1,m, iw);
+		a.SetLayers(0);
+		a.SetStateToClose();
 		indentDepth++;
 		a.Step();
 	}
@@ -422,9 +424,11 @@ public class Szkeleton {
 		Game game = new Game("Game");
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		asteroid1.AddNeighbor(asteroid2);
+		asteroid2.AddNeighbor(asteroid1);
 		Robot robot = new Robot("Robot", game, asteroid1);
 		asteroid1.AcceptEntity(robot);
-		robot.Move(1);
+		robot.Move(2);
 	}
 
 	//Setler blown up
@@ -561,9 +565,7 @@ public class Szkeleton {
 		Asteroid a1 = new Asteroid("a1", 10, null, c1);
 		indentDepth++;
 		Settler s1 = new Settler("s1,",g,a1);
-		indentDepth++;
-		a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
-
+		 
 
 		indentDepth++;
 		g.AddSettler(s1);
@@ -586,14 +588,12 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s1 = new Settler("s1,",g,a1);
 		indentDepth++;
-		//a1.AcceptEntity(s1); // VAGY KONSTRUKTORBAN KENE A SETTLERNEK
-
+		
 		indentDepth++;
 		Asteroid a2 = new Asteroid("a1", 11, null, null);
 		indentDepth++;
 		Settler s2 = new Settler("s2,",g,a2);
-		indentDepth++;
-		//a2.AcceptEntity(s2); //ITT IS, MINT FELJEBB
+		
 
 		indentDepth++;
 		g.AddSettler(s1);

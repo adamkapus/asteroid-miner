@@ -196,4 +196,8 @@ public class Asteroid extends Place{
         layers = newLayers;
         Szkeleton.indentDepth--;
     }
+
+    public void SetStateToClose(){
+        state = State.CLOSE;
+    }
 }

@@ -89,12 +89,21 @@ public class Map implements Steppable {
         System.out.println(name +".Connect()");
 
         Szkeleton.indentDepth++;
-        for (Place place : places) {
+        /*for (Place place : places) {
             Random random = new Random();
             int ran = random.nextInt(places.size());
-            if (place.GetNeighbor(places.get(ran).placeID).placeID == places.get(ran).placeID)  /*Ha még nem szomszédok, akkor...*/ { //PlaceID alapján kéne
+            if (place.GetNeighbor(places.get(ran).placeID).placeID == places.get(ran).placeID)  /*Ha még nem szomszédok, akkor... { //PlaceID alapján kéne
                 place.AddNeighbor(places.get(ran)); //Beálítom egymás szomszédjának a két place-t
                 places.get(ran).AddNeighbor(place);
+            }
+        }*/
+
+        for (int i = 0; i < places.size(); i++){
+            for (int j = 0; j < places.size(); j++){
+                if (i != j){
+                    places.get(i).AddNeighbor(places.get(j));
+                    places.get(j).AddNeighbor(places.get(i));
+                }
             }
         }
 
