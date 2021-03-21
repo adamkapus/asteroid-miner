@@ -45,11 +45,13 @@ public class Szkeleton {
 				+ "1 -- Settler move scenario\n"
 				+ "2 -- Robot move scenario\n"
 				+ "3 -- stb\n"
+				+ "5 -- New game\n"
+				+ "6 -- Normal asteroid step\n"
+				+ "7 -- Robot blown up\n"
+				+ "8 -- Robot drills\n"
 				+ "12 -- Settler blown up\n"
 				+ "25 -- Settler move scenario\n"
-				+ "5 -- New game\n"
-				+ "7 -- Robot blown up\n"
-				+ "12 -- Settler blown up\n");
+				+ "20 -- Settler drills");
 				
 	}
 	
@@ -135,8 +137,14 @@ public class Szkeleton {
 			case 5:
 				scenario5();
 				break;
+			case 6:
+				scenario6();
+				break;
 			case 7:
 				scenario7();
+				break;
+			case 8:
+				scenario8();
 				break;
 			case 11:
 				scenario11(); break;
@@ -157,6 +165,9 @@ public class Szkeleton {
 				break;
 			case 19:
 				scenario19();
+				break;
+			case 20:
+				scenario20();
 				break;
 			case 26:
 				scenario26(); break;
@@ -210,6 +221,25 @@ public class Szkeleton {
 
 	}
 
+	//Normal asteroid step
+	private void scenario6(){
+		indentDepth++;
+		Game g = new Game("g1");
+		indentDepth++;
+		Map m = new Map("map", g);
+		indentDepth++;
+		Coal c = new Coal();
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 1, m, c);
+		indentDepth++;
+		Settler s = new Settler("s1", g, a);
+		indentDepth++;
+		a.AcceptEntity(s);
+		indentDepth++;
+		a.Step();
+
+	}
+
 	//Robot blown up
 	private void scenario7(){
 
@@ -233,7 +263,21 @@ public class Szkeleton {
 
 
 	}
-	
+
+	//Robot drills
+	private void scenario8(){
+		indentDepth++;
+		Game g = new Game("g");
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 1, null, null);
+		indentDepth++;
+		Robot r = new Robot("robot", g, a);
+		indentDepth++;
+		a.AcceptEntity(r);
+		indentDepth++;
+		r.Drill();
+	}
+
 	// robot hit by storm, asteroid with resource
 	private void scenario9() {
 		
@@ -386,7 +430,20 @@ public class Szkeleton {
 		indentDepth++;
 		s1.Die();
 	}
-	
+
+	// Settler action vagy itt csak a drill-t kéne meghívni?
+	private void scenario20(){
+		indentDepth++;
+		Game g = new Game("g");
+		indentDepth++;
+		Asteroid a = new Asteroid("a", 1, null, null);
+		indentDepth++;
+		Settler s = new Settler("s", g, a);
+		indentDepth++;
+		//Asteroid.Action() 3-as = nyersanyag lehelyezés nem működik
+		s.Action();
+	}
+
 	//settler hit by storm, asteroid with resource
 	private void scenario21() {
 		

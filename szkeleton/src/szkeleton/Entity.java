@@ -25,8 +25,15 @@ public abstract class Entity implements Steppable {
     public abstract void Action();
 
     public void Drill(){
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Drill()");
+
         Asteroid a = (Asteroid)place;
+
+        Szkeleton.indentDepth++;
         a.ReduceRockLayer();
+
+        Szkeleton.indentDepth--;
     }
 
     public ArrayList<Integer> UpdateResourceList(ArrayList<Integer> l){ return l; }

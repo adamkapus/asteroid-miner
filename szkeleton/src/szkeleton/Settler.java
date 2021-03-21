@@ -15,7 +15,15 @@ public class Settler extends Entity{
     	Szkeleton.indentDepth--;
     }
 
-    public void Action() { place.Action(this); }
+    public void Action() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Action()");
+
+        Szkeleton.indentDepth++;
+        place.Action(this);
+
+        Szkeleton.indentDepth--;
+    }
 
     @Override
     public ArrayList<Integer> UpdateResourceList(ArrayList<Integer> l){
@@ -56,27 +64,35 @@ public class Settler extends Entity{
     }
 
     public void PlaceResource(int n) {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".PlaceResource()");
+
+        Szkeleton.indentDepth++;
         Asteroid a = (Asteroid) place;
         if(a.GetLayers() == 0){
+            Szkeleton.indentDepth++;
             a.InsertResource(resources.get(n));
         }
+
+        Szkeleton.indentDepth--;
     }
 
     public void AddResource(Resource r) {
+
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".AddResource()");
+
+        Szkeleton.indentDepth++;
         resources.add(r);
+
+        Szkeleton.indentDepth--;
     }
 
     public void BuildRobot() {
-        /*
-        for(Resource r : resources){
-            r.RemoveFromList(resources, this);
-        }
-        if(resources.isEmpty()){    //miért kell ez a feltétel? (Build Robot szekvencia) ha nem fogy el az összes nyersanyag, miért ne lehetne építeni? (teleportkapunál is ugyanez
-            Robot r = new Robot("r1", game, place);
-            place.AcceptEntity(r);
-        }
-        */
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".BuildRobot()");
 
+        Szkeleton.indentDepth++;
         ArrayList<Integer> req = new ArrayList<>();
         req.add(10);     //szén
         req.add(12);     //vas
@@ -92,11 +108,19 @@ public class Settler extends Entity{
             Robot r = new Robot("r1", game, place);
             place.AcceptEntity(r);
         }
+
+        Szkeleton.indentDepth--;
     }
     public void UseTeleport() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".UseTeleport()");
+
+        Szkeleton.indentDepth++;
         TeleportGate destination = ((TeleportGate) place).GetPair();
         place.RemoveEntity(this);
         destination.AcceptEntity(this);
+
+        Szkeleton.indentDepth--;
     }
     public void BuildTeleport() {
         // MB: amikor változtatjuk a listát nem használhatunk for_each-et. Az csak akkor megy ha nem válzotik a lista hossza!
