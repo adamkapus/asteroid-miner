@@ -37,7 +37,6 @@ public class Game {
 
         Szkeleton.indentDepth++;
     	//konstruktornak masnak kene lennie
-    	//map = new Map(this);
 
         Map map = new Map("map", this, 2);
 
