@@ -163,7 +163,7 @@ public class Szkeleton {
 		
 		Game g = new Game("g1");
 		
-		Asteroid a1 = new Asteroid(1, null, null);
+		Asteroid a1 = new Asteroid("a1", 1, null, null);
 
 		//ToDo
 		indentDepth++;

@@ -84,8 +84,8 @@ public class Settler extends Entity{
 
             // párban építjük, vagy sehogy? MB: aha
             Map m = this.game.GetMap();
-            TeleportGate gate1 = new TeleportGate(1, m);
-            TeleportGate gate2 = new TeleportGate(2, m);
+            TeleportGate gate1 = new TeleportGate("tg1", 1, m);
+            TeleportGate gate2 = new TeleportGate("tg2", 2, m);
 
             gate1.SetPair(gate2);
             gate2.SetPair(gate1);
