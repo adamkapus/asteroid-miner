@@ -11,7 +11,6 @@ public class Robot extends Entity{
     	System.out.println(name +".Robot()");
     	
     	Szkeleton.indentDepth--;
-
     }
 
     public void Action(){
@@ -46,21 +45,23 @@ public class Robot extends Entity{
     public void Step() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Step()");
-        Random rand = new Random();
+        Random rand1 = new Random();
 
-        int rand_int = rand.nextInt(2); // a random szám 0, vagy 1 lehet
+        int rand_int = rand1.nextInt(2); // a random szám 0, vagy 1 lehet
 
-        switch (rand_int){
-            case 0:
-                Szkeleton.indentDepth++;
-                this.Action();
-                break;
-            case 1:
-                Szkeleton.indentDepth++;
-                this.Drill();
-                break;
-            default:
-                System.out.println("Nincs ilyen opció");
+        try {
+            switch (rand_int) {
+                case 0:
+                    Szkeleton.indentDepth++;
+                    this.Action();
+                    break;
+                case 1:
+                    Szkeleton.indentDepth++;
+                    this.Move(game.GetMap().GetAstNum());
+                    break;
+            }
+        }catch (Exception e) {
+            System.out.println("Nem jó számot adtál meg");
         }
 
         Szkeleton.indentDepth--;

@@ -87,7 +87,13 @@ public class Game {
     	Szkeleton.indentDepth--;
     }
 
-    public Map GetMap(){return map;}
+    public Map GetMap(){
+		Szkeleton.writeTabs(Szkeleton.indentDepth);
+		System.out.println(name +".RemoveRobot()");
+
+		Szkeleton.indentDepth--;
+		return map;
+    }
 
     //KA ez sincs rajta a diagramon, de valami hasonlo kene
     public void OneRound() {

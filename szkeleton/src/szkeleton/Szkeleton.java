@@ -372,7 +372,7 @@ public class Szkeleton {
 		indentDepth++;
 		a.AcceptEntity(r);
 		indentDepth++;
-		r.Drill();
+		r.Action();
 	}
 
 	// robot hit by storm, asteroid with resource
@@ -418,13 +418,21 @@ public class Szkeleton {
 	}
 
 	private void scenario11() { // Robot Moves
+		indentDepth++;
 		Game game = new Game("Game");
+		indentDepth++;
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
+		indentDepth++;
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		indentDepth++;
 		asteroid1.AddNeighbor(asteroid2);
+		indentDepth++;
 		asteroid2.AddNeighbor(asteroid1);
+		indentDepth++;
 		Robot robot = new Robot("Robot", game, asteroid1);
+		indentDepth++;
 		asteroid1.AcceptEntity(robot);
+		indentDepth++;
 		robot.Move(2);
 	}
 
@@ -601,7 +609,7 @@ public class Szkeleton {
 		s1.Die();
 	}
 
-	// Settler action vagy itt csak a drill-t kéne meghívni?
+	// Settler action
 	private void scenario20(){
 		indentDepth++;
 		Game g = new Game("g");
@@ -610,7 +618,6 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s = new Settler("s", g, a);
 		indentDepth++;
-		//Asteroid.Action() 3-as = nyersanyag lehelyezés nem működik
 		s.Action();
 	}
 
@@ -656,39 +663,62 @@ public class Szkeleton {
 		m.SolarStorm();
 	}
 	private void scenario23() { // Settler Place Resource not empty
+		indentDepth++;
 		Iron iron = new Iron("i");
+		indentDepth++;
 		Asteroid asteroid = new Asteroid("Asteroid", 1, null, iron);
+		indentDepth++;
 		Settler s = new Settler("s1", null, asteroid);
+		indentDepth++;
 		s.Action();
 	}
 	private void scenario24() { // Settler Place Resource not empty
+		indentDepth++;
 		Asteroid asteroid = new Asteroid("Asteroid", 1, null, null);
+		indentDepth++;
 		Settler s = new Settler("Telepes", null, asteroid);
+		indentDepth++;
 		s.Action();
 	}
 
 	private void scenario25() { // Settler Moves
+		indentDepth++;
 		Game game = new Game("Game");
+		indentDepth++;
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
+		indentDepth++;
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		indentDepth++;
 		asteroid1.AddNeighbor(asteroid2);
+		indentDepth++;
 		asteroid2.AddNeighbor(asteroid1);
+		indentDepth++;
 		Settler settler = new Settler("Telepes", game, asteroid1);
+		indentDepth++;
 		asteroid1.AcceptEntity(settler);
+		indentDepth++;
 		settler.Move(2);
 	}
 
 	private void scenario26() { // Settler Place Resource not empty
+		indentDepth++;
 		Iron iron = new Iron("i");
+		indentDepth++;
 		Asteroid asteroid = new Asteroid("Asteroid", 1, null, iron);
+		indentDepth++;
 		Settler settler = new Settler("Telepes", null, asteroid);
+		indentDepth++;
 		settler.PlaceResource(10);
 	}
 
 	private void scenario27() { // Settler place Resource
+		indentDepth++;
 		Uran u = new Uran("u");
+		indentDepth++;
 		Asteroid a = new Asteroid("Asteroid", 1, null, null);
+		indentDepth++;
 		Settler settler = new Settler("Telepes", null, a);
+		indentDepth++;
 		settler.PlaceResource(13);
 	}
 

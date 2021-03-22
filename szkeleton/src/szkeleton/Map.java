@@ -123,4 +123,6 @@ public class Map implements Steppable {
     	
     	Szkeleton.indentDepth--;
     }
+
+    public int GetAstNum() {return places.size(); }
 }

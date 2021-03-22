@@ -155,8 +155,12 @@ public class Settler extends Entity{
 
         ArrayList<Integer> req = new ArrayList<>();
         req.add(11);     //vízjég
+        req.add(11);     //vízjég
         req.add(12);     //vas
         req.add(12);     //vas
+        req.add(12);     //vas
+        req.add(12);     //vas
+        req.add(13);     //urán
         req.add(13);     //urán
 
         ListIterator<Resource> rIter = resources.listIterator();
@@ -236,7 +240,7 @@ public class Settler extends Entity{
                     break;
                 case 2:
                     Szkeleton.indentDepth++;
-                    place.Action(this);
+                    this.Action();
                     break;
                 case 3:
                     Szkeleton.indentDepth++;
