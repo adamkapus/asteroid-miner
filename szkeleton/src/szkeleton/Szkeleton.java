@@ -468,7 +468,7 @@ public class Szkeleton {
 
 		indentDepth++;
 		a1.AcceptEntity(s1);
-
+		indentDepth++;
 		s1.BlownUp();
 		
 		
