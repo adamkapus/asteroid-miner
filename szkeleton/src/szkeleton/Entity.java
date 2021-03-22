@@ -23,8 +23,6 @@ public abstract class Entity implements Steppable {
     	System.out.println(name +".Entity()");
     	Szkeleton.indentDepth++;
     	p.AcceptEntity(this);
-    	
-    	 Szkeleton.indentDepth--;
     }
 
     /**

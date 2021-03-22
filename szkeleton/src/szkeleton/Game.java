@@ -86,7 +86,7 @@ public class Game {
     // robot meghalt
     public void RobotDied(Robot robot) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".RemoveRobot()");
+        System.out.println(name +".RobotDied()");
     	robots.remove(robot);
     	
     	Szkeleton.indentDepth--;
@@ -94,7 +94,7 @@ public class Game {
 	// térkép lekérése
     public Map GetMap(){
 		Szkeleton.writeTabs(Szkeleton.indentDepth);
-		System.out.println(name +".RemoveRobot()");
+		System.out.println(name +".GetMap()");
 
 		Szkeleton.indentDepth--;
 		return map;
