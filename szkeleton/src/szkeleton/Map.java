@@ -32,7 +32,7 @@ public class Map implements Steppable {
     }
 //valaki help
     /**
-     *
+     *A numOfAst-tal meghatározhatjuk, hogy mennyi aszteroida legyen a pályán.
      *
      */
     public Map(String n, Game game, int numOfAst) {
@@ -76,22 +76,10 @@ public class Map implements Steppable {
         Szkeleton.indentDepth--;
     }
 
-    /**
-     * Getter függvény, visszaadja az összes nyersanyagot
-     */
-
-    public ArrayList<Integer>  GetAllResources() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".GetAllResources()");
-        Szkeleton.indentDepth--;
-        return allResources;
-    }
-    /**
-     * Ha elég nyersanyagot gyűjtöttünk megnyerjük a játékot.
-     */
     public void EnoughResources() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".EnoughResources()");
+
         Szkeleton.indentDepth++;
         game.Win();
         Szkeleton.indentDepth--;
@@ -110,9 +98,9 @@ public class Map implements Steppable {
         }
         Random random = new Random();
         if(random.nextInt(100) < 5) {
+            Szkeleton.indentDepth++;
             SolarStorm();
         }
-        Szkeleton.indentDepth--;
     }
 
     /**
@@ -121,13 +109,9 @@ public class Map implements Steppable {
     public Place GetRandomPlace() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".GetRandomPlace()");
-        
-        //EZ ITT KELL?
-        Szkeleton.indentDepth++;
-        Random ran = new Random();
-
         Szkeleton.indentDepth--;
 
+        Random ran = new Random();
         return places.get(ran.nextInt(places.size()));
     }
 
@@ -172,5 +156,19 @@ public class Map implements Steppable {
     	Szkeleton.indentDepth--;
     }
 
-    public int GetAstNum() {return places.size(); }
+    public int GetAstNum() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".GetAstNum()");
+        Szkeleton.indentDepth--;
+
+        return places.size();
+    }
+
+    public ArrayList<Integer> GetAllResources() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".GetAllResources()");
+        Szkeleton.indentDepth--;
+
+        return allResources;
+    }
 }

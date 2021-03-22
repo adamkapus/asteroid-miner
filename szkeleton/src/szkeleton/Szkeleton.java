@@ -16,8 +16,8 @@ import java.util.Scanner;
 
 public class Szkeleton {
 	
-	private int numberOfScenarios = 29;
-	private boolean szkeletonIsRunning = true;
+	private int numberOfScenarios = 29; //hany scenario van
+	private boolean szkeletonIsRunning = true; //fut-e a tesztelo program, azaz ki lepett-e a felhasznalo
 	public static int indentDepth = 0;
 	
 	private String keregKerdes = "0-e a kereg?";
@@ -26,16 +26,19 @@ public class Szkeleton {
 	public Szkeleton() {}
 
 	public void runSzkeleton() {
-
+		//kiirjuk a lehetseges scenariokat
 		this.printSequenceOptions();
 		
 		while(szkeletonIsRunning) {
+			//beolvasunk egy scenariot
 			int sequenceNumber = readSequenceNumberFromUser();
+			//ha a scenario szam 0, akkor kilepunk
 			if(sequenceNumber == 0) {
 				System.out.println("Kilepes valasztva\n");
 				szkeletonIsRunning = false;
 			}
 			else {
+				//lefuttatjuk a scenariot
 				System.out.println("Szekvenciaszam beolvasva: " + sequenceNumber + "\n");
 				runSequence(sequenceNumber);
 			}
@@ -43,6 +46,7 @@ public class Szkeleton {
 
 	}
 	
+	//kiirja a lehetseges scenariokat a felhasznalonak
 	private void printSequenceOptions() {
 		System.out.println("0 a kilepeshez\n"
 				+ "1 -- Asteroid hit by solar storm,  asteroid without resource and layers\n"
@@ -78,17 +82,19 @@ public class Szkeleton {
 				
 	}
 	
+	//beolvas egy szekvenciaszamot a felhasznalotol, ami 0 és a maximalis szekvenciaszam kozott van
 	private int readSequenceNumberFromUser() {
-		boolean validNumberread = false;
+		boolean validNumberread = false; //sikerult-e ervenyes szamot olvasnunk
 		int number = -1;
 		
 		// Using Scanner for Getting Input from User 
 		Scanner in = new Scanner(System.in);
 		
 		while(!validNumberread) {
-			boolean numberRead = false;
-	        String s = in.nextLine(); 
+			boolean numberRead = false; //sikerult-e szamot olvasnunk
+	        String s = in.nextLine(); //beolvasunk egy sort
 	        
+	        //ha nem szamot adott meg a felhasznalo, akkor elkapjuk a kivetelt
 	        try {
 	            number = Integer.parseInt(s);
 	            numberRead = true;
@@ -99,9 +105,11 @@ public class Szkeleton {
 	        
 	        if(numberRead) {
 	        	if((number <= numberOfScenarios) && (number >= 0)) {
+	        		//ervenyes szamot olvastunk
 	        		validNumberread = true;
 	        	}
 	        	else {
+	        		//szamot olvastunk, de az ervenytelen
 	        		validNumberread = false;
 	        		System.out.println("Kerlek egy szekvenciahoz tartozo szamot adj meg!\n");
 	        	}
@@ -111,21 +119,22 @@ public class Szkeleton {
 		
 		return number;
 	}
-	
+	//a felhasznalotol kerdest kerdezunk
 	private boolean askQuestionFromUser(String question) {
 		
 		System.out.println(question + " igen-nel vagy nem-mel valaszolj kerlek!\n");
 		
-		boolean validAnswerread = false;
-		boolean answer = false;
+		boolean validAnswerread = false; //sikerult-e ervenyes valaszt olvasnunk
+		boolean answer = false; // a kapott valasz
 		
 		// Using Scanner for Getting Input from User 
 		Scanner in = new Scanner(System.in);
 		
 		while(!validAnswerread) {
-	        String s = in.nextLine(); 
+	        String s = in.nextLine(); //egy sor beolvasasa
 	        
 	        if(s.equals("igen") || s.equals("nem")) {
+	        	//ha sikeres a beolvasa, eltaroljuk a valaszt
 	        	validAnswerread = true;
 	        	if(s.equals("igen")) {
 	        		answer = true;
@@ -135,6 +144,7 @@ public class Szkeleton {
 	        	}
 	        }
 	        else {
+	        	//nem sikeres a valasz
 	        	validAnswerread = false;
 	        	System.out.println("Kerlek jol valaszolj pls!\n");
 	        	}
@@ -144,7 +154,7 @@ public class Szkeleton {
 		return answer;
 	}
 	
-	
+	//egy kapott szekvenciaszamhoz tartozo scenariot tartalmazo fuggvenyt meghivjuk
 	private void runSequence(int seq) {
 		indentDepth = 0;
 		switch(seq) {
@@ -597,13 +607,12 @@ public class Szkeleton {
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 10, null, c1);
 		indentDepth++;
-		Settler s1 = new Settler("s1,",g,a1);
-		indentDepth++;
+		Settler s1 = new Settler("s1",g,a1);
 		
 		indentDepth++;
 		Asteroid a2 = new Asteroid("a1", 11, null, null);
 		indentDepth++;
-		Settler s2 = new Settler("s2,",g,a2);
+		Settler s2 = new Settler("s2",g,a2);
 		
 
 		indentDepth++;
@@ -639,11 +648,13 @@ public class Szkeleton {
 		Asteroid a1 = new Asteroid("a1", 10, m, i);
 		//indentDepth++;
 		//a1.SetLayers(0);
-		
+
+
+		indentDepth++;
 		
 		indentDepth++;
 		Settler s1 = new Settler("s1",g, a1 );
-		indentDepth++;
+		
 		m.AddPlace(a1);
 		indentDepth++;
 		m.SolarStorm();
