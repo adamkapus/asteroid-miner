@@ -594,13 +594,12 @@ public class Szkeleton {
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 10, null, c1);
 		indentDepth++;
-		Settler s1 = new Settler("s1,",g,a1);
-		indentDepth++;
+		Settler s1 = new Settler("s1",g,a1);
 		
 		indentDepth++;
 		Asteroid a2 = new Asteroid("a1", 11, null, null);
 		indentDepth++;
-		Settler s2 = new Settler("s2,",g,a2);
+		Settler s2 = new Settler("s2",g,a2);
 		
 
 		indentDepth++;
