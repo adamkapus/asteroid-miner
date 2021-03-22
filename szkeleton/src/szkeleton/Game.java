@@ -3,12 +3,16 @@ package szkeleton;
 import java.util.ArrayList;
 
 public class Game {
+	// telepesek
     private ArrayList<Settler> settlers;
+    // robotok
     private ArrayList<Robot> robots;
+    // térkép
     private Map map;
-    
+    // játék neve
     private String name;
-    
+
+    // konstruktor
     public  Game(String n) {
     	name = n;
     	settlers = new ArrayList<Settler>();
@@ -18,38 +22,36 @@ public class Game {
 
     	Szkeleton.indentDepth--;
     }
-
+	// játék megnyerése
     public void Win() {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Win()");
-    	//System.out.println("Jatek megnyerve\n");
         Szkeleton.indentDepth--;
     }
+    // játék elvesztése
     public void Lose() {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Lose()");
-    	//System.out.println("Jatek elveszitve\n");
     	Szkeleton.indentDepth--;
     }
+    // új játék kezdése
     public void NewGame() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".NewGame()");
 
         Szkeleton.indentDepth++;
-    	//konstruktornak masnak kene lennie
-
+        // pálya létrehozása
         Map map = new Map("map", this, 2);
 
+        // pálya összekötöttségek létrehozása
         Szkeleton.indentDepth++;
     	map.Connect();
 
-    	//Most ket jatekos letrehozasa
+    	//Most ket jatekos letrehozasa random kezdőhelyen
     	Szkeleton.indentDepth++;
     	Place p1 = map.GetRandomPlace();
     	Szkeleton.indentDepth++;
     	Place p2 = map.GetRandomPlace();
-
-    	//konstrukotr kene
     	Szkeleton.indentDepth++;
     	Settler s1 = new Settler("s1",this,p1);
     	Szkeleton.indentDepth++;
@@ -59,6 +61,7 @@ public class Game {
         Szkeleton.indentDepth--;
 
     }
+    // robot hozzáadása a játékhoz
     public void AddRobot(Robot robot) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AddRobot()");
@@ -66,19 +69,21 @@ public class Game {
     	robots.add(robot);
     	Szkeleton.indentDepth--;
     }
+    // játékos meghalt
     public void SettlerDied(Settler settler) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".SettlerDied()");
     	settlers.remove(settler);
-    	
-    	Szkeleton.indentDepth++;
-    	this.Lose();
 
-    	
-    	///KENE MINDEN OSZTALYNAK (ami komparalhato) equals(object o) FUGGVENY!!
+    	// játék elvesztése ha az utolsó telepes is meghalt
+		if (settlers.size() == 0) {
+			Szkeleton.indentDepth++;
+			this.Lose();
+		}
 
-    	 Szkeleton.indentDepth--;
+    	Szkeleton.indentDepth--;
     }
+    // robot meghalt
     public void RobotDied(Robot robot) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".RemoveRobot()");
@@ -86,7 +91,7 @@ public class Game {
     	
     	Szkeleton.indentDepth--;
     }
-
+	// térkép lekérése
     public Map GetMap(){
 		Szkeleton.writeTabs(Szkeleton.indentDepth);
 		System.out.println(name +".RemoveRobot()");
@@ -95,28 +100,28 @@ public class Game {
 		return map;
     }
 
-    //KA ez sincs rajta a diagramon, de valami hasonlo kene
+    // egy kör végrehajtása
     public void OneRound() {
+    	// először a telepesek lépnek
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".OneRound()");
     	for(int i =0; i < settlers.size(); i++) {
     		Szkeleton.indentDepth++;
     		settlers.get(i).Step();
     	}
-
+		// aztán a robotok lépnek
     	for(int i =0; i < settlers.size(); i++) {
     		Szkeleton.indentDepth++;
     		robots.get(i).Step();
     	}
+    	// végül a térkép is lép
     	Szkeleton.indentDepth++;
     	map.Step();
     	
     	Szkeleton.indentDepth--;
     }
-    
-    
-    //KA: nincs rajta a diagramon, scenario epiteshez kell
-    
+
+    // telepes hozzáadása a játékhoz
     public void AddSettler(Settler s) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".AddSettler()");
