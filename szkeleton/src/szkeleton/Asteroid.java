@@ -3,19 +3,32 @@ package szkeleton;
 import java.io.Console;
 import java.util.*;
 
+/**
+ * Ezekből épül fel a játéktér.
+ * A játékos ezen építhet, fúrhat, bányászhat vagy tartózkodhat.
+ */
 public class Asteroid extends Place{
     // state machine for asteroid state to the star
     private enum State {
         CLOSE, FAR
     }
 
-    private int timeLimit; // change state when this number is reached
-    private int timeCurrent; // time since last state change
-    private int layers; // number of layers
-    private Resource resource; // resource inside the asteroid
-    private State state; // current state
+    /**
+     * timeLimit:change state when this number is reached
+     * timeCurrent:time since last state change
+     * layers:number of layers
+     * resource:resource inside the asteroid
+     * state:current state
+     */
+    private int timeLimit;
+    private int timeCurrent;
+    private int layers;
+    private Resource resource;
+    private State state;
 
-    // create asteroid with name, unique id, current map, resource to be inside
+    /**
+     * create asteroid with name, unique id, current map, resource to be inside
+      */
     public Asteroid(String name, int id, szkeleton.Map m, Resource r){
         super(name, id, m);
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -33,14 +46,21 @@ public class Asteroid extends Place{
         Szkeleton.indentDepth--;
     }
 
-    // reduce the number of layers
+    /**
+     * Aszteroida kérgét csökkenti 1-el
+      */
     public void ReduceRockLayer(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".ReduceRockLayer()");
         Szkeleton.indentDepth--;
         if (layers >= 0) layers--;
     }
-    // do action with settler
+
+    /**
+     * Settler által végzett action-öket kezeli az aszteroidán
+     * Ha érvénytelen számot adunk meg akkor is vége a körünknek.
+     * Erről értesítést is ad egy üzenetben.
+     */
     @Override
     public void Action(Settler s){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -73,7 +93,10 @@ public class Asteroid extends Place{
         }
         Szkeleton.indentDepth--;
     }
-    // do action with robot
+
+    /**
+     * Robot által végzett action-öket kezeli.
+     */
     @Override
     public void Action(Robot r){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -82,7 +105,10 @@ public class Asteroid extends Place{
         r.Drill(); // robot can only drill
         Szkeleton.indentDepth--;
     }
-    // asteroid is hit by storm
+
+    /**
+     * Napvihar esetén hívódó függvény minen aszteroidára.
+     */
     @Override
     public void HitByStorm(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -95,7 +121,10 @@ public class Asteroid extends Place{
         }
         Szkeleton.indentDepth--;
     }
-    // asteroid is mined by settler
+
+    /**
+     *Telepes bányászása esetn hívódó függvény.
+     */
     public Resource MinedBy(Settler s){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".MinedBy()");
@@ -104,21 +133,30 @@ public class Asteroid extends Place{
         Szkeleton.indentDepth--;
         return rTemp;
     }
-    // resource is placed inside the asteroid
+
+    /**
+     * Nyersanyag elhelyezése az aszteroidában
+     */
     public void InsertResource(Resource r){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".InsertResource()");
         Szkeleton.indentDepth--;
         resource = r;
     }
-    // remove the current resource from the asteroid
+
+    /**
+     * Nyersanyag eltávolítása az aszteroidából
+     */
     public void RemoveResource(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".RemoveResource()");
         Szkeleton.indentDepth--;
         resource = null;
     }
-    // all entities are blown up
+
+    /**
+     * Minden Entitásra aki az aszteroidán volt meghívja a blownUp függvényüket.
+     */
     public void Blow() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Blow()");
@@ -132,7 +170,13 @@ public class Asteroid extends Place{
     public void Placed(){
         Szkeleton.indentDepth--;
     }
-    // asteroid makes its turn
+
+    /**
+     * Aszteroida lépése 1 körben
+     * Itt változtatja, hogy napközelben vagy naptávolban van.
+     * Ellenőrzi hogy milyen nyersanyagok vannak rajta, hogy a játékosok nyertek-e.
+     * Napközelben radioaktív nyersanyaggal robban
+     */
     @Override
     public void Step(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -157,7 +201,9 @@ public class Asteroid extends Place{
         Szkeleton.indentDepth--;
     }
 
-    // check the victory condition
+    /**
+     * Az aszteroidán tartózkodó telepesek nyersanyag listáin végigmegy és megnézi, hogy van e elég alapanyaguk a "bázis építésére" azaz megnyerték-e a játékot
+     */
     private void CheckResource(){
         ArrayList<Integer> currentResources = new ArrayList<>();
         for(Entity e : entity) {
@@ -178,10 +224,13 @@ public class Asteroid extends Place{
         }
         if (hasAllResources) {
             Szkeleton.indentDepth++;
-            map.EnpughResources();
+            map.EnoughResources();
         }
     }
 
+    /**
+     * Megváltoztatna az aszteroida napközeliségét
+     */
     private void ChangeState(){
         if (state == State.CLOSE)
             state = State.FAR;
@@ -190,13 +239,19 @@ public class Asteroid extends Place{
         timeCurrent = 0;
     }
 
+    /**
+     * A kéreg getter függvénye.
+     */
     public int GetLayers(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".GetLayers()");
         Szkeleton.indentDepth--;
         return layers;
     }
-    
+
+    /**
+     * A kéreg setter függvénye.
+     */
     public void SetLayers(int newLayers) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".SetLayers()");

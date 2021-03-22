@@ -4,16 +4,19 @@ package szkeleton;
 
 import java.util.Scanner;
 
-//coal -10
-//icewater -11
-//iron -12
-//uran -13
 
-
+/**
+ * Játék tesztelésére szolgáló osztály.
+ * A nyersanyagokhoz tartozó sorszámok:
+ * *coal -10
+ * *icewater -11
+ * *iron -12
+ * *uran -13
+ */
 
 public class Szkeleton {
 	
-	private int numberOfScenarios = 40; //pl.
+	private int numberOfScenarios = 29;
 	private boolean szkeletonIsRunning = true;
 	public static int indentDepth = 0;
 	
@@ -50,11 +53,11 @@ public class Szkeleton {
 				+ "6 -- Normal asteroid step\n"
 				+ "7 -- Robot blown up\n"
 				+ "8 -- Robot drills\n"
-				+ "9 -- Robot hit by Solar Storm, asteroid with resource\n\n"
+				+ "9 -- Robot hit by Solar Storm, asteroid with resource\n"
 				+ "10 -- Robot hit by storm, teleportgate\n"
 				+ "11 -- Robot moves\n"
 				+ "12 -- Settler blown up\n"
-				+ "13 -- Settler build robot with resource\n\n"
+				+ "13 -- Settler build robot with resource\n"
 				+ "14 -- Settler build robot without resource\n"
 				+ "15 -- Settler Build Teleport With Enough Resources\n"
 				+ "16 -- Settler Build Teleport Without Enough Resource\n"

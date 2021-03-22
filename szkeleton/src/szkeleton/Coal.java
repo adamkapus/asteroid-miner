@@ -1,7 +1,9 @@
 package szkeleton;
 
 import java.util.ArrayList;
-
+/**
+ * A Szén az egyik nyersanyag a játékban.
+ */
 public class Coal extends Resource{
 
     public Coal(String name){
@@ -10,10 +12,14 @@ public class Coal extends Resource{
         System.out.println(name +".Coal()");
         Szkeleton.indentDepth--;
     }
-
+    /**
+     * Megkapja a játékos listáját és megkeresi, hogy van-e rajta szén.
+     *Ha a kapott játékosnál talál szenet azt leszedi a játékos nyersanyagai közül.
+     * A függvény visszatér a settler listáján talált elemekkel (-1 szén)
+     */
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".RemoveFromList()");
+        System.out.println("RemoveFromList(Coal)");
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -30,6 +36,9 @@ public class Coal extends Resource{
         Szkeleton.indentDepth--;
         return newList;
     }
+    /**
+     *Kapott listához hozzáadja az Szén sorszámát, ami a 10.
+     */
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AddToList()");
