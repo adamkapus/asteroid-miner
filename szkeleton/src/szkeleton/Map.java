@@ -2,12 +2,23 @@ package szkeleton;
 
 import java.util.*;
 
+/**
+ * Az aszteroidálbók állló pályát állítja össze.
+ * Az allResources lista tárolja az összes elérhető nyersanyagot a listában
+ * A Places lista tárolja az összes Place típusú elemet amiből áll a program
+ */
 public class Map implements Steppable {
     private ArrayList<Integer> allResources;
     private ArrayList<Place> places;
     Game game;
     private String name;
     //KA: a map konstruktoraban kene letrehozni az aszteroidakat, a place-eket nem kapja meg parameterkent
+
+
+    /**
+     *A Map létrehozáskor megkapja a játékot amiben benne van, és kap egy nevet
+     * Itt a Szkeleton sikeressége érdekében minden nyersanyagból hozzáadunk 1-et a játékhoz
+     */
     public Map(String name, Game game) {
         this.name = name;
         this.game = game;
@@ -19,7 +30,11 @@ public class Map implements Steppable {
 
         Szkeleton.indentDepth--;
     }
-
+//valaki help
+    /**
+     *
+     *
+     */
     public Map(String n, Game game, int numOfAst) {
         name = n;
         allResources = new ArrayList<>();
@@ -28,10 +43,10 @@ public class Map implements Steppable {
         Random ran = new Random();
         for (int i = 0; i < numOfAst; i++) {
             Resource resource = switch (ran.nextInt(5)) {
-                case 0 -> new Coal();
-                case 1 -> new IceWater();
-                case 2 -> new Iron();
-                case 3 -> new Uran();
+                case 0 -> new Coal("c");
+                case 1 -> new IceWater("iw");
+                case 2 -> new Iron("i");
+                case 3 -> new Uran("u");
                 default -> null;
             };
             Asteroid newasteroid = new Asteroid("a", i, this, resource);
@@ -45,7 +60,11 @@ public class Map implements Steppable {
         Szkeleton.indentDepth--;
     }
 
-    public void SolarStorm() { // Az összes place-en lejátszódik az a szcenárió, amikor napvihar van
+    /**
+     * Napviharokat kezeli
+     * Az összes place-en lejátszódik az a szcenárió, amikor napvihar van
+     */
+    public void SolarStorm() {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".SolarStorm()");
         for (Place place : places) {
@@ -56,22 +75,49 @@ public class Map implements Steppable {
         Szkeleton.indentDepth--;
     }
 
-    public ArrayList<Integer>  GetAllResources() {return allResources;}
+    /**
+     * Getter függvény, visszaadja az összes nyersanyagot
+     */
 
-    public void EnpughResources() {
-        game.Win();
+    public ArrayList<Integer>  GetAllResources() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".GetAllResources()");
+        Szkeleton.indentDepth--;
+        return allResources;
     }
-    public void Step() { // Az összes place-en meghívja a Step() függvényt
+    /**
+     * Ha elég nyersanyagot gyűjtöttünk megnyerjük a játékot.
+     */
+    public void EnoughResources() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".EnoughResources()");
+        Szkeleton.indentDepth++;
+        game.Win();
+        Szkeleton.indentDepth--;
+    }
+
+    /**
+     * Az összes place-en meghívja a Step() függvényt
+     * 5% az esélye, hogy napvihar keletkezik
+     */
+    public void Step() {
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Step()");
         for (Place place : places) {
+            Szkeleton.indentDepth++;
             place.Step();
         }
         Random random = new Random();
-        if(random.nextInt(100) < 5) { // 5% az esélye, hogy napvihar keletkezik
+        if(random.nextInt(100) < 5) {
             SolarStorm();
         }
+        Szkeleton.indentDepth--;
     }
 
-    public Place GetRandomPlace() { // Visszaad egy random place-t
+    /**
+     *Visszaad egy random place-t
+     */
+    public Place GetRandomPlace() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".GetRandomPlace()");
         
@@ -84,6 +130,10 @@ public class Map implements Steppable {
         return places.get(ran.nextInt(places.size()));
     }
 
+    /**
+     * Két place típusú elemet összeköt, azaz szomszédjának állít be
+     */
+    //itt miért van kikommentelve minden?
     public void Connect() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Connect()");
@@ -101,7 +151,9 @@ public class Map implements Steppable {
         for (int i = 0; i < places.size(); i++){
             for (int j = 0; j < places.size(); j++){
                 if (i != j){
+                    Szkeleton.indentDepth++;
                     places.get(i).AddNeighbor(places.get(j));
+                    Szkeleton.indentDepth++;
                     places.get(j).AddNeighbor(places.get(i));
                 }
             }
@@ -109,7 +161,10 @@ public class Map implements Steppable {
 
         Szkeleton.indentDepth--;
     }
-    
+
+    /**
+     *Hozzáad egy új Place típusú elemet a Map-hez
+     */
     public void AddPlace(Place p) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AddPlace()");

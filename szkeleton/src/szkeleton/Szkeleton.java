@@ -4,16 +4,19 @@ package szkeleton;
 
 import java.util.Scanner;
 
-//coal -10
-//icewater -11
-//iron -12
-//uran -13
 
-
+/**
+ * Játék tesztelésére szolgáló osztály.
+ * A nyersanyagokhoz tartozó sorszámok:
+ * *coal -10
+ * *icewater -11
+ * *iron -12
+ * *uran -13
+ */
 
 public class Szkeleton {
 	
-	private int numberOfScenarios = 40; //pl.
+	private int numberOfScenarios = 29;
 	private boolean szkeletonIsRunning = true;
 	public static int indentDepth = 0;
 	
@@ -50,11 +53,11 @@ public class Szkeleton {
 				+ "6 -- Normal asteroid step\n"
 				+ "7 -- Robot blown up\n"
 				+ "8 -- Robot drills\n"
-				+ "9 -- Robot hit by Solar Storm, asteroid with resource\n\n"
+				+ "9 -- Robot hit by Solar Storm, asteroid with resource\n"
 				+ "10 -- Robot hit by storm, teleportgate\n"
 				+ "11 -- Robot moves\n"
 				+ "12 -- Settler blown up\n"
-				+ "13 -- Settler build robot with resource\n\n"
+				+ "13 -- Settler build robot with resource\n"
 				+ "14 -- Settler build robot without resource\n"
 				+ "15 -- Settler Build Teleport With Enough Resources\n"
 				+ "16 -- Settler Build Teleport Without Enough Resource\n"
@@ -143,6 +146,7 @@ public class Szkeleton {
 	
 	
 	private void runSequence(int seq) {
+		indentDepth = 0;
 		switch(seq) {
 		  	case 1:
 		    	scenario1();
@@ -264,7 +268,7 @@ public class Szkeleton {
 		indentDepth++;
 		Map m = new Map("map", g);
 		indentDepth++;
-		Uran u = new Uran();
+		Uran u = new Uran("u");
 		indentDepth++;
 		Asteroid a = new Asteroid("a", 1, m, u);
 		indentDepth++;
@@ -281,7 +285,7 @@ public class Szkeleton {
 		indentDepth++;
 		Map m = new Map("map", g);
 		indentDepth++;
-		IceWater iw = new IceWater();
+		IceWater iw = new IceWater("iw");
 		indentDepth++;
 		Asteroid a = new Asteroid("a", 1, m, iw);
 		indentDepth++;
@@ -294,7 +298,7 @@ public class Szkeleton {
 	//EZ SZTEM VAGY FÖLÖSLEGES VAGY NEM JÓ
 	private void scenario4(){//Icewater Sublimates
 		indentDepth++;
-		IceWater iw = new IceWater();
+		IceWater iw = new IceWater("iw");
 		indentDepth++;
 		Map m = new Map("m", null);
 		indentDepth++;
@@ -314,10 +318,6 @@ public class Szkeleton {
 
 		indentDepth++;
 		g.NewGame();
-		// map.Connect-ből probléma:
-		// Cannot read field "placeID" because the return value of "szkeleton.Place.GetNeighbor(int)" is null
-		// A Game NewGame() fv-e még nincs kész, ebből jonne az egész scenario
-		// ...
 
 	}
 
@@ -328,7 +328,7 @@ public class Szkeleton {
 		indentDepth++;
 		Map m = new Map("map", g);
 		indentDepth++;
-		Coal c = new Coal();
+		Coal c = new Coal("c");
 		indentDepth++;
 		Asteroid a = new Asteroid("a", 1, m, c);
 		indentDepth++;
@@ -385,7 +385,7 @@ public class Szkeleton {
 		indentDepth++;
 		Map m = new Map("map", g);
 		indentDepth++;
-		Iron i = new Iron();
+		Iron i = new Iron("i");
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 10, m, i);
 		
@@ -421,13 +421,21 @@ public class Szkeleton {
 	}
 
 	private void scenario11() { // Robot Moves
+		indentDepth++;
 		Game game = new Game("Game");
+		indentDepth++;
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
+		indentDepth++;
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		indentDepth++;
 		asteroid1.AddNeighbor(asteroid2);
+		indentDepth++;
 		asteroid2.AddNeighbor(asteroid1);
+		indentDepth++;
 		Robot robot = new Robot("Robot", game, asteroid1);
+		indentDepth++;
 		asteroid1.AcceptEntity(robot);
+		indentDepth++;
 		robot.Move(2);
 	}
 
@@ -458,11 +466,11 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s1 = new Settler("s1", null, a);
 		indentDepth++;
-		Iron i1 = new Iron();
+		Iron i1 = new Iron("i");
 		indentDepth++;
-		Uran u1= new Uran();
+		Uran u1= new Uran("u");
 		indentDepth++;
-		Coal c1 = new Coal();
+		Coal c1 = new Coal("c");
 		indentDepth++;
 		s1.AddResource(i1);
 		indentDepth++;
@@ -479,9 +487,9 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s1 = new Settler("s1", null, a);
 		indentDepth++;
-		Iron i1 = new Iron();
+		Iron i1 = new Iron("i");
 		indentDepth++;
-		Uran u1= new Uran();
+		Uran u1= new Uran("u");
 		indentDepth++;
 		s1.AddResource(i1);
 		indentDepth++;
@@ -501,13 +509,13 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s1 = new Settler("s1", g, a);
 		indentDepth++;
-		Iron i1 = new Iron();
+		Iron i1 = new Iron("i");
 		indentDepth++;
-		Iron i2 = new Iron();
+		Iron i2 = new Iron("i");
 		indentDepth++;
-		IceWater iw = new IceWater();
+		IceWater iw = new IceWater("iw");
 		indentDepth++;
-		Uran u = new Uran();
+		Uran u = new Uran("u");
 		indentDepth++;
 		s1.AddResource(i1);
 		indentDepth++;
@@ -527,9 +535,9 @@ public class Szkeleton {
 		indentDepth++;
 		Settler s1 = new Settler("s1", null, a);
 		indentDepth++;
-		Iron i = new Iron();
+		Iron i = new Iron("i");
 		indentDepth++;
-		IceWater iw = new IceWater();
+		IceWater iw = new IceWater("iw");
 		indentDepth++;
 		s1.AddResource(i);
 		indentDepth++;
@@ -560,7 +568,7 @@ public class Szkeleton {
 		Game g = new Game("g1");
 
 		indentDepth++;
-		Coal c1 = new Coal();
+		Coal c1 = new Coal("c");
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 10, null, c1);
 		indentDepth++;
@@ -582,7 +590,7 @@ public class Szkeleton {
 		Game g = new Game("g1");
 
 		indentDepth++;
-		Coal c1 = new Coal();
+		Coal c1 = new Coal("c");
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 10, null, c1);
 		indentDepth++;
@@ -624,7 +632,7 @@ public class Szkeleton {
 		indentDepth++;
 		Map m = new Map("map", g);
 		indentDepth++;
-		Iron i = new Iron();
+		Iron i = new Iron("i");
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 10, m, i);
 		indentDepth++;
@@ -659,37 +667,50 @@ public class Szkeleton {
 		m.SolarStorm();
 	}
 	private void scenario23() { // Settler Place Resource not empty
-		Iron iron = new Iron();
+		Iron iron = new Iron("i");
 		Asteroid asteroid = new Asteroid("Asteroid", 1, null, iron);
+		indentDepth++;
 		Settler s = new Settler("s1", null, asteroid);
+		indentDepth++;
 		s.Action();
 	}
 	private void scenario24() { // Settler Place Resource not empty
+		indentDepth++;
 		Asteroid asteroid = new Asteroid("Asteroid", 1, null, null);
+		indentDepth++;
 		Settler s = new Settler("Telepes", null, asteroid);
+		indentDepth++;
 		s.Action();
 	}
 
 	private void scenario25() { // Settler Moves
+		indentDepth++;
 		Game game = new Game("Game");
+		indentDepth++;
 		Asteroid asteroid1 = new Asteroid("Asteroid1", 1, null, null);
+		indentDepth++;
 		Asteroid asteroid2 = new Asteroid("Asteroid2", 2, null, null);
+		indentDepth++;
 		asteroid1.AddNeighbor(asteroid2);
+		indentDepth++;
 		asteroid2.AddNeighbor(asteroid1);
+		indentDepth++;
 		Settler settler = new Settler("Telepes", game, asteroid1);
+		indentDepth++;
 		asteroid1.AcceptEntity(settler);
+		indentDepth++;
 		settler.Move(2);
 	}
 
 	private void scenario26() { // Settler Place Resource not empty
-		Iron iron = new Iron();
+		Iron iron = new Iron("i");
 		Asteroid asteroid = new Asteroid("Asteroid", 1, null, iron);
 		Settler settler = new Settler("Telepes", null, asteroid);
 		settler.PlaceResource(10);
 	}
 
 	private void scenario27() { // Settler place Resource
-		Uran u = new Uran();
+		Uran u = new Uran("u");
 		Asteroid a = new Asteroid("Asteroid", 1, null, null);
 		Settler settler = new Settler("Telepes", null, a);
 		settler.PlaceResource(13);
