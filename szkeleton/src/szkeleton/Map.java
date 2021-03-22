@@ -36,12 +36,16 @@ public class Map implements Steppable {
      *
      */
     public Map(String n, Game game, int numOfAst) {
-        name = n;
+    	name = n;
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".Map(int)");
         allResources = new ArrayList<>();
         allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
         places = new ArrayList<>();
         Random ran = new Random();
+        
         for (int i = 0; i < numOfAst; i++) {
+        	Szkeleton.indentDepth++;
             Resource resource = switch (ran.nextInt(5)) {
                 case 0 -> new Coal("c");
                 case 1 -> new IceWater("iw");
@@ -49,13 +53,12 @@ public class Map implements Steppable {
                 case 3 -> new Uran("u");
                 default -> null;
             };
+            Szkeleton.indentDepth++;
             Asteroid newasteroid = new Asteroid("a", i, this, resource);
             places.add(newasteroid);
         }
         this.game = game;
 
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Map(int)");
 
         Szkeleton.indentDepth--;
     }
@@ -133,13 +136,11 @@ public class Map implements Steppable {
         }*/
 
         for (int i = 0; i < places.size(); i++){
-            for (int j = 0; j < places.size(); j++){
-                if (i != j){
-                    Szkeleton.indentDepth++;
-                    places.get(i).AddNeighbor(places.get(j));
-                    Szkeleton.indentDepth++;
-                    places.get(j).AddNeighbor(places.get(i));
-                }
+            for (int j = i+1; j < places.size(); j++){
+                Szkeleton.indentDepth++;
+                places.get(i).AddNeighbor(places.get(j));
+                Szkeleton.indentDepth++;
+                places.get(j).AddNeighbor(places.get(i));
             }
         }
 

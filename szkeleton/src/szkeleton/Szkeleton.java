@@ -364,11 +364,14 @@ public class Szkeleton {
 
 		indentDepth++;
 		a1.AddNeighbor(a2);
+		indentDepth++;
 		a2.AddNeighbor(a1);
+		indentDepth++;
 		Robot r = new Robot("r1", g, a1);
 
 		indentDepth++;
 		a1.AcceptEntity(r);
+		indentDepth++;
 		r.BlownUp();
 
 
