@@ -19,8 +19,12 @@ public abstract class Entity implements Steppable {
     	this.name = n;
     	this.game = g;
     	this.place = p;
+    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	System.out.println(name +".Entity()");
     	Szkeleton.indentDepth++;
     	p.AcceptEntity(this);
+    	
+    	 Szkeleton.indentDepth--;
     }
 
     /**
