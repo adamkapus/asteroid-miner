@@ -634,13 +634,13 @@ public class Szkeleton {
 		Iron i = new Iron("i");
 		indentDepth++;
 		Asteroid a1 = new Asteroid("a1", 10, m, i);
-		indentDepth++;
-		a1.SetLayers(0);
-		indentDepth++;
+		//indentDepth++;
+		//a1.SetLayers(0);
+		
 		
 		indentDepth++;
 		Settler s1 = new Settler("s1",g, a1 );
-		
+		indentDepth++;
 		m.AddPlace(a1);
 		indentDepth++;
 		m.SolarStorm();

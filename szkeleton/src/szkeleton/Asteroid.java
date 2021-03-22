@@ -113,7 +113,7 @@ public class Asteroid extends Place{
     public void HitByStorm(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".HitByStorm()");
-        if (layers != 0 && resource != null){
+        if ((layers != 0) || (resource != null)){
             for(Entity e : entity) {
                 Szkeleton.indentDepth++;
                 e.Die();
