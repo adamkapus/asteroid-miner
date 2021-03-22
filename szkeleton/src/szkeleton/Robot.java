@@ -37,6 +37,7 @@ public class Robot extends Entity{
         // random szomszédra átrepül
         Szkeleton.indentDepth++;
         Place destination = place.GetRandomNeighbor();
+        Szkeleton.indentDepth++;
         place.RemoveEntity(this);
         Szkeleton.indentDepth++;
         destination.AcceptEntity(this);
