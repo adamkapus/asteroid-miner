@@ -17,6 +17,7 @@ public class Robot extends Entity{
     public void Action(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Action()");
+        Szkeleton.indentDepth++;
 	    place.Action(this);
 	    Szkeleton.indentDepth--;
     }
@@ -24,6 +25,7 @@ public class Robot extends Entity{
     public void Die() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Die()");
+        Szkeleton.indentDepth++;
 	    game.RobotDied(this);
 	    Szkeleton.indentDepth--;
     }
@@ -60,5 +62,7 @@ public class Robot extends Entity{
             default:
                 System.out.println("Nincs ilyen opció");
         }
+
+        Szkeleton.indentDepth--;
     }
 }

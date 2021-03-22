@@ -101,7 +101,6 @@ public class Settler extends Entity{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".BuildRobot()");
 
-        Szkeleton.indentDepth++;
         ArrayList<Integer> req = new ArrayList<>();
         req.add(10);     //szén
         req.add(12);     //vas
@@ -260,7 +259,6 @@ public class Settler extends Entity{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AddTeleportGate()");
 
-        Szkeleton.indentDepth++;
         gates.add(tg);
 
         Szkeleton.indentDepth--;
