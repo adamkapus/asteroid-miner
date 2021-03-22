@@ -23,6 +23,7 @@ abstract public class Resource {
     public boolean IsRadioactive(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".IsRadioactive()");
+        Szkeleton.indentDepth--;
         return this.radioactive;
     }
 
