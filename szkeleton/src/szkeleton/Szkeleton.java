@@ -143,6 +143,7 @@ public class Szkeleton {
 	
 	
 	private void runSequence(int seq) {
+		indentDepth = 0;
 		switch(seq) {
 		  	case 1:
 		    	scenario1();

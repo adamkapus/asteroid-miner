@@ -92,7 +92,6 @@ public class Settler extends Entity{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".AddResource()");
 
-        Szkeleton.indentDepth++;
         resources.add(r);
 
         Szkeleton.indentDepth--;
@@ -110,12 +109,17 @@ public class Settler extends Entity{
 
         ListIterator<Resource> rIter = resources.listIterator();
         boolean iterate = true;
-        while (rIter.hasNext() || (req.size() == 1 && iterate)){
+        while (rIter.hasNext() || (iterate)){
             try {
                 Szkeleton.indentDepth++;
                 req = rIter.next().RemoveFromList(req, this);
+                if (req.size() == 1)
+                    iterate = true;
+                if (resources.size() == 0)
+                    break;
             }
             catch (Exception e){
+                Szkeleton.indentDepth--;
                 rIter = resources.listIterator();
                 if (req.size() == 1)
                     iterate = false;
@@ -158,19 +162,24 @@ public class Settler extends Entity{
 
         ListIterator<Resource> rIter = resources.listIterator();
         boolean iterate = true;
-        while (rIter.hasNext() || (req.size() == 1 && iterate)){
+        while (rIter.hasNext() || (iterate)){
             try {
                 Szkeleton.indentDepth++;
                 req = rIter.next().RemoveFromList(req, this);
+                if (req.size() == 1)
+                    iterate = true;
+                if (resources.size() == 0)
+                    break;
             }
             catch (Exception e){
+                Szkeleton.indentDepth--;
                 rIter = resources.listIterator();
                 if (req.size() == 1)
                     iterate = false;
             }
         }
 
-        if(resources.isEmpty()){
+        if(req.isEmpty()){
             Szkeleton.indentDepth++;
             Map m = this.game.GetMap();
 
@@ -190,7 +199,7 @@ public class Settler extends Entity{
 
     public void PlaceDownTeleport() {
         Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".BuildTeleport()");
+        System.out.println(name +".PlaceDownTeleport()");
 
         Szkeleton.indentDepth++;
         TeleportGate placeable = gates.get(gates.size() - 1);
