@@ -28,10 +28,10 @@ public class Map implements Steppable {
         Random ran = new Random();
         for (int i = 0; i < numOfAst; i++) {
             Resource resource = switch (ran.nextInt(5)) {
-                case 0 -> new Coal();
-                case 1 -> new IceWater();
-                case 2 -> new Iron();
-                case 3 -> new Uran();
+                case 0 -> new Coal("c");
+                case 1 -> new IceWater("iw");
+                case 2 -> new Iron("i");
+                case 3 -> new Uran("u");
                 default -> null;
             };
             Asteroid newasteroid = new Asteroid("a", i, this, resource);

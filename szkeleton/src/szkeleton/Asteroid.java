@@ -142,8 +142,10 @@ public class Asteroid extends Place{
         if (timeCurrent == timeLimit)
             ChangeState();
         // sublimate the resource if conditions are met
-        if (state == State.CLOSE && layers == 0 && resource != null)
+        if (state == State.CLOSE && layers == 0 && resource != null) {
+            Szkeleton.indentDepth++;
             resource.Sublimation(this);
+        }
         // detonate the entities if conditions are met
         if (resource != null && resource.IsRadioactive() && layers == 0) {
             Szkeleton.indentDepth++;
@@ -158,8 +160,11 @@ public class Asteroid extends Place{
     // check the victory condition
     private void CheckResource(){
         ArrayList<Integer> currentResources = new ArrayList<>();
-        for(Entity e : entity)
+        for(Entity e : entity) {
+            Szkeleton.indentDepth++;
             currentResources = e.UpdateResourceList(currentResources);
+        }
+        Szkeleton.indentDepth++;
         ArrayList<Integer> allResources = map.GetAllResources();
         java.util.Map<Integer, Integer> resMap = new HashMap<>();
         for (Integer allResource : allResources) resMap.put(allResource, 0);
@@ -171,8 +176,10 @@ public class Asteroid extends Place{
                 break;
             }
         }
-        if (hasAllResources)
+        if (hasAllResources) {
+            Szkeleton.indentDepth++;
             map.EnpughResources();
+        }
     }
 
     private void ChangeState(){

@@ -44,6 +44,7 @@ abstract public class Place implements Steppable {
         System.out.println(name +".AddNeighbor()");
         
         neighbors.add(p);
+
         Szkeleton.indentDepth++;
         p.Placed();
 

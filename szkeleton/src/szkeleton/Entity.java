@@ -17,10 +17,16 @@ public abstract class Entity implements Steppable {
     }
     
     public void Move(int asteroidID) {
-        Place neighbour = place.GetNeighbor(asteroidID);
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name + ".Move()");
 
+        Szkeleton.indentDepth++;
+        Place neighbour = place.GetNeighbor(asteroidID);
+        Szkeleton.indentDepth++;
         place.RemoveEntity(this);
+        Szkeleton.indentDepth++;
         neighbour.AcceptEntity(this);
+        Szkeleton.indentDepth--;
     }
 
     public abstract void Action();
