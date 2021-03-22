@@ -53,7 +53,7 @@ public class Asteroid extends Place{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".ReduceRockLayer()");
         Szkeleton.indentDepth--;
-        if (layers >= 0) layers--;
+        if (layers > 0) layers--;
     }
 
     /**

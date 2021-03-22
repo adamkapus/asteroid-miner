@@ -71,7 +71,7 @@ public class Szkeleton {
 				+ "20 -- Settler drills\n"
 				+ "21 -- Settler hit by solar storm, asteroid with resource\n"
 				+ "22 -- Settler hit by storm, teleportgate\n"
-				+ "23 -- Settler mine with resourcen"
+				+ "23 -- Settler mine with resource\n"
 				+ "24 -- Settler mine without resource\n"
 				+ "25 -- Settler move \n"
 				+ "26 -- Settler Place resource: Not empty\n"
@@ -733,7 +733,15 @@ public class Szkeleton {
 		indentDepth++;
 		Settler settler = new Settler("Telepes", null, a);
 		indentDepth++;
-		settler.PlaceResource(13);
+		settler.AddResource(u);
+		indentDepth++;
+		int i = 0;
+		while (i != 10) {
+			indentDepth++;
+			settler.Drill();
+			i++;
+		}
+		settler.PlaceResource(0);
 	}
 
 	// Place down teleportgate
