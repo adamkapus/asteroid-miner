@@ -10,6 +10,7 @@ public class Iron extends Resource{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Iron()");
         Szkeleton.indentDepth--;
+        
     }
     public boolean IsRadioactive(){
         return this.radioactive;

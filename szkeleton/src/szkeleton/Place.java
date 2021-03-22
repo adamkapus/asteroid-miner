@@ -49,6 +49,7 @@ abstract public class Place implements Steppable {
         p.Placed();
 
         Szkeleton.indentDepth--;
+        
     }
     // get a certain neighbor
     public Place GetNeighbor(int placeId){

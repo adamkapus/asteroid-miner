@@ -18,6 +18,7 @@ public class Coal extends Resource{
      * A függvény visszatér a settler listáján talált elemekkel (-1 szén)
      */
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
+    	
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println("RemoveFromList(Coal)");
         ArrayList<Integer> newList = new ArrayList<>();

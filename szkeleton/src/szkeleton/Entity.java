@@ -10,6 +10,7 @@ public abstract class Entity implements Steppable {
     protected Place place;
     protected Game game;
     
+    
     String name;
 
     /**

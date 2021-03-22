@@ -59,6 +59,7 @@ public class Game {
     	settlers.add(s1);
     	settlers.add(s2);
         Szkeleton.indentDepth--;
+        
 
     }
     // robot hozzáadása a játékhoz

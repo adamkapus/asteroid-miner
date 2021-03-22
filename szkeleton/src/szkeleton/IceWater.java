@@ -10,6 +10,8 @@ public class IceWater extends Resource{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".IceWater()");
         Szkeleton.indentDepth--;
+
+
     }
     /**
      * Megkapja a játékos listáját és megkeresi, hogy van-e rajta Vízjég.

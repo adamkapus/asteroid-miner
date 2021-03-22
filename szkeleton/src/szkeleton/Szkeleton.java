@@ -23,6 +23,7 @@ public class Szkeleton {
 	private String keregKerdes = "0-e a kereg?";
 	private String stb;
 	
+	
 	public Szkeleton() {}
 
 	public void runSzkeleton() {

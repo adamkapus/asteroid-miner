@@ -3,22 +3,25 @@ package szkeleton;
 import java.util.ArrayList;
 
 /**
- * Nyersanyagok Ősosztálya
+ * Nyersanyagok Ĺ�sosztĂˇlya
  */
 
 abstract public class Resource {
     /**
-     * Alapból a nyersanyagok nem radioaktívak
+     * AlapbĂłl a nyersanyagok nem radioaktĂ­vak
      */
     protected boolean radioactive= false;
     protected String name;
 
     public Resource(String name){
         this.name = name;
+        
+        
     }
 
-    /**
-     * Visszatér az anyagok radioaktivitásával.
+    /*
+     * 
+     * VisszatĂ©r az anyagok radioaktivitĂˇsĂˇval.
      */
     public boolean IsRadioactive(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -28,7 +31,7 @@ abstract public class Resource {
     }
 
     /**
-     * Eltávolít egy Nyersanyagot a kapott settler listájából
+     * EltĂˇvolĂ­t egy Nyersanyagot a kapott settler listĂˇjĂˇbĂłl
      */
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
         return I;}
@@ -37,7 +40,7 @@ abstract public class Resource {
     }
 
     /**
-     * Szublimáció
+     * SzublimĂˇciĂł
      */
     public void Sublimation(Asteroid a){
         Szkeleton.indentDepth--;

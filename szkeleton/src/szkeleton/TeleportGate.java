@@ -80,4 +80,5 @@ public class TeleportGate extends Place {
         Szkeleton.indentDepth--;
     }
 
+    
 }

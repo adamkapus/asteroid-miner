@@ -20,6 +20,8 @@ public class Robot extends Entity{
         Szkeleton.indentDepth++;
 	    place.Action(this);
 	    Szkeleton.indentDepth--;
+	    
+	    
     }
 	// robot halála
     public void Die() {

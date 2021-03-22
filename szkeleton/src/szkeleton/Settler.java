@@ -91,6 +91,7 @@ public class Settler extends Entity{
             a.InsertResource(resources.get(n));
         }
 
+        
         Szkeleton.indentDepth--;
     }
     // nyersanyag átadása a telepesnek

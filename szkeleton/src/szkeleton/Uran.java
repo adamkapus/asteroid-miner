@@ -12,6 +12,9 @@ public class Uran extends Resource{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Uran()");
         Szkeleton.indentDepth--;
+        
+        
+        
     }
 
     /**
