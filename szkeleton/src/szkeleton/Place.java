@@ -78,4 +78,5 @@ abstract public class Place implements Steppable {
     abstract public void Placed();
     abstract public void Action(Settler s);
     abstract public void Action(Robot r);
+    abstract public void Action(Ufo u);
 }

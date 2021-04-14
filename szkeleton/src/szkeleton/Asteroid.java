@@ -106,6 +106,11 @@ public class Asteroid extends Place{
         Szkeleton.indentDepth--;
     }
 
+    @Override
+    public void Action(Ufo u) {
+
+    }
+
     /**
      * Napvihar esetén hívódó függvény minen aszteroidára.
      */

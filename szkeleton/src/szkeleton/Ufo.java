@@ -1,35 +1,23 @@
 package szkeleton;
 
 import java.util.Random;
-import java.util.Scanner;
 
-public class Robot extends Entity{
+public class Ufo extends Entity{
 
     //név szerinti konstruktor a tesztesetekhez
-    public Robot(String name){
+    public Ufo(String name){
         super(name);
     }
 
-    // konstruktor
-	public Robot(String name, Game g, Place p) {
-    	super(name, g, p);
+    public void Action() {
+        this.place.Action(this);
     }
-    // műveletvégrehajtás
-    public void Action(){
-	    place.Action(this);
-    }
-	// robot halála
     public void Die() {
-	    game.RobotDied(this);
+        game.UfoDied(this);
     }
-    // robotot aszteroidarobbanás éri
     public void BlownUp() {
-        // random szomszédra átrepül
-        Place destination = place.GetRandomNeighbor();
-        place.RemoveEntity(this);
-        destination.AcceptEntity(this);
+        this.Die();
     }
-    // robot lép
     public void Step() {
         Random rand1 = new Random();
 
@@ -39,7 +27,7 @@ public class Robot extends Entity{
         try {
             switch (rand_int) {
                 case 0:
-                    // műveletvégzés: aszteroidán fúrás, teleportkapun semmi
+                    // műveletvégzés: aszteroidán bányászás, teleportkapun semmi
                     this.Action();
                     break;
                 case 1:

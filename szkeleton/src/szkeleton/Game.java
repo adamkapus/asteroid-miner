@@ -92,6 +92,10 @@ public class Game {
     	
     	Szkeleton.indentDepth--;
     }
+
+    // ufo meghalt
+	public void UfoDied(Ufo ufo){}
+
 	// térkép lekérése
     public Map GetMap(){
 		Szkeleton.writeTabs(Szkeleton.indentDepth);

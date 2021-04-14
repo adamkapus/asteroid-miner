@@ -42,6 +42,12 @@ public class TeleportGate extends Place {
         System.out.println(name + ".Action()");
         Szkeleton.indentDepth--;
     }
+
+    @Override
+    public void Action(Ufo u) {
+
+    }
+
     // returns the pair of the teleportgate
     public TeleportGate GetPair(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
