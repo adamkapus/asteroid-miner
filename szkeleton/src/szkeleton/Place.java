@@ -20,6 +20,18 @@ abstract public class Place implements Steppable {
         entity = new ArrayList<>();
         this.name = name;
     }
+    public Place(String name){
+        this.name = name;
+    }
+
+    public void SetPlaceID(int id) {placeID = id;}
+    public void SetMap(Map m) {map = m;}
+
+    public int GetPlaceID() {return placeID;}
+    public List<Place> GetAllNeighbors() {return neighbors;}
+    public Map GetMap() {return map;}
+    public List<Entity> GetAllEntities() {return entity;}
+    public String GetName() {return name;}
 
     // entity moves here
     public void AcceptEntity(Entity e){
@@ -50,6 +62,9 @@ abstract public class Place implements Steppable {
 
         Szkeleton.indentDepth--;
         
+    }
+    public void RemoveNeighbor(Place p){
+        neighbors.remove(p);
     }
     // get a certain neighbor
     public Place GetNeighbor(int placeId){

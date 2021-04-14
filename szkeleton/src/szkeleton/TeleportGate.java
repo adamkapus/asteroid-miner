@@ -12,6 +12,11 @@ public class TeleportGate extends Place {
         pairIsPlaced = false;
         pair = null;
     }
+    public TeleportGate(String name){
+        super(name);
+        pairIsPlaced = false;
+        pair = null;
+    }
 
     // teleportgate is hit by solar storm
     @Override
@@ -45,7 +50,10 @@ public class TeleportGate extends Place {
 
     @Override
     public void Action(Ufo u) {
-
+        if (pairIsPlaced) {
+            Szkeleton.indentDepth++;
+            u.UseTeleport();
+        }
     }
 
     // returns the pair of the teleportgate
@@ -69,6 +77,7 @@ public class TeleportGate extends Place {
         Szkeleton.indentDepth--;
         pairIsPlaced = true;
     }
+    public boolean GetPairIsPlaced() {return pairIsPlaced;}
     // teleportgate is placed
     @Override
     public void Placed(){
@@ -86,5 +95,11 @@ public class TeleportGate extends Place {
         Szkeleton.indentDepth--;
     }
 
+    public void MoveRandom(){
+        Asteroid a = (Asteroid) neighbors.get(0);
+        a.RemoveNeighbor(this);
+        Place neighbor = a.GetRandomNeighbor();
+        neighbor.AddNeighbor(this);
+    }
     
 }

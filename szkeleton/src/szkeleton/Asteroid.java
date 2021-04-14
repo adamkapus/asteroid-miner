@@ -45,6 +45,33 @@ public class Asteroid extends Place{
 
         Szkeleton.indentDepth--;
     }
+    public Asteroid(String name){
+        super(name);
+        // default values!
+    }
+
+    public void setTimeLimit(int timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+    public void setTimeCurrent(int timeCurrent) {
+        this.timeCurrent = timeCurrent;
+    }
+    public void setResource(Resource resource) {
+        this.resource = resource;
+    }
+
+    public int getTimeLimit() {
+        return timeLimit;
+    }
+    public int getTimeCurrent() {
+        return timeCurrent;
+    }
+    public Resource getResource() {
+        return resource;
+    }
+    public State getState() {
+        return state;
+    }
 
     /**
      * Aszteroida kérgét csökkenti 1-el
@@ -108,7 +135,7 @@ public class Asteroid extends Place{
 
     @Override
     public void Action(Ufo u) {
-
+        u.Mine();
     }
 
     /**
@@ -136,6 +163,11 @@ public class Asteroid extends Place{
         Resource rTemp = resource;
         resource = null;
         Szkeleton.indentDepth--;
+        return rTemp;
+    }
+    public Resource MinedBy(Ufo u){
+        Resource rTemp = resource;
+        resource = null;
         return rTemp;
     }
 
@@ -267,4 +299,5 @@ public class Asteroid extends Place{
     public void SetStateToClose(){
         state = State.CLOSE;
     }
+    public void SetStateToFar() {state = State.FAR;}
 }

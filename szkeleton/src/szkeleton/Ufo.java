@@ -39,4 +39,10 @@ public class Ufo extends Entity{
             System.out.println("Nem jó számot adtál meg");
         }
     }
+
+    public void UseTeleport() {
+    }
+
+    public void Mine() {
+    }
 }
