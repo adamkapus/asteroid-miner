@@ -38,6 +38,8 @@ public class Prototype {
 		}
 	}
 	
+	//getterek az objektumokra
+	
 	public Game getGame(String name) {
 		/*
 		for(int i = 0; i < games.size(); i++) {
@@ -55,9 +57,9 @@ public class Prototype {
 		return null;
 	}
 	
-	//get..
+	//getterek meg.....
 	
-	//visszaadja, hogy fut-e még a protottípus
+	//beolvas egy parancsot a konzolrol
 	public void readCommandFromUser() {
 		Scanner in = new Scanner(System.in);
 	    String userInput = in.nextLine(); //beolvasunk egy sort
