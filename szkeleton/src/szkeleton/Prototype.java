@@ -43,19 +43,100 @@ public class Prototype {
 	public Game getGame(String name) {
 		/*
 		for(int i = 0; i < games.size(); i++) {
-			if(games.get(i).getName().EqualsTo(name)) { return games.get(i);}
+			if(games.get(i).getName().equals(name)) { return games.get(i);}
 		}*/
 		System.out.println("Nincs ilyen nevu game");
 		return null;
 	}
 	public Settler getSettler(String name) {
-		/*
+		
 		for(int i = 0; i < settlers.size(); i++) {
-			if(settlers.get(i).getName().EqualsTo(name)) { return settlers.get(i);}
-		}*/
+			if(settlers.get(i).getName().equals(name)) { return settlers.get(i);}
+		}
 		System.out.println("Nincs ilyen nevu settler");
 		return null;
 	}
+	
+	public Robot getRobot(String name) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(robots.get(i).getName().equals(name)) { return robots.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu robot");
+		return null;
+	}
+	
+	public Ufo getUfo(String name) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(ufos.get(i).getName().equals(name)) { return ufos.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu ufo");
+		return null;
+	}
+	
+	public Map getMap(String name) {
+		/*
+		for(int i = 0; i < settlers.size(); i++) {
+			if(maps.get(i).getName().equals(name)) { return maps.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu map");*/
+		return null;
+	}
+	
+	public Asteroid getAsteroid(String name) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(asteroids.get(i).GetName().equals(name)) { return asteroids.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu asteroid");
+		return null;
+	}
+	
+	public TeleportGate getTeleportgate(String name) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(teleportgates.get(i).GetName().equals(name)) { return teleportgates.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu tg");
+		return null;
+	}
+	
+	public Coal getCoal(String name) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(coals.get(i).getName().equals(name)) { return coals.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu coal");
+		return null;
+	}
+	
+	public IceWater getIcewater(String name) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(icewaters.get(i).getName().equals(name)) { return icewaters.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu iw");
+		return null;
+	}
+	
+	public Iron getIron(String name) {
+		for(int i = 0; i < settlers.size(); i++) {
+			if(irons.get(i).getName().equals(name)) { return irons.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu iron");
+		return null;
+	}
+	
+	public Uran getUran(String name) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(urans.get(i).getName().equals(name)) { return urans.get(i);}
+		}
+		System.out.println("Nincs ilyen nevu uran");
+		return null;
+	}
+	
 	
 	//getterek meg.....
 	
@@ -103,17 +184,17 @@ public class Prototype {
 		case "ufo":
 	    	ufos.add(new Ufo(newObjectName));
 	    	break;
-	    	/*
-		case "map":
+	    	
+		/*case "map":
 	    	maps.add(new Map(newObjectName));
-	    	break;
+	    	break;*/
 		case "asteroid":
 	    	asteroids.add(new Asteroid(newObjectName));
 	    	break;
 		case "teleportgate":
 	    	teleportgates.add(new TeleportGate(newObjectName));
 	    	break;
-	    	*/
+	    	
 		case "coal":
 	    	coals.add(new Coal(newObjectName));
 	    	break;
@@ -139,10 +220,12 @@ public class Prototype {
 			s.Die();
 	    	break;
 		case "robot":
-			//..
+			Robot r = getRobot(objectName);
+			r.Die();
 	    	break;
 		case "ufo":
-	    	//..
+	    	Ufo u = getUfo(objectName);
+	    	u.Die();
 	    	break;
 		}
 	}

@@ -63,4 +63,6 @@ public abstract class Entity implements Steppable {
     public void SetGame(Game g) {this.game = g;}
     public Place GetPlace() {return this.place;}
     public Game GetGame() {return  this.game;}
+    
+    public String getName() {return this.name;}
 }
