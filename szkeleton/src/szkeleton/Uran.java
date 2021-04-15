@@ -5,6 +5,7 @@ import java.util.ArrayList;
  * Az Urán az egyik nyersanyag a játékban.
  */
 public class Uran extends Resource{
+    private int CloseToSunTicks=3;
 
     public Uran(String name){
         super(name);
@@ -12,9 +13,6 @@ public class Uran extends Resource{
         Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name +".Uran()");
         Szkeleton.indentDepth--;
-        
-        
-        
     }
 
     /**
@@ -51,5 +49,12 @@ public class Uran extends Resource{
         I.add(13);
         Szkeleton.indentDepth--;
         return I;
+    }
+
+    public int getCloseToSunTicks(){
+        return CloseToSunTicks;
+    }
+    public void setCloseToSunTicks(){
+        CloseToSunTicks-=1;
     }
 }

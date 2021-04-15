@@ -3,19 +3,18 @@ package szkeleton;
 import java.util.ArrayList;
 
 /**
- * Nyersanyagok Ĺ�sosztĂˇlya
+ * Nyersanyagok ősosztálya
  */
 
 abstract public class Resource {
     /**
-     * AlapbĂłl a nyersanyagok nem radioaktĂ­vak
+     * Alapból a nyersanyagok nem radioaktívak
      */
     protected boolean radioactive= false;
     protected String name;
 
     public Resource(String name){
         this.name = name;
-        
         
     }
 
@@ -45,4 +44,18 @@ abstract public class Resource {
     public void Sublimation(Asteroid a){
         Szkeleton.indentDepth--;
         return;}
+
+    public String getName(){
+       return name;
+    }
+    public void setName(String n){
+        this.name=n;
+    }
+
+    public boolean getRacioactive(){
+        return radioactive;
+    }
+    public void setRadioactive(boolean tf){
+        radioactive=tf;
+    }
 }

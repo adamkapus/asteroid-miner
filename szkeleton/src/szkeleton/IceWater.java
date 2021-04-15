@@ -58,7 +58,6 @@ public class IceWater extends Resource{
         Szkeleton.indentDepth++;
         a.RemoveResource();
         Szkeleton.indentDepth--;
-        Szkeleton.indentDepth--;
         return;
     }
 }
