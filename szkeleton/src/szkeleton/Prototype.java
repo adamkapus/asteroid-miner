@@ -1,5 +1,7 @@
 package szkeleton;
 
+import java.io.File;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -164,6 +166,9 @@ public class Prototype {
 		case "die":
 	    	dieCommand(command);
 	    	break;
+		case "load":
+	    	loadCommand(command);
+	    	break;
 		}
 		
 	}
@@ -228,5 +233,29 @@ public class Prototype {
 	    	u.Die();
 	    	break;
 		}
+	}
+	
+	public void loadCommand(ArrayList<String> command) {
+		String filename = command.get(1);
+		try {
+		      File myObj = new File(filename);
+		      Scanner myReader = new Scanner(myObj);
+		      while (myReader.hasNextLine()) {
+		        String data = myReader.nextLine();
+		        //System.out.println(data);
+		        StringTokenizer st = new StringTokenizer(data," ");
+			    ArrayList<String> c = new ArrayList<String>();
+			    while (st.hasMoreTokens()) {  
+			        c.add(st.nextToken());
+			    }  
+				parseCommand(c);
+		        
+		      }
+		      myReader.close();
+		    }
+		catch (Exception e) {
+		      System.out.println("Hiba a fajlolvasasnal");
+		      e.printStackTrace();
+		    }
 	}
 }
