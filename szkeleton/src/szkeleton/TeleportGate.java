@@ -15,6 +15,8 @@ public class TeleportGate extends Place {
         pair = null;
     }
 
+    public String getName(){ return this.name; }
+
     // teleportgate is hit by solar storm
     @Override
     public void HitByStorm() {

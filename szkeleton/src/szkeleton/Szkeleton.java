@@ -492,7 +492,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(c1);
 		indentDepth++;
-		s1.BuildRobot();
+		//s1.BuildRobot();
 	}
 
 	private void scenario14(){//Build robot without resource
@@ -509,7 +509,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(u1);
 		indentDepth++;
-		s1.BuildRobot();
+		//s1.BuildRobot();
 	}
 
 	// Build teleport with enough resource

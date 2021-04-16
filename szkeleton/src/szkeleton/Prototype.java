@@ -400,22 +400,26 @@ public class Prototype {
 
 	public void buildCommand(ArrayList<String> command) {
 		System.out.println("build beolvasva");
-		//Settler s = getSettler(command.get(4));
 		if(command.get(1).equals("robot")){
-		//	s.BuildRobot();
+			Settler s = getSettler(command.get(4));
+			s.BuildRobot();
 			for (Robot robot : robots) {
 				if (robot.getName().equals(command.get(2))) {
 					return;
 				} else {
-					robots.add(new Robot(command.get(2)));
+					robots.add(robot);
 				}
 			}
-			//robots.add(games.get(0).getRobots().get(0));
-
 		} else if (command.get(1).equals("teleportgate")) {
-			//s.BuildTeleport();
-			//teleportgates.add(games.get(0).ge)
+			Settler s = getSettler(command.get(5));
+			s.BuildTeleport();
+			for (TeleportGate gate : teleportgates) {
+				if (gate.getName().equals(command.get(2)) || gate.getName().equals(command.get(3))) {
+					return;
+				} else {
+					teleportgates.add(gate);
+				}
+			}
 		}
 	}
-
 }

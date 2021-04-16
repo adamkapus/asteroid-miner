@@ -94,7 +94,7 @@ public class Settler extends Entity{
         }
         // Ha minden nyersanyag leszedte magát, létrehozzuk a robotot
         if(req.isEmpty()){
-            Robot r = new Robot("r1", game, place);
+            Robot r = new Robot(name, game, place);
         }
     }
     // teleportálás

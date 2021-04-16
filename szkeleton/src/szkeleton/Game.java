@@ -7,6 +7,7 @@ public class Game {
     private ArrayList<Settler> settlers;
     // robotok
     private ArrayList<Robot> robots;
+	private ArrayList<Ufo> ufos;
     // térkép
     private Map map;
     // játék neve
@@ -17,6 +18,7 @@ public class Game {
     	name = n;
     	settlers = new ArrayList<Settler>();
     	robots = new ArrayList<Robot>();
+    	ufos = new ArrayList<>();
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
     	System.out.println(name +".Game()");
 
@@ -29,6 +31,14 @@ public class Game {
 
 	public ArrayList<Robot> getRobots(){
     	return this.robots;
+	}
+
+	public ArrayList<Ufo> getUfos() {
+		return ufos;
+	}
+
+	public void setUfos(ArrayList<Ufo> ufos) {
+		this.ufos = ufos;
 	}
 
 	public String getName(){ return this.name; }
@@ -97,6 +107,10 @@ public class Game {
     	robots.add(robot);
     	Szkeleton.indentDepth--;
     }
+
+    public void addUfo(Ufo u) {
+    	ufos.add(u);
+	}
     // játékos meghalt
     public void SettlerDied(Settler settler) {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -121,7 +135,9 @@ public class Game {
     }
 
     // ufo meghalt
-	public void UfoDied(Ufo ufo){}
+	public void UfoDied(Ufo ufo){
+    	ufos.remove(ufo);
+	}
 
 	// térkép lekérése
     public Map GetMap(){
