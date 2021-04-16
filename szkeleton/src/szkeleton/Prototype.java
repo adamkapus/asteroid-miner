@@ -1,6 +1,8 @@
 package szkeleton;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,7 +24,6 @@ public class Prototype {
 	ArrayList<Uran> urans;
 	
 	public Prototype() {
-		// amúgy game-ből meg map-ből nem csak 1 lehet?
 		games = new ArrayList<Game>();
 		settlers = new ArrayList<Settler>(); 
 		robots = new ArrayList<Robot>();
@@ -342,30 +343,42 @@ public class Prototype {
 		}
 	}
 
-	// minden osztálynak kéne valami print vagy ToString függvény ami egy Stringben visszaadja az adott példány
-	// statisztikáját
 	public void saveCommand(ArrayList<String> command){
-		UpdateInventory();
+		StringBuilder sb = new StringBuilder();
+		for (Game g : games)
+			sb.append(g.ToString());
+		for (Settler s : settlers)
+			sb.append(s.ToString());
+		for (Robot r : robots)
+			sb.append(r.ToString());
+		for (Ufo u : ufos)
+			sb.append(u.ToString());
+		for (Map m : maps)
+			sb.append(m.ToString());
+		for (Asteroid a : asteroids)
+			sb.append(a.ToString());
+		for (TeleportGate tg : teleportgates)
+			sb.append(tg.ToString());
+		for (Coal c : coals)
+			sb.append(c.ToString());
+		for (IceWater i : icewaters)
+			sb.append(i.ToString());
+		for (Iron i : irons)
+			sb.append(i.ToString());
+		for (Uran u : urans)
+			sb.append(u.ToString());
+
 		if (command.size() == 1)
-			saveToCommand();
-		else
-			saveToFile(command.get(1));
-	}
+			System.out.println(sb.toString());
+		else {
+			try {
+				FileWriter fw = new FileWriter(command.get(1));
+				fw.write(sb.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
-	private void saveToCommand(){
-
-	}
-
-	private void saveToFile(String filename){
-
-	}
-
-	private void UpdateInventory(){
-		maps.clear();
-		for (Game g : games){
-			maps.add(g.GetMap());
 		}
-		/// hiányoznak a map függvényei!!!
 	}
 	
 	public void teleportCommand(ArrayList<String> command) {

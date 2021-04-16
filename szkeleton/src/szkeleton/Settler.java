@@ -214,4 +214,27 @@ public class Settler extends Entity{
     public void SetResource(Resource newRes) {resources.add(newRes);}
     public ArrayList<TeleportGate> GetGates() {return gates;}
     public ArrayList<Resource> GetResources() {return resources;}
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Settler ");
+        sb.append(name);
+        sb.append("\n\tgame ");
+        sb.append(game.getName());
+        sb.append("\n\tgates ");
+        for (TeleportGate tg : gates){
+            sb.append(tg.GetName());
+            sb.append(' ');
+        }
+        sb.append("\n\tplace ");
+        sb.append(place.GetName());
+        sb.append("\n\tresources ");
+        for (Resource r : resources){
+            sb.append(r.getName());
+            sb.append(' ');
+        }
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }

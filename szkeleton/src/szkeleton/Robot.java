@@ -51,4 +51,17 @@ public class Robot extends Entity{
             System.out.println("Nem jó számot adtál meg");
         }
     }
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Robot ");
+        sb.append(name);
+        sb.append("\n\tgame ");
+        sb.append(game.getName());
+        sb.append("\n\tplace ");
+        sb.append(place.GetName());
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }

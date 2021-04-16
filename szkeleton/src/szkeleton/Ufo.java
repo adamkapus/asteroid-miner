@@ -45,4 +45,17 @@ public class Ufo extends Entity{
 
     public void Mine() {
     }
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Ufo ");
+        sb.append(name);
+        sb.append("\n\tgame ");
+        sb.append(game.getName());
+        sb.append("\n\tplace ");
+        sb.append(place.GetName());
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }

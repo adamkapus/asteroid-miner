@@ -47,4 +47,13 @@ public class Coal extends Resource{
         I.add(10);
         return I;
     }
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Coal ");
+        sb.append(name);
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }

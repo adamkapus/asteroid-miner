@@ -161,4 +161,30 @@ public class Game {
         
         settlers.add(s);
     }
+
+	public String ToString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Game ");
+		sb.append(name);
+		sb.append("\n\tmap ");
+		sb.append(map.getName());
+		sb.append("\n\trobots ");
+		for (Robot r : robots){
+			sb.append(r.getName());
+			sb.append(' ');
+		}
+		sb.append("\n\tsettlers ");
+		for (Settler s : settlers){
+			sb.append(s.getName());
+			sb.append(' ');
+		}
+		sb.append("\n\tufos ");
+		/*for (Ufo u : ufos){
+			sb.append(u.getName());
+			sb.append(' ');
+		}*/
+		sb.append('\n');
+
+		return sb.toString();
+	}
 }

@@ -48,4 +48,13 @@ public class Iron extends Resource{
         Szkeleton.indentDepth--;
         return I;
     }
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Iron ");
+        sb.append(name);
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }
