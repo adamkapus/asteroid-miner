@@ -60,7 +60,7 @@ public class Settler extends Entity{
         Asteroid a = (Asteroid) place;
         // csak akkor rakhatjuk le, ha az aszteroida kérge 0
         if(a.GetLayers() == 0){
-            a.InsertResource(resources.get(n));
+                a.InsertResource(resources.get(n));
         }
     }
     // nyersanyag átadása a telepesnek

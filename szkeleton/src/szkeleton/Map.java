@@ -12,13 +12,19 @@ public class Map implements Steppable {
     private ArrayList<Place> places;
     Game game;
     private String name;
-    //KA: a map konstruktoraban kene letrehozni az aszteroidakat, a place-eket nem kapja meg parameterkent
-
 
     /**
      *A Map létrehozáskor megkapja a játékot amiben benne van, és kap egy nevet
      * Itt a Szkeleton sikeressége érdekében minden nyersanyagból hozzáadunk 1-et a játékhoz
      */
+
+    public Map(String nev) {
+        this.name = nev;
+        game = null;
+        allResources = new ArrayList<>();
+        places = new ArrayList<>();
+    }
+
     public Map(String name, Game game) {
         this.name = name;
         this.game = game;
@@ -30,7 +36,7 @@ public class Map implements Steppable {
 
         Szkeleton.indentDepth--;
     }
-//valaki help
+
     /**
      *A numOfAst-tal meghatározhatjuk, hogy mennyi aszteroida legyen a pályán.
      *
@@ -61,6 +67,38 @@ public class Map implements Steppable {
 
 
         Szkeleton.indentDepth--;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Game getGame(){
+        return this.game;
+    }
+
+    public ArrayList<Integer> getResources(){
+        return this.allResources;
+    }
+
+    public ArrayList<Place> getPlaces() {
+        return places;
+    }
+
+    public void setAllResources(ArrayList<Integer> list){
+        this.allResources = list;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPlaces(ArrayList<Place> places) {
+        this.places = places;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     /**

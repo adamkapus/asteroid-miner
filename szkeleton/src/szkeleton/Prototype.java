@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Prototype {
@@ -228,6 +229,8 @@ public class Prototype {
 		case "solarstorm":
 	    	solarstormCommand(command);
 	    	break;
+			case "build":
+				buildCommand(command); break;
 		}
 		
 	}
@@ -248,18 +251,16 @@ public class Prototype {
 		case "ufo":
 	    	ufos.add(new Ufo(newObjectName));
 	    	break;
-	    	
-		/*case "map":
+		case "map":
 	    	maps.add(new Map(newObjectName));
-	    	break;*/
+	    	break;
 		case "asteroid":
 	    	asteroids.add(new Asteroid(newObjectName));
 	    	break;
 		case "teleportgate":
 	    	teleportgates.add(new TeleportGate(newObjectName));
 	    	break;
-	    	
-		case "coal":
+	    case "coal":
 	    	coals.add(new Coal(newObjectName));
 	    	break;
 		case "icewater":
@@ -396,4 +397,25 @@ public class Prototype {
 	    	break;
 		}
 	}
+
+	public void buildCommand(ArrayList<String> command) {
+		System.out.println("build beolvasva");
+		//Settler s = getSettler(command.get(4));
+		if(command.get(1).equals("robot")){
+		//	s.BuildRobot();
+			for (Robot robot : robots) {
+				if (robot.getName().equals(command.get(2))) {
+					return;
+				} else {
+					robots.add(new Robot(command.get(2)));
+				}
+			}
+			//robots.add(games.get(0).getRobots().get(0));
+
+		} else if (command.get(1).equals("teleportgate")) {
+			//s.BuildTeleport();
+			//teleportgates.add(games.get(0).ge)
+		}
+	}
+
 }

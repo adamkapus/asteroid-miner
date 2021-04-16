@@ -22,6 +22,33 @@ public class Game {
 
     	Szkeleton.indentDepth--;
     }
+
+    public ArrayList<Settler> getSettlers(){
+    	return this.settlers;
+	}
+
+	public ArrayList<Robot> getRobots(){
+    	return this.robots;
+	}
+
+	public String getName(){ return this.name; }
+
+	public void setSettlers(ArrayList<Settler> list){
+    	this.settlers = list;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
+	public void setRobots(ArrayList<Robot> robots) {
+		this.robots = robots;
+	}
+
 	// játék megnyerése
     public void Win() {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
