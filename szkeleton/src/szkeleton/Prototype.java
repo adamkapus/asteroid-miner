@@ -21,6 +21,7 @@ public class Prototype {
 	ArrayList<Uran> urans;
 	
 	public Prototype() {
+		// amúgy game-ből meg map-ből nem csak 1 lehet?
 		games = new ArrayList<Game>();
 		settlers = new ArrayList<Settler>(); 
 		robots = new ArrayList<Robot>();
@@ -169,6 +170,12 @@ public class Prototype {
 		case "load":
 	    	loadCommand(command);
 	    	break;
+		case "step":
+			stepCommand(command);
+			break;
+		case "save":
+			saveCommand(command);
+			break;
 		}
 		
 	}
@@ -257,5 +264,54 @@ public class Prototype {
 		      System.out.println("Hiba a fajlolvasasnal");
 		      e.printStackTrace();
 		    }
+	}
+
+	public void stepCommand(ArrayList<String> command){
+		switch (command.get(1)){
+			case "game":
+				getGame(command.get(2)).OneRound();
+				break;
+			case "map":
+				getMap(command.get(2)).Step();
+				break;
+			case "asteroid":
+				getAsteroid(command.get(2)).Step();
+				break;
+			case "settler":
+				getSettler(command.get(2)).Step();
+				break;
+			case "robot":
+				getRobot(command.get(2)).Step();
+				break;
+			case "ufo":
+				getUfo(command.get(2)).Step();
+				break;
+		}
+	}
+
+	// minden osztálynak kéne valami print vagy ToString függvény ami egy Stringben visszaadja az adott példány
+	// statisztikáját
+	public void saveCommand(ArrayList<String> command){
+		UpdateInventory();
+		if (command.size() == 1)
+			saveToCommand();
+		else
+			saveToFile(command.get(1));
+	}
+
+	private void saveToCommand(){
+
+	}
+
+	private void saveToFile(String filename){
+
+	}
+
+	private void UpdateInventory(){
+		maps.clear();
+		for (Game g : games){
+			maps.add(g.GetMap());
+		}
+		/// hiányoznak a map függvényei!!!
 	}
 }

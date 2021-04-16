@@ -35,42 +35,22 @@ abstract public class Place implements Steppable {
 
     // entity moves here
     public void AcceptEntity(Entity e){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AcceptEntity()");
-
         entity.add(e);
-        Szkeleton.indentDepth--;
     }
     // entity moves away
     public void RemoveEntity(Entity e){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".RemoveEntity()");
-
         entity.remove(e);
-
-        Szkeleton.indentDepth--;
     }
     // add a new neighbor to the place
     public void AddNeighbor(Place p){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddNeighbor()");
-        
         neighbors.add(p);
-
-        Szkeleton.indentDepth++;
         p.Placed();
-
-        Szkeleton.indentDepth--;
-        
     }
     public void RemoveNeighbor(Place p){
         neighbors.remove(p);
     }
     // get a certain neighbor
     public Place GetNeighbor(int placeId){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".GetNeighbor()");
-        Szkeleton.indentDepth--;
         for(Place p : neighbors)
             if (p.placeID == placeId)
                 return p;
@@ -78,15 +58,8 @@ abstract public class Place implements Steppable {
     }
     // get a random neighbor
     public Place GetRandomNeighbor(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".GetRandomNeighbor()");
-
         Random r = new Random();
-
-        Szkeleton.indentDepth--;
-
         return neighbors.get(r.nextInt(neighbors.size()));
-
     }
 
     abstract public void HitByStorm();
