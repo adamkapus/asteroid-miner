@@ -206,32 +206,42 @@ public class Prototype {
 	//kap egy parancsot stringekre bontva
 	public void parseCommand(ArrayList<String> command) {
 		switch(command.get(0)) {
-		case "exit":
-	    	prototypeIsRunning = false;
-	    	break;
-		case "create":
-	    	createCommand(command);
-	    	break;
-		case "die":
-	    	dieCommand(command);
-	    	break;
-		case "load":
-	    	loadCommand(command);
-	    	break;
-		case "step":
-			stepCommand(command);
-			break;
-		case "save":
-			saveCommand(command);
-			break;
-		case "teleport":
-	    	teleportCommand(command);
-	    	break;
-		case "solarstorm":
-	    	solarstormCommand(command);
-	    	break;
+			case "exit":
+				prototypeIsRunning = false;
+				break;
+			case "create":
+				createCommand(command);
+				break;
+			case "die":
+				dieCommand(command);
+				break;
+			case "load":
+				loadCommand(command);
+				break;
+			case "step":
+				stepCommand(command);
+				break;
+			case "save":
+				saveCommand(command);
+				break;
+			case "teleport":
+				teleportCommand(command);
+				break;
+			case "solarstorm":
+				solarstormCommand(command);
+				break;
 			case "build":
-				buildCommand(command); break;
+				buildCommand(command);
+				break;
+			case "add":
+				addCommand(command);
+				break;
+			case "drill":
+				drillCommand(command);
+				break;
+			case "mine":
+				mineCommand(command);
+				break;
 		}
 		
 	}
@@ -433,6 +443,232 @@ public class Prototype {
 					teleportgates.add(gate);
 				}
 			}
+		}
+	}
+
+	// Összekapcsolja a kapott objektumokat.
+	public void addCommand(ArrayList<String> command){
+		System.out.println("add beolvasva");
+		String objName1 = command.get(2);
+		String objName2 = command.get(4);
+		String objType1 = command.get(1);
+		String objType2 = command.get(3);
+
+		switch (objType1){
+			case "asteroid":
+				switch (objType2){
+					case "asteroid":
+						getAsteroid(objName1).AddNeighbor(getAsteroid(objName2));
+						getAsteroid(objName2).AddNeighbor(getAsteroid(objName1));
+						break;
+					case "coal":
+						getAsteroid(objName1).setResource(getCoal(objName2));
+						break;
+					case "iron":
+						getAsteroid(objName1).setResource(getIron(objName2));
+						break;
+					case "uran":
+						getAsteroid(objName1).setResource(getUran(objName2));
+						break;
+					case "icewater":
+						getAsteroid(objName1).setResource(getIcewater(objName2));
+						break;
+					case "settler":
+						getAsteroid(objName1).AcceptEntity(getSettler(objName2));
+						getSettler(objName2).SetPlace(getAsteroid(objName1));
+						break;
+					case "robot":
+						getAsteroid(objName1).AcceptEntity(getRobot(objName2));
+						getRobot(objName2).SetPlace(getAsteroid(objName1));
+						break;
+					case "ufo":
+						getAsteroid(objName1).AcceptEntity(getUfo(objName2));
+						getUfo(objName2).SetPlace(getAsteroid(objName1));
+						break;
+					case "map":
+						getAsteroid(objName1).SetMap(getMap(objName2));
+						getMap(objName2).AddPlace(getAsteroid(objName1));
+						break;
+				}
+				break;
+			case "coal":
+				switch (objType2){
+					case "asteroid":
+						getAsteroid(objName2).setResource(getCoal(objName1));
+						break;
+					case  "settler":
+						getSettler(objName2).AddResource(getCoal(objName1));
+						break;
+				}
+				break;
+			case "iron":
+				switch (objType2){
+					case "asteroid":
+						getAsteroid(objName2).setResource(getIron(objName1));
+						break;
+					case  "settler":
+						getSettler(objName2).AddResource(getIron(objName1));
+						break;
+				}
+				break;
+			case "uran":
+				switch (objType2){
+					case "asteroid":
+						getAsteroid(objName2).setResource(getUran(objName1));
+						break;
+					case  "settler":
+						getSettler(objName2).AddResource(getUran(objName1));
+						break;
+				}
+				break;
+			case "icewater":
+				switch (objType2){
+					case "asteroid":
+						getAsteroid(objName2).setResource(getIcewater(objName1));
+						break;
+					case  "settler":
+						getSettler(objName2).AddResource(getIcewater(objName1));
+						break;
+				}
+				break;
+			case "game":
+				switch (objType2){
+					case "settler":
+						getSettler(objName2).SetGame(getGame(objName1));
+						getGame(objName1).AddSettler(getSettler(objName2));
+						break;
+					case "robot":
+						getRobot(objName2).SetGame(getGame(objName1));
+						getGame(objName1).AddRobot(getRobot(objName2));
+						break;
+					case "ufo":
+						getUfo(objName2).SetGame(getGame(objName1));
+						getGame(objName1).addUfo(getUfo(objName2));
+						break;
+					case "map":
+						getMap(objName2).setGame(getGame(objName1));
+						getGame(objName1).setMap(getMap(objName2));
+						break;
+				}
+			case "map":
+				switch (objType2) {
+					case "asteroid":
+						getMap(objName1).AddPlace(getAsteroid(objName2));
+						getAsteroid(objName1).SetMap(getMap(objName1));
+						break;
+					case "game":
+						getMap(objName1).setGame(getGame(objName2));
+						getGame(objName2).setMap(getMap(objName1));
+						break;
+				}
+				break;
+			case "robot":
+				switch (objType2){
+					case "asteroid":
+						getRobot(objName1).SetPlace(getAsteroid(objName2));
+						getAsteroid(objName2).AcceptEntity(getRobot(objName1));
+						break;
+					case "teleportgate":
+						getRobot(objName1).SetPlace(getTeleportgate(objName2));
+						getTeleportgate(objName2).AcceptEntity(getRobot(objName1));
+						break;
+					case "game":
+						getRobot(objName1).SetGame(getGame(objName2));
+						getGame(objName2).AddRobot(getRobot(objName1));
+						break;
+				}
+				break;
+			case "settler":
+				switch (objType2){
+					case "asteroid":
+						getSettler(objName1).SetPlace(getAsteroid(objName2));
+						getAsteroid(objName2).AcceptEntity(getSettler(objName1));
+						break;
+					case "teleportgate":
+						getSettler(objName1).SetPlace(getTeleportgate(objName2));
+						getTeleportgate(objName2).AcceptEntity(getSettler(objName1));
+						break;
+					case "game":
+						getSettler(objName1).SetGame(getGame(objName2));
+						getGame(objName2).AddSettler(getSettler(objName1));
+						break;
+				}
+				break;
+			case "ufo":
+				switch (objType2){
+					case "asteroid":
+						getUfo(objName1).SetPlace(getAsteroid(objName2));
+						getAsteroid(objName2).AcceptEntity(getUfo(objName1));
+						break;
+					case "teleportgate":
+						getUfo(objName1).SetPlace(getTeleportgate(objName2));
+						getTeleportgate(objName2).AcceptEntity(getUfo(objName1));
+						break;
+					case "game":
+						getUfo(objName1).SetGame(getGame(objName2));
+						getGame(objName2).addUfo(getUfo(objName1));
+						break;
+				}
+			case "teleportgate":
+				switch (objType2){
+					case "settler":
+						getTeleportgate(objName1).AcceptEntity(getSettler(objName2));
+						getSettler(objName2).SetPlace(getTeleportgate(objName1));
+						break;
+					case "robot":
+						getTeleportgate(objName1).AcceptEntity(getRobot(objName2));
+						getRobot(objName2).SetPlace(getTeleportgate(objName1));
+						break;
+					case "ufo":
+						getTeleportgate(objName1).AcceptEntity(getUfo(objName2));
+						getUfo(objName2).SetPlace(getTeleportgate(objName1));
+						break;
+					case "teleportgate":
+						getTeleportgate(objName1).SetPair(getTeleportgate(objName2));
+						getTeleportgate(objName2).SetPair(getTeleportgate(objName1));
+						break;
+					case "map":
+						getTeleportgate(objName1).SetMap(getMap(objName2));
+						getMap(objName2).AddPlace(getTeleportgate(objName1));
+						break;
+				}
+				break;
+		}
+	}
+
+	// Végrehajtja a fúrás parancsot
+	public void drillCommand(ArrayList<String> command){
+		System.out.println("drill beolvasva");
+		String entityType = command.get(1);
+		String entityName = command.get(2);
+
+		switch (entityType){
+			case "settler":
+				Settler s = getSettler(entityName);
+				s.Drill();
+				break;
+			case "robot":
+				Robot r = getRobot(entityName);
+				r.Drill();
+				break;
+		}
+	}
+
+	// Végrehajtja a bányászás parancsot
+	public void mineCommand(ArrayList<String> command){
+		System.out.println("mine beolvasva");
+		String entityType = command.get(1);
+		String entityName = command.get(2);
+
+		switch (entityType){
+			case "settler":
+				Settler s = getSettler(entityName);
+				s.Mine();
+				break;
+			case "ufo":
+				Ufo u = getUfo(entityName);
+				u.Mine();
+				break;
 		}
 	}
 }
