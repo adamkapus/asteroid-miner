@@ -62,7 +62,7 @@ public class Prototype {
 	
 	public Robot getRobot(String name) {
 		
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < robots.size(); i++) {
 			if(robots.get(i).getName().equals(name)) { return robots.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu robot");
@@ -71,7 +71,7 @@ public class Prototype {
 	
 	public Ufo getUfo(String name) {
 		
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < ufos.size(); i++) {
 			if(ufos.get(i).getName().equals(name)) { return ufos.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu ufo");
@@ -80,7 +80,7 @@ public class Prototype {
 	
 	public Map getMap(String name) {
 		/*
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < maps.size(); i++) {
 			if(maps.get(i).getName().equals(name)) { return maps.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu map");*/
@@ -89,7 +89,7 @@ public class Prototype {
 	
 	public Asteroid getAsteroid(String name) {
 		
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < asteroids.size(); i++) {
 			if(asteroids.get(i).GetName().equals(name)) { return asteroids.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu asteroid");
@@ -98,7 +98,7 @@ public class Prototype {
 	
 	public TeleportGate getTeleportgate(String name) {
 		
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < teleportgates.size(); i++) {
 			if(teleportgates.get(i).GetName().equals(name)) { return teleportgates.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu tg");
@@ -107,7 +107,7 @@ public class Prototype {
 	
 	public Coal getCoal(String name) {
 		
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < coals.size(); i++) {
 			if(coals.get(i).getName().equals(name)) { return coals.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu coal");
@@ -116,7 +116,7 @@ public class Prototype {
 	
 	public IceWater getIcewater(String name) {
 		
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < icewaters.size(); i++) {
 			if(icewaters.get(i).getName().equals(name)) { return icewaters.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu iw");
@@ -124,7 +124,7 @@ public class Prototype {
 	}
 	
 	public Iron getIron(String name) {
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < irons.size(); i++) {
 			if(irons.get(i).getName().equals(name)) { return irons.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu iron");
@@ -133,11 +133,57 @@ public class Prototype {
 	
 	public Uran getUran(String name) {
 		
-		for(int i = 0; i < settlers.size(); i++) {
+		for(int i = 0; i < urans.size(); i++) {
 			if(urans.get(i).getName().equals(name)) { return urans.get(i);}
 		}
 		System.out.println("Nincs ilyen nevu uran");
 		return null;
+	}
+	
+	public void addRobot(Robot r) {
+		robots.add(r);
+	}
+	
+	public void addTeleportgate(TeleportGate tg) {
+		teleportgates.add(tg);
+	}
+	
+	public void removeSettler(Settler s) {
+		
+		for(int i = 0; i < settlers.size(); i++) {
+			if(settlers.get(i).getName().equals(s.getName())) {  settlers.remove(i);}
+		}
+		
+	}
+	
+	public void removeRobot(Robot r) {
+		
+		for(int i = 0; i < robots.size(); i++) {
+			if(robots.get(i).getName().equals(r.getName())) {  robots.remove(i);}
+		}
+		
+	}
+	
+	public void removeUfo(Ufo u) {
+		
+		for(int i = 0; i < ufos.size(); i++) {
+			if(ufos.get(i).getName().equals(u.getName())) {  ufos.remove(i);}
+		}
+	}
+	
+	public void removeResource(Resource r) {
+		for(int i = 0; i < coals.size(); i++) {
+			if(coals.get(i).getName().equals(r.getName())) { coals.remove(i);}
+		}
+		for(int i = 0; i < irons.size(); i++) {
+			if(irons.get(i).getName().equals(r.getName())) { irons.remove(i);}
+		}
+		for(int i = 0; i < icewaters.size(); i++) {
+			if(icewaters.get(i).getName().equals(r.getName())) { icewaters.remove(i);}
+		}
+		for(int i = 0; i < urans.size(); i++) {
+			if(urans.get(i).getName().equals(r.getName())) { urans.remove(i);}
+		}
 	}
 	
 	
