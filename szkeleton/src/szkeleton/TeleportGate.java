@@ -3,6 +3,7 @@ package szkeleton;
 public class TeleportGate extends Place {
     private boolean pairIsPlaced; // whether its pair is placed
     private TeleportGate pair; // its pair
+    private boolean isCrazy = false;
 
     public TeleportGate(String name, int id, Map m){
         super(name, id, m);
@@ -23,6 +24,7 @@ public class TeleportGate extends Place {
         for(Entity e : entity){
             e.Die();
         }
+        isCrazy = true;
     }
     // do action by settler
     @Override
@@ -70,5 +72,35 @@ public class TeleportGate extends Place {
         Place neighbor = a.GetRandomNeighbor();
         neighbor.AddNeighbor(this);
     }
-    
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Teleportgate ");
+        sb.append(name);
+        sb.append("\n\tentity ");
+        for (Entity e : entity){
+            sb.append(e.getName());
+            sb.append(' ');
+        }
+        sb.append("\n\thitByStorm ");
+        if (isCrazy)
+            sb.append("true");
+        else
+            sb.append("false");
+        sb.append("\n\tneighbors ");
+        for (Place p : neighbors){
+            sb.append(p.GetName());
+            sb.append(' ');
+        }
+        sb.append("\n\tpair ");
+        sb.append(pair.GetName());
+        sb.append("\n\tpairIsPlaced ");
+        if (pairIsPlaced)
+            sb.append("true");
+        else
+            sb.append("false");
+        sb.append("\n");
+
+        return sb.toString();
+    }
 }

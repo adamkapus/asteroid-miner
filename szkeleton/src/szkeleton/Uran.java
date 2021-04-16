@@ -57,4 +57,15 @@ public class Uran extends Resource{
     public void setCloseToSunTicks(){
         CloseToSunTicks-=1;
     }
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Uran ");
+        sb.append(name);
+        sb.append("\n\tcloseToSunTicks ");
+        sb.append(CloseToSunTicks);
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }

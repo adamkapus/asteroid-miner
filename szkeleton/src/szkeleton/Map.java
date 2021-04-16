@@ -211,4 +211,20 @@ public class Map implements Steppable {
 
         return allResources;
     }
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Map ");
+        sb.append(name);
+        sb.append("\n\tgame ");
+        sb.append(game.getName());
+        sb.append("\n\trobots ");
+        for (Place p : places){
+            sb.append(p.GetName());
+            sb.append(' ');
+        }
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }

@@ -250,4 +250,38 @@ public class Asteroid extends Place{
         state = State.CLOSE;
     }
     public void SetStateToFar() {state = State.FAR;}
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Asteroid ");
+        sb.append(name);
+        sb.append("\n\tentity ");
+        for (Entity e : entity){
+            sb.append(e.getName());
+            sb.append(' ');
+        }
+        sb.append("\n\tlayers ");
+        sb.append(layers);
+        sb.append("\n\tmap ");
+        sb.append(map.getName());
+        sb.append("\n\tneighbors ");
+        for (Place p : neighbors){
+            sb.append(p.GetName());
+            sb.append(' ');
+        }
+        sb.append("\n\tresource ");
+        sb.append(resource.getName());
+        sb.append("\n\tstate ");
+        if (state == State.CLOSE)
+            sb.append("close");
+        else
+            sb.append("far");
+        sb.append("\n\ttimeCurrent ");
+        sb.append(timeCurrent);
+        sb.append("\n\ttimeLimit ");
+        sb.append(timeLimit);
+        sb.append("\n");
+
+        return sb.toString();
+    }
 }

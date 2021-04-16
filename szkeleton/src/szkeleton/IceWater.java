@@ -60,4 +60,13 @@ public class IceWater extends Resource{
         Szkeleton.indentDepth--;
         return;
     }
+
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("IceWater ");
+        sb.append(name);
+        sb.append('\n');
+
+        return sb.toString();
+    }
 }
