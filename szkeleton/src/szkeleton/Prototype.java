@@ -169,6 +169,12 @@ public class Prototype {
 		case "load":
 	    	loadCommand(command);
 	    	break;
+		case "teleport":
+	    	teleportCommand(command);
+	    	break;
+		case "solarstorm":
+	    	solarstormCommand(command);
+	    	break;
 		}
 		
 	}
@@ -257,5 +263,35 @@ public class Prototype {
 		      System.out.println("Hiba a fajlolvasasnal");
 		      e.printStackTrace();
 		    }
+	}
+	
+	public void teleportCommand(ArrayList<String> command) {
+		System.out.println("teleport beolvasva");
+		String objectName = command.get(2);
+		switch(command.get(1)) {
+		case "settler":
+			Settler s = getSettler(objectName);
+			s.UseTeleport();
+	    	break;
+		case "ufo":
+	    	Ufo u = getUfo(objectName);
+	    	u.UseTeleport();
+	    	break;
+		}
+	}
+	
+	public void solarstormCommand(ArrayList<String> command) {
+		System.out.println("solarstorm beolvasva");
+		String objectName = command.get(2);
+		switch(command.get(1)) {
+		case "asteroid":
+			Asteroid a = getAsteroid(objectName);
+			a.HitByStorm();
+	    	break;
+		case "teleportgate":
+	    	TeleportGate tg = getTeleportgate(objectName);
+	    	tg.HitByStorm();
+	    	break;
+		}
 	}
 }
