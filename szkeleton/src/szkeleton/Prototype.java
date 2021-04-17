@@ -425,24 +425,12 @@ public class Prototype {
 		System.out.println("build beolvasva");
 		if(command.get(1).equals("robot")){
 			Settler s = getSettler(command.get(4));
-			s.BuildRobot();
-			for (Robot robot : robots) {
-				if (robot.getName().equals(command.get(2))) {
-					return;
-				} else {
-					robots.add(robot);
-				}
-			}
+			s.BuildRobot(command.get(2));
+
 		} else if (command.get(1).equals("teleportgate")) {
 			Settler s = getSettler(command.get(5));
-			s.BuildTeleport();
-			for (TeleportGate gate : teleportgates) {
-				if (gate.getName().equals(command.get(2)) || gate.getName().equals(command.get(3))) {
-					return;
-				} else {
-					teleportgates.add(gate);
-				}
-			}
+			s.BuildTeleport(command.get(2), command.get(3));
+
 		}
 	}
 

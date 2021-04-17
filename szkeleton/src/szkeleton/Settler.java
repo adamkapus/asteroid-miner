@@ -68,7 +68,7 @@ public class Settler extends Entity{
         resources.add(r);
     }
     // robotépítés
-    public void BuildRobot() {
+    public void BuildRobot(String nev) {
         // szükséges nyersanyagok
         ArrayList<Integer> req = new ArrayList<>();
         req.add(10);     //szén
@@ -94,7 +94,7 @@ public class Settler extends Entity{
         }
         // Ha minden nyersanyag leszedte magát, létrehozzuk a robotot
         if(req.isEmpty()){
-            Robot r = new Robot(name, game, place);
+            Robot r = new Robot(nev, game, place);
         }
     }
     // teleportálás
@@ -107,7 +107,7 @@ public class Settler extends Entity{
         destination.AcceptEntity(this);
     }
     // teleportkapu-építés
-    public void BuildTeleport() {
+    public void BuildTeleport(String nev1, String nev2) {
         // csak akkor építhetünk, ha nincs nálunk már teleportkapu
         if (gates.size() != 0) {
             return;
@@ -142,8 +142,8 @@ public class Settler extends Entity{
             Map m = this.game.GetMap();
 
             // csak párban tudunk kaput építeni
-            TeleportGate gate1 = new TeleportGate("tg1", 1, m);
-            TeleportGate gate2 = new TeleportGate("tg2", 2, m);
+            TeleportGate gate1 = new TeleportGate(nev1, 1, m);
+            TeleportGate gate2 = new TeleportGate(nev2, 2, m);
 
             // a létrehozott kapuk egymás párjai
             gate1.SetPair(gate2);
@@ -190,11 +190,11 @@ public class Settler extends Entity{
                     break;
                 case 3:
                     // robotépítés
-                    this.BuildRobot();
+                    this.BuildRobot("robot");
                     break;
                 case 4:
                     // teleportépítés
-                    this.BuildTeleport();
+                    this.BuildTeleport("tg1", "tg2");
                     break;
                 case 5:
                     // teleport lerakás

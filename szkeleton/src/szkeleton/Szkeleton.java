@@ -539,7 +539,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(u);
 		indentDepth++;
-		s1.BuildTeleport();
+		//s1.BuildTeleport();
 	}
 
 	// Build teleport without enough resource
@@ -557,7 +557,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(iw);
 		indentDepth++;
-		s1.BuildTeleport();
+		//s1.BuildTeleport();
 	}
 
 	// Cannot build teleport
@@ -571,7 +571,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddTeleportGate(tg);
 		indentDepth++;
-		s1.BuildTeleport();
+		//s1.BuildTeleport();
 	}
 	
 	
