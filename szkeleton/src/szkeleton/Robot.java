@@ -57,9 +57,19 @@ public class Robot extends Entity{
         sb.append("Robot ");
         sb.append(name);
         sb.append("\n\tgame ");
-        sb.append(game.getName());
+        if(game != null) {
+        	sb.append(game.getName());
+        }
+        else {
+        	sb.append("null");
+        }
         sb.append("\n\tplace ");
-        sb.append(place.GetName());
+        if(place != null) {
+        	sb.append(place.GetName());
+        }
+        else {
+        	sb.append("null");
+        }
         sb.append('\n');
 
         return sb.toString();
