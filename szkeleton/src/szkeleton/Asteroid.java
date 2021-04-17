@@ -256,7 +256,7 @@ public class Asteroid extends Place{
         sb.append("Asteroid ");
         sb.append(name);
         sb.append("\n\tentity ");
-        if (entity != null) {
+        if (entity.size() != 0) {
             for (Entity e : entity){
                 sb.append(e.getName());
                 sb.append(' ');
@@ -269,7 +269,7 @@ public class Asteroid extends Place{
             sb.append(map.getName());
         } else sb.append("null");
         sb.append("\n\tneighbors ");
-        if(neighbors != null) {
+        if(neighbors.size() != 0) {
             for (Place p : neighbors) {
                 sb.append(p.GetName());
                 sb.append(' ');

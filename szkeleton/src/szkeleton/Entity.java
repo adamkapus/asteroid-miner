@@ -36,6 +36,7 @@ public abstract class Entity implements Steppable {
         Place neighbour = place.GetNeighbor(asteroidID);
         place.RemoveEntity(this);
         neighbour.AcceptEntity(this);
+        place = neighbour;
     }
 
     /**
