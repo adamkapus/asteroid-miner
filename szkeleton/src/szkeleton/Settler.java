@@ -164,6 +164,10 @@ public class Settler extends Entity{
             // a létrehozott kapuk egymás párjai
             gate1.SetPair(gate2);
             gate2.SetPair(gate1);
+            
+            gates.add(gate1);
+            gates.add(gate2);
+            
         }
     }
 
