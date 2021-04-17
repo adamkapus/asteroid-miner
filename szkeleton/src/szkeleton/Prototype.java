@@ -242,6 +242,8 @@ public class Prototype {
 			case "mine":
 				mineCommand(command);
 				break;
+			case "blow":
+				blowCommand(command); break;
 		}
 		
 	}
@@ -435,7 +437,20 @@ public class Prototype {
 
 	public void blowCommand(ArrayList<String> command){
 		System.out.println("blow beolvasva");
-
+		String objTipus = command.get(1);
+		switch (objTipus) {
+			case "settler" :
+				Settler s = getSettler(command.get(2));
+				s.Die(); break;
+			case "robot":
+				Robot r = getRobot(command.get(2));
+				r.Die(); break;
+			case "ufo":
+				Ufo u = getUfo(command.get(2));
+				u.Die(); break;
+			default:
+				System.out.println("Helytelen objektomtious! (2. parameter)"); break;
+		}
 	}
 
 	// Összekapcsolja a kapott objektumokat.
