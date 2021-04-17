@@ -41,7 +41,7 @@ public class Szkeleton {
 			else {
 				//lefuttatjuk a scenariot
 				System.out.println("Szekvenciaszam beolvasva: " + sequenceNumber + "\n");
-				runSequence(sequenceNumber);
+				////////////runSequence(sequenceNumber);
 			}
 		}
 
@@ -154,7 +154,7 @@ public class Szkeleton {
 
 		return answer;
 	}
-	
+	/*
 	//egy kapott szekvenciaszamhoz tartozo scenariot tartalmazo fuggvenyt meghivjuk
 	private void runSequence(int seq) {
 		indentDepth = 0;
@@ -249,13 +249,13 @@ public class Szkeleton {
 				break;
 		}
 
-	}
+	}*/
 	
 	public static void writeTabs(int tabs) {
 		for (int i = 0; i < tabs; i++)
 		System.out.print("\t");
 	}
-	
+	/*
 	
 	//Asteroid hit by solarstorm, without resource and layers
 	private void scenario1() {
@@ -787,5 +787,5 @@ public class Szkeleton {
 		indentDepth++;
 		s.Action();
 	}
-
+	*/
 }

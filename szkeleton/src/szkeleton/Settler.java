@@ -9,10 +9,13 @@ public class Settler extends Entity{
     private ArrayList<TeleportGate> gates = new ArrayList<>();
     // nyersanyagok
     private ArrayList<Resource> resources = new ArrayList<>();
+    
+    Prototype proto;
 
     //név szerinti konstruktor a tesztesetekhez
-    public Settler(String name){
+    public Settler(String name, Prototype p){
         super(name);
+        proto = p;
     }
 
     // Settler konstruktora
@@ -95,6 +98,7 @@ public class Settler extends Entity{
         // Ha minden nyersanyag leszedte magát, létrehozzuk a robotot
         if(req.isEmpty()){
             Robot r = new Robot(nev, game, place);
+            proto.addRobot(r);
             if (nev == null) {
                 r.name = "r1";
             }
@@ -145,6 +149,8 @@ public class Settler extends Entity{
             Map m = this.game.GetMap();
             TeleportGate gate1 = new TeleportGate(nev1, 1, m);
             TeleportGate gate2 = new TeleportGate(nev2, 2, m);
+            proto.addTeleportgate(gate1);
+            proto.addTeleportgate(gate2);
 
             // csak párban tudunk kaput építeni
             if (nev1 == null) {
@@ -170,6 +176,7 @@ public class Settler extends Entity{
     // nyersanyag leszedése a telepesről
     public void RemoveResource(Resource r) {
         resources.remove(r);
+        proto.removeResource(r);
     }
     // telepes köre
     public void Step() {

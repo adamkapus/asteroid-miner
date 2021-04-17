@@ -259,10 +259,10 @@ public class Prototype {
 		String newObjectName = command.get(2);
 		switch(command.get(1)) {
 		case "game":
-	    	games.add(new Game(newObjectName));
+	    	games.add(new Game(newObjectName,this));
 	    	break;
 		case "settler":
-			settlers.add(new Settler(newObjectName));
+			settlers.add(new Settler(newObjectName, this));
 	    	break;
 		case "robot":
 			robots.add(new Robot(newObjectName));

@@ -12,17 +12,19 @@ public class Game {
     private Map map;
     // játék neve
     private String name;
+    private Prototype proto;
 
     // konstruktor
-    public  Game(String n) {
+    public  Game(String n, Prototype p) {
     	name = n;
     	settlers = new ArrayList<Settler>();
     	robots = new ArrayList<Robot>();
     	ufos = new ArrayList<>();
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-    	System.out.println(name +".Game()");
+    	proto =p;
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	//System.out.println(name +".Game()");
 
-    	Szkeleton.indentDepth--;
+    	//Szkeleton.indentDepth--;
     }
 
     public ArrayList<Settler> getSettlers(){
@@ -116,6 +118,8 @@ public class Game {
     	Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".SettlerDied()");
     	settlers.remove(settler);
+    	
+    	proto.removeSettler(settler);
 
     	// játék elvesztése ha az utolsó telepes is meghalt
 		if (settlers.size() == 0) {
@@ -131,12 +135,15 @@ public class Game {
         System.out.println(name +".RobotDied()");
     	robots.remove(robot);
     	
+    	proto.removeRobot(robot);
+    	
     	Szkeleton.indentDepth--;
     }
 
     // ufo meghalt
 	public void UfoDied(Ufo ufo){
     	ufos.remove(ufo);
+    	proto.removeUfo(ufo);
 	}
 
 	// térkép lekérése
