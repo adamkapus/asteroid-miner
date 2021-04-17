@@ -50,12 +50,12 @@ public class Uran extends Resource{
         Szkeleton.indentDepth--;
         return I;
     }
-
+    public void closeToSun(){CloseToSunTicks-=1;}
     public int getCloseToSunTicks(){
         return CloseToSunTicks;
     }
-    public void setCloseToSunTicks(){
-        CloseToSunTicks-=1;
+    public void setCloseToSunTicks(int i){
+        CloseToSunTicks=i;
     }
 
     public String ToString(){

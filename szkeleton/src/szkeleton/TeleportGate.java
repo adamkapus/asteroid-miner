@@ -48,7 +48,7 @@ public class TeleportGate extends Place {
     public TeleportGate GetPair(){
         return pair;
     }
-
+    public void SetIsCrazy(){isCrazy=true;}
     public void SetPair(TeleportGate tg){
         pair = tg;
     }

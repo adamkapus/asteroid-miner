@@ -244,6 +244,12 @@ public class Prototype {
 				break;
 			case "blow":
 				blowCommand(command); break;
+			case "set":
+				setCommand(command); break;
+			case "move":
+				moveCommand(command); break;
+			case "place":
+				placeCommand(command); break;
 		}
 		
 	}
@@ -678,5 +684,125 @@ public class Prototype {
 				u.Mine();
 				break;
 		}
+	}
+
+	public void setCommand(ArrayList<String> command){
+		System.out.println("set beolvasva");
+		String objType = command.get(1);
+		String objName = command.get(2);
+		String attrName = command.get(3);
+		String attrVal = command.get(4);
+
+		switch (objType) {
+			case "asteroid":
+				switch (attrName) {
+					case "timeLimit":
+						getAsteroid(objName).setTimeLimit(Integer.valueOf(attrVal));
+						break;
+					case "timeCurrent":
+						getAsteroid(objName).setTimeCurrent(Integer.valueOf(attrVal));
+						break;
+					case "layers":
+						getAsteroid(objName).SetLayers(Integer.valueOf(attrVal));
+						break;
+					case "state":
+						if (attrVal == "close") getAsteroid(objName).SetStateToClose();
+						else getAsteroid(objName).SetStateToFar();
+						break;
+				}
+				break;
+			case "uran":
+				switch (attrName) {
+					case "closeToSunTicks":
+						getUran(objName).setCloseToSunTicks(Integer.valueOf(attrVal));
+						break;
+				}
+				break;
+			case "teleportgate":
+				switch (attrName) {
+					case "pair":
+						getTeleportgate(objName).SetPair(getTeleportgate(attrVal));
+						break;
+					case "pairIsPlaced":
+						getTeleportgate(objName).SetPairIsPlaced();
+						break;
+						//ezt ide beleírtam ezt is lehessen
+					case "setCrazy":
+						getTeleportgate(objName).SetIsCrazy();
+						break;
+				}
+				break;
+
+		}
+	}
+
+	public void moveCommand(ArrayList<String> command){
+		System.out.println("move beolvasva");
+		String objType1 = command.get(1);
+		String objName1 = command.get(2);
+		String objType2 = command.get(3);
+		String objName2 = command.get(4);
+		switch (objType1) {
+			case "settler":
+				switch (objType2) {
+					case "asteroid":
+						getSettler(objName1).Move(getAsteroid(objName2).GetPlaceID());
+						break;
+					case "teleportgate":
+						getSettler(objName1).Move(getTeleportgate(objName2).GetPlaceID());
+						getSettler(objName1).UseTeleport();
+						break;
+				}
+				break;
+			case "ufo":
+				switch (objType2) {
+					case "asteroid":
+						getUfo(objName1).Move(getAsteroid(objName2).GetPlaceID());
+						break;
+					case "teleportgate":
+						getUfo(objName1).Move(getTeleportgate(objName2).GetPlaceID());
+						getUfo(objName1).UseTeleport();
+						break;
+				}
+				break;
+			case "robot":
+				switch (objType2) {
+					case "asteroid":
+						getRobot(objName1).Move(getAsteroid(objName2).GetPlaceID());
+						break;
+				}
+				break;
+
+		}
+	}
+
+	public void placeCommand(ArrayList<String> command){
+		System.out.println("move beolvasva");
+		String objType1 = command.get(1);
+		String objName1 = command.get(2);
+		String objType2 = command.get(3);
+		String objName2 = command.get(4);
+		switch (objType1) {
+			case "uran":
+				getSettler(objName2).PlaceResource(13);
+				break;
+			case "iron":
+				getSettler(objName2).PlaceResource(12);
+				break;
+			case "icewater":
+				getSettler(objName2).PlaceResource(11);
+				break;
+			case "coal":
+				getSettler(objName2).PlaceResource(10);
+				break;
+
+			case "teleportgate":
+				getSettler(objName2).PlaceDownTeleport();
+				break;
+
+
+		}
+
+
 	}
 }
