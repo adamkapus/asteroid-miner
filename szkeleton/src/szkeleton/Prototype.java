@@ -386,6 +386,7 @@ public class Prototype {
 			try {
 				FileWriter fw = new FileWriter(command.get(1));
 				fw.write(sb.toString());
+				fw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -195,10 +195,10 @@ public class Game {
 			sb.append(' ');
 		}
 		sb.append("\n\tufos ");
-		/*for (Ufo u : ufos){
+		for (Ufo u : ufos){
 			sb.append(u.getName());
 			sb.append(' ');
-		}*/
+		}
 		sb.append('\n');
 
 		return sb.toString();
