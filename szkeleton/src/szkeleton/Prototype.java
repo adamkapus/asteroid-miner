@@ -46,10 +46,10 @@ public class Prototype {
 	//getterek az objektumokra
 	
 	public Game getGame(String name) {
-		/*
+
 		for(int i = 0; i < games.size(); i++) {
 			if(games.get(i).getName().equals(name)) { return games.get(i);}
-		}*/
+		}
 		System.out.println("Nincs ilyen nevu game");
 		return null;
 	}
@@ -81,11 +81,11 @@ public class Prototype {
 	}
 	
 	public Map getMap(String name) {
-		/*
+
 		for(int i = 0; i < maps.size(); i++) {
 			if(maps.get(i).getName().equals(name)) { return maps.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu map");*/
+		System.out.println("Nincs ilyen nevu map");
 		return null;
 	}
 	
@@ -488,7 +488,8 @@ public class Prototype {
 						getAsteroid(objName1).setResource(getIcewater(objName2));
 						break;
 					case "settler":
-						getAsteroid(objName1).AcceptEntity(getSettler(objName2));
+						Settler a = getSettler(objName2);
+						getAsteroid(objName1).AcceptEntity(a);
 						getSettler(objName2).SetPlace(getAsteroid(objName1));
 						break;
 					case "robot":

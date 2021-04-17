@@ -187,21 +187,21 @@ public class Game {
 			sb.append(map.getName());
 		} else sb.append("null");
 		sb.append("\n\trobots ");
-		if(robots != null) {
+		if(robots.size() != 0) {
 			for (Robot r : robots) {
 				sb.append(r.getName());
 				sb.append(' ');
 			}
 		}else sb.append(("null"));
 		sb.append("\n\tsettlers ");
-		if (settlers != null) {
+		if (settlers.size() != 0) {
 			for (Settler s : settlers) {
 				sb.append(s.getName());
 				sb.append(' ');
 			}
 		} else sb.append("null");
 		sb.append("\n\tufos ");
-		if (ufos != null) {
+		if (ufos.size() != 0) {
 			for (Ufo u : ufos) {
 				sb.append(u.getName());
 				sb.append(' ');

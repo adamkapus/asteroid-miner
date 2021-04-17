@@ -22,6 +22,8 @@ abstract public class Place implements Steppable {
     }
     public Place(String name){
         this.name = name;
+        entity = new ArrayList<>();
+        neighbors = new ArrayList<>();
     }
 
     public void SetPlaceID(int id) {placeID = id;}

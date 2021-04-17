@@ -233,7 +233,7 @@ public class Settler extends Entity{
             sb.append(game.getName());
         } else sb.append("null");
         sb.append("\n\tgates ");
-        if(gates != null) {
+        if(gates.size() != 0) {
             for (TeleportGate tg : gates) {
                 sb.append(tg.GetName());
                 sb.append(' ');
@@ -244,7 +244,7 @@ public class Settler extends Entity{
             sb.append(place.GetName());
         } else sb.append("null");
         sb.append("\n\tresources ");
-        if(resources != null) {
+        if(resources.size() != 0) {
             for (Resource r : resources) {
                 sb.append(r.getName());
                 sb.append(' ');
