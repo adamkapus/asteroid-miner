@@ -229,19 +229,27 @@ public class Settler extends Entity{
         sb.append("Settler ");
         sb.append(name);
         sb.append("\n\tgame ");
-        sb.append(game.getName());
+        if(game != null) {
+            sb.append(game.getName());
+        } else sb.append("null");
         sb.append("\n\tgates ");
-        for (TeleportGate tg : gates){
-            sb.append(tg.GetName());
-            sb.append(' ');
-        }
+        if(gates != null) {
+            for (TeleportGate tg : gates) {
+                sb.append(tg.GetName());
+                sb.append(' ');
+            }
+        }else sb.append("null");
         sb.append("\n\tplace ");
-        sb.append(place.GetName());
+        if(place != null) {
+            sb.append(place.GetName());
+        } else sb.append("null");
         sb.append("\n\tresources ");
-        for (Resource r : resources){
-            sb.append(r.getName());
-            sb.append(' ');
-        }
+        if(resources != null) {
+            for (Resource r : resources) {
+                sb.append(r.getName());
+                sb.append(' ');
+            }
+        } else sb.append(("null"));
         sb.append('\n');
 
         return sb.toString();

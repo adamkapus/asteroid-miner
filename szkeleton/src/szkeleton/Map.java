@@ -217,12 +217,16 @@ public class Map implements Steppable {
         sb.append("Map ");
         sb.append(name);
         sb.append("\n\tgame ");
-        sb.append(game.getName());
+        if (game != null) {
+            sb.append(game.getName());
+        } else sb.append("null");
         sb.append("\n\trobots ");
-        for (Place p : places){
-            sb.append(p.GetName());
-            sb.append(' ');
-        }
+        if(places != null) {
+            for (Place p : places) {
+                sb.append(p.GetName());
+                sb.append(' ');
+            }
+        } else sb.append("null");
         sb.append('\n');
 
         return sb.toString();

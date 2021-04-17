@@ -183,22 +183,30 @@ public class Game {
 		sb.append("Game ");
 		sb.append(name);
 		sb.append("\n\tmap ");
-		sb.append(map.getName());
+		if (map != null) {
+			sb.append(map.getName());
+		} else sb.append("null");
 		sb.append("\n\trobots ");
-		for (Robot r : robots){
-			sb.append(r.getName());
-			sb.append(' ');
-		}
+		if(robots != null) {
+			for (Robot r : robots) {
+				sb.append(r.getName());
+				sb.append(' ');
+			}
+		}else sb.append(("null"));
 		sb.append("\n\tsettlers ");
-		for (Settler s : settlers){
-			sb.append(s.getName());
-			sb.append(' ');
-		}
+		if (settlers != null) {
+			for (Settler s : settlers) {
+				sb.append(s.getName());
+				sb.append(' ');
+			}
+		} else sb.append("null");
 		sb.append("\n\tufos ");
-		for (Ufo u : ufos){
-			sb.append(u.getName());
-			sb.append(' ');
-		}
+		if (ufos != null) {
+			for (Ufo u : ufos) {
+				sb.append(u.getName());
+				sb.append(' ');
+			}
+		} else sb.append("null");
 		sb.append('\n');
 
 		return sb.toString();

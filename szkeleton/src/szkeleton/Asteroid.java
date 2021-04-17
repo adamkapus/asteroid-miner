@@ -256,21 +256,29 @@ public class Asteroid extends Place{
         sb.append("Asteroid ");
         sb.append(name);
         sb.append("\n\tentity ");
-        for (Entity e : entity){
-            sb.append(e.getName());
-            sb.append(' ');
-        }
+        if (entity != null) {
+            for (Entity e : entity){
+                sb.append(e.getName());
+                sb.append(' ');
+            }
+        } else { sb.append("null"); }
         sb.append("\n\tlayers ");
         sb.append(layers);
         sb.append("\n\tmap ");
-        sb.append(map.getName());
+        if(map != null) {
+            sb.append(map.getName());
+        } else sb.append("null");
         sb.append("\n\tneighbors ");
-        for (Place p : neighbors){
-            sb.append(p.GetName());
-            sb.append(' ');
-        }
+        if(neighbors != null) {
+            for (Place p : neighbors) {
+                sb.append(p.GetName());
+                sb.append(' ');
+            }
+        } else sb.append("null");
         sb.append("\n\tresource ");
-        sb.append(resource.getName());
+        if(resource != null) {
+            sb.append(resource.getName());
+        } else sb.append("null");
         sb.append("\n\tstate ");
         if (state == State.CLOSE)
             sb.append("close");

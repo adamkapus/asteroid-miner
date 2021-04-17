@@ -78,22 +78,28 @@ public class TeleportGate extends Place {
         sb.append("Teleportgate ");
         sb.append(name);
         sb.append("\n\tentity ");
-        for (Entity e : entity){
-            sb.append(e.getName());
-            sb.append(' ');
-        }
+        if (entity != null) {
+            for (Entity e : entity) {
+                sb.append(e.getName());
+                sb.append(' ');
+            }
+        } else sb.append("null");
         sb.append("\n\thitByStorm ");
         if (isCrazy)
             sb.append("true");
         else
             sb.append("false");
         sb.append("\n\tneighbors ");
-        for (Place p : neighbors){
-            sb.append(p.GetName());
-            sb.append(' ');
-        }
+        if(neighbors != null) {
+            for (Place p : neighbors) {
+                sb.append(p.GetName());
+                sb.append(' ');
+            }
+        } else sb.append("null");
         sb.append("\n\tpair ");
-        sb.append(pair.GetName());
+        if(pair != null) {
+            sb.append(pair.GetName());
+        } else sb.append("null");
         sb.append("\n\tpairIsPlaced ");
         if (pairIsPlaced)
             sb.append("true");
