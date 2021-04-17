@@ -98,6 +98,7 @@ public class Settler extends Entity{
         // Ha minden nyersanyag leszedte magát, létrehozzuk a robotot
         if(req.isEmpty()){
             Robot r = new Robot(nev, game, place);
+            game.AddRobot(r);
             proto.addRobot(r);
             if (nev == null) {
                 r.name = "r1";
