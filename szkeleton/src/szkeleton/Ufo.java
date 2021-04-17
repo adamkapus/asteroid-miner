@@ -50,6 +50,7 @@ public class Ufo extends Entity{
         StringBuilder sb = new StringBuilder();
         sb.append("Ufo ");
         sb.append(name);
+        sb.append("\n\tgame ");
         if(game != null) {
             sb.append(game.getName());
         }
