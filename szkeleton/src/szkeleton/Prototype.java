@@ -430,8 +430,12 @@ public class Prototype {
 		} else if (command.get(1).equals("teleportgate")) {
 			Settler s = getSettler(command.get(5));
 			s.BuildTeleport(command.get(2), command.get(3));
-
 		}
+	}
+
+	public void blowCommand(ArrayList<String> command){
+		System.out.println("blow beolvasva");
+
 	}
 
 	// Összekapcsolja a kapott objektumokat.

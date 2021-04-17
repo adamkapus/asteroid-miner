@@ -95,6 +95,9 @@ public class Settler extends Entity{
         // Ha minden nyersanyag leszedte magát, létrehozzuk a robotot
         if(req.isEmpty()){
             Robot r = new Robot(nev, game, place);
+            if (nev == null) {
+                r.name = "r1";
+            }
         }
     }
     // teleportálás
@@ -140,10 +143,16 @@ public class Settler extends Entity{
         // ha megvan minden nyersanyag, építhetünk
         if(req.isEmpty()){
             Map m = this.game.GetMap();
-
-            // csak párban tudunk kaput építeni
             TeleportGate gate1 = new TeleportGate(nev1, 1, m);
             TeleportGate gate2 = new TeleportGate(nev2, 2, m);
+
+            // csak párban tudunk kaput építeni
+            if (nev1 == null) {
+                gate1.name = "tg1";
+            }
+            if (nev2 == null) {
+                gate2.name = "tg2";
+            }
 
             // a létrehozott kapuk egymás párjai
             gate1.SetPair(gate2);
