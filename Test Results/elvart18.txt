@@ -6,7 +6,7 @@ Game g1
 Settler s1
  	game g1
  	gates null
- 	place a1
+ 	places a1
  	resources c1 c2 c3 c4 c5 c6 c7 c8 c9 c10
 Map m1
  	game g1
@@ -31,4 +31,4 @@ Coal c8
 Coal c9
 Coal c10
 Uran u1
-	CloseToSunTicks 3
+	CloseToSun 3
