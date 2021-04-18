@@ -283,7 +283,7 @@ public class Prototype {
 	    	coals.add(new Coal(newObjectName));
 	    	break;
 		case "icewater":
-	    	icewaters.add(new IceWater(newObjectName));
+	    	icewaters.add(new IceWater(newObjectName, this));
 	    	break;
 		case "iron":
 	    	irons.add(new Iron(newObjectName));
@@ -348,6 +348,7 @@ public class Prototype {
 				break;
 			case "asteroid":
 				getAsteroid(command.get(2)).Step();
+				//ha jég volt benne, és elszublimált, a listából is ki kéne szedni
 				break;
 			case "settler":
 				getSettler(command.get(2)).Step();
@@ -569,7 +570,7 @@ public class Prototype {
 				switch (objType2) {
 					case "asteroid":
 						getMap(objName1).AddPlace(getAsteroid(objName2));
-						getAsteroid(objName1).SetMap(getMap(objName1));
+						getAsteroid(objName2).SetMap(getMap(objName1));
 						break;
 					case "game":
 						getMap(objName1).setGame(getGame(objName2));

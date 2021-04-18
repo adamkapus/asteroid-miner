@@ -5,6 +5,17 @@ import java.util.ArrayList;
  * A Vízjég az egyik nyersanyag a játékban.
  */
 public class IceWater extends Resource{
+    Prototype proto;
+
+    public IceWater(String name, Prototype p){
+        super(name);
+        this.proto = p;
+        Szkeleton.writeTabs(Szkeleton.indentDepth);
+        System.out.println(name +".IceWater()");
+        Szkeleton.indentDepth--;
+
+
+    }
     public IceWater(String name){
         super(name);
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -57,6 +68,7 @@ public class IceWater extends Resource{
         System.out.println(name +".Sublimation()");
         Szkeleton.indentDepth++;
         a.RemoveResource();
+        proto.removeResource(this);
         Szkeleton.indentDepth--;
         return;
     }
