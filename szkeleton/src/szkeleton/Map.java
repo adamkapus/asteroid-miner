@@ -220,7 +220,7 @@ public class Map implements Steppable {
         if (game != null) {
             sb.append(game.getName());
         } else sb.append("null");
-        sb.append("\n\tplace ");
+        sb.append("\n\tplaces ");
         if(places.size() != 0) {
             for (Place p : places) {
                 sb.append(p.GetName());

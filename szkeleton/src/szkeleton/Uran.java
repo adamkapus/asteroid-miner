@@ -64,7 +64,7 @@ public class Uran extends Resource{
         StringBuilder sb = new StringBuilder();
         sb.append("Uran ");
         sb.append(name);
-        sb.append("\n\tcloseToSunTicks ");
+        sb.append("\n\tcloseToSun ");
         sb.append(CloseToSunTicks);
         sb.append('\n');
 
