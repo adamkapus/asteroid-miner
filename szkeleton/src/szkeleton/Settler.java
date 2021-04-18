@@ -127,6 +127,7 @@ public class Settler extends Entity{
         place.RemoveEntity(this);
         // újra fel
         destination.AcceptEntity(this);
+        place=destination;
     }
     // teleportkapu-építés
     public void BuildTeleport(String nev1, String nev2) {

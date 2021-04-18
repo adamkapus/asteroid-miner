@@ -51,6 +51,7 @@ public class TeleportGate extends Place {
     public void SetIsCrazy(){isCrazy=true;}
     public void SetPair(TeleportGate tg){
         pair = tg;
+        pair.SetPairIsPlaced();
     }
     // notify the gate that its pair was placed
     public void SetPairIsPlaced(){
