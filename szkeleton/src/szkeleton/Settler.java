@@ -47,8 +47,12 @@ public class Settler extends Entity{
     public void Mine() {
         Asteroid a = (Asteroid)place;
         // Csak akkor bányászhatunk, ha kevesebb mint 10 nyersanyagunk van
-        if (resources.size() < 10)
-            resources.add(a.MinedBy(this));
+        if (resources.size() < 10){
+            Resource r=a.MinedBy(this);
+            if(r!=null) resources.add(r);
+        }
+
+
     }
     // A settler halála
     public void Die() {
@@ -64,6 +68,7 @@ public class Settler extends Entity{
         Asteroid a = (Asteroid) place;
         // csak akkor rakhatjuk le, ha az aszteroida kérge 0
         if(a.GetLayers() == 0){
+                RemoveResource(resources.get(n));
                 a.InsertResource(resources.get(n));
         }
     }
@@ -71,6 +76,7 @@ public class Settler extends Entity{
     public void PlaceResource(Resource r){
         Asteroid a = (Asteroid) place;
         if(a.GetLayers() == 0){
+            RemoveResource(r);
             a.InsertResource(r);
         }
     }

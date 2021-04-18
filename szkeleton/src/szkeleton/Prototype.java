@@ -332,7 +332,7 @@ public class Prototype {
 		      Scanner myReader = new Scanner(myObj);
 		      while (myReader.hasNextLine()) {
 		        String data = myReader.nextLine();
-		        //System.out.println(data);
+		        System.out.println(data);
 		        StringTokenizer st = new StringTokenizer(data," ");
 			    ArrayList<String> c = new ArrayList<String>();
 			    while (st.hasMoreTokens()) {  
@@ -404,6 +404,7 @@ public class Prototype {
 				FileWriter fw = new FileWriter(command.get(1));
 				fw.write(sb.toString());
 				fw.close();
+				System.out.println("mentve\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -792,7 +793,7 @@ public class Prototype {
 	}
 
 	public void placeCommand(ArrayList<String> command){
-		System.out.println("move beolvasva");
+		System.out.println("place beolvasva");
 		String objType1 = command.get(1);
 		String objName1 = command.get(2);
 		String objType2 = command.get(3);

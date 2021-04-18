@@ -137,14 +137,20 @@ public class Asteroid extends Place{
      *Telepes bányászása esetn hívódó függvény.
      */
     public Resource MinedBy(Settler s){
-        Resource rTemp = resource;
-        resource = null;
-        return rTemp;
+        if(resource!=null){
+            Resource rTemp = resource;
+            resource = null;
+            return rTemp;}
+        else
+            return null;
     }
     public Resource MinedBy(Ufo u){
+        if(resource!=null){
         Resource rTemp = resource;
         resource = null;
-        return rTemp;
+        return rTemp;}
+        else
+            return null;
     }
 
     /**
