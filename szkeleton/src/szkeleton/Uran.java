@@ -33,8 +33,10 @@ public class Uran extends Resource{
                 Szkeleton.indentDepth++;
                 s.RemoveResource(this);
             }
-            else
+            else {
                 newList.add(i);
+                s.RemoveResource(this);
+            }
         }
         Szkeleton.indentDepth--;
         return newList;

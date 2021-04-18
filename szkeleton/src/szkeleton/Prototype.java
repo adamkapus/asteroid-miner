@@ -315,6 +315,17 @@ public class Prototype {
 	}
 	
 	public void loadCommand(ArrayList<String> command) {
+		games.clear();
+		settlers.clear();
+		robots.clear();
+		ufos.clear();
+		maps.clear();
+		asteroids.clear();
+		teleportgates.clear();
+		coals.clear();
+		icewaters.clear();
+		irons.clear();
+		urans.clear();
 		String filename = command.get(1);
 		try {
 		      File myObj = new File(filename);
@@ -348,7 +359,6 @@ public class Prototype {
 				break;
 			case "asteroid":
 				getAsteroid(command.get(2)).Step();
-				//ha jég volt benne, és elszublimált, a listából is ki kéne szedni
 				break;
 			case "settler":
 				getSettler(command.get(2)).Step();
