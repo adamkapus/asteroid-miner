@@ -83,7 +83,8 @@ public class TeleportGate extends Place {
                 sb.append(e.getName());
                 sb.append(' ');
             }
-        } else sb.append("null");
+        }
+        else {sb.append("null");}
         sb.append("\n\thitByStorm ");
         if (isCrazy)
             sb.append("true");

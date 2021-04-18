@@ -407,11 +407,11 @@ public class Prototype {
 		switch(command.get(1)) {
 		case "settler":
 			Settler s = getSettler(objectName);
-			s.UseTeleport();
+			s.Action();
 	    	break;
 		case "ufo":
 	    	Ufo u = getUfo(objectName);
-	    	u.UseTeleport();
+	    	u.Action();
 	    	break;
 		}
 	}
