@@ -66,6 +66,12 @@ public class Settler extends Entity{
                 a.InsertResource(resources.get(n));
         }
     }
+    public void PlaceResource(Resource r){
+        Asteroid a = (Asteroid) place;
+        if(a.GetLayers() == 0){
+            a.InsertResource(r);
+        }
+    }
     // nyersanyag átadása a telepesnek
     public void AddResource(Resource r) {
         resources.add(r);
