@@ -1,0 +1,35 @@
+create game g1
+create settler s1
+create map m1
+create asteroid a1
+create coal c1
+create coal c2
+create coal c3
+create coal c4
+create coal c5
+create coal c6
+create coal c7
+create coal c8
+create coal c9
+create coal c10
+create uran u1
+set uran u1 closeToSun 3
+add map m1 game g1
+add settler s1 game g1
+add asteroid a1 settler s1
+add coal c1 settler s1
+add coal c2 settler s1
+add coal c3 settler s1
+add coal c4 settler s1
+add coal c5 settler s1
+add coal c6 settler s1
+add coal c7 settler s1
+add coal c8 settler s1
+add coal c9 settler s1
+add coal c10 settler s1
+add asteroid a1 map m1
+set asteroid a1 layers 0
+add uran u1 asteroid a1
+set asteroid a1 timeCurrent 2
+set asteroid a1 timeLimit 10
+mine settler s1
