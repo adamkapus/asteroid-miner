@@ -522,6 +522,7 @@ public class Prototype {
 					case "teleportgate":
 						getAsteroid(objName1).AddNeighbor(getTeleportgate(objName2));
 						getTeleportgate(objName2).AddNeighbor(getAsteroid(objName1));
+						break;
 				}
 				break;
 			case "coal":
@@ -583,6 +584,7 @@ public class Prototype {
 						getGame(objName1).setMap(getMap(objName2));
 						break;
 				}
+				break;
 			case "map":
 				switch (objType2) {
 					case "asteroid":
@@ -642,6 +644,7 @@ public class Prototype {
 						getGame(objName2).addUfo(getUfo(objName1));
 						break;
 				}
+				break;
 			case "teleportgate":
 				switch (objType2){
 					case "settler":
@@ -667,6 +670,7 @@ public class Prototype {
 					case "asteroid":
 						getTeleportgate(objName1).AddNeighbor(getAsteroid(objName2));
 						getAsteroid(objName2).AddNeighbor(getTeleportgate(objName1));
+						break;
 				}
 				break;
 		}
