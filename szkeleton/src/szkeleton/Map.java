@@ -23,6 +23,10 @@ public class Map implements Steppable {
         game = null;
         allResources = new ArrayList<>();
         places = new ArrayList<>();
+        allResources.add(10);
+        allResources.add(11);
+        allResources.add(12);
+        allResources.add(13);
     }
 
     public Map(String name, Game game) {
@@ -205,10 +209,6 @@ public class Map implements Steppable {
     }
 
     public ArrayList<Integer> GetAllResources() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".GetAllResources()");
-        Szkeleton.indentDepth--;
-
         return allResources;
     }
 
