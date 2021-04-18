@@ -8,7 +8,7 @@ Ufo u1
  	place a2
 Map m1
  	game g1
- 	place a1 a2
+ 	places a1 a2
 Asteroid a1
 	entity null
 	layers 3

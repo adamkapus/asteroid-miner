@@ -10,7 +10,7 @@ Settler s1
 	resources null
 Robot r1
  	game g1
-	 place a1
+	 places a1
 Map m1
  	game g1
  	place a1
