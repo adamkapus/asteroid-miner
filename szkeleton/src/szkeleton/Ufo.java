@@ -1,9 +1,10 @@
 package szkeleton;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Ufo extends Entity{
-
+    private ArrayList<Resource> resources = new ArrayList<>();
     //név szerinti konstruktor a tesztesetekhez
     public Ufo(String name){
         super(name);
@@ -44,6 +45,12 @@ public class Ufo extends Entity{
     }
 
     public void Mine() {
+        Asteroid a = (Asteroid)place;
+        // Csak akkor bányászhatunk, ha kevesebb mint 10 nyersanyagunk van
+        if (resources.size() < 10){
+            Resource r=a.MinedBy(this);
+            if(r!=null) resources.add(r);
+        }
     }
 
     public String ToString(){
@@ -64,6 +71,14 @@ public class Ufo extends Entity{
         else {
             sb.append("null");
         }
+        sb.append("\n\tresources ");
+        if(resources.size() != 0) {
+            for (Resource r : resources) {
+                sb.append(r.getName());
+                sb.append(' ');
+            }
+        } else sb.append(("null"));
+
         sb.append('\n');
 
         return sb.toString();
