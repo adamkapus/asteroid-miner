@@ -91,7 +91,7 @@ public class TeleportGate extends Place {
         else
             sb.append("false");
         sb.append("\n\tneighbors ");
-        if(neighbors != null) {
+        if(neighbors.size() != 0) {
             for (Place p : neighbors) {
                 sb.append(p.GetName());
                 sb.append(' ');

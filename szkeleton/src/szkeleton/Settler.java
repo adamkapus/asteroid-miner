@@ -183,6 +183,7 @@ public class Settler extends Entity{
     		TeleportGate placeable = gates.get(0);
 	        place.AddNeighbor(placeable);
 	        placeable.AddNeighbor(place);
+	        game.GetMap().AddPlace(placeable);
     	}
     }
     // nyersanyag leszedése a telepesről
