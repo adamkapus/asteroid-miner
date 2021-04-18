@@ -1,0 +1,12 @@
+create game g1
+create map m1
+create asteroid a1
+create iron i1
+create ufo u1
+add map m1 game g1
+add map m1 asteroid a1
+add ufo u1 game g1
+add ufo u1 asteroid a1
+add iron i1 asteroid a1
+set asteroid a1 layers 0
+mine ufo u1
