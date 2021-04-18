@@ -1,0 +1,9 @@
+create game g1
+create map m1
+create asteroid a1
+create settler s1
+add map m1 game g1
+add asteroid a1 map m1
+add settler s1 asteroid a1
+add game g1 settler s1
+die settler s1
