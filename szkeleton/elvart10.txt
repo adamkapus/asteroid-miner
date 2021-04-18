@@ -18,6 +18,6 @@ Asteroid a1
             neighbours null
             resource null
     state far
-            timeCurrent null
-            timeLimit null
+            timeCurrent 0
+            timeLimit 0
 Iron i1
