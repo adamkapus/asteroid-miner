@@ -66,6 +66,7 @@ public class Settler extends Entity{
                 a.InsertResource(resources.get(n));
         }
     }
+    //proto miatt
     public void PlaceResource(Resource r){
         Asteroid a = (Asteroid) place;
         if(a.GetLayers() == 0){
