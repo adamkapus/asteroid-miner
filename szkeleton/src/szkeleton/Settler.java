@@ -174,9 +174,16 @@ public class Settler extends Entity{
     // teleportkapu lerakása
     public void PlaceDownTeleport() {
         // a teleportkapu szomszédja a place-nek és a place szomszédja a teleportkapunak
-        TeleportGate placeable = gates.get(gates.size() - 1);
-        place.AddNeighbor(placeable);
-        placeable.AddNeighbor(place);
+    	if(gates.size() ==0) {
+    		 System.out.println("Nincs teleportkapu lehelyezesre!");
+    		 return;
+    	}
+    	else {
+	        //TeleportGate placeable = gates.get(gates.size() - 1);
+    		TeleportGate placeable = gates.get(0);
+	        place.AddNeighbor(placeable);
+	        placeable.AddNeighbor(place);
+    	}
     }
     // nyersanyag leszedése a telepesről
     public void RemoveResource(Resource r) {

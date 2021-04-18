@@ -752,7 +752,7 @@ public class Prototype {
 						break;
 					case "teleportgate":
 						getSettler(objName1).Move(getTeleportgate(objName2).GetPlaceID());
-						getSettler(objName1).UseTeleport();
+						//getSettler(objName1).UseTeleport();
 						break;
 				}
 				break;
@@ -763,7 +763,7 @@ public class Prototype {
 						break;
 					case "teleportgate":
 						getUfo(objName1).Move(getTeleportgate(objName2).GetPlaceID());
-						getUfo(objName1).UseTeleport();
+						//getUfo(objName1).UseTeleport();
 						break;
 				}
 				break;
