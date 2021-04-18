@@ -519,6 +519,9 @@ public class Prototype {
 						getAsteroid(objName1).SetMap(getMap(objName2));
 						getMap(objName2).AddPlace(getAsteroid(objName1));
 						break;
+					case "teleportgate":
+						getAsteroid(objName1).AddNeighbor(getTeleportgate(objName2));
+						getTeleportgate(objName2).AddNeighbor(getAsteroid(objName1));
 				}
 				break;
 			case "coal":
@@ -661,6 +664,9 @@ public class Prototype {
 						getTeleportgate(objName1).SetMap(getMap(objName2));
 						getMap(objName2).AddPlace(getTeleportgate(objName1));
 						break;
+					case "asteroid":
+						getTeleportgate(objName1).AddNeighbor(getAsteroid(objName2));
+						getAsteroid(objName2).AddNeighbor(getTeleportgate(objName1));
 				}
 				break;
 		}
