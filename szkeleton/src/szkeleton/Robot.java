@@ -28,6 +28,7 @@ public class Robot extends Entity{
         Place destination = place.GetRandomNeighbor();
         place.RemoveEntity(this);
         destination.AcceptEntity(this);
+        place = destination;
     }
     // robot lép
     public void Step() {

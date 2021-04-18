@@ -449,13 +449,16 @@ public class Prototype {
 		switch (objTipus) {
 			case "settler" :
 				Settler s = getSettler(command.get(2));
-				s.Die(); break;
+				s.BlownUp();
+				break;
 			case "robot":
 				Robot r = getRobot(command.get(2));
-				r.Die(); break;
+				r.BlownUp();
+				break;
 			case "ufo":
 				Ufo u = getUfo(command.get(2));
-				u.Die(); break;
+				u.BlownUp();
+				break;
 			default:
 				System.out.println("Helytelen objektomtious! (2. parameter)"); break;
 		}

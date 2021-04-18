@@ -52,6 +52,7 @@ public class Settler extends Entity{
     }
     // A settler halála
     public void Die() {
+        place.RemoveEntity(this);
         game.SettlerDied(this);
     }
     // Felrobbanás aszteroidarobbanás által
