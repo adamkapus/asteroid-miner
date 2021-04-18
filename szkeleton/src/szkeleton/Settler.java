@@ -67,6 +67,13 @@ public class Settler extends Entity{
                 a.InsertResource(resources.get(n));
         }
     }
+    //proto miatt
+    public void PlaceResource(Resource r){
+        Asteroid a = (Asteroid) place;
+        if(a.GetLayers() == 0){
+            a.InsertResource(r);
+        }
+    }
     // nyersanyag átadása a telepesnek
     public void AddResource(Resource r) {
         resources.add(r);
@@ -182,6 +189,7 @@ public class Settler extends Entity{
     	else {
 	        //TeleportGate placeable = gates.get(gates.size() - 1);
     		TeleportGate placeable = gates.get(0);
+    		gates.remove(0);
 	        place.AddNeighbor(placeable);
 	        placeable.AddNeighbor(place);
 	        game.GetMap().AddPlace(placeable);

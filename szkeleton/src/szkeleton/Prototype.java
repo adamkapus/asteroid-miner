@@ -789,16 +789,16 @@ public class Prototype {
 		String objName2 = command.get(4);
 		switch (objType1) {
 			case "uran":
-				getSettler(objName2).PlaceResource(13);
+				getSettler(objName2).PlaceResource(getUran(objName1));
 				break;
 			case "iron":
-				getSettler(objName2).PlaceResource(12);
+				getSettler(objName2).PlaceResource(getIron(objName1));
 				break;
 			case "icewater":
-				getSettler(objName2).PlaceResource(11);
+				getSettler(objName2).PlaceResource(getIcewater(objName1));
 				break;
 			case "coal":
-				getSettler(objName2).PlaceResource(10);
+				getSettler(objName2).PlaceResource(getCoal(objName1));
 				break;
 
 			case "teleportgate":
