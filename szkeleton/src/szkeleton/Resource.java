@@ -23,9 +23,6 @@ abstract public class Resource {
      * Visszatér az anyagok radioaktivitásával.
      */
     public boolean IsRadioactive(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".IsRadioactive()");
-        Szkeleton.indentDepth--;
         return this.radioactive;
     }
 
@@ -42,7 +39,6 @@ abstract public class Resource {
      * Szublimáció (csak vízjég esetén)
      */
     public void Sublimation(Asteroid a){
-        Szkeleton.indentDepth--;
         return;}
 
     /**
