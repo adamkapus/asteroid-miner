@@ -1,2 +1,0 @@
-create settler s1
-create ufo u1
