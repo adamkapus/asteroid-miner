@@ -35,10 +35,6 @@ public class Map implements Steppable {
         allResources = new ArrayList<>();
         places = new ArrayList<>();
         allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Map()");
-
-        Szkeleton.indentDepth--;
     }
 
     /**
@@ -47,8 +43,6 @@ public class Map implements Steppable {
      */
     public Map(String n, Game game, int numOfAst) {
     	name = n;
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Map(int)");
         allResources = new ArrayList<>();
         allResources.add(10); allResources.add(11); allResources.add(12); allResources.add(13);
         places = new ArrayList<>();
@@ -63,14 +57,10 @@ public class Map implements Steppable {
                 case 3 -> new Uran("u");
                 default -> null;
             };
-            Szkeleton.indentDepth++;
             Asteroid newasteroid = new Asteroid("a", i, this, resource);
             places.add(newasteroid);
         }
         this.game = game;
-
-
-        Szkeleton.indentDepth--;
     }
 
     public String getName(){
@@ -110,23 +100,13 @@ public class Map implements Steppable {
      * Az összes place-en lejátszódik az a szcenárió, amikor napvihar van
      */
     public void SolarStorm() {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".SolarStorm()");
         for (Place place : places) {
-        	Szkeleton.indentDepth++;
             place.HitByStorm();
         }
-        
-        Szkeleton.indentDepth--;
     }
 
     public void EnoughResources() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".EnoughResources()");
-
-        Szkeleton.indentDepth++;
         game.Win();
-        Szkeleton.indentDepth--;
     }
 
     /**
@@ -134,15 +114,11 @@ public class Map implements Steppable {
      * 5% az esélye, hogy napvihar keletkezik
      */
     public void Step() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Step()");
         for (Place place : places) {
-            Szkeleton.indentDepth++;
             place.Step();
         }
         Random random = new Random();
         if(random.nextInt(100) < 5) {
-            Szkeleton.indentDepth++;
             SolarStorm();
         }
     }
@@ -151,9 +127,6 @@ public class Map implements Steppable {
      *Visszaad egy random place-t
      */
     public Place GetRandomPlace() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".GetRandomPlace()");
-        Szkeleton.indentDepth--;
 
         Random ran = new Random();
         return places.get(ran.nextInt(places.size()));
@@ -162,20 +135,7 @@ public class Map implements Steppable {
     /**
      * Két place típusú elemet összeköt, azaz szomszédjának állít be
      */
-    //itt miért van kikommentelve minden?
     public void Connect() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Connect()");
-
-        Szkeleton.indentDepth++;
-        /*for (Place place : places) {
-            Random random = new Random();
-            int ran = random.nextInt(places.size());
-            if (place.GetNeighbor(places.get(ran).placeID).placeID == places.get(ran).placeID)  /*Ha még nem szomszédok, akkor... { //PlaceID alapján kéne
-                place.AddNeighbor(places.get(ran)); //Beálítom egymás szomszédjának a két place-t
-                places.get(ran).AddNeighbor(place);
-            }
-        }*/
 
         for (int i = 0; i < places.size(); i++){
             for (int j = i+1; j < places.size(); j++){
@@ -185,25 +145,16 @@ public class Map implements Steppable {
                 places.get(j).AddNeighbor(places.get(i));
             }
         }
-
-        Szkeleton.indentDepth--;
     }
 
     /**
      *Hozzáad egy új Place típusú elemet a Map-hez
      */
     public void AddPlace(Place p) {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddPlace()");
     	places.add(p);
-    	
-    	Szkeleton.indentDepth--;
     }
 
     public int GetAstNum() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".GetAstNum()");
-        Szkeleton.indentDepth--;
 
         return places.size();
     }
@@ -211,7 +162,9 @@ public class Map implements Steppable {
     public ArrayList<Integer> GetAllResources() {
         return allResources;
     }
-
+    /**
+     * Objektum string-gé alakítása a save parancshoz
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Map ");
