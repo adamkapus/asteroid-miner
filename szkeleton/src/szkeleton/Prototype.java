@@ -54,7 +54,7 @@ public class Prototype {
 		for(int i = 0; i < games.size(); i++) {
 			if(games.get(i).getName().equals(name)) { return games.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu game");
+		//System.out.println("Nincs ilyen nevu game");
 		return null;
 	}
 	public Settler getSettler(String name) {
@@ -62,7 +62,7 @@ public class Prototype {
 		for(int i = 0; i < settlers.size(); i++) {
 			if(settlers.get(i).getName().equals(name)) { return settlers.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu settler");
+		//System.out.println("Nincs ilyen nevu settler");
 		return null;
 	}
 	
@@ -71,7 +71,7 @@ public class Prototype {
 		for(int i = 0; i < robots.size(); i++) {
 			if(robots.get(i).getName().equals(name)) { return robots.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu robot");
+		//System.out.println("Nincs ilyen nevu robot");
 		return null;
 	}
 	
@@ -80,7 +80,7 @@ public class Prototype {
 		for(int i = 0; i < ufos.size(); i++) {
 			if(ufos.get(i).getName().equals(name)) { return ufos.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu ufo");
+		//System.out.println("Nincs ilyen nevu ufo");
 		return null;
 	}
 	
@@ -89,7 +89,7 @@ public class Prototype {
 		for(int i = 0; i < maps.size(); i++) {
 			if(maps.get(i).getName().equals(name)) { return maps.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu map");
+		//System.out.println("Nincs ilyen nevu map");
 		return null;
 	}
 	
@@ -98,7 +98,7 @@ public class Prototype {
 		for(int i = 0; i < asteroids.size(); i++) {
 			if(asteroids.get(i).GetName().equals(name)) { return asteroids.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu asteroid");
+		//System.out.println("Nincs ilyen nevu asteroid");
 		return null;
 	}
 	
@@ -107,7 +107,7 @@ public class Prototype {
 		for(int i = 0; i < teleportgates.size(); i++) {
 			if(teleportgates.get(i).GetName().equals(name)) { return teleportgates.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu tg");
+		//System.out.println("Nincs ilyen nevu tg");
 		return null;
 	}
 	
@@ -116,7 +116,7 @@ public class Prototype {
 		for(int i = 0; i < coals.size(); i++) {
 			if(coals.get(i).getName().equals(name)) { return coals.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu coal");
+		//System.out.println("Nincs ilyen nevu coal");
 		return null;
 	}
 	
@@ -125,7 +125,7 @@ public class Prototype {
 		for(int i = 0; i < icewaters.size(); i++) {
 			if(icewaters.get(i).getName().equals(name)) { return icewaters.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu iw");
+		//System.out.println("Nincs ilyen nevu iw");
 		return null;
 	}
 	
@@ -133,7 +133,7 @@ public class Prototype {
 		for(int i = 0; i < irons.size(); i++) {
 			if(irons.get(i).getName().equals(name)) { return irons.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu iron");
+		//System.out.println("Nincs ilyen nevu iron");
 		return null;
 	}
 	
@@ -142,7 +142,7 @@ public class Prototype {
 		for(int i = 0; i < urans.size(); i++) {
 			if(urans.get(i).getName().equals(name)) { return urans.get(i);}
 		}
-		System.out.println("Nincs ilyen nevu uran");
+		//System.out.println("Nincs ilyen nevu uran");
 		return null;
 	}
 	
@@ -264,7 +264,7 @@ public class Prototype {
 	 * @param command -  a teljes felhasznaloi parancs
 	 */
 	public void createCommand(ArrayList<String> command) {
-		System.out.println("create beolvasva");
+		//System.out.println("create beolvasva");
 		String newObjectName = command.get(2);
 		switch(command.get(1)) {
 		case "game":
@@ -308,7 +308,7 @@ public class Prototype {
 	 * @param command a teljes felhasznaloi parancs
 	 */
 	public void dieCommand(ArrayList<String> command) {
-		System.out.println("die beolvasva");
+		//System.out.println("die beolvasva");
 		String objectName = command.get(2);
 		switch(command.get(1)) {
 		case "settler":
@@ -347,7 +347,7 @@ public class Prototype {
 		      Scanner myReader = new Scanner(myObj);
 		      while (myReader.hasNextLine()) {
 		        String data = myReader.nextLine();
-		        System.out.println(data);
+		        //System.out.println(data);
 		        StringTokenizer st = new StringTokenizer(data," ");
 			    ArrayList<String> c = new ArrayList<String>();
 			    while (st.hasMoreTokens()) {  
@@ -440,7 +440,7 @@ public class Prototype {
 	 * @param command a teljes felhasznaloi parancs
 	 */
 	public void teleportCommand(ArrayList<String> command) {
-		System.out.println("teleport beolvasva");
+		//System.out.println("teleport beolvasva");
 		String objectName = command.get(2);
 		switch(command.get(1)) {
 		case "settler":
@@ -459,7 +459,7 @@ public class Prototype {
 	 * @param command a teljes felhasznaloi parancs
 	 */
 	public void solarstormCommand(ArrayList<String> command) {
-		System.out.println("solarstorm beolvasva");
+		//System.out.println("solarstorm beolvasva");
 		String objectName = command.get(2);
 		switch(command.get(1)) {
 		case "asteroid":
@@ -474,7 +474,7 @@ public class Prototype {
 	}
 
 	public void buildCommand(ArrayList<String> command) {
-		System.out.println("build beolvasva");
+		//System.out.println("build beolvasva");
 		if(command.get(1).equals("robot")){
 			Settler s = getSettler(command.get(4));
 			s.BuildRobot(command.get(2));
@@ -486,7 +486,7 @@ public class Prototype {
 	}
 
 	public void blowCommand(ArrayList<String> command){
-		System.out.println("blow beolvasva");
+		//System.out.println("blow beolvasva");
 		String objTipus = command.get(1);
 		switch (objTipus) {
 			case "settler" :
@@ -511,7 +511,7 @@ public class Prototype {
 	 * Összekapcsolja a kapott objektumokat.
 	 */
 	public void addCommand(ArrayList<String> command){
-		System.out.println("add beolvasva");
+		//System.out.println("add beolvasva");
 		String objName1 = command.get(2);
 		String objName2 = command.get(4);
 		String objType1 = command.get(1);
@@ -715,7 +715,7 @@ public class Prototype {
 	 * Végrehajtja a fúrás parancsot
 	 */
 	public void drillCommand(ArrayList<String> command){
-		System.out.println("drill beolvasva");
+		//System.out.println("drill beolvasva");
 		String entityType = command.get(1);
 		String entityName = command.get(2);
 
@@ -736,7 +736,7 @@ public class Prototype {
 	 * Végrehajtja a bányászás parancsot
 	 */
 	public void mineCommand(ArrayList<String> command){
-		System.out.println("mine beolvasva");
+		//System.out.println("mine beolvasva");
 		String entityType = command.get(1);
 		String entityName = command.get(2);
 
@@ -757,7 +757,7 @@ public class Prototype {
 	 * @param command
 	 */
 	public void setCommand(ArrayList<String> command){
-		System.out.println("set beolvasva");
+		//System.out.println("set beolvasva");
 		String objType = command.get(1);
 		String objName = command.get(2);
 		String attrName = command.get(3);
@@ -857,7 +857,7 @@ public class Prototype {
 	 */
 
 	public void placeCommand(ArrayList<String> command){
-		System.out.println("place beolvasva");
+		//System.out.println("place beolvasva");
 		String objType1 = command.get(1);
 		String objName1 = command.get(2);
 		String objType2 = command.get(3);
