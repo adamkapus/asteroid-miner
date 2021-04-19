@@ -63,51 +63,51 @@ public class Game {
 
 	// játék megnyerése
     public void Win() {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Win()");
-        Szkeleton.indentDepth--;
+        //Szkeleton.indentDepth--;
     }
     // játék elvesztése
     public void Lose() {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
         System.out.println(name + ".Lose()");
-    	Szkeleton.indentDepth--;
+    	//Szkeleton.indentDepth--;
     }
     // új játék kezdése
     public void NewGame() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".NewGame()");
+       // Szkeleton.writeTabs(Szkeleton.indentDepth);
+       // System.out.println(name +".NewGame()");
 
-        Szkeleton.indentDepth++;
+      //  Szkeleton.indentDepth++;
         // pálya létrehozása
         Map map = new Map("map", this, 2);
 
         // pálya összekötöttségek létrehozása
-        Szkeleton.indentDepth++;
+      //  Szkeleton.indentDepth++;
     	map.Connect();
 
     	//Most ket jatekos letrehozasa random kezdőhelyen
-    	Szkeleton.indentDepth++;
+    	//Szkeleton.indentDepth++;
     	Place p1 = map.GetRandomPlace();
     	Szkeleton.indentDepth++;
     	Place p2 = map.GetRandomPlace();
-    	Szkeleton.indentDepth++;
+    	//Szkeleton.indentDepth++;
     	Settler s1 = new Settler("s1",this,p1);
-    	Szkeleton.indentDepth++;
+    	//Szkeleton.indentDepth++;
     	Settler s2 = new Settler("s2",this,p2);
     	settlers.add(s1);
     	settlers.add(s2);
-        Szkeleton.indentDepth--;
+      //  Szkeleton.indentDepth--;
         
 
     }
     // robot hozzáadása a játékhoz
     public void AddRobot(Robot robot) {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddRobot()");
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
+       // System.out.println(name +".AddRobot()");
 
     	robots.add(robot);
-    	Szkeleton.indentDepth--;
+    	//Szkeleton.indentDepth--;
     }
 
     public void addUfo(Ufo u) {
@@ -115,29 +115,29 @@ public class Game {
 	}
     // játékos meghalt
     public void SettlerDied(Settler settler) {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".SettlerDied()");
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
+        //System.out.println(name + ".SettlerDied()");
     	settlers.remove(settler);
     	
     	proto.removeSettler(settler);
 
     	// játék elvesztése ha az utolsó telepes is meghalt
 		if (settlers.size() == 0) {
-			Szkeleton.indentDepth++;
+			//Szkeleton.indentDepth++;
 			this.Lose();
 		}
 
-    	Szkeleton.indentDepth--;
+    	//Szkeleton.indentDepth--;
     }
     // robot meghalt
     public void RobotDied(Robot robot) {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".RobotDied()");
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
+       // System.out.println(name +".RobotDied()");
     	robots.remove(robot);
     	
     	proto.removeRobot(robot);
     	
-    	Szkeleton.indentDepth--;
+    	//Szkeleton.indentDepth--;
     }
 
     // ufo meghalt
@@ -148,39 +148,39 @@ public class Game {
 
 	// térkép lekérése
     public Map GetMap(){
-		Szkeleton.writeTabs(Szkeleton.indentDepth);
-		System.out.println(name +".GetMap()");
+		//Szkeleton.writeTabs(Szkeleton.indentDepth);
+		//System.out.println(name +".GetMap()");
 
-		Szkeleton.indentDepth--;
+		//Szkeleton.indentDepth--;
 		return map;
     }
 
     // egy kör végrehajtása
     public void OneRound() {
     	// először a telepesek lépnek
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".OneRound()");
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
+       // System.out.println(name +".OneRound()");
     	for(int i =0; i < settlers.size(); i++) {
-    		Szkeleton.indentDepth++;
+    		//Szkeleton.indentDepth++;
     		settlers.get(i).Step();
     	}
 		// aztán a robotok lépnek
     	for(int i =0; i < settlers.size(); i++) {
-    		Szkeleton.indentDepth++;
+    		//Szkeleton.indentDepth++;
     		robots.get(i).Step();
     	}
     	// végül a térkép is lép
-    	Szkeleton.indentDepth++;
+    	//Szkeleton.indentDepth++;
     	map.Step();
     	
-    	Szkeleton.indentDepth--;
+    	//Szkeleton.indentDepth--;
     }
 
     // telepes hozzáadása a játékhoz
     public void AddSettler(Settler s) {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".AddSettler()");
-        Szkeleton.indentDepth--;
+    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
+       // System.out.println(name + ".AddSettler()");
+       // Szkeleton.indentDepth--;
         
         settlers.add(s);
     }
