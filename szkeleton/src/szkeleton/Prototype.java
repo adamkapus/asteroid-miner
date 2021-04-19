@@ -10,7 +10,10 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Prototype {
-	private boolean prototypeIsRunning = true; //fut-e a tesztelo program, azaz ki lepett-e a felhasznalo
+	/**
+	 * prototypeIsRunning :fut-e a tesztelo program, azaz ki lepett-e a felhasznalo
+	 */
+	private boolean prototypeIsRunning = true;
 	ArrayList<Game> games;
 	ArrayList<Settler> settlers;
 	ArrayList<Robot> robots;
