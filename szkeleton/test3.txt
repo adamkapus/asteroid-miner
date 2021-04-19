@@ -1,0 +1,18 @@
+create game g1
+create settler s1
+create map m1
+create asteroid a1
+create iron i1
+create coal c1
+create uran u1
+add map m1 game g1
+add game g1 settler s1
+add asteroid a1 settler s1
+add iron i1 settler s1
+add coal c1 settler s1
+add uran u1 settler s1
+add asteroid a1 map m1
+set asteroid a1 layers 3
+set asteroid a1 timeCurrent 2
+set asteroid a1 timeLimit 10
+build robot r1 settler s1
