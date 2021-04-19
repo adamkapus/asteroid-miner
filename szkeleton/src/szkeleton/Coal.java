@@ -49,7 +49,9 @@ public class Coal extends Resource{
         I.add(10);
         return I;
     }
-
+    /**
+     * Kimenet vizsgálatához szűkséges függvény
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Coal ");

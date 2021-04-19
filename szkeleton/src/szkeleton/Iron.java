@@ -51,6 +51,9 @@ public class Iron extends Resource{
         return I;
     }
 
+    /**
+     * Kimenet vizsgálatához szűkséges függvény
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Iron ");

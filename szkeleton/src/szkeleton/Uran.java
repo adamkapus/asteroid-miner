@@ -59,7 +59,9 @@ public class Uran extends Resource{
     public void setCloseToSunTicks(int i){
         CloseToSunTicks=i;
     }
-
+    /**
+     * Kimenet vizsgálatához szűkséges függvény
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Uran ");

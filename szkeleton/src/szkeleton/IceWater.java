@@ -74,7 +74,9 @@ public class IceWater extends Resource{
         Szkeleton.indentDepth--;
         return;
     }
-
+    /**
+     * Kimenet vizsgálatához szűkséges függvény
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("IceWater ");

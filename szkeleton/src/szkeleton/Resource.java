@@ -18,9 +18,9 @@ abstract public class Resource {
         
     }
 
-    /*
+    /**
      * 
-     * VisszatĂ©r az anyagok radioaktivitĂˇsĂˇval.
+     * Visszatér az anyagok radioaktivitásával.
      */
     public boolean IsRadioactive(){
         Szkeleton.writeTabs(Szkeleton.indentDepth);
@@ -30,7 +30,7 @@ abstract public class Resource {
     }
 
     /**
-     * EltĂˇvolĂ­t egy Nyersanyagot a kapott settler listĂˇjĂˇbĂłl
+     * Eltávolít egy Nyersanyagot a kapott settler listájából
      */
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
         return I;}
@@ -39,12 +39,15 @@ abstract public class Resource {
     }
 
     /**
-     * SzublimĂˇciĂł
+     * Szublimáció (csak vízjég esetén)
      */
     public void Sublimation(Asteroid a){
         Szkeleton.indentDepth--;
         return;}
 
+    /**
+     * Setter és Getter fügvények
+     */
     public String getName(){
        return name;
     }
