@@ -10,9 +10,6 @@ public class Uran extends Resource{
     public Uran(String name){
         super(name);
         radioactive = true;
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Uran()");
-        Szkeleton.indentDepth--;
     }
 
     /**
@@ -21,8 +18,6 @@ public class Uran extends Resource{
      * A függvény visszatér a settler listáján talált elemekkel (-1 Urán)
      */
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".RemoveFromList()");
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -30,7 +25,6 @@ public class Uran extends Resource{
                 newList.add(i);
             else if (i == 13){
                 found = true;
-                Szkeleton.indentDepth++;
                 s.RemoveResource(this);
             }
             else {
@@ -38,18 +32,13 @@ public class Uran extends Resource{
                 s.RemoveResource(this);
             }
         }
-        Szkeleton.indentDepth--;
         return newList;
     }
     /**
      *Kapott listához hozzáadja az Szén sorszámát, ami a 13.
      */
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddToList()");
-        Szkeleton.indentDepth--;
         I.add(13);
-        Szkeleton.indentDepth--;
         return I;
     }
     public void closeToSun(){CloseToSunTicks-=1;}

@@ -7,9 +7,6 @@ import java.util.ArrayList;
 public class Iron extends Resource{
     public Iron(String name){
         super(name);
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Iron()");
-        Szkeleton.indentDepth--;
         
     }
     public boolean IsRadioactive(){
@@ -28,7 +25,6 @@ public class Iron extends Resource{
                 newList.add(i);
             else if (i == 12){
                 found = true;
-                Szkeleton.indentDepth++;
                 s.RemoveResource(this);
             }
             else {
@@ -36,18 +32,13 @@ public class Iron extends Resource{
                 s.RemoveResource(this);
             }
         }
-        Szkeleton.indentDepth--;
         return newList;
     }
     /**
      *Kapott listához hozzáadja az Szén sorszámát, ami a 12.
      */
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddToList()");
-        Szkeleton.indentDepth--;
         I.add(12);
-        Szkeleton.indentDepth--;
         return I;
     }
 
