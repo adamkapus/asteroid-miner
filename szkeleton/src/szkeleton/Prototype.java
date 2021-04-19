@@ -40,6 +40,7 @@ public class Prototype {
 		urans = new ArrayList<Uran>();
 	}
 	
+	//parancsokat olvas a felhasznalotol
 	public void runPrototype() {
 		while(prototypeIsRunning) {
 			readCommandFromUser();
@@ -152,7 +153,7 @@ public class Prototype {
 	public void addTeleportgate(TeleportGate tg) {
 		teleportgates.add(tg);
 	}
-	
+	//eltavolit egy settlert
 	public void removeSettler(Settler s) {
 		
 		for(int i = 0; i < settlers.size(); i++) {
@@ -160,7 +161,7 @@ public class Prototype {
 		}
 		
 	}
-	
+	//eltavolit egy robotot
 	public void removeRobot(Robot r) {
 		
 		for(int i = 0; i < robots.size(); i++) {
@@ -168,14 +169,14 @@ public class Prototype {
 		}
 		
 	}
-	
+	//eltavolit egy ufot
 	public void removeUfo(Ufo u) {
 		
 		for(int i = 0; i < ufos.size(); i++) {
 			if(ufos.get(i).getName().equals(u.getName())) {  ufos.remove(i);}
 		}
 	}
-	
+	//eltavolit egy nyersanyagot
 	public void removeResource(Resource r) {
 		for(int i = 0; i < coals.size(); i++) {
 			if(coals.get(i).getName().equals(r.getName())) { coals.remove(i);}
@@ -191,8 +192,7 @@ public class Prototype {
 		}
 	}
 	
-	
-	//getterek meg.....
+
 	
 	//beolvas egy parancsot a konzolrol
 	public void readCommandFromUser() {
@@ -259,7 +259,10 @@ public class Prototype {
 		}
 		
 	}
-	
+	/**
+	 * Letrehoz egy objektumot
+	 * @param command -  a teljes felhasznaloi parancs
+	 */
 	public void createCommand(ArrayList<String> command) {
 		System.out.println("create beolvasva");
 		String newObjectName = command.get(2);
@@ -300,7 +303,10 @@ public class Prototype {
 		}
 	}
 	
-	
+	/**
+	 * megol egy objektumot
+	 * @param command a teljes felhasznaloi parancs
+	 */
 	public void dieCommand(ArrayList<String> command) {
 		System.out.println("die beolvasva");
 		String objectName = command.get(2);
@@ -319,7 +325,10 @@ public class Prototype {
 	    	break;
 		}
 	}
-	
+	/**
+	 * Fajlbol beolvas egy bemenetet
+	 * @param command a teljes felhasznaloi parancs
+	 */
 	public void loadCommand(ArrayList<String> command) {
 		games.clear();
 		settlers.clear();
@@ -355,6 +364,10 @@ public class Prototype {
 		    }
 	}
 
+	/**
+	 * Object is stepped by user
+	 * object can be: game, map, asteroid, settler, robot, ufo
+	 */
 	public void stepCommand(ArrayList<String> command){
 		switch (command.get(1)){
 			case "game":
@@ -378,6 +391,11 @@ public class Prototype {
 		}
 	}
 
+	/**
+	 * Objects' stats is printed out by user
+	 * if has second parameter: to file
+	 * else: to console
+	 */
 	public void saveCommand(ArrayList<String> command){
 		StringBuilder sb = new StringBuilder();
 		for (Game g : games)
@@ -417,7 +435,10 @@ public class Prototype {
 
 		}
 	}
-	
+	/**
+	 * Teleportal egy entitassal
+	 * @param command a teljes felhasznaloi parancs
+	 */
 	public void teleportCommand(ArrayList<String> command) {
 		System.out.println("teleport beolvasva");
 		String objectName = command.get(2);
@@ -433,7 +454,10 @@ public class Prototype {
 		}
 
 	}
-	
+	/**
+	 * Napvihart idez meg egy helyen
+	 * @param command a teljes felhasznaloi parancs
+	 */
 	public void solarstormCommand(ArrayList<String> command) {
 		System.out.println("solarstorm beolvasva");
 		String objectName = command.get(2);

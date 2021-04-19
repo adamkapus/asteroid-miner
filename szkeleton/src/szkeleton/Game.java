@@ -26,37 +26,37 @@ public class Game {
 
     	//Szkeleton.indentDepth--;
     }
-
+    //getter for settlers
     public ArrayList<Settler> getSettlers(){
     	return this.settlers;
 	}
-
+  //getter for robots
 	public ArrayList<Robot> getRobots(){
     	return this.robots;
 	}
-
+	//getter for ufos
 	public ArrayList<Ufo> getUfos() {
 		return ufos;
 	}
-
+	//setter for ufos
 	public void setUfos(ArrayList<Ufo> ufos) {
 		this.ufos = ufos;
 	}
-
+//getter for name
 	public String getName(){ return this.name; }
-
+	//setter for settlers
 	public void setSettlers(ArrayList<Settler> list){
     	this.settlers = list;
 	}
-
+	//setter for name
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	//setter for map
 	public void setMap(Map map) {
 		this.map = map;
 	}
-
+	//setter for robots
 	public void setRobots(ArrayList<Robot> robots) {
 		this.robots = robots;
 	}
@@ -184,7 +184,10 @@ public class Game {
         
         settlers.add(s);
     }
-
+    /**
+     * az objektum adattagjai string formaban
+     * @return az objektum adattagjai stringesitve
+     */
 	public String ToString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("Game ");

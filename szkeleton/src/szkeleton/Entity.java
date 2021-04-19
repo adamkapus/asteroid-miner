@@ -7,9 +7,19 @@ import java.util.ArrayList;
  * A Game tárolja a listájukat, és egy aszteroidán tudnak tartózkodni
  */
 public abstract class Entity implements Steppable {
+    /**
+     * Az a hely, ahol az entitás tartózkodik
+     */
     protected Place place;
+
+    /**
+     * A játék
+     */
     protected Game game;
-    
+
+    /**
+     * Objektum neve
+     */
     String name;
 
     /**
