@@ -89,7 +89,7 @@ public class Game {
     	//Most ket jatekos letrehozasa random kezdőhelyen
     	//Szkeleton.indentDepth++;
     	Place p1 = map.GetRandomPlace();
-    	Szkeleton.indentDepth++;
+    	//Szkeleton.indentDepth++;
     	Place p2 = map.GetRandomPlace();
     	//Szkeleton.indentDepth++;
     	Settler s1 = new Settler("s1",this,p1);
