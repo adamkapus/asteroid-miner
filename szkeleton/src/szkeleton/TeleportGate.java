@@ -78,7 +78,7 @@ public class TeleportGate extends Place {
         sb.append("Teleportgate ");
         sb.append(name);
         sb.append("\n\tentity ");
-        if (entity != null) {
+        if (entity.size() != 0) {
             for (Entity e : entity) {
                 sb.append(e.getName());
                 sb.append(' ');

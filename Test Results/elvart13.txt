@@ -6,6 +6,7 @@ Game g1
 Ufo u1
  	game g1
  	place a2
+	resources null
 Map m1
  	game g1
  	places a1 a2
