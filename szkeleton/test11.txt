@@ -2,12 +2,15 @@ create game g1
 create map m1
 create teleportgate t1
 create teleportgate t2
+create asteroid a1
+create asteroid a2
 create ufo u
 add map m1 game g1
-add map m1 teleportgate t1
-add map m1 teleportgate t2
+add map m1 asteroid a1
+add map m1 asteroid a2
 add ufo u game g1
 add ufo u teleportgate t1
-add teleportgate t1 ufo u
-set teleportgate t1 pair t2
+add teleportgate tg1 teleportgate tg2
+add teleportgate tg1 asteroid a1
+add teleportgate tg2 asteroid a2
 teleport ufo u
