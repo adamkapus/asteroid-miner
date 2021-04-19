@@ -202,8 +202,11 @@ public class Prototype {
 	    }  
 		parseCommand(command);
 	}
-	
-	//kap egy parancsot stringekre bontva
+
+	/**
+	 * @param command
+	 * kap egy parancsot stringekre bontva
+	 */
 	public void parseCommand(ArrayList<String> command) {
 		switch(command.get(0)) {
 			case "exit":
@@ -485,7 +488,10 @@ public class Prototype {
 		}
 	}
 
-	// Összekapcsolja a kapott objektumokat.
+	/**
+	 * @param command
+	 * Összekapcsolja a kapott objektumokat.
+	 */
 	public void addCommand(ArrayList<String> command){
 		System.out.println("add beolvasva");
 		String objName1 = command.get(2);
@@ -686,7 +692,10 @@ public class Prototype {
 		}
 	}
 
-	// Végrehajtja a fúrás parancsot
+	/**
+	 * @param command
+	 * Végrehajtja a fúrás parancsot
+	 */
 	public void drillCommand(ArrayList<String> command){
 		System.out.println("drill beolvasva");
 		String entityType = command.get(1);
@@ -704,7 +713,10 @@ public class Prototype {
 		}
 	}
 
-	// Végrehajtja a bányászás parancsot
+	/**
+	 * @param command
+	 * Végrehajtja a bányászás parancsot
+	 */
 	public void mineCommand(ArrayList<String> command){
 		System.out.println("mine beolvasva");
 		String entityType = command.get(1);
@@ -722,6 +734,10 @@ public class Prototype {
 		}
 	}
 
+	/**
+	 * A set parancs kezelése
+	 * @param command
+	 */
 	public void setCommand(ArrayList<String> command){
 		System.out.println("set beolvasva");
 		String objType = command.get(1);
@@ -772,6 +788,10 @@ public class Prototype {
 		}
 	}
 
+	/**
+	 * @param command
+	 * A move parancs kezelése
+	 */
 	public void moveCommand(ArrayList<String> command){
 		System.out.println("move beolvasva");
 		String objType1 = command.get(1);
@@ -811,6 +831,12 @@ public class Prototype {
 
 		}
 	}
+
+	/**
+	 * @param command
+	 * Nyersanyag illetve teleportkapu lehelyezése parancs
+	 * Ezt a parancsot csak settler adhatja ki ezért nincs az objType2 használva
+	 */
 
 	public void placeCommand(ArrayList<String> command){
 		System.out.println("place beolvasva");
