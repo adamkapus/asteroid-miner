@@ -5,9 +5,9 @@ Game g
 	ufos null
 Settler s1
 	game g
-	gates tg3 tg4 
-	place tg2
-	resources null
+	gates tg1 tg2 
+	place a
+	resources i1 i2 iw u1 
 Map m
 	game g
 	places null
@@ -21,26 +21,19 @@ Asteroid a
 	timeCurrent 0
 	timeLimit 0
 Teleportgate tg1
-	entity s1 
+	entity null
 	hitByStorm false
 	neighbors null
-	pair null
+	pair tg2
 	pairIsPlaced false
 Teleportgate tg2
-	entity s1 
-	hitByStorm false
-	neighbors null
-	pair null
-	pairIsPlaced false
-Teleportgate tg3
 	entity null
 	hitByStorm false
 	neighbors null
-	pair tg4
+	pair tg1
 	pairIsPlaced false
-Teleportgate tg4
-	entity null
-	hitByStorm false
-	neighbors null
-	pair tg3
-	pairIsPlaced false
+IceWater iw
+Iron i1
+Iron i2
+Uran u1
+	closeToSun 3
