@@ -349,6 +349,10 @@ public class Prototype {
 		    }
 	}
 
+	/**
+	 * Object is stepped by user
+	 * object can be: game, map, asteroid, settler, robot, ufo
+	 */
 	public void stepCommand(ArrayList<String> command){
 		switch (command.get(1)){
 			case "game":
@@ -372,6 +376,11 @@ public class Prototype {
 		}
 	}
 
+	/**
+	 * Objects' stats is printed out by user
+	 * if has second parameter: to file
+	 * else: to console
+	 */
 	public void saveCommand(ArrayList<String> command){
 		StringBuilder sb = new StringBuilder();
 		for (Game g : games)

@@ -41,11 +41,18 @@ public class Asteroid extends Place{
         else
             state = State.FAR;
     }
+
+    /**
+     * create asteroid with name
+     */
     public Asteroid(String name){
         super(name);
         // default values!
     }
 
+    /**
+     * setter functions
+     */
     public void setTimeLimit(int timeLimit) {
         this.timeLimit = timeLimit;
     }
@@ -56,6 +63,9 @@ public class Asteroid extends Place{
         this.resource = resource;
     }
 
+    /**
+     * getter functions
+     */
     public int getTimeLimit() {
         return timeLimit;
     }
@@ -116,6 +126,9 @@ public class Asteroid extends Place{
         r.Drill(); // robot can only drill
     }
 
+    /**
+     * Action for ufo
+     */
     @Override
     public void Action(Ufo u) {
         u.Mine();
@@ -135,6 +148,7 @@ public class Asteroid extends Place{
 
     /**
      *Telepes bányászása esetn hívódó függvény.
+     * @return resource inside asteroid
      */
     public Resource MinedBy(Settler s){
         if(resource!=null){
@@ -144,11 +158,17 @@ public class Asteroid extends Place{
         else
             return null;
     }
+
+    /**
+     * Asteroid is getting mined by ufo
+     * @return resource inside asteroid
+     */
     public Resource MinedBy(Ufo u){
         if(resource!=null){
-        Resource rTemp = resource;
-        resource = null;
-        return rTemp;}
+            Resource rTemp = resource;
+            resource = null;
+            return rTemp;
+        }
         else
             return null;
     }
@@ -175,6 +195,10 @@ public class Asteroid extends Place{
             e.BlownUp();
         }
     }
+
+    /**
+     * Asteroid is placed
+     */
     @Override
     public void Placed(){}
 
@@ -252,11 +276,17 @@ public class Asteroid extends Place{
         layers = newLayers;
     }
 
+    /**
+     * Set state to close or far
+     */
     public void SetStateToClose(){
         state = State.CLOSE;
     }
     public void SetStateToFar() {state = State.FAR;}
 
+    /**
+     * Return the stats of the object
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Asteroid ");
