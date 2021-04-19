@@ -1,0 +1,20 @@
+create settler s1
+create game g
+create map m
+create asteroid a
+create iron i1
+create iron i2
+create icewater iw
+create uran u1
+create teleportgate tg1
+create teleportgate tg2
+add game g settler s1
+add map m game g
+add settler s1 asteroid a
+add iron i1 settler s1
+add iron i2 settler s1
+add icewater iw settler s1
+add uran u1 settler s1
+add teleportgate tg1 settler s1
+add teleportgate tg2 settler s1
+build teleportgate tg3 tg4 setter s1

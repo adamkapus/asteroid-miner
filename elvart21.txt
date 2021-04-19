@@ -1,0 +1,46 @@
+Game g
+	map m
+	robots null
+	settlers s1 
+	ufos null
+Settler s1
+	game g
+	gates tg3 tg4 
+	place tg2
+	resources null
+Map m
+	game g
+	places null
+Asteroid a
+	entity s1 
+	layers 0
+	map null
+	neighbors null
+	resource null
+	state far
+	timeCurrent 0
+	timeLimit 0
+Teleportgate tg1
+	entity s1 
+	hitByStorm false
+	neighbors null
+	pair null
+	pairIsPlaced false
+Teleportgate tg2
+	entity s1 
+	hitByStorm false
+	neighbors null
+	pair null
+	pairIsPlaced false
+Teleportgate tg3
+	entity null
+	hitByStorm false
+	neighbors null
+	pair tg4
+	pairIsPlaced false
+Teleportgate tg4
+	entity null
+	hitByStorm false
+	neighbors null
+	pair tg3
+	pairIsPlaced false
