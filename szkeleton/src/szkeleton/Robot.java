@@ -5,24 +5,37 @@ import java.util.Scanner;
 
 public class Robot extends Entity{
 
-    //név szerinti konstruktor a tesztesetekhez
+    /**
+     * Név szerinti konstruktor a tesztesetekhez
+     */
     public Robot(String name){
         super(name);
     }
 
-    // konstruktor
+    /**
+     * Konstruktor
+     */
 	public Robot(String name, Game g, Place p) {
     	super(name, g, p);
     }
-    // műveletvégrehajtás
+
+    /**
+     * Műveletvégrehajtás
+     */
     public void Action(){
 	    place.Action(this);
     }
-	// robot halála
+
+    /**
+     * Robot halála
+     */
     public void Die() {
 	    game.RobotDied(this);
     }
-    // robotot aszteroidarobbanás éri
+
+    /**
+     * Robotot aszteroidarobbanás éri
+     */
     public void BlownUp() {
         // random szomszédra átrepül
         Place destination = place.GetRandomNeighbor();
@@ -30,21 +43,31 @@ public class Robot extends Entity{
         destination.AcceptEntity(this);
         place = destination;
     }
-    // robot lép
+
+    /**
+     * Robot lép
+     */
     public void Step() {
         Random rand1 = new Random();
 
-        // random vagy műveletet hajt végre vagy mozog
-        int rand_int = rand1.nextInt(2); // a random szám 0, vagy 1 lehet
+        /**
+         * random vagy műveletet hajt végre vagy mozog
+         * a random szám 0, vagy 1 lehet
+         */
+        int rand_int = rand1.nextInt(2);
 
         try {
             switch (rand_int) {
                 case 0:
-                    // műveletvégzés: aszteroidán fúrás, teleportkapun semmi
+                    /**
+                     * műveletvégzés: aszteroidán fúrás, teleportkapun semmi
+                     */
                     this.Action();
                     break;
                 case 1:
-                    // mozgás
+                    /**
+                     * mozgás
+                     */
                     this.Move(game.GetMap().GetAstNum());
                     break;
             }
@@ -53,6 +76,9 @@ public class Robot extends Entity{
         }
     }
 
+    /**
+     * Objektum string-gé alakítása a save parancshoz
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Robot ");

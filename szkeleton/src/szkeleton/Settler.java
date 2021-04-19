@@ -5,34 +5,43 @@ import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Settler extends Entity{
-    // teleportkapu
+    /**
+     * telepesnél llévő teleportkapuk
+     */
     private ArrayList<TeleportGate> gates = new ArrayList<>();
-    // nyersanyagok
+
+    /**
+     * telepesnél lévő nyersanyagok
+     */
     private ArrayList<Resource> resources = new ArrayList<>();
     
     Prototype proto;
 
-    //név szerinti konstruktor a tesztesetekhez
+    /**
+     * név szerinti konstruktor a tesztesetekhez
+     */
     public Settler(String name, Prototype p){
         super(name);
         proto = p;
     }
 
-    // Settler konstruktora
+    /**
+     * Settler konstruktora
+     */
     public Settler(String name, Game g, Place p) {
     	super(name, g, p);
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-    	System.out.println(name +".Settler()");
-    	
-    	Szkeleton.indentDepth--;
     }
-    // Settler műveletvégzés
+
+    /**
+     * Settler műveletvégzés
+     */
     public void Action() {
         place.Action(this);
-
-        Szkeleton.indentDepth--;
     }
-    // Kapott nyersanyaglista kiegészítése a nála lévő nyersanyagokkal
+
+    /**
+     * Kapott nyersanyaglista kiegészítése a nála lévő nyersanyagokkal
+     */
     @Override
     public ArrayList<Integer> UpdateResourceList(ArrayList<Integer> l){
         // Lista bővítése a nyersanyag feladata
@@ -43,7 +52,10 @@ public class Settler extends Entity{
         }
         return l;
     }
-    // Bányászás művelete
+
+    /**
+     * Bányászás művelete
+     */
     public void Mine() {
         Asteroid a = (Asteroid)place;
         // Csak akkor bányászhatunk, ha kevesebb mint 10 nyersanyagunk van
@@ -54,16 +66,25 @@ public class Settler extends Entity{
 
 
     }
-    // A settler halála
+
+    /**
+     * A settler halála
+     */
     public void Die() {
         place.RemoveEntity(this);
         game.SettlerDied(this);
     }
-    // Felrobbanás aszteroidarobbanás által
+
+    /**
+     * Felrobbanás aszteroidarobbanás által
+     */
     public void BlownUp() {
         this.Die();
     }
-    // Nyersanyag lerakása az aszteroidába
+
+    /**
+     * Nyersanyag lerakása az aszteroidába id szerint
+     */
     public void PlaceResource(int n) {
         Asteroid a = (Asteroid) place;
         // csak akkor rakhatjuk le, ha az aszteroida kérge 0
@@ -72,7 +93,10 @@ public class Settler extends Entity{
                 a.InsertResource(resources.get(n));
         }
     }
-    //proto miatt
+
+    /**
+     * Neyersanyag lerakás nyersanyag szerint (proto miatt)
+     */
     public void PlaceResource(Resource r){
         Asteroid a = (Asteroid) place;
         if(a.GetLayers() == 0){
@@ -80,11 +104,17 @@ public class Settler extends Entity{
             a.InsertResource(r);
         }
     }
-    // nyersanyag átadása a telepesnek
+
+    /**
+     * nyersanyag átadása a telepesnek
+     */
     public void AddResource(Resource r) {
         resources.add(r);
     }
-    // robotépítés
+
+    /**
+     * robotépítés
+     */
     public void BuildRobot(String nev) {
         // szükséges nyersanyagok
         ArrayList<Integer> req = new ArrayList<>();
@@ -119,7 +149,10 @@ public class Settler extends Entity{
             }
         }
     }
-    // teleportálás
+
+    /**
+     * teleportálás
+     */
     public void UseTeleport() {
         // célállomás
         TeleportGate destination = ((TeleportGate) place).GetPair();
@@ -129,7 +162,10 @@ public class Settler extends Entity{
         destination.AcceptEntity(this);
         place=destination;
     }
-    // teleportkapu-építés
+
+    /**
+     * teleportkapu-építés
+     */
     public void BuildTeleport(String nev1, String nev2) {
         // csak akkor építhetünk, ha nincs nálunk már teleportkapu
         if (gates.size() != 0) {
@@ -186,7 +222,9 @@ public class Settler extends Entity{
         }
     }
 
-    // teleportkapu lerakása
+    /**
+     * teleportkapu lerakása
+     */
     public void PlaceDownTeleport() {
         // a teleportkapu szomszédja a place-nek és a place szomszédja a teleportkapunak
     	if(gates.size() ==0) {
@@ -202,12 +240,18 @@ public class Settler extends Entity{
 	        game.GetMap().AddPlace(placeable);
     	}
     }
-    // nyersanyag leszedése a telepesről
+
+    /**
+     * nyersanyag leszedése a telepesről
+     */
     public void RemoveResource(Resource r) {
         resources.remove(r);
         proto.removeResource(r);
     }
-    // telepes köre
+
+    /**
+     * telepes köre
+     */
     public void Step() {
         System.out.println("1 -- Mozgás\n"
                 + "2 -- Interakció az aszteroidával\n"
@@ -250,7 +294,10 @@ public class Settler extends Entity{
             System.out.println("Nem jó számot adtál meg");
         }
     }
-    // teleportkapu telepeshez adása
+
+    /**
+     * teleportkapu telepeshez adása
+     */
     public void AddTeleportGate(TeleportGate tg){
         gates.add(tg);
     }
@@ -260,6 +307,9 @@ public class Settler extends Entity{
     public ArrayList<TeleportGate> GetGates() {return gates;}
     public ArrayList<Resource> GetResources() {return resources;}
 
+    /**
+     * Objektum string-gé alakítása a save parancshoz
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Settler ");

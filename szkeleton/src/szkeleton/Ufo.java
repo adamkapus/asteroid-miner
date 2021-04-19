@@ -4,21 +4,40 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ufo extends Entity{
+
     private ArrayList<Resource> resources = new ArrayList<>();
-    //név szerinti konstruktor a tesztesetekhez
+
+    /**
+     * név szerinti konstruktor a tesztesetekhez
+     */
     public Ufo(String name){
         super(name);
     }
 
+    /**
+     * Ufo műveletvégzés
+     */
     public void Action() {
         this.place.Action(this);
     }
+
+    /**
+     * Meghal az ufo
+      */
     public void Die() {
         game.UfoDied(this);
     }
+
+    /**
+     * Az ufo felrobban
+     */
     public void BlownUp() {
         this.Die();
     }
+
+    /**
+     * Ufo egy lépése
+     */
     public void Step() {
         Random rand1 = new Random();
 
@@ -41,9 +60,11 @@ public class Ufo extends Entity{
         }
     }
 
-    public void UseTeleport() {
-    }
+    public void UseTeleport() { }
 
+    /**
+     * Bányászás művelete
+     */
     public void Mine() {
         Asteroid a = (Asteroid)place;
         // Csak akkor bányászhatunk, ha kevesebb mint 10 nyersanyagunk van
@@ -53,6 +74,9 @@ public class Ufo extends Entity{
         }
     }
 
+    /**
+     * Objektum string-gé alakítása a save parancshoz
+     */
     public String ToString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Ufo ");
