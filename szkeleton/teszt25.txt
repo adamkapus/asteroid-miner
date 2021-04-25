@@ -1,0 +1,37 @@
+create game g1
+create map m1
+create asteroid a1
+create iron i1
+create iron i2
+create iron i3
+create coal c1
+create coal c2
+create coal c3
+create uran u1
+create uran u2
+create uran u3
+create icewater iw1
+create icewater iw2
+create icewater iw3
+create settler s1
+create settler s2
+add map m1 game g1
+add settler s1 game g1
+add settler s2 game g1
+add asteroid a1 settler s1
+add iron i1 settler s1
+add iron i2 settler s1
+add iron i3 settler s1
+add coal c1 settler s1
+add coal c2 settler s1
+add coal c3 settler s1
+add uran u1 settler s1
+add uran u2 settler s1
+add uran u3 settler s1
+add icewater iw1 settler s1
+add asteroid a1 settler s2
+add icewater iw2 settler s2
+add icewater iw3 settler s2
+add asteroid a1 map m1
+set asteroid a1 layers 3
+step asteroid a1

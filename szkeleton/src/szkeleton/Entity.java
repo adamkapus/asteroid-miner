@@ -7,22 +7,35 @@ import java.util.ArrayList;
  * A Game tárolja a listájukat, és egy aszteroidán tudnak tartózkodni
  */
 public abstract class Entity implements Steppable {
+    /**
+     * Az a hely, ahol az entitás tartózkodik
+     */
     protected Place place;
+
+    /**
+     * A játék
+     */
     protected Game game;
-    
-    
+
+    /**
+     * Objektum neve
+     */
     String name;
 
     /**
-     * Entotás konstruktora.
+     * Entitás név szerinti konstruktora a tesztesetekhez.
+     */
+    public Entity(String n){
+        this.name = n;
+    }
+
+    /**
+     * Entitás konstruktora.
      */
     public Entity(String n, Game g, Place p) {
     	this.name = n;
     	this.game = g;
     	this.place = p;
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-    	System.out.println(name +".Entity()");
-    	Szkeleton.indentDepth++;
     	p.AcceptEntity(this);
     }
 
@@ -30,16 +43,10 @@ public abstract class Entity implements Steppable {
      * Szomszédos aszteroidára áthelyezi az entity-t.
      */
     public void Move(int asteroidID) {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Move()");
-
-        Szkeleton.indentDepth++;
         Place neighbour = place.GetNeighbor(asteroidID);
-        Szkeleton.indentDepth++;
         place.RemoveEntity(this);
-        Szkeleton.indentDepth++;
         neighbour.AcceptEntity(this);
-        Szkeleton.indentDepth--;
+        place = neighbour;
     }
 
     /**
@@ -51,22 +58,22 @@ public abstract class Entity implements Steppable {
      * Aszteroidán való fúrást kezeli
      */
     public void Drill(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Drill()");
-
         Asteroid a = (Asteroid)place;
-
-        Szkeleton.indentDepth++;
         a.ReduceRockLayer();
-
-        Szkeleton.indentDepth--;
     }
 
     /**
-     *
+     *  Nyersanyagok listájának frissítése
      */
     public ArrayList<Integer> UpdateResourceList(ArrayList<Integer> l){ return l; }
 
     public abstract void Die();
     public abstract void BlownUp();
+
+    public void SetPlace(Place p) {this.place = p;}
+    public void SetGame(Game g) {this.game = g;}
+    public Place GetPlace() {return this.place;}
+    public Game GetGame() {return  this.game;}
+    
+    public String getName() {return this.name;}
 }

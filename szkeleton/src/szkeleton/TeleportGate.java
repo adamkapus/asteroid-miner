@@ -1,84 +1,167 @@
 package szkeleton;
 
+/**
+ * Class representing a teleport gate
+ */
 public class TeleportGate extends Place {
     private boolean pairIsPlaced; // whether its pair is placed
     private TeleportGate pair; // its pair
+    private boolean isCrazy = false; // happens after it got hit by solar storm
 
+    /**
+     * create a teleport gate with name, unique id, map
+     */
     public TeleportGate(String name, int id, Map m){
         super(name, id, m);
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".TeleportGate()");
-        Szkeleton.indentDepth--;
         pairIsPlaced = false;
         pair = null;
     }
 
-    // teleportgate is hit by solar storm
+    /**
+     * create a teleport gate with name
+     */
+    public TeleportGate(String name){
+        super(name);
+        pairIsPlaced = false;
+        pair = null;
+    }
+
+    /**
+     * getter for name
+     */
+    public String getName(){ return this.name; }
+
+    /**
+     * teleportgate is hit by solar storm
+      */
     @Override
     public void HitByStorm() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".HitByStorm()");
         for(Entity e : entity){
-            Szkeleton.indentDepth++;
             e.Die();
         }
-        Szkeleton.indentDepth--;
+        isCrazy = true;
     }
-    // do action by settler
+
+    /**
+     * do action by settler
+     */
     @Override
     public void Action(Settler s){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Action()");
         if (pairIsPlaced) {
-            Szkeleton.indentDepth++;
             s.UseTeleport();
         }
-        Szkeleton.indentDepth--;
     }
-    // do action by robot (nothing is done here)
+
+    /**
+     * do action by robot (nothing is done here as robots cannot teleport)
+     */
     @Override
-    public void Action(Robot r){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Action()");
-        Szkeleton.indentDepth--;
+    public void Action(Robot r){}
+
+    /**
+     * do action by ufo
+     */
+    @Override
+    public void Action(Ufo u) {
+        if (pairIsPlaced) {
+            u.UseTeleport();
+        }
     }
-    // returns the pair of the teleportgate
+
+    /**
+     * returns the pair of the teleportgate
+     */
     public TeleportGate GetPair(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".GetPair()");
-        Szkeleton.indentDepth--;
         return pair;
     }
 
+    /**
+     * setter for isCrazy
+     */
+    public void SetIsCrazy(){isCrazy=true;}
+
+    /**
+     * set the pair of the gate
+     */
     public void SetPair(TeleportGate tg){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".SetPair()");
-        Szkeleton.indentDepth--;
         pair = tg;
     }
-    // notify the gate that its pair was placed
+
+    /**
+     * notify the gate that its pair was placed
+     */
     public void SetPairIsPlaced(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".SetPairIsPlaced()");
-        Szkeleton.indentDepth--;
         pairIsPlaced = true;
     }
-    // teleportgate is placed
+
+    /**
+     * getter for pairIsPlaced
+     */
+    public boolean GetPairIsPlaced() {return pairIsPlaced;}
+
+    /**
+     * teleportgate is placed
+     */
     @Override
     public void Placed(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Placed()");
-        Szkeleton.indentDepth++;
         pair.SetPairIsPlaced();
-        Szkeleton.indentDepth--;
-    }
-    // make its turn
-    @Override
-    public void Step(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Step()");
-        Szkeleton.indentDepth--;
     }
 
-    
+    /**
+     * make its turn
+     */
+    @Override
+    public void Step(){}
+
+    /**
+     * move gate to random neighbor
+     * happens when gate goes crazy
+     */
+    public void MoveRandom(){
+        Asteroid a = (Asteroid) neighbors.get(0);
+        a.RemoveNeighbor(this);
+        Place neighbor = a.GetRandomNeighbor();
+        neighbor.AddNeighbor(this);
+    }
+
+    /**
+     * Return the stats of the object
+     */
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Teleportgate ");
+        sb.append(name);
+        sb.append("\n\tentity ");
+        if (entity.size() != 0) {
+            for (Entity e : entity) {
+                sb.append(e.getName());
+                sb.append(' ');
+            }
+        }
+        else {sb.append("null");}
+        sb.append("\n\thitByStorm ");
+        if (isCrazy)
+            sb.append("true");
+        else
+            sb.append("false");
+        sb.append("\n\tneighbors ");
+        if(neighbors.size() != 0) {
+            for (Place p : neighbors) {
+                sb.append(p.GetName());
+                sb.append(' ');
+            }
+        } else sb.append("null");
+        sb.append("\n\tpair ");
+        if(pair != null) {
+            sb.append(pair.GetName());
+        } else sb.append("null");
+        sb.append("\n\tpairIsPlaced ");
+        if (pairIsPlaced)
+            sb.append("true");
+        else
+            sb.append("false");
+        sb.append("\n");
+
+        return sb.toString();
+    }
 }

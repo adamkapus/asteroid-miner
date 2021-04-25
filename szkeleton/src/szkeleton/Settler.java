@@ -5,110 +5,117 @@ import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Settler extends Entity{
-    // teleportkapu
+    /**
+     * telepesnél llévő teleportkapuk
+     */
     private ArrayList<TeleportGate> gates = new ArrayList<>();
-    // nyersanyagok
-    private ArrayList<Resource> resources = new ArrayList<>();
 
-    // Settler konstruktora
+    /**
+     * telepesnél lévő nyersanyagok
+     */
+    private ArrayList<Resource> resources = new ArrayList<>();
+    
+    Prototype proto;
+
+    /**
+     * név szerinti konstruktor a tesztesetekhez
+     */
+    public Settler(String name, Prototype p){
+        super(name);
+        proto = p;
+    }
+
+    /**
+     * Settler konstruktora
+     */
     public Settler(String name, Game g, Place p) {
     	super(name, g, p);
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-    	System.out.println(name +".Settler()");
-    	
-    	Szkeleton.indentDepth--;
     }
-    // Settler műveletvégzés
+
+    /**
+     * Settler műveletvégzés
+     */
     public void Action() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Action()");
-
-        Szkeleton.indentDepth++;
         place.Action(this);
-
-        Szkeleton.indentDepth--;
     }
-    // Kapott nyersanyaglista kiegészítése a nála lévő nyersanyagokkal
+
+    /**
+     * Kapott nyersanyaglista kiegészítése a nála lévő nyersanyagokkal
+     */
     @Override
     public ArrayList<Integer> UpdateResourceList(ArrayList<Integer> l){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".UpdateResourceList()");
-
         // Lista bővítése a nyersanyag feladata
         if(resources.size() > 0) {
             for (Resource r : resources) {
-                Szkeleton.indentDepth++;
                 l = r.AddToList(l);
             }
         }
-
-        Szkeleton.indentDepth--;
         return l;
     }
-    // Bányászás művelete
+
+    /**
+     * Bányászás művelete
+     */
     public void Mine() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Mine()");
         Asteroid a = (Asteroid)place;
-
-        Szkeleton.indentDepth++;
         // Csak akkor bányászhatunk, ha kevesebb mint 10 nyersanyagunk van
-        if (resources.size() < 10)
-            resources.add(a.MinedBy(this));
+        if (resources.size() < 10){
+            Resource r=a.MinedBy(this);
+            if(r!=null) resources.add(r);
+        }
 
-        Szkeleton.indentDepth--;
+
     }
-    // A settler halála
+
+    /**
+     * A settler halála
+     */
     public void Die() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Die()");
-
-        Szkeleton.indentDepth++;
+        place.RemoveEntity(this);
         game.SettlerDied(this);
-
-        Szkeleton.indentDepth--;
     }
-    // Felrobbanás aszteroidarobbanás által
+
+    /**
+     * Felrobbanás aszteroidarobbanás által
+     */
     public void BlownUp() {
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-    	System.out.println(name +".BlownUp()");
-    	
-    	Szkeleton.indentDepth++;
         this.Die();
-        
-        Szkeleton.indentDepth--;
     }
-    // Nyersanyag lerakása az aszteroidába
-    public void PlaceResource(int n) {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".PlaceResource()");
 
-        Szkeleton.indentDepth++;
+    /**
+     * Nyersanyag lerakása az aszteroidába id szerint
+     */
+    public void PlaceResource(int n) {
         Asteroid a = (Asteroid) place;
         // csak akkor rakhatjuk le, ha az aszteroida kérge 0
         if(a.GetLayers() == 0){
-            Szkeleton.indentDepth++;
-            a.InsertResource(resources.get(n));
+                RemoveResource(resources.get(n));
+                a.InsertResource(resources.get(n));
         }
-
-        
-        Szkeleton.indentDepth--;
     }
-    // nyersanyag átadása a telepesnek
+
+    /**
+     * Neyersanyag lerakás nyersanyag szerint (proto miatt)
+     */
+    public void PlaceResource(Resource r){
+        Asteroid a = (Asteroid) place;
+        if(a.GetLayers() == 0){
+            RemoveResource(r);
+            a.InsertResource(r);
+        }
+    }
+
+    /**
+     * nyersanyag átadása a telepesnek
+     */
     public void AddResource(Resource r) {
-
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddResource()");
-
         resources.add(r);
-
-        Szkeleton.indentDepth--;
     }
-    // robotépítés
-    public void BuildRobot() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".BuildRobot()");
 
+    /**
+     * robotépítés
+     */
+    public void BuildRobot(String nev) {
         // szükséges nyersanyagok
         ArrayList<Integer> req = new ArrayList<>();
         req.add(10);     //szén
@@ -120,7 +127,6 @@ public class Settler extends Entity{
         boolean iterate = true;
         while (rIter.hasNext() || (iterate)){
             try {
-                Szkeleton.indentDepth++;
                 req = rIter.next().RemoveFromList(req, this);
                 if (req.size() == 1)
                     iterate = true;
@@ -128,7 +134,6 @@ public class Settler extends Entity{
                     break;
             }
             catch (Exception e){
-                Szkeleton.indentDepth--;
                 rIter = resources.listIterator();
                 if (req.size() == 1)
                     iterate = false;
@@ -136,35 +141,34 @@ public class Settler extends Entity{
         }
         // Ha minden nyersanyag leszedte magát, létrehozzuk a robotot
         if(req.isEmpty()){
-            Szkeleton.indentDepth++;
-            Robot r = new Robot("r1", game, place);
+            Robot r = new Robot(nev, game, place);
+            game.AddRobot(r);
+            proto.addRobot(r);
+            if (nev == null) {
+                r.name = "r1";
+            }
         }
-
-        Szkeleton.indentDepth--;
     }
-    // teleportálás
+
+    /**
+     * teleportálás
+     */
     public void UseTeleport() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".UseTeleport()");
         // célállomás
-        Szkeleton.indentDepth++;
         TeleportGate destination = ((TeleportGate) place).GetPair();
         // jelenlegiről le
-        Szkeleton.indentDepth++;
         place.RemoveEntity(this);
         // újra fel
-        Szkeleton.indentDepth++;
         destination.AcceptEntity(this);
-
-        Szkeleton.indentDepth--;
+        place=destination;
     }
-    // teleportkapu-építés
-    public void BuildTeleport() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".BuildTeleport()");
+
+    /**
+     * teleportkapu-építés
+     */
+    public void BuildTeleport(String nev1, String nev2) {
         // csak akkor építhetünk, ha nincs nálunk már teleportkapu
         if (gates.size() != 0) {
-            Szkeleton.indentDepth--;
             return;
         }
 
@@ -180,7 +184,6 @@ public class Settler extends Entity{
         boolean iterate = true;
         while (rIter.hasNext() || (iterate)){
             try {
-                Szkeleton.indentDepth++;
                 req = rIter.next().RemoveFromList(req, this);
                 if (req.size() == 1)
                     iterate = true;
@@ -188,7 +191,6 @@ public class Settler extends Entity{
                     break;
             }
             catch (Exception e){
-                Szkeleton.indentDepth--;
                 rIter = resources.listIterator();
                 if (req.size() == 1)
                     iterate = false;
@@ -196,50 +198,61 @@ public class Settler extends Entity{
         }
         // ha megvan minden nyersanyag, építhetünk
         if(req.isEmpty()){
-            Szkeleton.indentDepth++;
             Map m = this.game.GetMap();
+            TeleportGate gate1 = new TeleportGate(nev1, 1, m);
+            TeleportGate gate2 = new TeleportGate(nev2, 2, m);
+            proto.addTeleportgate(gate1);
+            proto.addTeleportgate(gate2);
 
             // csak párban tudunk kaput építeni
-            Szkeleton.indentDepth++;
-            TeleportGate gate1 = new TeleportGate("tg1", 1, m);
-            Szkeleton.indentDepth++;
-            TeleportGate gate2 = new TeleportGate("tg2", 2, m);
+            if (nev1 == null) {
+                gate1.name = "tg1";
+            }
+            if (nev2 == null) {
+                gate2.name = "tg2";
+            }
 
             // a létrehozott kapuk egymás párjai
-            Szkeleton.indentDepth++;
             gate1.SetPair(gate2);
-            Szkeleton.indentDepth++;
             gate2.SetPair(gate1);
+            
+            gates.add(gate1);
+            gates.add(gate2);
+            
         }
-
-        Szkeleton.indentDepth--;
     }
 
-    // teleportkapu lerakása
+    /**
+     * teleportkapu lerakása
+     */
     public void PlaceDownTeleport() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".PlaceDownTeleport()");
-
         // a teleportkapu szomszédja a place-nek és a place szomszédja a teleportkapunak
-        Szkeleton.indentDepth++;
-        TeleportGate placeable = gates.get(gates.size() - 1);
-        place.AddNeighbor(placeable);
-        Szkeleton.indentDepth++;
-        placeable.AddNeighbor(place);
+    	if(gates.size() ==0) {
+    		 System.out.println("Nincs teleportkapu lehelyezesre!");
+    		 return;
+    	}
+    	else {
+	        //TeleportGate placeable = gates.get(gates.size() - 1);
+    		TeleportGate placeable = gates.get(0);
+    		gates.remove(0);
+	        place.AddNeighbor(placeable);
+	        placeable.AddNeighbor(place);
+	        game.GetMap().AddPlace(placeable);
+    	}
+    }
 
-        Szkeleton.indentDepth--;
-    }
-    // nyersanyag leszedése a telepesről
+    /**
+     * nyersanyag leszedése a telepesről
+     */
     public void RemoveResource(Resource r) {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".RemoveResource()");
         resources.remove(r);
-        Szkeleton.indentDepth--;
+        proto.removeResource(r);
     }
-    // telepes köre
+
+    /**
+     * telepes köre
+     */
     public void Step() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Step()");
         System.out.println("1 -- Mozgás\n"
                 + "2 -- Interakció az aszteroidával\n"
                 + "3 -- Robot építés\n"
@@ -257,27 +270,22 @@ public class Settler extends Entity{
                     Scanner input = new Scanner(System.in);
                     String strid = in.nextLine();
                     int id = Integer.parseInt(strid);
-                    Szkeleton.indentDepth++;
                     // mozgás
                     this.Move(id);
                     break;
                 case 2:
-                    Szkeleton.indentDepth++;
                     // műveletvégzés (akció)
                     this.Action();
                     break;
                 case 3:
-                    Szkeleton.indentDepth++;
                     // robotépítés
-                    this.BuildRobot();
+                    this.BuildRobot("robot");
                     break;
                 case 4:
-                    Szkeleton.indentDepth++;
                     // teleportépítés
-                    this.BuildTeleport();
+                    this.BuildTeleport("tg1", "tg2");
                     break;
                 case 5:
-                    Szkeleton.indentDepth++;
                     // teleport lerakás
                     this.PlaceDownTeleport();
                     break;
@@ -286,13 +294,50 @@ public class Settler extends Entity{
             System.out.println("Nem jó számot adtál meg");
         }
     }
-    // teleportkapu telepeshez adása
+
+    /**
+     * teleportkapu telepeshez adása
+     */
     public void AddTeleportGate(TeleportGate tg){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddTeleportGate()");
-
         gates.add(tg);
+    }
 
-        Szkeleton.indentDepth--;
+    public void SetGates(TeleportGate newGate) {gates.add(newGate);}
+    public void SetResource(Resource newRes) {resources.add(newRes);}
+    public ArrayList<TeleportGate> GetGates() {return gates;}
+    public ArrayList<Resource> GetResources() {return resources;}
+
+    /**
+     * Objektum string-gé alakítása a save parancshoz
+     */
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Settler ");
+        sb.append(name);
+        sb.append("\n\tgame ");
+        if(game != null) {
+            sb.append(game.getName());
+        } else sb.append("null");
+        sb.append("\n\tgates ");
+        if(gates.size() != 0) {
+            for (TeleportGate tg : gates) {
+                sb.append(tg.GetName());
+                sb.append(' ');
+            }
+        }else sb.append("null");
+        sb.append("\n\tplace ");
+        if(place != null) {
+            sb.append(place.GetName());
+        } else sb.append("null");
+        sb.append("\n\tresources ");
+        if(resources.size() != 0) {
+            for (Resource r : resources) {
+                sb.append(r.getName());
+                sb.append(' ');
+            }
+        } else sb.append(("null"));
+        sb.append('\n');
+
+        return sb.toString();
     }
 }

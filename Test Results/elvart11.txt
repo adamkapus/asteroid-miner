@@ -1,0 +1,24 @@
+Game g1
+	map m1
+	robots null
+	settlers null
+	ufos u 
+Ufo u
+	game g1
+	place t1
+	resources null
+Map m1
+	game g1
+	places null
+Teleportgate t1
+	entity u u 
+	hitByStorm false
+	neighbors null
+	pair t2
+	pairIsPlaced false
+Teleportgate t2
+	entity null
+	hitByStorm false
+	neighbors null
+	pair null
+	pairIsPlaced false

@@ -1,0 +1,20 @@
+Game g1
+	map m1
+	robots r1 
+	settlers null
+	ufos null
+Robot r1
+	game g1
+	place a1
+Map m1
+	game g1
+	place a1 
+Asteroid a1
+	entity r1 
+	layers 4
+	map m1
+	neighbors null
+	resource null
+	state far
+	timeCurrent 0
+	timeLimit 0

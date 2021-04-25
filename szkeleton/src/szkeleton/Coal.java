@@ -8,9 +8,6 @@ public class Coal extends Resource{
 
     public Coal(String name){
         super(name);
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Coal()");
-        Szkeleton.indentDepth--;
     }
     /**
      * Megkapja a játékos listáját és megkeresi, hogy van-e rajta szén.
@@ -18,9 +15,7 @@ public class Coal extends Resource{
      * A függvény visszatér a settler listáján talált elemekkel (-1 szén)
      */
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I,Settler s){
-    	
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println("RemoveFromList(Coal)");
+
         ArrayList<Integer> newList = new ArrayList<>();
         boolean found = false;
         for (Integer i : I){
@@ -28,23 +23,31 @@ public class Coal extends Resource{
                 newList.add(i);
             else if (i == 10){
                 found = true;
-                Szkeleton.indentDepth++;
                 s.RemoveResource(this);
             }
-            else
+            else {
                 newList.add(i);
+                s.RemoveResource(this);
+            }
         }
-        Szkeleton.indentDepth--;
         return newList;
     }
     /**
      *Kapott listához hozzáadja az Szén sorszámát, ami a 10.
      */
     public ArrayList<Integer> AddToList(ArrayList<Integer> I){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".AddToList()");
-        Szkeleton.indentDepth--;
         I.add(10);
         return I;
+    }
+    /**
+     * Kimenet vizsgálatához szűkséges függvény
+     */
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Coal ");
+        sb.append(name);
+        sb.append('\n');
+
+        return sb.toString();
     }
 }

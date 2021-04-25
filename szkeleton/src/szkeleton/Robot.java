@@ -5,73 +5,100 @@ import java.util.Scanner;
 
 public class Robot extends Entity{
 
-    // konstruktor
+    /**
+     * Név szerinti konstruktor a tesztesetekhez
+     */
+    public Robot(String name){
+        super(name);
+    }
+
+    /**
+     * Konstruktor
+     */
 	public Robot(String name, Game g, Place p) {
     	super(name, g, p);
-    	Szkeleton.writeTabs(Szkeleton.indentDepth);
-    	System.out.println(name +".Robot()");
-    	
-    	Szkeleton.indentDepth--;
     }
-    // műveletvégrehajtás
+
+    /**
+     * Műveletvégrehajtás
+     */
     public void Action(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Action()");
-        Szkeleton.indentDepth++;
 	    place.Action(this);
-	    Szkeleton.indentDepth--;
-	    
-	    
     }
-	// robot halála
+
+    /**
+     * Robot halála
+     */
     public void Die() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Die()");
-        Szkeleton.indentDepth++;
 	    game.RobotDied(this);
-	    Szkeleton.indentDepth--;
     }
-    // robotot aszteroidarobbanás éri
+
+    /**
+     * Robotot aszteroidarobbanás éri
+     */
     public void BlownUp() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".BlownUp()");
-
         // random szomszédra átrepül
-        Szkeleton.indentDepth++;
         Place destination = place.GetRandomNeighbor();
-        Szkeleton.indentDepth++;
         place.RemoveEntity(this);
-        Szkeleton.indentDepth++;
         destination.AcceptEntity(this);
-
-        Szkeleton.indentDepth--;
+        place = destination;
     }
-    // robot lép
+
+    /**
+     * Robot lép
+     */
     public void Step() {
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".Step()");
         Random rand1 = new Random();
 
-        // random vagy műveletet hajt végre vagy mozog
-        int rand_int = rand1.nextInt(2); // a random szám 0, vagy 1 lehet
+        /**
+         * random vagy műveletet hajt végre vagy mozog
+         * a random szám 0, vagy 1 lehet
+         */
+        int rand_int = rand1.nextInt(2);
 
         try {
             switch (rand_int) {
                 case 0:
-                    Szkeleton.indentDepth++;
-                    // műveletvégzés: aszteroidán fúrás, teleportkapun semmi
+                    /**
+                     * műveletvégzés: aszteroidán fúrás, teleportkapun semmi
+                     */
                     this.Action();
                     break;
                 case 1:
-                    Szkeleton.indentDepth++;
-                    // mozgás
+                    /**
+                     * mozgás
+                     */
                     this.Move(game.GetMap().GetAstNum());
                     break;
             }
         }catch (Exception e) {
             System.out.println("Nem jó számot adtál meg");
         }
+    }
 
-        Szkeleton.indentDepth--;
+    /**
+     * Objektum string-gé alakítása a save parancshoz
+     */
+    public String ToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Robot ");
+        sb.append(name);
+        sb.append("\n\tgame ");
+        if(game != null) {
+        	sb.append(game.getName());
+        }
+        else {
+        	sb.append("null");
+        }
+        sb.append("\n\tplace ");
+        if(place != null) {
+        	sb.append(place.GetName());
+        }
+        else {
+        	sb.append("null");
+        }
+        sb.append('\n');
+
+        return sb.toString();
     }
 }

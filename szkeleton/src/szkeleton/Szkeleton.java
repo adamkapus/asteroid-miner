@@ -41,7 +41,7 @@ public class Szkeleton {
 			else {
 				//lefuttatjuk a scenariot
 				System.out.println("Szekvenciaszam beolvasva: " + sequenceNumber + "\n");
-				runSequence(sequenceNumber);
+				////////////runSequence(sequenceNumber);
 			}
 		}
 
@@ -154,7 +154,7 @@ public class Szkeleton {
 
 		return answer;
 	}
-	
+	/*
 	//egy kapott szekvenciaszamhoz tartozo scenariot tartalmazo fuggvenyt meghivjuk
 	private void runSequence(int seq) {
 		indentDepth = 0;
@@ -249,13 +249,13 @@ public class Szkeleton {
 				break;
 		}
 
-	}
+	}*/
 	
 	public static void writeTabs(int tabs) {
 		for (int i = 0; i < tabs; i++)
 		System.out.print("\t");
 	}
-	
+	/*
 	
 	//Asteroid hit by solarstorm, without resource and layers
 	private void scenario1() {
@@ -492,7 +492,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(c1);
 		indentDepth++;
-		s1.BuildRobot();
+		//s1.BuildRobot();
 	}
 
 	private void scenario14(){//Build robot without resource
@@ -509,7 +509,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(u1);
 		indentDepth++;
-		s1.BuildRobot();
+		//s1.BuildRobot();
 	}
 
 	// Build teleport with enough resource
@@ -539,7 +539,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(u);
 		indentDepth++;
-		s1.BuildTeleport();
+		//s1.BuildTeleport();
 	}
 
 	// Build teleport without enough resource
@@ -557,7 +557,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddResource(iw);
 		indentDepth++;
-		s1.BuildTeleport();
+		//s1.BuildTeleport();
 	}
 
 	// Cannot build teleport
@@ -571,7 +571,7 @@ public class Szkeleton {
 		indentDepth++;
 		s1.AddTeleportGate(tg);
 		indentDepth++;
-		s1.BuildTeleport();
+		//s1.BuildTeleport();
 	}
 	
 	
@@ -787,5 +787,5 @@ public class Szkeleton {
 		indentDepth++;
 		s.Action();
 	}
-
+	*/
 }

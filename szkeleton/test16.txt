@@ -1,0 +1,22 @@
+create game g
+create map m
+create asteroid a1
+create asteroid a2
+create teleportgate tg
+create settler s
+create robot r
+create uran u
+add game g map m
+add game g settler s
+add game g robot r
+add map m asteroid a1
+add map m asteroid a2
+add map m teleportgate tg
+add asteroid a1 settler s
+add asteroid a2 robot r
+add settler s asteroid a1
+add robot r asteroid a2
+add asteroid a2 uran u
+solarStorm asteroid a1
+solarStorm asteroid a2
+solarStorm teleportgate tg

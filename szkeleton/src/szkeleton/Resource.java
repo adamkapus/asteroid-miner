@@ -3,12 +3,12 @@ package szkeleton;
 import java.util.ArrayList;
 
 /**
- * Nyersanyagok Ĺ�sosztĂˇlya
+ * Nyersanyagok ősosztálya
  */
 
 abstract public class Resource {
     /**
-     * AlapbĂłl a nyersanyagok nem radioaktĂ­vak
+     * Alapból a nyersanyagok nem radioaktívak
      */
     protected boolean radioactive= false;
     protected String name;
@@ -16,22 +16,18 @@ abstract public class Resource {
     public Resource(String name){
         this.name = name;
         
-        
     }
 
-    /*
+    /**
      * 
-     * VisszatĂ©r az anyagok radioaktivitĂˇsĂˇval.
+     * Visszatér az anyagok radioaktivitásával.
      */
     public boolean IsRadioactive(){
-        Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name +".IsRadioactive()");
-        Szkeleton.indentDepth--;
         return this.radioactive;
     }
 
     /**
-     * EltĂˇvolĂ­t egy Nyersanyagot a kapott settler listĂˇjĂˇbĂłl
+     * Eltávolít egy Nyersanyagot a kapott settler listájából
      */
     public ArrayList<Integer> RemoveFromList(ArrayList<Integer> I, Settler s){
         return I;}
@@ -40,9 +36,25 @@ abstract public class Resource {
     }
 
     /**
-     * SzublimĂˇciĂł
+     * Szublimáció (csak vízjég esetén)
      */
     public void Sublimation(Asteroid a){
-        Szkeleton.indentDepth--;
         return;}
+
+    /**
+     * Setter és Getter fügvények
+     */
+    public String getName(){
+       return name;
+    }
+    public void setName(String n){
+        this.name=n;
+    }
+
+    public boolean getRacioactive(){
+        return radioactive;
+    }
+    public void setRadioactive(boolean tf){
+        radioactive=tf;
+    }
 }

@@ -1,0 +1,34 @@
+Game g1
+ 	map m1
+ 	robots null
+ 	settlers s1
+ 	ufos null
+Settler s1
+ 	game g1
+ 	gates null
+ 	places a1
+ 	resources c1 c2 c3 c4 c5 c6 c7 c8 c9 c10
+Map m1
+ 	game g1
+ 	place a1
+Asteroid a1
+ 	entity s1
+ 	layers 0
+ 	map m1
+ 	neighbors null
+ 	resource u1
+	state far
+ 	timeCurrent 2
+ 	timeLimit 10
+Coal c1
+Coal c2
+Coal c3
+Coal c4
+Coal c5
+Coal c6
+Coal c7
+Coal c8
+Coal c9
+Coal c10
+Uran u1
+	CloseToSun 3
