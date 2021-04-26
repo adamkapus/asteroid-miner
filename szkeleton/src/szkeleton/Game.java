@@ -2,7 +2,7 @@ package szkeleton;
 
 import java.util.ArrayList;
 
-public class Game {
+public class Game implements Runnable {
 	// telepesek
     private ArrayList<Settler> settlers;
     // robotok
@@ -13,6 +13,11 @@ public class Game {
     // játék neve
     private String name;
     //private Prototype proto;
+
+	private MainFrame frame;
+	private boolean isTerminated = false;
+	private boolean canMoveToNext = false;
+	private Settler currentSettler = null;
 
     // konstruktor
     public  Game(String n) {
@@ -58,11 +63,13 @@ public class Game {
 
 	// játék megnyerése
     public void Win() {
-        System.out.println(name + ".Win()");
+        isTerminated = true;
+    	System.out.println(name + ".Win()");
     }
     // játék elvesztése
     public void Lose() {
-        System.out.println(name + ".Lose()");
+        isTerminated = true;
+    	System.out.println(name + ".Lose()");
     }
     // új játék kezdése
     public void NewGame() {
@@ -115,7 +122,7 @@ public class Game {
 		return map;
     }
 
-    // egy kör végrehajtása
+    // egy kör végrehajtása konzolos felületen
     public void OneRound() {
     	// először a telepesek lépnek
     	for(int i =0; i < settlers.size(); i++) {
@@ -133,4 +140,35 @@ public class Game {
     public void AddSettler(Settler s) {
         settlers.add(s);
     }
+
+	@Override
+	synchronized public void run() {
+		while(!isTerminated){
+			for (Settler s : settlers){
+				currentSettler = s;
+				while (!canMoveToNext) {
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						break;
+					}
+				}
+				canMoveToNext = false;
+			}
+			for (Robot r : robots){
+				r.Step();
+			}
+			for (Ufo u : ufos){
+				u.Step();
+			}
+			map.Step();
+		}
+	}
+
+	// ezt kell meghívnia amikor egy settler befejezte a körét!!!
+	public void finishedTurn(){
+		canMoveToNext = true;
+	}
+
+	public Settler getCurrentSettler(){return currentSettler;}
 }
