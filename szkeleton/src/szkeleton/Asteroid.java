@@ -25,6 +25,7 @@ public class Asteroid extends Place{
     private int layers;
     private Resource resource;
     private State state;
+    private AsteroidView asteroidView;
 
     /**
      * create asteroid with name, unique id, current map, resource to be inside
@@ -42,13 +43,27 @@ public class Asteroid extends Place{
             state = State.FAR;
     }
 
+    public Asteroid(String name, int id, szkeleton.Map m, Resource r, AsteroidView av){
+        super(name, id, m);
+        Random ran = new Random();
+        timeLimit = ran.nextInt(50 - 5) + 5; // random int between 5 and 50
+        timeCurrent = 0;
+        layers = ran.nextInt(10); // random int between 0 and 10
+        resource = r;
+        if (ran.nextInt(2) == 0) // random state
+            state = State.CLOSE;
+        else
+            state = State.FAR;
+        asteroidView = av;
+    }
+
     /**
      * create asteroid with name
      */
-    public Asteroid(String name){
+    /*public Asteroid(String name){
         super(name);
         // default values!
-    }
+    }*/
 
     /**
      * setter functions
@@ -122,9 +137,7 @@ public class Asteroid extends Place{
      * Robot által végzett action-öket kezeli.
      */
     @Override
-    public void Action(Robot r){
-        r.Drill(); // robot can only drill
-    }
+    public void Action(Robot r){ r.Drill(); }
 
     /**
      * Action for ufo
@@ -283,49 +296,4 @@ public class Asteroid extends Place{
         state = State.CLOSE;
     }
     public void SetStateToFar() {state = State.FAR;}
-
-    /**
-     * Return the stats of the object
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Asteroid ");
-        sb.append(name);
-        sb.append("\n\tentity ");
-        if (entity.size() != 0) {
-            for (Entity e : entity){
-                sb.append(e.getName());
-                sb.append(' ');
-            }
-        } else { sb.append("null"); }
-        sb.append("\n\tlayers ");
-        sb.append(layers);
-        sb.append("\n\tmap ");
-        if(map != null) {
-            sb.append(map.getName());
-        } else sb.append("null");
-        sb.append("\n\tneighbors ");
-        if(neighbors.size() != 0) {
-            for (Place p : neighbors) {
-                sb.append(p.GetName());
-                sb.append(' ');
-            }
-        } else sb.append("null");
-        sb.append("\n\tresource ");
-        if(resource != null) {
-            sb.append(resource.getName());
-        } else sb.append("null");
-        sb.append("\n\tstate ");
-        if (state == State.CLOSE)
-            sb.append("close");
-        else
-            sb.append("far");
-        sb.append("\n\ttimeCurrent ");
-        sb.append(timeCurrent);
-        sb.append("\n\ttimeLimit ");
-        sb.append(timeLimit);
-        sb.append("\n");
-
-        return sb.toString();
-    }
 }
