@@ -1,5 +1,8 @@
 package szkeleton;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 import javax.swing.JPanel;
 
 public class View extends JPanel {
@@ -15,4 +18,12 @@ public class View extends JPanel {
 	View(){
 	
 	}
+	
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.RED);
+        g.fillRect(350, 0, 100, 100);
+    }
 }
