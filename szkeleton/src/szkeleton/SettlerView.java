@@ -1,7 +1,9 @@
 package szkeleton;
 
+import java.util.HashMap;
+
 public class SettlerView {
-	private Map<Settler,Place> places;
+	private java.util.Map<Integer, Integer> resMap = new HashMap<>();
 	public void updateSettler(Settler s) {
 		
 	}
