@@ -7,4 +7,8 @@ public class UfoView {
 	public void ufoDied(Ufo u) {
 		
 	}
+	
+	UfoView(){
+		
+	}
 }

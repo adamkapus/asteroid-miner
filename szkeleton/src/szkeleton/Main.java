@@ -8,7 +8,10 @@ public class Main {
 		
 		//sz.runSzkeleton();
 		Prototype p = new Prototype();
-		p.runPrototype();
+		//p.runPrototype();
+		
+		MainFrame mf = new MainFrame();
+		mf.setVisible(true);
 
 	}
 
