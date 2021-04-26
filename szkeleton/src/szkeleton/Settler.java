@@ -14,16 +14,14 @@ public class Settler extends Entity{
      * telepesnél lévő nyersanyagok
      */
     private ArrayList<Resource> resources = new ArrayList<>();
-    
-    Prototype proto;
+    private SettlerView settlerView;
 
     /**
      * név szerinti konstruktor a tesztesetekhez
      */
-    public Settler(String name, Prototype p){
+    /*public Settler(String name){
         super(name);
-        proto = p;
-    }
+    }*/
 
     /**
      * Settler konstruktora
@@ -31,6 +29,12 @@ public class Settler extends Entity{
     public Settler(String name, Game g, Place p) {
     	super(name, g, p);
     }
+
+    public Settler(String name, Game g, Place p, SettlerView sv) {
+        super(name, g, p);
+        settlerView = sv;
+    }
+
 
     /**
      * Settler műveletvégzés
@@ -143,7 +147,7 @@ public class Settler extends Entity{
         if(req.isEmpty()){
             Robot r = new Robot(nev, game, place);
             game.AddRobot(r);
-            proto.addRobot(r);
+            //proto.addRobot(r);
             if (nev == null) {
                 r.name = "r1";
             }
@@ -201,8 +205,8 @@ public class Settler extends Entity{
             Map m = this.game.GetMap();
             TeleportGate gate1 = new TeleportGate(nev1, 1, m);
             TeleportGate gate2 = new TeleportGate(nev2, 2, m);
-            proto.addTeleportgate(gate1);
-            proto.addTeleportgate(gate2);
+            //proto.addTeleportgate(gate1);
+            //proto.addTeleportgate(gate2);
 
             // csak párban tudunk kaput építeni
             if (nev1 == null) {
@@ -246,7 +250,6 @@ public class Settler extends Entity{
      */
     public void RemoveResource(Resource r) {
         resources.remove(r);
-        proto.removeResource(r);
     }
 
     /**
@@ -306,38 +309,4 @@ public class Settler extends Entity{
     public void SetResource(Resource newRes) {resources.add(newRes);}
     public ArrayList<TeleportGate> GetGates() {return gates;}
     public ArrayList<Resource> GetResources() {return resources;}
-
-    /**
-     * Objektum string-gé alakítása a save parancshoz
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Settler ");
-        sb.append(name);
-        sb.append("\n\tgame ");
-        if(game != null) {
-            sb.append(game.getName());
-        } else sb.append("null");
-        sb.append("\n\tgates ");
-        if(gates.size() != 0) {
-            for (TeleportGate tg : gates) {
-                sb.append(tg.GetName());
-                sb.append(' ');
-            }
-        }else sb.append("null");
-        sb.append("\n\tplace ");
-        if(place != null) {
-            sb.append(place.GetName());
-        } else sb.append("null");
-        sb.append("\n\tresources ");
-        if(resources.size() != 0) {
-            for (Resource r : resources) {
-                sb.append(r.getName());
-                sb.append(' ');
-            }
-        } else sb.append(("null"));
-        sb.append('\n');
-
-        return sb.toString();
-    }
 }

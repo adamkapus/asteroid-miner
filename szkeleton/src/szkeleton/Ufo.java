@@ -6,7 +6,7 @@ import java.util.Random;
 public class Ufo extends Entity{
 
     private ArrayList<Resource> resources = new ArrayList<>();
-
+    private UfoView ufoView;
     /**
      * név szerinti konstruktor a tesztesetekhez
      */
@@ -14,6 +14,10 @@ public class Ufo extends Entity{
         super(name);
     }
 
+    public Ufo(String name, UfoView uv){
+        super(name);
+        ufoView = uv;
+    }
     /**
      * Ufo műveletvégzés
      */
@@ -74,37 +78,4 @@ public class Ufo extends Entity{
         }
     }
 
-    /**
-     * Objektum string-gé alakítása a save parancshoz
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ufo ");
-        sb.append(name);
-        sb.append("\n\tgame ");
-        if(game != null) {
-            sb.append(game.getName());
-        }
-        else {
-            sb.append("null");
-        }
-        sb.append("\n\tplace ");
-        if(place != null) {
-            sb.append(place.GetName());
-        }
-        else {
-            sb.append("null");
-        }
-        sb.append("\n\tresources ");
-        if(resources.size() != 0) {
-            for (Resource r : resources) {
-                sb.append(r.getName());
-                sb.append(' ');
-            }
-        } else sb.append(("null"));
-
-        sb.append('\n');
-
-        return sb.toString();
-    }
 }

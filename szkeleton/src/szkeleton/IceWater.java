@@ -5,12 +5,6 @@ import java.util.ArrayList;
  * A Vízjég az egyik nyersanyag a játékban.
  */
 public class IceWater extends Resource{
-    Prototype proto;
-
-    public IceWater(String name, Prototype p){
-        super(name);
-        this.proto = p;
-    }
     public IceWater(String name){
         super(name);
     }
@@ -49,18 +43,6 @@ public class IceWater extends Resource{
      */
     public void Sublimation(Asteroid a){
         a.RemoveResource();
-        proto.removeResource(this);
         return;
-    }
-    /**
-     * Kimenet vizsgálatához szűkséges függvény
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("IceWater ");
-        sb.append(name);
-        sb.append('\n');
-
-        return sb.toString();
     }
 }

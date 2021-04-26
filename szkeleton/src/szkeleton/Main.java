@@ -6,12 +6,11 @@ public class Main {
 		// TODO Auto-generated method stub
 		Szkeleton sz = new Szkeleton();
 		
-		//sz.runSzkeleton();
-		Prototype p = new Prototype();
-		//p.runPrototype();
 		
 		MainFrame mf = new MainFrame();
 		mf.setVisible(true);
+
+
 
 	}
 

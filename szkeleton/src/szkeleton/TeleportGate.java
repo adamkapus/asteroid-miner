@@ -7,7 +7,7 @@ public class TeleportGate extends Place {
     private boolean pairIsPlaced; // whether its pair is placed
     private TeleportGate pair; // its pair
     private boolean isCrazy = false; // happens after it got hit by solar storm
-
+    private TeleportView teleportView;
     /**
      * create a teleport gate with name, unique id, map
      */
@@ -20,10 +20,17 @@ public class TeleportGate extends Place {
     /**
      * create a teleport gate with name
      */
-    public TeleportGate(String name){
+    /*public TeleportGate(String name){
         super(name);
         pairIsPlaced = false;
         pair = null;
+    }*/
+
+    public TeleportGate(String name, int id, Map m, TeleportView tv){
+        super(name, id, m);
+        pairIsPlaced = false;
+        pair = null;
+        teleportView = tv;
     }
 
     /**
@@ -122,46 +129,5 @@ public class TeleportGate extends Place {
         a.RemoveNeighbor(this);
         Place neighbor = a.GetRandomNeighbor();
         neighbor.AddNeighbor(this);
-    }
-
-    /**
-     * Return the stats of the object
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Teleportgate ");
-        sb.append(name);
-        sb.append("\n\tentity ");
-        if (entity.size() != 0) {
-            for (Entity e : entity) {
-                sb.append(e.getName());
-                sb.append(' ');
-            }
-        }
-        else {sb.append("null");}
-        sb.append("\n\thitByStorm ");
-        if (isCrazy)
-            sb.append("true");
-        else
-            sb.append("false");
-        sb.append("\n\tneighbors ");
-        if(neighbors.size() != 0) {
-            for (Place p : neighbors) {
-                sb.append(p.GetName());
-                sb.append(' ');
-            }
-        } else sb.append("null");
-        sb.append("\n\tpair ");
-        if(pair != null) {
-            sb.append(pair.GetName());
-        } else sb.append("null");
-        sb.append("\n\tpairIsPlaced ");
-        if (pairIsPlaced)
-            sb.append("true");
-        else
-            sb.append("false");
-        sb.append("\n");
-
-        return sb.toString();
     }
 }
