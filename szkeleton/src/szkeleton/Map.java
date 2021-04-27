@@ -162,26 +162,4 @@ public class Map implements Steppable {
     public ArrayList<Integer> GetAllResources() {
         return allResources;
     }
-    /**
-     * Objektum string-gé alakítása a save parancshoz
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Map ");
-        sb.append(name);
-        sb.append("\n\tgame ");
-        if (game != null) {
-            sb.append(game.getName());
-        } else sb.append("null");
-        sb.append("\n\tplaces ");
-        if(places.size() != 0) {
-            for (Place p : places) {
-                sb.append(p.GetName());
-                sb.append(' ');
-            }
-        } else sb.append("null");
-        sb.append('\n');
-
-        return sb.toString();
-    }
 }

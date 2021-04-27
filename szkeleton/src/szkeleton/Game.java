@@ -2,7 +2,7 @@ package szkeleton;
 
 import java.util.ArrayList;
 
-public class Game {
+public class Game implements Runnable {
 	// telepesek
     private ArrayList<Settler> settlers;
     // robotok
@@ -12,25 +12,25 @@ public class Game {
     private Map map;
     // játék neve
     private String name;
-    private Prototype proto;
+    //private Prototype proto;
+
+	private MainFrame frame;
+	private boolean isTerminated = false;
+	private boolean canMoveToNext = false;
+	private Settler currentSettler = null;
 
     // konstruktor
-    public  Game(String n, Prototype p) {
+    public  Game(String n) {
     	name = n;
     	settlers = new ArrayList<Settler>();
     	robots = new ArrayList<Robot>();
     	ufos = new ArrayList<>();
-    	proto =p;
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-    	//System.out.println(name +".Game()");
-
-    	//Szkeleton.indentDepth--;
     }
     //getter for settlers
     public ArrayList<Settler> getSettlers(){
     	return this.settlers;
 	}
-  //getter for robots
+  	//getter for robots
 	public ArrayList<Robot> getRobots(){
     	return this.robots;
 	}
@@ -42,7 +42,7 @@ public class Game {
 	public void setUfos(ArrayList<Ufo> ufos) {
 		this.ufos = ufos;
 	}
-//getter for name
+	//getter for name
 	public String getName(){ return this.name; }
 	//setter for settlers
 	public void setSettlers(ArrayList<Settler> list){
@@ -63,51 +63,35 @@ public class Game {
 
 	// játék megnyerése
     public void Win() {
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Win()");
-        //Szkeleton.indentDepth--;
+        isTerminated = true;
+    	System.out.println(name + ".Win()");
     }
     // játék elvesztése
     public void Lose() {
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-        System.out.println(name + ".Lose()");
-    	//Szkeleton.indentDepth--;
+        isTerminated = true;
+    	System.out.println(name + ".Lose()");
     }
     // új játék kezdése
     public void NewGame() {
-       // Szkeleton.writeTabs(Szkeleton.indentDepth);
-       // System.out.println(name +".NewGame()");
-
-      //  Szkeleton.indentDepth++;
         // pálya létrehozása
         Map map = new Map("map", this, 2);
 
         // pálya összekötöttségek létrehozása
-      //  Szkeleton.indentDepth++;
     	map.Connect();
 
     	//Most ket jatekos letrehozasa random kezdőhelyen
-    	//Szkeleton.indentDepth++;
     	Place p1 = map.GetRandomPlace();
-    	//Szkeleton.indentDepth++;
     	Place p2 = map.GetRandomPlace();
-    	//Szkeleton.indentDepth++;
     	Settler s1 = new Settler("s1",this,p1);
-    	//Szkeleton.indentDepth++;
     	Settler s2 = new Settler("s2",this,p2);
     	settlers.add(s1);
     	settlers.add(s2);
-      //  Szkeleton.indentDepth--;
         
 
     }
     // robot hozzáadása a játékhoz
     public void AddRobot(Robot robot) {
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-       // System.out.println(name +".AddRobot()");
-
     	robots.add(robot);
-    	//Szkeleton.indentDepth--;
     }
 
     public void addUfo(Ufo u) {
@@ -115,110 +99,76 @@ public class Game {
 	}
     // játékos meghalt
     public void SettlerDied(Settler settler) {
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-        //System.out.println(name + ".SettlerDied()");
     	settlers.remove(settler);
-    	
-    	proto.removeSettler(settler);
 
     	// játék elvesztése ha az utolsó telepes is meghalt
 		if (settlers.size() == 0) {
-			//Szkeleton.indentDepth++;
 			this.Lose();
 		}
-
-    	//Szkeleton.indentDepth--;
     }
+
     // robot meghalt
     public void RobotDied(Robot robot) {
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-       // System.out.println(name +".RobotDied()");
     	robots.remove(robot);
-    	
-    	proto.removeRobot(robot);
-    	
-    	//Szkeleton.indentDepth--;
     }
 
     // ufo meghalt
 	public void UfoDied(Ufo ufo){
     	ufos.remove(ufo);
-    	proto.removeUfo(ufo);
 	}
 
 	// térkép lekérése
     public Map GetMap(){
-		//Szkeleton.writeTabs(Szkeleton.indentDepth);
-		//System.out.println(name +".GetMap()");
-
-		//Szkeleton.indentDepth--;
 		return map;
     }
 
-    // egy kör végrehajtása
+    // egy kör végrehajtása konzolos felületen
     public void OneRound() {
     	// először a telepesek lépnek
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-       // System.out.println(name +".OneRound()");
     	for(int i =0; i < settlers.size(); i++) {
-    		//Szkeleton.indentDepth++;
     		settlers.get(i).Step();
     	}
 		// aztán a robotok lépnek
-    	for(int i =0; i < settlers.size(); i++) {
-    		//Szkeleton.indentDepth++;
+    	for(int i =0; i < robots.size(); i++) {
     		robots.get(i).Step();
     	}
     	// végül a térkép is lép
-    	//Szkeleton.indentDepth++;
     	map.Step();
-    	
-    	//Szkeleton.indentDepth--;
     }
 
     // telepes hozzáadása a játékhoz
     public void AddSettler(Settler s) {
-    	//Szkeleton.writeTabs(Szkeleton.indentDepth);
-       // System.out.println(name + ".AddSettler()");
-       // Szkeleton.indentDepth--;
-        
         settlers.add(s);
     }
-    /**
-     * az objektum adattagjai string formaban
-     * @return az objektum adattagjai stringesitve
-     */
-	public String ToString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("Game ");
-		sb.append(name);
-		sb.append("\n\tmap ");
-		if (map != null) {
-			sb.append(map.getName());
-		} else sb.append("null");
-		sb.append("\n\trobots ");
-		if(robots.size() != 0) {
-			for (Robot r : robots) {
-				sb.append(r.getName());
-				sb.append(' ');
-			}
-		}else sb.append(("null"));
-		sb.append("\n\tsettlers ");
-		if (settlers.size() != 0) {
-			for (Settler s : settlers) {
-				sb.append(s.getName());
-				sb.append(' ');
-			}
-		} else sb.append("null");
-		sb.append("\n\tufos ");
-		if (ufos.size() != 0) {
-			for (Ufo u : ufos) {
-				sb.append(u.getName());
-				sb.append(' ');
-			}
-		} else sb.append("null");
-		sb.append('\n');
 
-		return sb.toString();
+	@Override
+	synchronized public void run() {
+		while(!isTerminated){
+			for (Settler s : settlers){
+				currentSettler = s;
+				while (!canMoveToNext) {
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						break;
+					}
+				}
+				canMoveToNext = false;
+			}
+			for (Robot r : robots){
+				r.Step();
+			}
+			for (Ufo u : ufos){
+				u.Step();
+			}
+			map.Step();
+		}
 	}
+
+	// ezt kell meghívnia amikor egy settler befejezte a körét!!!
+	public void finishedTurn(){
+		canMoveToNext = true;
+	}
+
+	public Settler getCurrentSettler(){return currentSettler;}
 }

@@ -5,12 +5,16 @@ import java.util.Scanner;
 
 public class Robot extends Entity{
 
+    private RobotView robotView;
+
     /**
      * Név szerinti konstruktor a tesztesetekhez
      */
-    public Robot(String name){
+    /*public Robot(String name){
         super(name);
-    }
+    }*/
+
+
 
     /**
      * Konstruktor
@@ -18,6 +22,11 @@ public class Robot extends Entity{
 	public Robot(String name, Game g, Place p) {
     	super(name, g, p);
     }
+
+    public Robot(String name, Game g, Place p, RobotView rv) {
+	    super(name, g, p);
+	    robotView = rv;
+	}
 
     /**
      * Műveletvégrehajtás
@@ -74,31 +83,5 @@ public class Robot extends Entity{
         }catch (Exception e) {
             System.out.println("Nem jó számot adtál meg");
         }
-    }
-
-    /**
-     * Objektum string-gé alakítása a save parancshoz
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Robot ");
-        sb.append(name);
-        sb.append("\n\tgame ");
-        if(game != null) {
-        	sb.append(game.getName());
-        }
-        else {
-        	sb.append("null");
-        }
-        sb.append("\n\tplace ");
-        if(place != null) {
-        	sb.append(place.GetName());
-        }
-        else {
-        	sb.append("null");
-        }
-        sb.append('\n');
-
-        return sb.toString();
     }
 }
