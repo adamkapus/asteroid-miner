@@ -36,9 +36,39 @@ public class MainFrame extends JFrame {
 		JButton moveButton = new JButton("Move");
 
 		jb.setActionCommand("test");
+		actionButton.setActionCommand("Action");
+		mineButton.setActionCommand("Mine");
+		drillButton.setActionCommand("Drill");
+		placeResourceButton.setActionCommand("Place Resource");
+		placeTeleportButton.setActionCommand("Place Teleport");
+		teleportButton.setActionCommand("Teleport");
+		buildTeleportButton.setActionCommand("Build Teleport");
+		buildRobotButton.setActionCommand("Build Robot");
+		moveButton.setActionCommand("Move");
+
+		actionButton.addActionListener(new ActionActionListener());
+		mineButton.addActionListener(new MineActionListener());
+		drillButton.addActionListener(new DrillActionListener());
+		placeResourceButton.addActionListener(new PlaceResourceActionListener());
+		placeTeleportButton.addActionListener(new PlaceTeleportActionListener());
+		teleportButton.addActionListener(new TeleportActionListener());
+		buildTeleportButton.addActionListener(new BuildTeleportActionListener());
+		buildRobotButton.addActionListener(new BuildRobotActionListener());
+		moveButton.addActionListener(new MoveActionListener());
+
 		TestActionListener ta = new TestActionListener();
 		jb.addActionListener(ta);
 		view.add(jb);
+		view.add(actionButton);
+		view.add(mineButton);
+		view.add(drillButton);
+		view.add(placeResourceButton);
+		view.add(placeTeleportButton);
+		view.add(teleportButton);
+		view.add(buildTeleportButton);
+		view.add(buildRobotButton);
+		view.add(moveButton);
+
 		inittestComboBox();
 		view.add(testSettlerNumber);
 		this.add(view, BorderLayout.CENTER);
@@ -70,6 +100,77 @@ public class MainFrame extends JFrame {
 				 System.out.println("Gomb figyelt");
 			}
 		}
+	}
 
+	private class ActionActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Action")) {
+				System.out.println("Action Gomb megnyomva");
+			}
+		}
+	}
+
+	private class MoveActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Move")) {
+				System.out.println("Move Gomb megnyomva");
+			}
+		}
+	}
+
+	private class DrillActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Drill")) {
+				System.out.println("Drill Gomb megnyomva");
+			}
+		}
+	}
+
+	private class MineActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Mine")) {
+				System.out.println("Mine Gomb megnyomva");
+			}
+		}
+	}
+
+	private class BuildRobotActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Build Robot")) {
+				System.out.println("Build Robot Gomb megnyomva");
+			}
+		}
+	}
+
+	private class BuildTeleportActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Build Teleport")) {
+				System.out.println("Build Teleport Gomb megnyomva");
+			}
+		}
+	}
+
+	private class PlaceTeleportActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Place Teleport")) {
+				System.out.println("Place Teleport Gomb megnyomva");
+			}
+		}
+	}
+
+	private class PlaceResourceActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Place Resource")) {
+				System.out.println("Place Resource Gomb megnyomva");
+			}
+		}
+	}
+
+	private class TeleportActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("Teleport")) {
+				System.out.println("Teleport Gomb megnyomva");
+			}
+		}
 	}
 }
