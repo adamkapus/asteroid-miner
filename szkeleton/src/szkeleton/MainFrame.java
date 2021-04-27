@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame {
 	private View view;
 	private JComboBox<Object> testSettlerNumber;
+
 	MainFrame(){
 		super("Urjatek");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -24,6 +25,16 @@ public class MainFrame extends JFrame {
 		//View(panel) kozepen
 		view = new View();
 		JButton jb = new JButton("test, viewban");
+		JButton actionButton = new JButton("Action");
+		JButton mineButton = new JButton("Mine");
+		JButton drillButton = new JButton("Drill");
+		JButton placeResourceButton = new JButton("Place Resource");
+		JButton placeTeleportButton = new JButton("Place Teleport");
+		JButton teleportButton = new JButton("Teleport");
+		JButton buildTeleportButton = new JButton("Build Teleport");
+		JButton buildRobotButton = new JButton("Build Robot");
+		JButton moveButton = new JButton("Move");
+
 		jb.setActionCommand("test");
 		TestActionListener ta = new TestActionListener();
 		jb.addActionListener(ta);
@@ -52,13 +63,13 @@ public class MainFrame extends JFrame {
 		testSettlerNumber = new JComboBox<Object>(numberOfSettlers);
 		testSettlerNumber.setSelectedItem(2);	
 	}
-	
+
 	private class TestActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("test")) {
 				 System.out.println("Gomb figyelt");
 			}
 		}
-		
+
 	}
 }
