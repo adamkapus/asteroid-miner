@@ -9,9 +9,9 @@ import java.util.Random;
  */
 abstract public class Place implements Steppable {
     protected int placeID; // unique id
-    protected List<Place> neighbors; // neighbors
+    protected ArrayList<Place> neighbors; // neighbors
     protected Map map; // map it is on
-    protected List<Entity> entity; // entities on this place
+    protected ArrayList<Entity> entity; // entities on this place
     protected String name; // name
 
     /**
@@ -44,9 +44,9 @@ abstract public class Place implements Steppable {
      * getter functions
      */
     public int GetPlaceID() {return placeID;}
-    public List<Place> GetAllNeighbors() {return neighbors;}
+    public ArrayList<Place> GetAllNeighbors() {return neighbors;}
     public Map GetMap() {return map;}
-    public List<Entity> GetAllEntities() {return entity;}
+    public ArrayList<Entity> GetAllEntities() {return entity;}
     public String GetName() {return name;}
 
     /**

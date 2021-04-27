@@ -48,17 +48,4 @@ public class Uran extends Resource{
     public void setCloseToSunTicks(int i){
         CloseToSunTicks=i;
     }
-    /**
-     * Kimenet vizsgálatához szűkséges függvény
-     */
-    public String ToString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Uran ");
-        sb.append(name);
-        sb.append("\n\tcloseToSun ");
-        sb.append(CloseToSunTicks);
-        sb.append('\n');
-
-        return sb.toString();
-    }
 }

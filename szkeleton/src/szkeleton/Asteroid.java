@@ -25,7 +25,8 @@ public class Asteroid extends Place{
     private int layers;
     private Resource resource;
     private State state;
-    private AsteroidView asteroidView;
+    private AsteroidView asteroidView;	
+    private boolean blownUp;
 
     /**
      * create asteroid with name, unique id, current map, resource to be inside
@@ -296,4 +297,10 @@ public class Asteroid extends Place{
         state = State.CLOSE;
     }
     public void SetStateToFar() {state = State.FAR;}
+	
+	
+    /**
+     * Viasszaadja, fel van-e épp robbbanva az aszteroida
+     */
+    public boolean GetBlownUp() {return blownUp;}
 }
