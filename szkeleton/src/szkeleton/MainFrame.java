@@ -2,6 +2,8 @@ package szkeleton;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,17 +24,22 @@ public class MainFrame extends JFrame {
 		//View(panel) kozepen
 		view = new View();
 		JButton jb = new JButton("test, viewban");
+		jb.setActionCommand("test");
+		TestActionListener ta = new TestActionListener();
+		jb.addActionListener(ta);
 		view.add(jb);
+		inittestComboBox();
+		view.add(testSettlerNumber);
 		this.add(view, BorderLayout.CENTER);
 		
 		
 		//tesztcellal egy jcombox egy panelban legfelul
-		JPanel testPanel = new JPanel();
+		/*JPanel testPanel = new JPanel();
 		inittestComboBox();
 		testPanel.add(testSettlerNumber);
 		JButton jb2 = new JButton("test, felsõ jpanel");
 		testPanel.add(jb2);
-		this.add(testPanel, BorderLayout.NORTH);
+		this.add(testPanel, BorderLayout.NORTH);*/
 		
 	}
 	
@@ -44,5 +51,14 @@ public class MainFrame extends JFrame {
 		}
 		testSettlerNumber = new JComboBox<Object>(numberOfSettlers);
 		testSettlerNumber.setSelectedItem(2);	
+	}
+	
+	private class TestActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent ae) {
+			if (ae.getActionCommand().equals("test")) {
+				 System.out.println("Gomb figyelt");
+			}
+		}
+		
 	}
 }
