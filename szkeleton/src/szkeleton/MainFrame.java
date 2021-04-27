@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -71,6 +73,24 @@ public class MainFrame extends JFrame {
 
 		inittestComboBox();
 		view.add(testSettlerNumber);
+		view.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println(e.getX() + " " + e.getY());
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) { }
+
+			@Override
+			public void mouseReleased(MouseEvent e) { }
+
+			@Override
+			public void mouseEntered(MouseEvent e) { }
+
+			@Override
+			public void mouseExited(MouseEvent e) { }
+		});
 		this.add(view, BorderLayout.CENTER);
 		
 		
@@ -78,7 +98,7 @@ public class MainFrame extends JFrame {
 		/*JPanel testPanel = new JPanel();
 		inittestComboBox();
 		testPanel.add(testSettlerNumber);
-		JButton jb2 = new JButton("test, felsõ jpanel");
+		JButton jb2 = new JButton("test, felsï¿½ jpanel");
 		testPanel.add(jb2);
 		this.add(testPanel, BorderLayout.NORTH);*/
 		
@@ -86,7 +106,7 @@ public class MainFrame extends JFrame {
 	
 	//inicializalas comboboxhoz
 	private void inittestComboBox() {
-		Object numberOfSettlers[] = new Object[4];
+		Object[] numberOfSettlers = new Object[4];
 		for(int i = 0; i <= 3; i++) {
 			numberOfSettlers[i] = (int) (i + 2);
 		}
