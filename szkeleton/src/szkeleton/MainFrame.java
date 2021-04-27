@@ -56,8 +56,8 @@ public class MainFrame extends JFrame {
 		buildRobotButton.addActionListener(new BuildRobotActionListener());
 		moveButton.addActionListener(new MoveActionListener());
 
-		TestActionListener ta = new TestActionListener();
-		jb.addActionListener(ta);
+		/*TestActionListener ta = new TestActionListener();
+		jb.addActionListener(ta); */
 		view.add(jb);
 		view.add(actionButton);
 		view.add(mineButton);
@@ -94,15 +94,15 @@ public class MainFrame extends JFrame {
 		testSettlerNumber.setSelectedItem(2);	
 	}
 
-	private class TestActionListener implements ActionListener {
+/*	private class TestActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("test")) {
 				 System.out.println("Gomb figyelt");
 			}
 		}
-	}
+	} */
 
-	private class ActionActionListener implements ActionListener {
+	private static class ActionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Action")) {
 				System.out.println("Action Gomb megnyomva");
@@ -110,7 +110,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class MoveActionListener implements ActionListener {
+	private static class MoveActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Move")) {
 				System.out.println("Move Gomb megnyomva");
@@ -118,7 +118,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class DrillActionListener implements ActionListener {
+	private static class DrillActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Drill")) {
 				System.out.println("Drill Gomb megnyomva");
@@ -126,7 +126,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class MineActionListener implements ActionListener {
+	private static class MineActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Mine")) {
 				System.out.println("Mine Gomb megnyomva");
@@ -134,7 +134,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class BuildRobotActionListener implements ActionListener {
+	private static class BuildRobotActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Build Robot")) {
 				System.out.println("Build Robot Gomb megnyomva");
@@ -142,7 +142,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class BuildTeleportActionListener implements ActionListener {
+	private static class BuildTeleportActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Build Teleport")) {
 				System.out.println("Build Teleport Gomb megnyomva");
@@ -150,7 +150,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class PlaceTeleportActionListener implements ActionListener {
+	private static class PlaceTeleportActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Place Teleport")) {
 				System.out.println("Place Teleport Gomb megnyomva");
@@ -158,7 +158,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class PlaceResourceActionListener implements ActionListener {
+	private static class PlaceResourceActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Place Resource")) {
 				System.out.println("Place Resource Gomb megnyomva");
@@ -166,7 +166,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	private class TeleportActionListener implements ActionListener {
+	private static class TeleportActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Teleport")) {
 				System.out.println("Teleport Gomb megnyomva");
