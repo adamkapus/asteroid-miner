@@ -56,6 +56,7 @@ public class Asteroid extends Place{
         else
             state = State.FAR;
         asteroidView = av;
+        asteroidView.updateAsteroid(this);
     }
 
     /**
@@ -99,6 +100,7 @@ public class Asteroid extends Place{
      * Aszteroida kérgét csökkenti 1-el
       */
     public void ReduceRockLayer(){
+        map.getGame().getFrame().disableAsteroidActionButtons();
         if (layers > 0) layers--;
     }
 
@@ -109,7 +111,9 @@ public class Asteroid extends Place{
      */
     @Override
     public void Action(Settler s){
-        System.out.println("1 - Fúrás; 2 - Bányászás; 3 - Nyersanyaglerakás\n");
+        map.getGame().getFrame().activateAsteroidActionButtons();
+
+        /*System.out.println("1 - Fúrás; 2 - Bányászás; 3 - Nyersanyaglerakás\n");
         Scanner in = new Scanner(System.in); // get number from the user
         String str = in.nextLine();
         try {
@@ -131,7 +135,7 @@ public class Asteroid extends Place{
         }
         catch (Exception e){
             System.out.println("Nem jó számot adtál meg, buktad a körödet!");
-        }
+        }*/
     }
 
     /**
@@ -165,6 +169,7 @@ public class Asteroid extends Place{
      * @return resource inside asteroid
      */
     public Resource MinedBy(Settler s){
+        map.getGame().getFrame().disableAsteroidActionButtons();
         if(resource!=null){
             Resource rTemp = resource;
             resource = null;
@@ -191,6 +196,7 @@ public class Asteroid extends Place{
      * Nyersanyag elhelyezése az aszteroidában
      */
     public void InsertResource(Resource r){
+        map.getGame().getFrame().disableAsteroidActionButtons();
         resource = r;
     }
 

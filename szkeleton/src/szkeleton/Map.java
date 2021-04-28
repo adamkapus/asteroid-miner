@@ -57,7 +57,7 @@ public class Map implements Steppable {
                 case 3 -> new Uran("u");
                 default -> null;
             };
-            Asteroid newasteroid = new Asteroid("a", i, this, resource);
+            Asteroid newasteroid = new Asteroid("a", i, this, resource, game.getFrame().getView().getAsteroidView());
             places.add(newasteroid);
         }
         this.game = game;

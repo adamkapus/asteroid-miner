@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,61 +16,75 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame {
 	private View view;
 	private JComboBox<Object> testSettlerNumber;
+	private Game g;
+
+	private JButton mineButton;
+	private JButton drillButton;
+	private JButton placeResourceButton;
+	private JButton placeTeleportButton;
 
 	MainFrame(){
 		super("Urjatek");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800, 600));
         initComponents();
+        g = new Game(this);
+        g.NewGame();
+        Thread t = new Thread(g);
+        t.start();
 	}
 	
 	private void initComponents(){
 		//View(panel) kozepen
 		view = new View();
-		JButton jb = new JButton("test, viewban");
+		//JButton jb = new JButton("test, viewban");
 		JButton actionButton = new JButton("Action");
-		JButton mineButton = new JButton("Mine");
-		JButton drillButton = new JButton("Drill");
-		JButton placeResourceButton = new JButton("Place Resource");
-		JButton placeTeleportButton = new JButton("Place Teleport");
-		JButton teleportButton = new JButton("Teleport");
+		mineButton = new JButton("Mine");
+		drillButton = new JButton("Drill");
+		placeResourceButton = new JButton("Place Resource");
+		placeTeleportButton = new JButton("Place Teleport");
+		//JButton teleportButton = new JButton("Teleport");
 		JButton buildTeleportButton = new JButton("Build Teleport");
 		JButton buildRobotButton = new JButton("Build Robot");
-		JButton moveButton = new JButton("Move");
+		//JButton moveButton = new JButton("Move");
+		mineButton.setEnabled(false);
+		drillButton.setEnabled(false);
+		placeResourceButton.setEnabled(false);
+		placeTeleportButton.setEnabled(false);
 
-		jb.setActionCommand("test");
+		//jb.setActionCommand("test");
 		actionButton.setActionCommand("Action");
 		mineButton.setActionCommand("Mine");
 		drillButton.setActionCommand("Drill");
 		placeResourceButton.setActionCommand("Place Resource");
 		placeTeleportButton.setActionCommand("Place Teleport");
-		teleportButton.setActionCommand("Teleport");
+		//teleportButton.setActionCommand("Teleport");
 		buildTeleportButton.setActionCommand("Build Teleport");
 		buildRobotButton.setActionCommand("Build Robot");
-		moveButton.setActionCommand("Move");
+		//moveButton.setActionCommand("Move");
 
 		actionButton.addActionListener(new ActionActionListener());
 		mineButton.addActionListener(new MineActionListener());
 		drillButton.addActionListener(new DrillActionListener());
 		placeResourceButton.addActionListener(new PlaceResourceActionListener());
 		placeTeleportButton.addActionListener(new PlaceTeleportActionListener());
-		teleportButton.addActionListener(new TeleportActionListener());
+		//teleportButton.addActionListener(new TeleportActionListener());
 		buildTeleportButton.addActionListener(new BuildTeleportActionListener());
 		buildRobotButton.addActionListener(new BuildRobotActionListener());
-		moveButton.addActionListener(new MoveActionListener());
+		//moveButton.addActionListener(new MoveActionListener());
 
 		/*TestActionListener ta = new TestActionListener();
 		jb.addActionListener(ta); */
-		view.add(jb);
+		//view.add(jb);
 		view.add(actionButton);
 		view.add(mineButton);
 		view.add(drillButton);
 		view.add(placeResourceButton);
 		view.add(placeTeleportButton);
-		view.add(teleportButton);
+		//view.add(teleportButton);
 		view.add(buildTeleportButton);
 		view.add(buildRobotButton);
-		view.add(moveButton);
+		//view.add(moveButton);
 
 		inittestComboBox();
 		view.add(testSettlerNumber);
@@ -77,17 +92,17 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(e.getX() + " " + e.getY());
+				for(List<Integer> element : view.getCoordinates()){
+					if (Math.abs(e.getX() - element.get(0)) <= 10 && Math.abs(e.getY() - element.get(1)) <= 10)
+						System.out.println("Place found");
+				}
 			}
-
 			@Override
 			public void mousePressed(MouseEvent e) { }
-
 			@Override
 			public void mouseReleased(MouseEvent e) { }
-
 			@Override
 			public void mouseEntered(MouseEvent e) { }
-
 			@Override
 			public void mouseExited(MouseEvent e) { }
 		});
@@ -114,7 +129,25 @@ public class MainFrame extends JFrame {
 		testSettlerNumber.setSelectedItem(2);	
 	}
 
-/*	private class TestActionListener implements ActionListener {
+	public void activateAsteroidActionButtons(){
+		mineButton.setEnabled(true);
+		drillButton.setEnabled(true);
+		placeResourceButton.setEnabled(true);
+		placeTeleportButton.setEnabled(true);
+	}
+
+	public void disableAsteroidActionButtons(){
+		mineButton.setEnabled(false);
+		drillButton.setEnabled(false);
+		placeResourceButton.setEnabled(false);
+		placeTeleportButton.setEnabled(false);
+	}
+
+	public View getView() {
+		return view;
+	}
+
+	/*	private class TestActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("test")) {
 				 System.out.println("Gomb figyelt");

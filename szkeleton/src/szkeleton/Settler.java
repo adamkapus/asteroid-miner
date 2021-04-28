@@ -67,8 +67,7 @@ public class Settler extends Entity{
             Resource r=a.MinedBy(this);
             if(r!=null) resources.add(r);
         }
-
-
+        game.finishedTurn();
     }
 
     /**
@@ -96,18 +95,19 @@ public class Settler extends Entity{
                 RemoveResource(resources.get(n));
                 a.InsertResource(resources.get(n));
         }
+        game.finishedTurn();
     }
 
     /**
      * Neyersanyag lerakás nyersanyag szerint (proto miatt)
      */
-    public void PlaceResource(Resource r){
+    /*public void PlaceResource(Resource r){
         Asteroid a = (Asteroid) place;
         if(a.GetLayers() == 0){
             RemoveResource(r);
             a.InsertResource(r);
         }
-    }
+    }*/
 
     /**
      * nyersanyag átadása a telepesnek
@@ -152,6 +152,7 @@ public class Settler extends Entity{
                 r.name = "r1";
             }
         }
+        game.finishedTurn();
     }
 
     /**
@@ -165,6 +166,7 @@ public class Settler extends Entity{
         // újra fel
         destination.AcceptEntity(this);
         place=destination;
+        game.finishedTurn();
     }
 
     /**
@@ -224,6 +226,7 @@ public class Settler extends Entity{
             gates.add(gate2);
             
         }
+        game.finishedTurn();
     }
 
     /**
@@ -233,7 +236,6 @@ public class Settler extends Entity{
         // a teleportkapu szomszédja a place-nek és a place szomszédja a teleportkapunak
     	if(gates.size() ==0) {
     		 System.out.println("Nincs teleportkapu lehelyezesre!");
-    		 return;
     	}
     	else {
 	        //TeleportGate placeable = gates.get(gates.size() - 1);
@@ -243,6 +245,7 @@ public class Settler extends Entity{
 	        placeable.AddNeighbor(place);
 	        game.GetMap().AddPlace(placeable);
     	}
+    	game.finishedTurn();
     }
 
     /**

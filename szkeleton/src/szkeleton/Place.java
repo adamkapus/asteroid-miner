@@ -70,6 +70,7 @@ abstract public class Place implements Steppable {
     public void AddNeighbor(Place p){
         neighbors.add(p);
         p.Placed();
+        map.getGame().getFrame().disableAsteroidActionButtons();
     }
 
     /**

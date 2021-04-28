@@ -1,5 +1,6 @@
 package szkeleton;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Game implements Runnable {
@@ -20,8 +21,8 @@ public class Game implements Runnable {
 	private Settler currentSettler = null;
 
     // konstruktor
-    public  Game(String n) {
-    	name = n;
+    public  Game(MainFrame mf) {
+    	frame = mf;
     	settlers = new ArrayList<Settler>();
     	robots = new ArrayList<Robot>();
     	ufos = new ArrayList<>();
@@ -82,8 +83,8 @@ public class Game implements Runnable {
     	//Most ket jatekos letrehozasa random kezdőhelyen
     	Place p1 = map.GetRandomPlace();
     	Place p2 = map.GetRandomPlace();
-    	Settler s1 = new Settler("s1",this,p1);
-    	Settler s2 = new Settler("s2",this,p2);
+    	Settler s1 = new Settler("s1",this,p1, frame.getView().getSettlerView());
+    	Settler s2 = new Settler("s2",this,p2, frame.getView().getSettlerView());
     	settlers.add(s1);
     	settlers.add(s2);
         
@@ -171,4 +172,5 @@ public class Game implements Runnable {
 	}
 
 	public Settler getCurrentSettler(){return currentSettler;}
+	public MainFrame getFrame(){return frame;}
 }

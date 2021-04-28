@@ -2,7 +2,10 @@ package szkeleton;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JPanel;
 
 public class View extends JPanel {
@@ -11,14 +14,21 @@ public class View extends JPanel {
 	private UfoView uv;
 	private AsteroidView av;
 	private TeleportView tgv;
-	public void reDraw() {
-	
-	}
+	private Map<Place, List<Integer>> coordinates;
+	private List<List<Integer>> testCoords;
 
 	View(){
-	
+		sv = new SettlerView();
+		rv = new RobotView();
+		uv = new UfoView();
+		av = new AsteroidView();
+		tgv = new TeleportView();
+	    coordinates = new HashMap<>();
+	    testCoords = new ArrayList<>();
+	    List<Integer> intList = new ArrayList<>();
+	    intList.add(100); intList.add(100);
+	    testCoords.add(intList);
 	}
-	
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -26,4 +36,11 @@ public class View extends JPanel {
         g.setColor(Color.RED);
         g.fillRect(350, 0, 100, 100);
     }
+
+    public SettlerView getSettlerView(){return sv;}
+    public RobotView getRobotView(){return rv;}
+    public UfoView getUfoView(){return uv;}
+    public AsteroidView getAsteroidView(){return av;}
+    public TeleportView getTeleportView(){return tgv;}
+    public List<List<Integer>> getCoordinates(){return testCoords;}
 }
