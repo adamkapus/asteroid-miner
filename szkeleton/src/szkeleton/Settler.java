@@ -76,6 +76,7 @@ public class Settler extends Entity{
     public void Die() {
         place.RemoveEntity(this);
         game.SettlerDied(this);
+        settlerView.settlerDied(this);
     }
 
     /**
@@ -167,6 +168,7 @@ public class Settler extends Entity{
         destination.AcceptEntity(this);
         place=destination;
         game.finishedTurn();
+        settlerView.updateSettler(this);
     }
 
     /**
@@ -278,6 +280,7 @@ public class Settler extends Entity{
                     int id = Integer.parseInt(strid);
                     // mozgás
                     this.Move(id);
+                    settlerView.updateSettler(this);    //Move-on belül kéne, de csak egységesség szempontjából
                     break;
                 case 2:
                     // műveletvégzés (akció)

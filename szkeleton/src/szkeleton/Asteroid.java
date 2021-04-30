@@ -112,7 +112,7 @@ public class Asteroid extends Place{
     @Override
     public void Action(Settler s){
         map.getGame().getFrame().activateAsteroidActionButtons();
-
+        asteroidView.updateAsteroid(this);
         /*System.out.println("1 - Fúrás; 2 - Bányászás; 3 - Nyersanyaglerakás\n");
         Scanner in = new Scanner(System.in); // get number from the user
         String str = in.nextLine();
@@ -142,7 +142,10 @@ public class Asteroid extends Place{
      * Robot által végzett action-öket kezeli.
      */
     @Override
-    public void Action(Robot r){ r.Drill(); }
+    public void Action(Robot r){
+        r.Drill();
+        asteroidView.updateAsteroid(this);
+    }
 
     /**
      * Action for ufo
@@ -150,6 +153,7 @@ public class Asteroid extends Place{
     @Override
     public void Action(Ufo u) {
         u.Mine();
+        asteroidView.updateAsteroid(this);
     }
 
     /**

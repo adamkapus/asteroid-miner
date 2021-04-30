@@ -57,6 +57,7 @@ public class TeleportGate extends Place {
         if (pairIsPlaced) {
             s.UseTeleport();
         }
+        teleportView.updateTeleport(this);
     }
 
     /**
@@ -73,6 +74,7 @@ public class TeleportGate extends Place {
         if (pairIsPlaced) {
             u.UseTeleport();
         }
+        teleportView.updateTeleport(this);
     }
 
     /**

@@ -47,6 +47,7 @@ public abstract class Entity implements Steppable {
         place.RemoveEntity(this);
         neighbour.AcceptEntity(this);
         place = neighbour;
+
     }
 
     /**

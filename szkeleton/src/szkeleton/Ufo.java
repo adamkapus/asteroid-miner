@@ -30,6 +30,7 @@ public class Ufo extends Entity{
       */
     public void Die() {
         game.UfoDied(this);
+        ufoView.ufoDied(this);
     }
 
     /**
@@ -37,6 +38,7 @@ public class Ufo extends Entity{
      */
     public void BlownUp() {
         this.Die();
+        ufoView.updateUfo(this);
     }
 
     /**
@@ -57,6 +59,7 @@ public class Ufo extends Entity{
                 case 1:
                     // mozgás
                     this.Move(game.GetMap().GetAstNum());
+                    ufoView.updateUfo(this);
                     break;
             }
         }catch (Exception e) {
@@ -64,7 +67,17 @@ public class Ufo extends Entity{
         }
     }
 
-    public void UseTeleport() { }
+    public void UseTeleport() {
+        // célállomás
+        TeleportGate destination = ((TeleportGate) place).GetPair();
+        // jelenlegiről le
+        place.RemoveEntity(this);
+        // újra fel
+        destination.AcceptEntity(this);
+        place=destination;
+        game.finishedTurn();
+        ufoView.updateUfo(this);
+    }
 
     /**
      * Bányászás művelete

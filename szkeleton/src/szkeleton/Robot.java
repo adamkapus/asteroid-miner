@@ -40,6 +40,7 @@ public class Robot extends Entity{
      */
     public void Die() {
 	    game.RobotDied(this);
+        robotView.robotDied(this);
     }
 
     /**
@@ -51,6 +52,7 @@ public class Robot extends Entity{
         place.RemoveEntity(this);
         destination.AcceptEntity(this);
         place = destination;
+        robotView.updateRobot(this);
     }
 
     /**
@@ -78,6 +80,7 @@ public class Robot extends Entity{
                      * mozgás
                      */
                     this.Move(game.GetMap().GetAstNum());
+                    robotView.updateRobot(this);        //Move-on belül kéne, de csak egységesség szempontjából
                     break;
             }
         }catch (Exception e) {
