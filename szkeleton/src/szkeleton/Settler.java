@@ -17,13 +17,6 @@ public class Settler extends Entity{
     private SettlerView settlerView;
 
     /**
-     * név szerinti konstruktor a tesztesetekhez
-     */
-    /*public Settler(String name){
-        super(name);
-    }*/
-
-    /**
      * Settler konstruktora
      */
     public Settler(String name, Game g, Place p) {
@@ -325,5 +318,11 @@ public class Settler extends Entity{
         neighbour.AcceptEntity(this);
         place = neighbour;
         settlerView.updateSettler(this);
+    }
+
+    @Override
+    public void Drill() {
+        super.Drill();
+        game.finishedTurn();
     }
 }

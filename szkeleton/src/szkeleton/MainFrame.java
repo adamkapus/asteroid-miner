@@ -35,56 +35,56 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void initComponents(){
-		//View(panel) kozepen
 		view = new View();
-		//JButton jb = new JButton("test, viewban");
 		JButton actionButton = new JButton("Action");
 		mineButton = new JButton("Mine");
 		drillButton = new JButton("Drill");
 		placeResourceButton = new JButton("Place Resource");
 		placeTeleportButton = new JButton("Place Teleport");
-		//JButton teleportButton = new JButton("Teleport");
 		JButton buildTeleportButton = new JButton("Build Teleport");
 		JButton buildRobotButton = new JButton("Build Robot");
-		//JButton moveButton = new JButton("Move");
 		mineButton.setEnabled(false);
 		drillButton.setEnabled(false);
 		placeResourceButton.setEnabled(false);
 		placeTeleportButton.setEnabled(false);
 
-		//jb.setActionCommand("test");
 		actionButton.setActionCommand("Action");
 		mineButton.setActionCommand("Mine");
 		drillButton.setActionCommand("Drill");
 		placeResourceButton.setActionCommand("Place Resource");
 		placeTeleportButton.setActionCommand("Place Teleport");
-		//teleportButton.setActionCommand("Teleport");
 		buildTeleportButton.setActionCommand("Build Teleport");
 		buildRobotButton.setActionCommand("Build Robot");
-		//moveButton.setActionCommand("Move");
 
-		actionButton.addActionListener(new ActionActionListener());
-		mineButton.addActionListener(new MineActionListener());
-		drillButton.addActionListener(new DrillActionListener());
-		placeResourceButton.addActionListener(new PlaceResourceActionListener());
-		placeTeleportButton.addActionListener(new PlaceTeleportActionListener());
-		//teleportButton.addActionListener(new TeleportActionListener());
-		buildTeleportButton.addActionListener(new BuildTeleportActionListener());
-		buildRobotButton.addActionListener(new BuildRobotActionListener());
-		//moveButton.addActionListener(new MoveActionListener());
+		actionButton.addActionListener(e -> {
+			g.getCurrentSettler().Action();
+		});
+		mineButton.addActionListener(e -> {
+			g.getCurrentSettler().Mine();
+		});
+		drillButton.addActionListener(e -> {
+			g.getCurrentSettler().Drill();
+		});
+		placeResourceButton.addActionListener(e -> {
+			System.out.println(g.getCurrentSettler().getName());
+		});
+		placeTeleportButton.addActionListener(e -> {
+			g.getCurrentSettler().PlaceDownTeleport();
+		});
+		buildTeleportButton.addActionListener(e -> {
+			g.getCurrentSettler().BuildTeleport("tg1", "tg2");
+		});
+		buildRobotButton.addActionListener(e -> {
+			g.getCurrentSettler().BuildRobot("r");
+		});
 
-		/*TestActionListener ta = new TestActionListener();
-		jb.addActionListener(ta); */
-		//view.add(jb);
 		view.add(actionButton);
 		view.add(mineButton);
 		view.add(drillButton);
 		view.add(placeResourceButton);
 		view.add(placeTeleportButton);
-		//view.add(teleportButton);
 		view.add(buildTeleportButton);
 		view.add(buildRobotButton);
-		//view.add(moveButton);
 
 		inittestComboBox();
 		view.add(testSettlerNumber);
@@ -107,15 +107,6 @@ public class MainFrame extends JFrame {
 			public void mouseExited(MouseEvent e) { }
 		});
 		this.add(view, BorderLayout.CENTER);
-		
-		
-		//tesztcellal egy jcombox egy panelban legfelul
-		/*JPanel testPanel = new JPanel();
-		inittestComboBox();
-		testPanel.add(testSettlerNumber);
-		JButton jb2 = new JButton("test, fels� jpanel");
-		testPanel.add(jb2);
-		this.add(testPanel, BorderLayout.NORTH);*/
 		
 	}
 	
@@ -147,26 +138,10 @@ public class MainFrame extends JFrame {
 		return view;
 	}
 
-	/*	private class TestActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("test")) {
-				 System.out.println("Gomb figyelt");
-			}
-		}
-	} */
-
 	private static class ActionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Action")) {
 				System.out.println("Action Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class MoveActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Move")) {
-				System.out.println("Move Gomb megnyomva");
 			}
 		}
 	}
@@ -215,14 +190,6 @@ public class MainFrame extends JFrame {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Place Resource")) {
 				System.out.println("Place Resource Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class TeleportActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Teleport")) {
-				System.out.println("Teleport Gomb megnyomva");
 			}
 		}
 	}
