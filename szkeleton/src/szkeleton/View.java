@@ -29,7 +29,15 @@ public class View extends JPanel {
 	    intList.add(100); intList.add(100);
 	    testCoords.add(intList);
 	}
-	
+
+	public void drawAsteroid(int x, int y, Graphics g){
+		g.fillOval(x, y, 30, 30);
+		g.fillRect(x - 12, y - 20, 5, 5);
+		g.fillRect(x - 4, y - 20, 5, 5);
+		g.fillRect(x + 4, y - 20, 5, 5);
+		g.fillRect(x + 12, y - 20, 5 ,5);
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
