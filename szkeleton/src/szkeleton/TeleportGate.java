@@ -132,4 +132,23 @@ public class TeleportGate extends Place {
         Place neighbor = a.GetRandomNeighbor();
         neighbor.AddNeighbor(this);
     }
+    /**
+     * add a new neighbor to the place
+     */
+    @Override
+    public void AddNeighbor(Place p){
+        neighbors.add(p);
+        p.Placed();
+        map.getGame().getFrame().disableAsteroidActionButtons();
+        teleportView.updateTeleport(this);
+    }
+
+    /**
+     * remove a neighbor from the place
+     */
+    @Override
+    public void RemoveNeighbor(Place p){
+        neighbors.remove(p);
+        teleportView.updateTeleport(this);
+    }
 }

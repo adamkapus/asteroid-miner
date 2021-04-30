@@ -80,11 +80,22 @@ public class Robot extends Entity{
                      * mozgás
                      */
                     this.Move(game.GetMap().GetAstNum());
-                    robotView.updateRobot(this);        //Move-on belül kéne, de csak egységesség szempontjából
                     break;
             }
         }catch (Exception e) {
             System.out.println("Nem jó számot adtál meg");
         }
+    }
+
+    /**
+     * Szomszédos aszteroidára áthelyezi az entity-t.
+     */
+    @Override
+    public void Move(int asteroidID) {
+        Place neighbour = place.GetNeighbor(asteroidID);
+        place.RemoveEntity(this);
+        neighbour.AcceptEntity(this);
+        place = neighbour;
+        robotView.updateRobot(this);
     }
 }

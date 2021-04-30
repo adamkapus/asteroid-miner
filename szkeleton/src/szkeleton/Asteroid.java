@@ -313,4 +313,26 @@ public class Asteroid extends Place{
      * Viasszaadja, fel van-e épp robbbanva az aszteroida
      */
     public boolean GetBlownUp() {return blownUp;}
+
+    /**
+     * add a new neighbor to the place
+     */
+    @Override
+    public void AddNeighbor(Place p){
+        neighbors.add(p);
+        p.Placed();
+        map.getGame().getFrame().disableAsteroidActionButtons();
+        asteroidView.updateAsteroid(this);
+    }
+
+    /**
+     * remove a neighbor from the place
+     */
+    @Override
+    public void RemoveNeighbor(Place p){
+        neighbors.remove(p);
+        asteroidView.updateAsteroid(this);
+    }
+
+
 }

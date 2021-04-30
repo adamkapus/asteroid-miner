@@ -42,13 +42,7 @@ public abstract class Entity implements Steppable {
     /**
      * Szomszédos aszteroidára áthelyezi az entity-t.
      */
-    public void Move(int asteroidID) {
-        Place neighbour = place.GetNeighbor(asteroidID);
-        place.RemoveEntity(this);
-        neighbour.AcceptEntity(this);
-        place = neighbour;
-
-    }
+    public abstract void Move(int asteroidID);
 
     /**
      * Az aszteroidán elvégezhető műveleteket kezeli

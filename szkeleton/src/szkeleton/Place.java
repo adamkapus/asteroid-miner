@@ -67,18 +67,12 @@ abstract public class Place implements Steppable {
     /**
      * add a new neighbor to the place
      */
-    public void AddNeighbor(Place p){
-        neighbors.add(p);
-        p.Placed();
-        map.getGame().getFrame().disableAsteroidActionButtons();
-    }
+    public abstract void AddNeighbor(Place p);
 
     /**
      * remove a neighbor from the place
      */
-    public void RemoveNeighbor(Place p){
-        neighbors.remove(p);
-    }
+    public abstract void RemoveNeighbor(Place p);
 
     /**
      * get a certain neighbor

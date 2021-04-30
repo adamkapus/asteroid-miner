@@ -280,7 +280,6 @@ public class Settler extends Entity{
                     int id = Integer.parseInt(strid);
                     // mozgás
                     this.Move(id);
-                    settlerView.updateSettler(this);    //Move-on belül kéne, de csak egységesség szempontjából
                     break;
                 case 2:
                     // műveletvégzés (akció)
@@ -315,4 +314,16 @@ public class Settler extends Entity{
     public void SetResource(Resource newRes) {resources.add(newRes);}
     public ArrayList<TeleportGate> GetGates() {return gates;}
     public ArrayList<Resource> GetResources() {return resources;}
+
+    /**
+     * Szomszédos aszteroidára áthelyezi az entity-t.
+     */
+    @Override
+    public void Move(int asteroidID) {
+        Place neighbour = place.GetNeighbor(asteroidID);
+        place.RemoveEntity(this);
+        neighbour.AcceptEntity(this);
+        place = neighbour;
+        settlerView.updateSettler(this);
+    }
 }

@@ -59,7 +59,6 @@ public class Ufo extends Entity{
                 case 1:
                     // mozgás
                     this.Move(game.GetMap().GetAstNum());
-                    ufoView.updateUfo(this);
                     break;
             }
         }catch (Exception e) {
@@ -89,6 +88,17 @@ public class Ufo extends Entity{
             Resource r=a.MinedBy(this);
             if(r!=null) resources.add(r);
         }
+    }
+
+    /**
+     * Szomszédos aszteroidára áthelyezi az entity-t.
+     */
+    public void Move(int asteroidID) {
+        Place neighbour = place.GetNeighbor(asteroidID);
+        place.RemoveEntity(this);
+        neighbour.AcceptEntity(this);
+        place = neighbour;
+        ufoView.updateUfo(this);
     }
 
 }
