@@ -29,6 +29,8 @@ public abstract class Entity implements Steppable {
         this.name = n;
     }
 
+    //inventory teszteléséhez
+    public Entity(){}
     /**
      * Entitás konstruktora.
      */

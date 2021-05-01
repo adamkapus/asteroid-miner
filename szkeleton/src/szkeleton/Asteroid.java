@@ -60,6 +60,14 @@ public class Asteroid extends Place{
     }
 
     /**
+     * create asteroid with name
+     */
+    /*public Asteroid(String name){
+        super(name);
+        // default values!
+    }*/
+
+    /**
      * setter functions
      */
     public void setTimeLimit(int timeLimit) {
@@ -94,7 +102,6 @@ public class Asteroid extends Place{
     public void ReduceRockLayer(){
         map.getGame().getFrame().disableAsteroidActionButtons();
         if (layers > 0) layers--;
-        asteroidView.updateAsteroid(this);
     }
 
     /**
@@ -105,6 +112,7 @@ public class Asteroid extends Place{
     @Override
     public void Action(Settler s){
         map.getGame().getFrame().activateAsteroidActionButtons();
+        asteroidView.updateAsteroid(this);
         /*System.out.println("1 - Fúrás; 2 - Bányászás; 3 - Nyersanyaglerakás\n");
         Scanner in = new Scanner(System.in); // get number from the user
         String str = in.nextLine();
@@ -325,4 +333,6 @@ public class Asteroid extends Place{
         neighbors.remove(p);
         asteroidView.updateAsteroid(this);
     }
+
+
 }

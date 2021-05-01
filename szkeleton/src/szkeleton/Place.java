@@ -34,6 +34,9 @@ abstract public class Place implements Steppable {
         neighbors = new ArrayList<>();
     }
 
+    //inventory teszteléséhez
+    public Place(){}
+
     /**
      * setter functions
      */
