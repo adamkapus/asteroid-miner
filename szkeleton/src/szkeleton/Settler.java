@@ -28,6 +28,21 @@ public class Settler extends Entity{
         settlerView = sv;
     }
 
+	//inventory teszteléséhez
+    public Settler(){
+        Coal c = new Coal("c1");
+        Iron i1 = new Iron("i1");
+        Iron i2 = new Iron("i2");
+        IceWater iw = new IceWater("iw");
+        Uran u = new Uran("u1");
+        resources.add(c);
+        resources.add(i1);
+        resources.add(i2);
+        resources.add(iw);
+        resources.add(u);
+        TeleportGate tg = new TeleportGate();
+        gates.add(tg);
+    }
 
     /**
      * Settler műveletvégzés

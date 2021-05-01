@@ -17,6 +17,9 @@ public class TeleportGate extends Place {
         pair = null;
     }
 
+    //inventory teszteléséhez
+    public TeleportGate(){}
+
     /**
      * create a teleport gate with name
      */
