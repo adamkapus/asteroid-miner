@@ -14,8 +14,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-// teszt
-
 public class MainFrame extends JFrame {
 	private View view;
 	private JComboBox<Object> testSettlerNumber;
@@ -60,26 +58,6 @@ public class MainFrame extends JFrame {
 		buildRobotButton.setActionCommand("Build Robot");
 
 		actionButton.addActionListener(e -> {
-			g.getCurrentSettler().Action();
-		});
-		mineButton.addActionListener(e -> {
-			g.getCurrentSettler().Mine();
-		});
-		drillButton.addActionListener(e -> {
-			g.getCurrentSettler().Drill();
-		});
-		placeResourceButton.addActionListener(e -> {
-			System.out.println(g.getCurrentSettler().getName());
-		});
-		placeTeleportButton.addActionListener(e -> {
-			g.getCurrentSettler().PlaceDownTeleport();
-		});
-		buildTeleportButton.addActionListener(e -> {
-			g.getCurrentSettler().BuildTeleport("tg1", "tg2");
-		});
-		buildRobotButton.addActionListener(e -> {
-			g.getCurrentSettler().BuildRobot("r");
-		});actionButton.addActionListener(e -> {
 			g.getCurrentSettler().Action();
 		});
 		mineButton.addActionListener(e -> {

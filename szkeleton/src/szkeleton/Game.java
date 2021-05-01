@@ -75,7 +75,7 @@ public class Game implements Runnable {
     // új játék kezdése
     public void NewGame() {
         // pálya létrehozása
-        Map map = new Map("map", this, 2);
+        map = new Map("map", this, 2);
 
         // pálya összekötöttségek létrehozása
     	map.Connect();
