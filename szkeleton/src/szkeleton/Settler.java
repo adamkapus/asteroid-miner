@@ -314,10 +314,13 @@ public class Settler extends Entity{
     @Override
     public void Move(int asteroidID) {
         Place neighbour = place.GetNeighbor(asteroidID);
-        place.RemoveEntity(this);
-        neighbour.AcceptEntity(this);
-        place = neighbour;
-        settlerView.updateSettler(this);
+        if (neighbour != null) {
+            place.RemoveEntity(this);
+            neighbour.AcceptEntity(this);
+            place = neighbour;
+            settlerView.updateSettler(this);
+        }
+        game.finishedTurn();
     }
 
     @Override

@@ -15,7 +15,7 @@ public class View extends JPanel {
 	private AsteroidView av;
 	private TeleportView tgv;
 	private Map<Place, List<Integer>> coordinates;
-	private List<List<Integer>> testCoords;
+	//private List<List<Integer>> testCoords;
 
 	View(){
 		sv = new SettlerView();
@@ -24,10 +24,10 @@ public class View extends JPanel {
 		av = new AsteroidView();
 		tgv = new TeleportView();
 	    coordinates = new HashMap<>();
-	    testCoords = new ArrayList<>();
-	    List<Integer> intList = new ArrayList<>();
-	    intList.add(100); intList.add(100);
-	    testCoords.add(intList);
+	    //testCoords = new ArrayList<>();
+	    //List<Integer> intList = new ArrayList<>();
+	    //intList.add(100); intList.add(100);
+	    //testCoords.add(intList);
 	}
 
 	public void drawAsteroid(int x, int y, Graphics g){
@@ -50,5 +50,5 @@ public class View extends JPanel {
     public UfoView getUfoView(){return uv;}
     public AsteroidView getAsteroidView(){return av;}
     public TeleportView getTeleportView(){return tgv;}
-    public List<List<Integer>> getCoordinates(){return testCoords;}
+    public Map<Place, List<Integer>> getCoordinates(){return coordinates;}
 }

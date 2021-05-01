@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -92,9 +93,15 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(e.getX() + " " + e.getY());
-				for(List<Integer> element : view.getCoordinates()){
-					if (Math.abs(e.getX() - element.get(0)) <= 10 && Math.abs(e.getY() - element.get(1)) <= 10)
-						System.out.println("Place found");
+				Map<Place, List<Integer>> coordinates = view.getCoordinates();
+				for (var entry : coordinates.entrySet()) {
+					int x = entry.getValue().get(0);
+					int y = entry.getValue().get(1);
+					if (Math.abs(e.getX() - (x + 15)) <= 10 && Math.abs(e.getY() - (y + 15)) <= 10){
+						g.getCurrentSettler().Move(entry.getKey().GetPlaceID());
+						disableAsteroidActionButtons();
+						break;
+					}
 				}
 			}
 			@Override
@@ -136,61 +143,5 @@ public class MainFrame extends JFrame {
 
 	public View getView() {
 		return view;
-	}
-
-	private static class ActionActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Action")) {
-				System.out.println("Action Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class DrillActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Drill")) {
-				System.out.println("Drill Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class MineActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Mine")) {
-				System.out.println("Mine Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class BuildRobotActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Build Robot")) {
-				System.out.println("Build Robot Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class BuildTeleportActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Build Teleport")) {
-				System.out.println("Build Teleport Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class PlaceTeleportActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Place Teleport")) {
-				System.out.println("Place Teleport Gomb megnyomva");
-			}
-		}
-	}
-
-	private static class PlaceResourceActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Place Resource")) {
-				System.out.println("Place Resource Gomb megnyomva");
-			}
-		}
 	}
 }
