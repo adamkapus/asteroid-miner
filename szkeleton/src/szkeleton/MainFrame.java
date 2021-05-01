@@ -14,6 +14,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+// teszt
+
 public class MainFrame extends JFrame {
 	private View view;
 	private JComboBox<Object> testSettlerNumber;
