@@ -77,6 +77,26 @@ public class MainFrame extends JFrame {
 		});
 		buildRobotButton.addActionListener(e -> {
 			g.getCurrentSettler().BuildRobot("r");
+		});actionButton.addActionListener(e -> {
+			g.getCurrentSettler().Action();
+		});
+		mineButton.addActionListener(e -> {
+			g.getCurrentSettler().Mine();
+		});
+		drillButton.addActionListener(e -> {
+			g.getCurrentSettler().Drill();
+		});
+		placeResourceButton.addActionListener(e -> {
+			System.out.println(g.getCurrentSettler().getName());
+		});
+		placeTeleportButton.addActionListener(e -> {
+			g.getCurrentSettler().PlaceDownTeleport();
+		});
+		buildTeleportButton.addActionListener(e -> {
+			g.getCurrentSettler().BuildTeleport("tg1", "tg2");
+		});
+		buildRobotButton.addActionListener(e -> {
+			g.getCurrentSettler().BuildRobot("r");
 		});
 
 		view.add(actionButton);
