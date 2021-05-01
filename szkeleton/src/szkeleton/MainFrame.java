@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void initComponents(){
-		view = new View();
+		view = new View(this);
 		JButton actionButton = new JButton("Action");
 		mineButton = new JButton("Mine");
 		drillButton = new JButton("Drill");
@@ -144,4 +144,5 @@ public class MainFrame extends JFrame {
 	public View getView() {
 		return view;
 	}
+	public Game getGame() {return g;}
 }

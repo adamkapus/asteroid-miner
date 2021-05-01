@@ -15,14 +15,16 @@ public class View extends JPanel {
 	private TeleportView tgv;
 	private Map<Place, List<Integer>> coordinates;
 	//private List<List<Integer>> testCoords;
+	private MainFrame mf;
 
-	View(){
+	View(MainFrame frame){
 		sv = new SettlerView();
 		rv = new RobotView();
 		uv = new UfoView();
 		av = new AsteroidView();
 		tgv = new TeleportView();
 	    coordinates = new HashMap<>();
+	    mf = frame;
 	    //testCoords = new ArrayList<>();
 	    //List<Integer> intList = new ArrayList<>();
 	    //intList.add(100); intList.add(100);
@@ -86,18 +88,20 @@ public class View extends JPanel {
 		g.fillRect(x-1, y-1, 79, 7);
 		ArrayList<Integer> resources = sv.getResource(s);
 		int itemCounter = 0;
-		for (Integer r : resources){
-			if(r == 10){
-				g.setColor(Color.PINK);
-			}else if (r == 11){
-				g.setColor(Color.CYAN);
-			}else if (r == 12){
-				g.setColor(Color.YELLOW);
-			}else if (r == 13){
-				g.setColor(Color.ORANGE);
+		if(resources != null) {
+			for (Integer r : resources) {
+				if (r == 10) {
+					g.setColor(Color.PINK);
+				} else if (r == 11) {
+					g.setColor(Color.CYAN);
+				} else if (r == 12) {
+					g.setColor(Color.YELLOW);
+				} else if (r == 13) {
+					g.setColor(Color.ORANGE);
+				}
+				g.fillRect(x + itemCounter * 8, y, 5, 5);
+				itemCounter++;
 			}
-			g.fillRect(x+itemCounter*8, y, 5, 5);
-			itemCounter++;
 		}
 		//ha nincs tele az inventory, kellenek szürke négyzetek
 		if (itemCounter < 10){
@@ -115,7 +119,11 @@ public class View extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(x-1, y+7, 79, 7);
 		int itemCounter = 0;
-		int gatesNum = sv.getGates(s).size();
+		int gatesNum;
+		if(sv.getGates(s) != null)
+			gatesNum = sv.getGates(s).size();
+		else
+			gatesNum =0;
 		while (itemCounter < gatesNum){
 			g.setColor(Color.MAGENTA);
 			g.fillRect(x+itemCounter*8, y+8, 5, 5);
@@ -154,6 +162,9 @@ public class View extends JPanel {
 		//Settler s = new Settler();
 		//sv.updateSettler(s);
 		//drawInventory(50, 100, s, g);
+
+		Settler s = mf.getGame().getCurrentSettler();
+		drawInventory(50, 100, s, g);
     }
 
     public SettlerView getSettlerView(){return sv;}
