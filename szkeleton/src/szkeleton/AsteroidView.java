@@ -2,6 +2,7 @@ package szkeleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class AsteroidView {
 	private java.util.Map<Asteroid, ArrayList<Place>> neighbours = new HashMap<>();
@@ -20,5 +21,19 @@ public class AsteroidView {
 	
 	}
 
+	public Map<Asteroid, Boolean> getBlownUp() {
+		return blownUp;
+	}
 
+	public Map<Asteroid, ArrayList<Place>> getNeighbours() {
+		return neighbours;
+	}
+
+	public Map<Asteroid, Integer> getLayers() {
+		return layers;
+	}
+
+	public Map<Asteroid, Resource> getResource() {
+		return resource;
+	}
 }

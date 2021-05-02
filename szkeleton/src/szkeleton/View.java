@@ -1,8 +1,7 @@
 package szkeleton;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JPanel;
@@ -153,6 +152,7 @@ public class View extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        GenCoordinates();
         //g.setColor(Color.RED);
         //g.fillRect(350, 0, 100, 100);
 		drawAsteroid(200, 200, g);
@@ -166,6 +166,39 @@ public class View extends JPanel {
 		Settler s = mf.getGame().getCurrentSettler();
 		drawInventory(50, 100, s, g);
     }
+
+    private void GenCoordinates(){
+		for (var entry : av.getNeighbours().entrySet()){
+			if (!coordinates.containsKey(entry.getKey())){
+				Random rand = new Random();
+				boolean correct = false;
+				while (!correct) {
+					int x = rand.nextInt(770);
+					int y = rand.nextInt(560);
+					if (isCoordinatesCorrect(x, y)) {
+						List<Integer> currentCoords = new ArrayList<>();
+						currentCoords.add(x);
+						currentCoords.add(y);
+						coordinates.put(entry.getKey(), currentCoords);
+						correct = true;
+						System.out.println(x + " " + y);
+					}
+				}
+			}
+		}
+	}
+
+	private boolean isCoordinatesCorrect(int x, int y){
+		for (var entry : coordinates.entrySet()){
+			int xi = entry.getValue().get(0);
+			int yi = entry.getValue().get(1);
+			if (x - xi < 30 && x - xi > 0 && y - yi < 40 && y - yi > 0)
+				return false;
+			if (xi - x < 30 && xi - x > 0 && yi - y < 40 && yi - y > 0)
+				return false;
+		}
+		return true;
+	}
 
     public SettlerView getSettlerView(){return sv;}
     public RobotView getRobotView(){return rv;}
