@@ -24,6 +24,8 @@ public class MainFrame extends JFrame {
 	private JButton placeResourceButton;
 	private JButton placeTeleportButton;
 
+	private boolean placingResource = false;
+
 	MainFrame(){
 		super("Urjatek");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,7 +69,7 @@ public class MainFrame extends JFrame {
 			g.getCurrentSettler().Drill();
 		});
 		placeResourceButton.addActionListener(e -> {
-			System.out.println(g.getCurrentSettler().getName());
+			placingResource = !placingResource;
 		});
 		placeTeleportButton.addActionListener(e -> {
 			g.getCurrentSettler().PlaceDownTeleport();
@@ -93,15 +95,21 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(e.getX() + " " + e.getY());
-				Map<Place, List<Integer>> coordinates = view.getCoordinates();
-				for (var entry : coordinates.entrySet()) {
-					int x = entry.getValue().get(0);
-					int y = entry.getValue().get(1);
-					if (Math.abs(e.getX() - (x + 15)) <= 10 && Math.abs(e.getY() - (y + 15)) <= 10){
-						g.getCurrentSettler().Move(entry.getKey().GetPlaceID());
-						disableAsteroidActionButtons();
-						break;
+				if (!placingResource) {
+					Map<Place, List<Integer>> coordinates = view.getCoordinates();
+					for (var entry : coordinates.entrySet()) {
+						int x = entry.getValue().get(0);
+						int y = entry.getValue().get(1);
+						if (Math.abs(e.getX() - (x + 15)) <= 10 && Math.abs(e.getY() - (y + 15)) <= 10) {
+							g.getCurrentSettler().Move(entry.getKey().GetPlaceID());
+							System.out.println("Place found");
+							disableAsteroidActionButtons();
+							break;
+						}
 					}
+				}
+				else {
+					// nyersanyaglerakás majd ha végleges lesz a design
 				}
 			}
 			@Override
