@@ -1,9 +1,13 @@
 package szkeleton;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.Map;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class View extends JPanel {
@@ -15,7 +19,15 @@ public class View extends JPanel {
 	private Map<Place, List<Integer>> coordinates;
 	//private List<List<Integer>> testCoords;
 	private MainFrame mf;
+	BufferedImage img;
 
+	{
+		try {
+			img = ImageIO.read(new File("background.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	View(MainFrame frame){
 		sv = new SettlerView();
 		rv = new RobotView();
@@ -51,28 +63,28 @@ public class View extends JPanel {
 
 	private void drawInfo(int x, int y, Graphics g){
 		g.setColor(Color.YELLOW);
-		g.fillOval(x + 100, y-12, 5, 5);
+		g.fillOval(x + 200, y-12, 5, 5);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("res", Font.BOLD, 10));
-		g.drawString("iron", x+110, y - 5);
+		g.drawString("iron", x+210, y - 5);
 
 		g.setColor(Color.PINK);
-		g.fillOval(x + 100, y-3, 5, 5);
+		g.fillOval(x + 200, y-3, 5, 5);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("res", Font.BOLD, 10));
-		g.drawString("coal", x+110, y + 4);
+		g.drawString("coal", x+210, y + 4);
 
 		g.setColor(Color.CYAN);
-		g.fillOval(x + 100, y+6, 5, 5);
+		g.fillOval(x + 200, y+6, 5, 5);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("res", Font.BOLD, 10));
-		g.drawString("icewater", x+110, y + 13);
+		g.drawString("icewater", x+210, y + 13);
 
 		g.setColor(Color.ORANGE);
-		g.fillOval(x+100, y+15, 5, 5);
+		g.fillOval(x+200, y+15, 5, 5);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("res", Font.BOLD, 10));
-		g.drawString("uran", x+110, y + 21);
+		g.drawString("uran", x+210, y + 21);
 	}
 
 	/**
@@ -84,7 +96,7 @@ public class View extends JPanel {
 	private void drawInventoryResources(int x, int y, Settler s, Graphics g){
 		//draw resources
 		g.setColor(Color.BLACK);
-		g.fillRect(x-1, y-1, 79, 7);
+		g.fillRect(x-1, y-1, 130, 12);
 		ArrayList<Integer> resources = sv.getResource(s);
 		int itemCounter = 0;
 		if(resources != null) {
@@ -98,7 +110,7 @@ public class View extends JPanel {
 				} else if (r == 13) {
 					g.setColor(Color.ORANGE);
 				}
-				g.fillRect(x + itemCounter * 8, y, 5, 5);
+				g.fillRect(x + itemCounter * 13, y, 10, 10);
 				itemCounter++;
 			}
 		}
@@ -107,7 +119,7 @@ public class View extends JPanel {
 			g.setColor(Color.GRAY);
 			int emptySlots = 10- itemCounter;
 			for(int i = 0; i < emptySlots; i++){
-				g.fillRect(x+itemCounter*8, y, 5, 5);
+				g.fillRect(x+itemCounter * 13, y, 10, 10);
 				itemCounter++;
 			}
 		}
@@ -116,7 +128,7 @@ public class View extends JPanel {
 	private void drawInventoryGates(int x, int y, Settler s, Graphics g){
 		//draw gates
 		g.setColor(Color.BLACK);
-		g.fillRect(x-1, y+7, 79, 7);
+		g.fillRect(x-1, y+13, 39, 12);
 		int itemCounter = 0;
 		int gatesNum;
 		if(sv.getGates(s) != null)
@@ -125,7 +137,7 @@ public class View extends JPanel {
 			gatesNum =0;
 		while (itemCounter < gatesNum){
 			g.setColor(Color.MAGENTA);
-			g.fillRect(x+itemCounter*8, y+8, 5, 5);
+			g.fillRect(x+itemCounter*13, y+14, 10, 10);
 			itemCounter++;
 		}
 
@@ -134,13 +146,16 @@ public class View extends JPanel {
 			g.setColor(Color.GRAY);
 			int emptySlots = 3 - itemCounter;
 			for(int i = 0; i < emptySlots; i++){
-				g.fillRect(x+itemCounter*8, y+8, 5, 5);
+				g.fillRect(x+itemCounter*13, y+14, 10, 10);
 				itemCounter++;
 			}
 		}
 	}
 
 	public void drawInventory(int x, int y, Settler s, Graphics g){
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(0, 35, 1000, 60);
+		g.setColor(Color.BLACK);
 		g.setFont(new Font("title", Font.BOLD, 14));
 		g.drawString("Resources", x-1, y-6);
 
@@ -153,6 +168,7 @@ public class View extends JPanel {
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         GenCoordinates();
+		g.drawImage(img, 0, 0, null);
         //g.setColor(Color.RED);
         //g.fillRect(350, 0, 100, 100);
 		drawAsteroid(200, 200, g);
@@ -164,7 +180,7 @@ public class View extends JPanel {
 		//drawInventory(50, 100, s, g);
 
 		Settler s = mf.getGame().getCurrentSettler();
-		drawInventory(50, 100, s, g);
+		drawInventory(40, 60, s, g);
     }
 
     private void GenCoordinates(){
