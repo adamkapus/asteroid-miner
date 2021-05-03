@@ -168,7 +168,7 @@ public class View extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        GenCoordinates();
+        //GenCoordinates();
 		g.drawImage(img, 0, 50, null);
         //g.setColor(Color.RED);
         //g.fillRect(350, 0, 100, 100);
@@ -180,6 +180,13 @@ public class View extends JPanel {
 		//sv.updateSettler(s);
 		//drawInventory(50, 100, s, g);
 
+		ArrayList<Place> places = mf.getGame().GetMap().getPlaces();
+		for(Place p : places){
+			GenCoordinates();
+			int x = coordinates.get(p).get(0);
+			int y = coordinates.get(p).get(1);
+			drawAsteroid(x, y, g);
+		}
 		Settler s = mf.getGame().getCurrentSettler();
 		drawInventory(40, 70, s, g);
     }
