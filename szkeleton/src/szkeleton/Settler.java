@@ -98,6 +98,8 @@ public class Settler extends Entity{
      * Nyersanyag lerakása az aszteroidába id szerint
      */
     public void PlaceResource(int n) {
+        if (resources.size() <= n)
+            return;
         Asteroid a = (Asteroid) place;
         // csak akkor rakhatjuk le, ha az aszteroida kérge 0
         if(a.GetLayers() == 0){

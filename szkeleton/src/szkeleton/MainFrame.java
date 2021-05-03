@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -174,7 +175,21 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 					}
 				}
 				else {
-					// nyersanyaglerakás majd ha végleges lesz a design
+					if (e.getY() < 70 || e.getY() > 80)
+						return;
+					List<Integer> inventoryItemStart = new ArrayList<>();
+					for (int i = 0; i < 10; i++){
+						inventoryItemStart.add(40 + i*13);
+					}
+					for (int i = 0; i < 10; i++){
+						if (e.getX() > inventoryItemStart.get(i) && e.getX() < inventoryItemStart.get(i) + 10){
+							g.getCurrentSettler().PlaceResource(i);
+							System.out.println("Resource placed " + i);
+							disableAsteroidActionButtons();
+							placingResource = false;
+							break;
+						}
+					}
 				}
 			}
 			@Override
