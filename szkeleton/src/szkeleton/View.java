@@ -190,8 +190,8 @@ public class View extends JPanel {
 				Random rand = new Random();
 				boolean correct = false;
 				while (!correct) {
-					int x = rand.nextInt(770);
-					int y = rand.nextInt(560);
+					int x = rand.nextInt(mf.width - 35);
+					int y = 100 + rand.nextInt(mf.height - 100 - 45);
 					if (isCoordinatesCorrect(x, y)) {
 						List<Integer> currentCoords = new ArrayList<>();
 						currentCoords.add(x);

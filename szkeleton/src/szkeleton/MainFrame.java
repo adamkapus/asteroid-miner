@@ -100,15 +100,10 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 
 		this.setContentPane(view);
 
-
-
 		topPanel= new JPanel();
 		topPanel.setBounds(0,0,width, panelHeight);
 		topPanel.setBackground(Color.gray);
 		view.add(topPanel);
-
-
-
 
 		//JButton jb = new JButton("test, viewban");
 		JButton actionButton = new JButton("Action");
@@ -161,9 +156,7 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
         topPanel.add(buildTeleportButton);
         topPanel.add(buildRobotButton);
 
-
-
-		topPanel.addMouseListener(new MouseListener() {
+		view.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(e.getX() + " " + e.getY());
