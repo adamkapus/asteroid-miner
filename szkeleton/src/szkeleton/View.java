@@ -155,7 +155,7 @@ public class View extends JPanel {
 
 	public void drawInventory(int x, int y, Settler s, Graphics g){
 		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(0, 35, 1000, 60);
+		g.fillRect(0, 35, 1000, 63);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("title", Font.BOLD, 14));
 		g.drawString("Resources", x-1, y-6);
@@ -169,7 +169,7 @@ public class View extends JPanel {
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         GenCoordinates();
-		g.drawImage(img, 0, 0, null);
+		g.drawImage(img, 0, 50, null);
         //g.setColor(Color.RED);
         //g.fillRect(350, 0, 100, 100);
 		drawAsteroid(200, 200, g);

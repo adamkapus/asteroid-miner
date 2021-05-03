@@ -33,8 +33,8 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 	JMenuBar menuBar;
 	JMenu newGame, exit, howTo;
 	JMenuItem p2, p3, p4, p5;
-	int width=800;
-	int height=800;
+	int width=927;
+	int height=985;
 	int panelHeight=50;
 
 	private boolean placingResource = false;
