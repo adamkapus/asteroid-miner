@@ -42,6 +42,7 @@ public class View extends JPanel {
 	    //testCoords.add(intList);
 	}
 
+
 	public void drawAsteroid(int x, int y, Graphics g){
 		g.setColor(Color.GRAY);
 		g.fillOval(x, y, 30, 30);
@@ -180,7 +181,7 @@ public class View extends JPanel {
 		//drawInventory(50, 100, s, g);
 
 		Settler s = mf.getGame().getCurrentSettler();
-		drawInventory(40, 60, s, g);
+		drawInventory(40, 70, s, g);
     }
 
     private void GenCoordinates(){

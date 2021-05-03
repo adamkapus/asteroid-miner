@@ -90,6 +90,22 @@ public class Game implements Runnable {
         
 
     }
+	public void NewGame(int numSettler) {
+		// pálya létrehozása
+		map = new Map("map", this, 2);
+
+		// pálya összekötöttségek létrehozása
+		map.Connect();
+
+
+		for(int i=0; i<numSettler; i++){
+			Place p1 = map.GetRandomPlace();
+			Settler s = new Settler("s"+String.valueOf(i+1),this,p1, frame.getView().getSettlerView());
+			settlers.add(s);
+		}
+
+
+	}
     // robot hozzáadása a játékhoz
     public void AddRobot(Robot robot) {
     	robots.add(robot);
