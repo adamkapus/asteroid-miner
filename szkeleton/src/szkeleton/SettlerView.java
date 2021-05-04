@@ -24,7 +24,7 @@ public class SettlerView {
 	SettlerView(){
 		
 	}
-
+	public Place getPlace(Settler s) {return place.get(s);}
 	public ArrayList<Integer> getResource(Settler s) {return resources.get(s);}
 	public ArrayList<TeleportGate> getGates(Settler s) {return gates.get(s);}
 }

@@ -43,13 +43,45 @@ public class View extends JPanel {
 	}
 
 
-	public void drawAsteroid(int x, int y, Graphics g){
+	public void drawAsteroid(int x, int y, Graphics g, Asteroid a){
 		g.setColor(Color.GRAY);
 		g.fillOval(x, y, 30, 30);
 		g.fillRect(x+1, y + 35, 5, 5);
 		g.fillRect(x + 9, y + 35, 5, 5);
 		g.fillRect(x + 17, y + 35, 5, 5);
 		g.fillRect(x + 25, y + 35, 5 ,5);
+		int layers = av.getLayers().get(a);
+		if(layers > 0) { //Kiirom a retegek szamat
+			g.drawString(av.getLayers().get(a).toString(), x, y);
+		} else { // Kiszinezem az aszteroidat
+			int nyersanyag = 10; //= av.getResource().get(a); // = get a nyersanyagnak a szama
+			switch (nyersanyag) {
+				case 10 /*colal*/:
+					g.setColor(Color.PINK);
+					g.fillOval(x, y, 30, 30);
+				case 11 /*ivewater*/ :
+					g.setColor(Color.BLUE);
+					g.fillOval(x, y, 30, 30);
+				case 12 : // iron
+					g.setColor(Color.YELLOW);
+					g.fillOval(x, y, 30, 30);
+				case 13 : //Uran
+					g.setColor(Color.ORANGE);
+					g.fillOval(x, y, 30, 30);
+			}
+		}
+
+	}
+
+	public void drawSettler(Graphics g, Settler s) {
+		Place place = sv.getPlace(s);
+		g.setColor(Color.GREEN);
+		g.fillOval(coordinates.get(place).get(0), coordinates.get(place).get(1), 31, 31);
+		ArrayList<Place> neighbours = av.getNeighbours().get(place);
+		for(Place p : neighbours) {
+			g.setColor(Color.CYAN);
+			g.fillOval(coordinates.get(p).get(0), coordinates.get(p).get(1), 31, 31);
+		}
 	}
 
 	public void drawTeleport(int x, int y, Graphics g){
@@ -172,7 +204,7 @@ public class View extends JPanel {
 		g.drawImage(img, 0, 50, null);
         //g.setColor(Color.RED);
         //g.fillRect(350, 0, 100, 100);
-		drawAsteroid(200, 200, g);
+		//drawAsteroid(200, 200, g); Errort dobott, mert nem kapta meg az asteroidat, de majd iteratorral ugyis vegig kell menni
 		drawTeleport(400, 200, g);
 
 		//invetory tesztelése
@@ -185,7 +217,7 @@ public class View extends JPanel {
 			GenCoordinates();
 			int x = coordinates.get(p).get(0);
 			int y = coordinates.get(p).get(1);
-			drawAsteroid(x, y, g);
+		//	drawAsteroid(x, y, g, p);
 		}
 		Settler s = mf.getGame().getCurrentSettler();
 		drawInventory(40, 70, s, g);
