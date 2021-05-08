@@ -49,7 +49,6 @@ public class Map implements Steppable {
         Random ran = new Random();
         
         for (int i = 0; i < numOfAst; i++) {
-        	Szkeleton.indentDepth++;
             Resource resource = switch (ran.nextInt(5)) {
                 case 0 -> new Coal("c");
                 case 1 -> new IceWater("iw");
@@ -139,9 +138,7 @@ public class Map implements Steppable {
 
         for (int i = 0; i < places.size(); i++){
             for (int j = i+1; j < places.size(); j++){
-                Szkeleton.indentDepth++;
                 places.get(i).AddNeighbor(places.get(j));
-                Szkeleton.indentDepth++;
                 places.get(j).AddNeighbor(places.get(i));
             }
         }
