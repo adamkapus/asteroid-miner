@@ -43,36 +43,46 @@ public class View extends JPanel {
 	}
 
 
-	public void drawAsteroid(int x, int y, Graphics g, Asteroid a){
+	public void drawAsteroid(Graphics g, Asteroid a){
+		int x = coordinates.get(a).get(0);
+		int y = coordinates.get(a).get(1);
+
+		if(mf.getGame().getCurrentSettler().GetPlace() == a){
+			g.setColor(Color.GREEN);
+			g.fillOval(x-2, y-2, 34, 34);
+		}
+
 		g.setColor(Color.GRAY);
 		g.fillOval(x, y, 30, 30);
-		g.fillRect(x+1, y + 35, 5, 5);
-		g.fillRect(x + 9, y + 35, 5, 5);
-		g.fillRect(x + 17, y + 35, 5, 5);
-		g.fillRect(x + 25, y + 35, 5 ,5);
-		int layers = av.getLayers().get(a);
+		int count = 1;
+		for(int i = 0; i < 4; i++){
+			g.fillRect(x + count, y + 35, 5, 5);
+			count += 8;
+		}
+
+
+		g.setColor(Color.BLACK);
+		Integer layers = av.getLayers().get(a);
 		if(layers > 0) { //Kiirom a retegek szamat
-			g.drawString(av.getLayers().get(a).toString(), x, y);
+			g.setFont(new Font("layer", Font.BOLD, 12));
+			g.drawString(layers.toString(), x + 13, y + 20);
 		} else { // Kiszinezem az aszteroidat
 			int nyersanyag = 10; //= av.getResource().get(a); // = get a nyersanyagnak a szama
 			switch (nyersanyag) {
 				case 10 /*colal*/:
 					g.setColor(Color.PINK);
-					g.fillOval(x, y, 30, 30);
 					break;
 				case 11 /*ivewater*/ :
 					g.setColor(Color.BLUE);
-					g.fillOval(x, y, 30, 30);
 					break;
 				case 12 : // iron
 					g.setColor(Color.YELLOW);
-					g.fillOval(x, y, 30, 30);
 					break;
 				case 13 : //Uran
 					g.setColor(Color.ORANGE);
-					g.fillOval(x, y, 30, 30);
 					break;
 			}
+			g.fillOval(x+5, y+5, 20, 20);
 		}
 
 	}
@@ -92,10 +102,12 @@ public class View extends JPanel {
 		g.setColor(Color.MAGENTA);
 		g.fillOval(x, y, 30, 30);
 		g.setColor(Color.GRAY);
-		g.fillRect(x + 1, y + 35, 5, 5);
-		g.fillRect(x + 9, y + 35, 5, 5);
-		g.fillRect(x + 17, y + 35, 5, 5);
-		g.fillRect(x + 25, y + 35, 5 ,5);
+
+		int count = 1;
+		for(int i = 0; i < 4; i++){
+			g.fillRect(x + count, y + 35, 5, 5);
+			count += 8;
+		}
 	}
 
 	private void drawInfo(int x, int y, Graphics g){
@@ -201,10 +213,23 @@ public class View extends JPanel {
 		drawInventoryGates(x, y, s, g);
 	}
 
+	public void drawNeighbourLines(Graphics g, ArrayList<Place> places){
+		g.setColor(Color.RED);
+		for(int i = 0; i < places.size(); i++){
+			for(int j = 0; j < places.get(i).GetAllNeighbors().size(); j++){
+				int x1 = coordinates.get(places.get(i)).get(0) + 13;
+				int y1 = coordinates.get(places.get(i)).get(1) + 20;
+				int x2 = coordinates.get(places.get(i).GetAllNeighbors().get(j)).get(0) + 13;
+				int y2 = coordinates.get(places.get(i).GetAllNeighbors().get(j)).get(1) + 20;
+				g.drawLine(x1, y1, x2, y2);
+			}
+		}
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //GenCoordinates();
+        GenCoordinates();
 		g.drawImage(img, 0, 50, null);
         //g.setColor(Color.RED);
         //g.fillRect(350, 0, 100, 100);
@@ -217,12 +242,12 @@ public class View extends JPanel {
 		//drawInventory(50, 100, s, g);
 
 		ArrayList<Place> places = mf.getGame().GetMap().getPlaces();
+		drawNeighbourLines(g, places);
 		for(Place p : places){
 			System.out.println("lefutoto");
-			GenCoordinates();
-			int x = coordinates.get(p).get(0);
-			int y = coordinates.get(p).get(1);
-			drawAsteroid(x, y, g, (Asteroid) p);
+			//int x = coordinates.get(p).get(0);
+			//int y = coordinates.get(p).get(1);
+			drawAsteroid(g, (Asteroid) p);
 		}
 		Settler s = mf.getGame().getCurrentSettler();
 		drawInventory(40, 70, s, g);
