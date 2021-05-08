@@ -172,6 +172,7 @@ public class Game implements Runnable {
 					}
 				}
 				canMoveToNext = false;
+				currentSettler.GetSettlerView().updateSettler(currentSettler);
 			}
 			for (Robot r : robots){
 				r.Step();

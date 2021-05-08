@@ -348,6 +348,7 @@ public class Settler extends Entity{
     public void SetResource(Resource newRes) {resources.add(newRes);}
     public ArrayList<TeleportGate> GetGates() {return gates;}
     public ArrayList<Resource> GetResources() {return resources;}
+    public SettlerView GetSettlerView() { return settlerView;}
 
     /**
      * Szomszédos aszteroidára áthelyezi az entity-t.

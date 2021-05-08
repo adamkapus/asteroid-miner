@@ -169,9 +169,13 @@ public class Asteroid extends Place{
         if(resource!=null){
             Resource rTemp = resource;
             resource = null;
+            asteroidView.updateAsteroid(this);
             return rTemp;}
-        else
+        else {
+        	 asteroidView.updateAsteroid(this);
             return null;
+        }
+        
     }
 
     /**
@@ -182,10 +186,12 @@ public class Asteroid extends Place{
         if(resource!=null){
             Resource rTemp = resource;
             resource = null;
-            return rTemp;
-        }
-        else
+            asteroidView.updateAsteroid(this);
+            return rTemp;}
+        else {
+        	 asteroidView.updateAsteroid(this);
             return null;
+        }
     }
 
     /**
@@ -194,6 +200,8 @@ public class Asteroid extends Place{
     public void InsertResource(Resource r){
         map.getGame().getFrame().disableAsteroidActionButtons();
         resource = r;
+        asteroidView.updateAsteroid(this);
+     
     }
 
     /**
@@ -201,6 +209,7 @@ public class Asteroid extends Place{
      */
     public void RemoveResource(){
         resource = null;
+        asteroidView.updateAsteroid(this);
     }
 
     /**
