@@ -69,7 +69,7 @@ public class View extends JPanel {
 			g.setFont(new Font("layer", Font.BOLD, 12));
 			g.drawString(layers.toString(), x + 13, y + 20);
 		} else { // Kiszinezem az aszteroidat
-			int nyersanyag = 10; //= av.getResource().get(a); // = get a nyersanyagnak a szama
+			int nyersanyag = av.getResource().get(a); //= av.getResource().get(a); // = get a nyersanyagnak a szama
 			switch (nyersanyag) {
 				case 10 /*colal*/:
 					g.setColor(Color.PINK);
@@ -82,6 +82,9 @@ public class View extends JPanel {
 					break;
 				case 13 : //Uran
 					g.setColor(Color.ORANGE);
+					break;
+				case 100 : //ÜRES
+					g.setColor(Color.BLACK);
 					break;
 			}
 			g.fillOval(x+5, y+5, 20, 20);

@@ -7,12 +7,21 @@ import java.util.Map;
 public class AsteroidView {
 	private java.util.Map<Asteroid, ArrayList<Place>> neighbours = new HashMap<>();
 	private java.util.Map<Asteroid, Integer> layers = new HashMap<>();
-	private java.util.Map<Asteroid, Resource> resource = new HashMap<>();
+	private java.util.Map<Asteroid, Integer> resource = new HashMap<>();
 	private java.util.Map<Asteroid, Boolean> blownUp = new HashMap<>();
 	
 	public void updateAsteroid(Asteroid a) {
 		neighbours.put(a, a.GetAllNeighbors());
-		resource.put(a, a.getResource());
+		ArrayList<Integer> resourceList = new ArrayList<Integer>();
+		Resource r = a.getResource();
+		if(r == null) {
+			resource.put(a, 100);
+		}
+		else {
+			resourceList = a.getResource().AddToList(resourceList);
+			resource.put(a, resourceList.get(0));
+		}
+		
 		layers.put(a, a.GetLayers());
 		blownUp.put(a, a.GetBlownUp());
 	}
@@ -33,7 +42,7 @@ public class AsteroidView {
 		return layers;
 	}
 
-	public Map<Asteroid, Resource> getResource() {
+	public Map<Asteroid, Integer> getResource() {
 		return resource;
 	}
 }
