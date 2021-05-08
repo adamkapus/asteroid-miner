@@ -34,6 +34,7 @@ public class TeleportGate extends Place {
         pairIsPlaced = false;
         pair = null;
         teleportView = tv;
+        tv.updateTeleport(this);
     }
 
     /**

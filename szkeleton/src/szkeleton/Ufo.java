@@ -17,6 +17,7 @@ public class Ufo extends Entity{
     public Ufo(String name, UfoView uv){
         super(name);
         ufoView = uv;
+        uv.updateUfo(this);
     }
     /**
      * Ufo műveletvégzés

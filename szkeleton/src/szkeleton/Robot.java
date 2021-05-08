@@ -26,6 +26,7 @@ public class Robot extends Entity{
     public Robot(String name, Game g, Place p, RobotView rv) {
 	    super(name, g, p);
 	    robotView = rv;
+	    rv.updateRobot(this);
 	}
 
     /**
