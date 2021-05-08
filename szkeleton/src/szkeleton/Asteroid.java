@@ -155,7 +155,13 @@ public class Asteroid extends Place{
     public void HitByStorm(){
         if ((layers != 0) || (resource != null)){
             for(Entity e : entity) {
+            	System.out.println("Asteroidot elerte a vihar");
+            	try{
                 e.Die();
+            	}
+            	catch(Exception exception) {
+            		System.out.println("Kivetel elkapva napviharnal");
+            	}
             }
         }
     }
@@ -217,7 +223,12 @@ public class Asteroid extends Place{
      */
     public void Blow() {
         for (Entity e : entity) {
-            e.BlownUp();
+        	try{
+                e.BlownUp();
+            	}
+            	catch(Exception exception) {
+            		System.out.println("Kivetel elkapva felorbbanasnak");
+            	}
         }
     }
 
