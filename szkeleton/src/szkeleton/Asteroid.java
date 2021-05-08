@@ -154,7 +154,14 @@ public class Asteroid extends Place{
     @Override
     public void HitByStorm(){
         if ((layers != 0) || (resource != null)){
-            for(Entity e : entity) {
+        	ArrayList<Entity> copy = new ArrayList<Entity>();
+        	for(int i =0; i < entity.size(); i++) {
+        		copy.add(entity.get(i));
+        	}
+        	for(int i =0; i < copy.size(); i++) {
+        		copy.get(i).Die();
+        	}
+            /*for(Entity e : entity) {
             	System.out.println("Asteroidot elerte a vihar");
             	try{
                 e.Die();
@@ -162,7 +169,7 @@ public class Asteroid extends Place{
             	catch(Exception exception) {
             		System.out.println("Kivetel elkapva napviharnal");
             	}
-            }
+            }*/
         }
     }
 
@@ -222,14 +229,21 @@ public class Asteroid extends Place{
      * Minden Entitásra aki az aszteroidán volt meghívja a blownUp függvényüket.
      */
     public void Blow() {
-        for (Entity e : entity) {
+    	ArrayList<Entity> copy = new ArrayList<Entity>();
+    	for(int i =0; i < entity.size(); i++) {
+    		copy.add(entity.get(i));
+    	}
+    	for(int i =0; i < copy.size(); i++) {
+    		copy.get(i).BlownUp();
+    	}
+        /*for (Entity e : entity) {
         	try{
                 e.BlownUp();
             	}
             	catch(Exception exception) {
             		System.out.println("Kivetel elkapva felorbbanasnak");
             	}
-        }
+        }*/
     }
 
     /**
