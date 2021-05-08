@@ -17,6 +17,7 @@ public class View extends JPanel {
 	private AsteroidView av;
 	private TeleportView tgv;
 	private Map<Place, List<Integer>> coordinates;
+	private Map<Place, Integer> fifoState;
 	
 	private MainFrame mf;
 	BufferedImage img;
@@ -35,6 +36,7 @@ public class View extends JPanel {
 		av = new AsteroidView();
 		tgv = new TeleportView();
 	    coordinates = new HashMap<>();
+	    fifoState = new HashMap<>();
 	    mf = frame;
 	    //testCoords = new ArrayList<>();
 	    //List<Integer> intList = new ArrayList<>();
@@ -225,6 +227,33 @@ public class View extends JPanel {
 			}
 		}
 	}
+	
+	public void drawSinglePlaceFIFO(Graphics g, Place p, Color c) {
+		int FIFOcount = fifoState.get(p);
+		if(FIFOcount >=4) {
+			return;
+		}
+		
+		int x = coordinates.get(p).get(0);
+		int y = coordinates.get(p).get(1);
+
+
+		g.setColor(c);
+		
+		int count = 1 + (FIFOcount)*8;
+		g.fillRect(x + count, y + 35, 5, 5);
+		FIFOcount++;
+		fifoState.replace(p, FIFOcount);
+		
+	}
+	
+	public void drawPlaceFIFOs(Graphics g) {
+		for (var entry : sv.getPlaceMap().entrySet()){
+			Settler s = entry.getKey();
+			Place p = sv.getPlaceMap().get(s);
+			drawSinglePlaceFIFO(g,p, Color.GREEN);
+		}
+	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -244,13 +273,18 @@ public class View extends JPanel {
 		ArrayList<Place> places = mf.getGame().GetMap().getPlaces();
 		drawNeighbourLines(g, places);
 		for(Place p : places){
-			System.out.println("lefutoto");
+			//System.out.println("lefutoto");
 			//int x = coordinates.get(p).get(0);
 			//int y = coordinates.get(p).get(1);
+			//Beírjuk hogy minden helyen 0-s szinten van a FIFO
+			fifoState.put(p, 0);
 			drawAsteroid(g, (Asteroid) p);
 		}
 		Settler s = mf.getGame().getCurrentSettler();
 		drawInventory(40, 70, s, g);
+		
+		//kirajzoljuk a helyek alatti fifot. egyelore settlernek
+		drawPlaceFIFOs(g);
     }
 
     private void GenCoordinates(){

@@ -2,6 +2,7 @@ package szkeleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SettlerView {
 	private java.util.Map<Settler, Place> place = new HashMap<>();
@@ -27,4 +28,18 @@ public class SettlerView {
 	public Place getPlace(Settler s) {return place.get(s);}
 	public ArrayList<Integer> getResource(Settler s) {return resources.get(s);}
 	public ArrayList<TeleportGate> getGates(Settler s) {return gates.get(s);}
+	
+	
+	public Map<Settler, Place> getPlaceMap() {
+		return place;
+	}
+
+	public Map<Settler, ArrayList<Integer>> getResourceMap() {
+		return resources;
+	}
+
+	public Map<Settler, ArrayList<TeleportGate>> getGatesMap() {
+		return gates;
+	}
+
 }
