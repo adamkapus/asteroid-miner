@@ -2,6 +2,7 @@ package szkeleton;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game implements Runnable {
 	// telepesek
@@ -74,29 +75,59 @@ public class Game implements Runnable {
     }
     // új játék kezdése
     public void NewGame() {
-        // pálya létrehozása
-        map = new Map("map", this, 10);
+		// pálya létrehozása
+		map = new Map("map", this, 10);
 
-        // pálya összekötöttségek létrehozása
-    	map.Connect();
+		ArrayList<Place> places = map.getPlaces();
+		for (int i = 0; i < places.size()-1; i++){
+			map.Connect(i, i+1);
+		}
 
-    	//Most ket jatekos letrehozasa random kezdőhelyen
-    	Place p1 = map.GetRandomPlace();
-    	Place p2 = map.GetRandomPlace();
-    	Settler s1 = new Settler("s1",this,p1, frame.getView().getSettlerView());
-    	Settler s2 = new Settler("s2",this,p2, frame.getView().getSettlerView());
-    	settlers.add(s1);
-    	settlers.add(s2);
-        
+		Random ran = new Random();
+		int others = ran.nextInt(places.size()-1);
+		for(int i = 0; i < places.size(); i++){
+			for(int j = 1; j < others; j++){
+				if(ran.nextInt() % 4 == 0){
+					map.Connect(i, j);
+				}
+			}
+		}
 
-    }
+		// pálya összekötöttségek létrehozása
+		//map.Connect();
+
+		//Most ket jatekos letrehozasa random kezdőhelyen
+		Place p1 = map.GetRandomPlace();
+		Place p2 = map.GetRandomPlace();
+		Settler s1 = new Settler("s1",this,p1, frame.getView().getSettlerView());
+		Settler s2 = new Settler("s2",this,p2, frame.getView().getSettlerView());
+		settlers.add(s1);
+		settlers.add(s2);
+
+
+
+	}
 	public void NewGame(int numSettler) {
 		// pálya létrehozása
 		map = new Map("map", this, 2);
 
 		// pálya összekötöttségek létrehozása
-		map.Connect();
+		//map.Connect();
 
+		ArrayList<Place> places = map.getPlaces();
+		for (int i = 0; i < places.size()-1; i++){
+			map.Connect(i, i+1);
+		}
+
+		Random ran = new Random();
+		int others = ran.nextInt(places.size()-1);
+		for(int i = 0; i < places.size(); i++){
+			for(int j = 1; j < others; j++){
+				if(ran.nextInt() % 4 == 0){
+					map.Connect(i, j);
+				}
+			}
+		}
 
 		for(int i=0; i<numSettler; i++){
 			Place p1 = map.GetRandomPlace();

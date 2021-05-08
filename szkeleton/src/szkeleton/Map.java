@@ -135,14 +135,9 @@ public class Map implements Steppable {
     /**
      * Két place típusú elemet összeköt, azaz szomszédjának állít be
      */
-    public void Connect() {
-
-        for (int i = 0; i < places.size(); i++){
-            for (int j = i+1; j < places.size(); j++){
-                places.get(i).AddNeighbor(places.get(j));
-                places.get(j).AddNeighbor(places.get(i));
-            }
-        }
+    public void Connect(int i1, int i2) {
+        places.get(i1).AddNeighbor(places.get(i2));
+        places.get(i2).AddNeighbor(places.get(i1));
     }
 
     /**

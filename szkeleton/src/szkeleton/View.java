@@ -83,7 +83,7 @@ public class View extends JPanel {
 				case 13 : //Uran
 					g.setColor(Color.ORANGE);
 					break;
-				case 100 : //ÜRES
+				case 100 : //ï¿½RES
 					g.setColor(Color.BLACK);
 					break;
 			}
@@ -266,7 +266,7 @@ public class View extends JPanel {
         //g.setColor(Color.RED);
         //g.fillRect(350, 0, 100, 100);
 		//drawAsteroid(200, 200, g); Errort dobott, mert nem kapta meg az asteroidat, de majd iteratorral ugyis vegig kell menni
-		drawTeleport(400, 200, g);
+		//drawTeleport(400, 200, g);
 
 		//invetory tesztelÃ©se
 		//Settler s = new Settler();
@@ -279,7 +279,7 @@ public class View extends JPanel {
 			//System.out.println("lefutoto");
 			//int x = coordinates.get(p).get(0);
 			//int y = coordinates.get(p).get(1);
-			//Beírjuk hogy minden helyen 0-s szinten van a FIFO
+			//Beï¿½rjuk hogy minden helyen 0-s szinten van a FIFO
 			fifoState.put(p, 0);
 			drawAsteroid(g, (Asteroid) p);
 		}
