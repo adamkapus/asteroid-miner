@@ -17,7 +17,7 @@ public class View extends JPanel {
 	private AsteroidView av;
 	private TeleportView tgv;
 	private Map<Place, List<Integer>> coordinates;
-	//private List<List<Integer>> testCoords;
+	
 	private MainFrame mf;
 	BufferedImage img;
 
@@ -59,15 +59,19 @@ public class View extends JPanel {
 				case 10 /*colal*/:
 					g.setColor(Color.PINK);
 					g.fillOval(x, y, 30, 30);
+					break;
 				case 11 /*ivewater*/ :
 					g.setColor(Color.BLUE);
 					g.fillOval(x, y, 30, 30);
+					break;
 				case 12 : // iron
 					g.setColor(Color.YELLOW);
 					g.fillOval(x, y, 30, 30);
+					break;
 				case 13 : //Uran
 					g.setColor(Color.ORANGE);
 					g.fillOval(x, y, 30, 30);
+					break;
 			}
 		}
 
@@ -214,10 +218,11 @@ public class View extends JPanel {
 
 		ArrayList<Place> places = mf.getGame().GetMap().getPlaces();
 		for(Place p : places){
+			System.out.println("lefutoto");
 			GenCoordinates();
 			int x = coordinates.get(p).get(0);
 			int y = coordinates.get(p).get(1);
-		//	drawAsteroid(x, y, g, p);
+			drawAsteroid(x, y, g, (Asteroid) p);
 		}
 		Settler s = mf.getGame().getCurrentSettler();
 		drawInventory(40, 70, s, g);

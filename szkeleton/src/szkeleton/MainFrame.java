@@ -92,6 +92,8 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
         g.NewGame();
         Thread t = new Thread(g);
         t.start();
+        //initComponents();
+        this.setVisible(true);
 	}
 	
 	private void initComponents(){
@@ -202,7 +204,7 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 			public void mouseExited(MouseEvent e) { }
 		});
 		//this.add(view, BorderLayout.CENTER);
-        this.setVisible(true);
+		 //this.setVisible(true);
 	}
 
 
@@ -366,4 +368,8 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 
 
 	public Game getGame() {return g;}
+	
+	/*public View getView() {
+		return view;
+	}*/
 }

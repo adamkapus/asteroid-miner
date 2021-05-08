@@ -162,6 +162,7 @@ public class Game implements Runnable {
 	synchronized public void run() {
 		while(!isTerminated){
 			for (Settler s : settlers){
+				frame.getView().repaint();
 				currentSettler = s;
 				while (!canMoveToNext) {
 					try {
