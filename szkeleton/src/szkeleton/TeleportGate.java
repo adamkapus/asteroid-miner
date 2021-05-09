@@ -131,7 +131,12 @@ public class TeleportGate extends Place {
      * make its turn
      */
     @Override
-    public void Step(){}
+    public void Step(){
+    	if(isCrazy) {
+    		MoveRandom();
+    		teleportView.updateTeleport(this);
+    	}
+    }
 
     /**
      * move gate to random neighbor
@@ -142,6 +147,9 @@ public class TeleportGate extends Place {
         a.RemoveNeighbor(this);
         Place neighbor = a.GetRandomNeighbor();
         neighbor.AddNeighbor(this);
+        
+        neighbors.remove(a);
+        neighbors.add(neighbor);
     }
     /**
      * add a new neighbor to the place
