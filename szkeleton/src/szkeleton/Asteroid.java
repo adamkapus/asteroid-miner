@@ -49,7 +49,8 @@ public class Asteroid extends Place{
         Random ran = new Random();
         timeLimit = ran.nextInt(50 - 5) + 5; // random int between 5 and 50
         timeCurrent = 0;
-        layers = ran.nextInt(10); // random int between 0 and 10
+      //TESZT CELJARA MEGKONNYITVE
+        layers = ran.nextInt(1); // random int between 0 and 10
         resource = r;
         if (ran.nextInt(2) == 0) // random state
             state = State.CLOSE;
@@ -272,7 +273,8 @@ public class Asteroid extends Place{
         if (resource != null && layers == 0) {
         	if(resource.IsRadioactive()) {
         		System.out.println("Aszteroida robban");
-        		Blow();
+        		//TESZT CELJARA KIKAPCSOLVA
+        		//Blow();
         	}
         }
 

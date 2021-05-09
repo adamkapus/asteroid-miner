@@ -79,7 +79,7 @@ public class Game implements Runnable {
     // új játék kezdése
     public void NewGame() {
 		// pálya létrehozása
-		map = new Map("map", this, 10);
+		map = new Map("map", this, 20);
 
 		ArrayList<Place> places = map.getPlaces();
 		for (int i = 0; i < places.size()-1; i++){
