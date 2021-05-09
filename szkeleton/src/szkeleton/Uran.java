@@ -48,4 +48,16 @@ public class Uran extends Resource{
     public void setCloseToSunTicks(int i){
         CloseToSunTicks=i;
     }
+    
+    @Override
+    public boolean IsRadioactive(){
+        if(CloseToSunTicks <= 1) {
+        	return this.radioactive;
+        }
+        //csokkentjuk eggyel
+        closeToSun();
+        return false;
+    }
+    
+    
 }

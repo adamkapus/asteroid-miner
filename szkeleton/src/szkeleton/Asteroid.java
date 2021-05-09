@@ -269,9 +269,11 @@ public class Asteroid extends Place{
             resource.Sublimation(this);
         }
         // detonate the entities if conditions are met
-        if (resource != null && resource.IsRadioactive() && layers == 0) {
-        	System.out.println("Aszteroida robban");
-            Blow();
+        if (resource != null && layers == 0) {
+        	if(resource.IsRadioactive()) {
+        		System.out.println("Aszteroida robban");
+        		Blow();
+        	}
         }
 
         // check the victory condition
