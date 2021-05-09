@@ -318,12 +318,12 @@ public class View extends JPanel {
 		drawNeighbourLines(g, places);
 		for(Asteroid a : asteroids){
 			//Be�rjuk hogy minden helyen 0-s szinten van a FIFO
-			fifoState.put(a, 0);
+			fifoState.put((Place)a, 0);
 			drawAsteroid(g, (Asteroid) a);
 		}
 		for(TeleportGate tg : teleportgates){
 			//Be�rjuk hogy minden helyen 0-s szinten van a FIFO
-			fifoState.put(tg, 0);
+			fifoState.put((Place)tg, 0);
 			drawTeleport(g, tg);
 		}
 		Settler s = mf.getGame().getCurrentSettler();

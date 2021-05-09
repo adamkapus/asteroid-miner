@@ -2,6 +2,7 @@ package szkeleton;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Settler extends Entity{
@@ -242,8 +243,9 @@ public class Settler extends Entity{
         // ha megvan minden nyersanyag, építhetünk
         if(req.isEmpty()){
             Map m = this.game.GetMap();
-            TeleportGate gate1 = new TeleportGate(nev1, 1, m, game.getFrame().getView().getTeleportView());
-            TeleportGate gate2 = new TeleportGate(nev2, 2, m, game.getFrame().getView().getTeleportView());
+            Random ran = new Random();
+            TeleportGate gate1 = new TeleportGate(nev1, ran.nextInt(20000), m, game.getFrame().getView().getTeleportView());
+            TeleportGate gate2 = new TeleportGate(nev2, ran.nextInt(20000), m, game.getFrame().getView().getTeleportView());
             //proto.addTeleportgate(gate1);
             //proto.addTeleportgate(gate2);
 
