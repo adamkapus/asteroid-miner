@@ -1,5 +1,6 @@
 package szkeleton;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -66,13 +67,14 @@ public class Game implements Runnable {
 	// játék megnyerése
     public void Win() {
         isTerminated = true;
-    	System.out.println(name + ".Win()");
 
+		JOptionPane.showMessageDialog(frame, "Gratulalunk, gyoztel!");
     }
     // játék elvesztése
     public void Lose() {
         isTerminated = true;
-    	System.out.println(name + ".Lose()");
+
+		JOptionPane.showMessageDialog(frame, "Sajnos elvesztetted ezt a jatekot!");
     }
     // új játék kezdése
     public void NewGame() {

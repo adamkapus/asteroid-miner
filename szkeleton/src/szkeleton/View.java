@@ -363,8 +363,8 @@ public class View extends JPanel {
 		}
 	}
 
-	private boolean isCoordinatesCorrect(int x, int y){
-		for (var entry : coordinates.entrySet()){
+	private boolean isCoordinatesCorrect(int x, int y) {
+		for (var entry : coordinates.entrySet()) {
 			int xi = entry.getValue().get(0);
 			int yi = entry.getValue().get(1);
 			if (x - xi < 30 && x - xi > 0 && y - yi < 40 && y - yi > 0)
@@ -373,14 +373,6 @@ public class View extends JPanel {
 				return false;
 		}
 		return true;
-	}
-
-	public void winWindow() {
-		JOptionPane.showMessageDialog(mf, "Gratulalunk, gyoztel!");
-	}
-
-	public void loseWindow() {
-		JOptionPane.showMessageDialog(mf, "Sajnos elvesztetted ezt a jatekot!");
 	}
 
     public SettlerView getSettlerView(){return sv;}
