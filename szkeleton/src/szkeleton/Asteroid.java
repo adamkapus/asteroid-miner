@@ -270,6 +270,7 @@ public class Asteroid extends Place{
         }
         // detonate the entities if conditions are met
         if (resource != null && resource.IsRadioactive() && layers == 0) {
+        	System.out.println("Aszteroida robban");
             Blow();
         }
 

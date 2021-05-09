@@ -85,8 +85,9 @@ public class Game implements Runnable {
 		}
 
 		Random ran = new Random();
-		int others = ran.nextInt(places.size()-1);
+		int others;
 		for(int i = 0; i < places.size(); i++){
+			others = ran.nextInt(places.size()-1);
 			for(int j = 1; j < others; j++){
 				if(ran.nextInt() % 4 == 0){
 					map.Connect(i, j);
@@ -121,8 +122,9 @@ public class Game implements Runnable {
 		}
 
 		Random ran = new Random();
-		int others = ran.nextInt(places.size()-1);
+		int others;
 		for(int i = 0; i < places.size(); i++){
+			others = ran.nextInt(places.size()-1);
 			for(int j = 1; j < others; j++){
 				if(ran.nextInt() % 4 == 0){
 					map.Connect(i, j);
