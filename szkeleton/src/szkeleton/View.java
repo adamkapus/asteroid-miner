@@ -218,15 +218,30 @@ public class View extends JPanel {
 		drawInventoryGates(x, y, s, g);
 	}
 
-	public void drawNeighbourLines(Graphics g, ArrayList<Place> places){
-		g.setColor(Color.RED);
-		for(int i = 0; i < places.size(); i++){
-			for(int j = 0; j < places.get(i).GetAllNeighbors().size(); j++){
+	public void drawNeighbourLines(Graphics g, ArrayList<Place> places) {
+		Settler current = mf.getGame().getCurrentSettler();
+
+		for (int i = 0; i < places.size(); i++) {
+			g.setColor(Color.RED);
+			for (int j = 0; j < places.get(i).GetAllNeighbors().size(); j++) {
 				int x1 = coordinates.get(places.get(i)).get(0) + 13;
 				int y1 = coordinates.get(places.get(i)).get(1) + 20;
 				int x2 = coordinates.get(places.get(i).GetAllNeighbors().get(j)).get(0) + 13;
 				int y2 = coordinates.get(places.get(i).GetAllNeighbors().get(j)).get(1) + 20;
 				g.drawLine(x1, y1, x2, y2);
+			}
+		}
+
+		for (int i = 0; i < places.size(); i++){
+			if (current.GetPlace() == places.get(i)) {
+				g.setColor(Color.GREEN);
+				for (int j = 0; j < places.get(i).GetAllNeighbors().size(); j++) {
+					int x1 = coordinates.get(places.get(i)).get(0) + 13;
+					int y1 = coordinates.get(places.get(i)).get(1) + 20;
+					int x2 = coordinates.get(places.get(i).GetAllNeighbors().get(j)).get(0) + 13;
+					int y2 = coordinates.get(places.get(i).GetAllNeighbors().get(j)).get(1) + 20;
+					g.drawLine(x1, y1, x2, y2);
+				}
 			}
 		}
 	}
