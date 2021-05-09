@@ -283,16 +283,36 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(p2)){
+			initComponents();
+			g = new Game(this);
 			g.NewGame(2);
+			Thread t = new Thread(g);
+			t.start();
+			this.setVisible(true);
 		}
 		if(e.getSource().equals(p3)){
+			initComponents();
+			g = new Game(this);
 			g.NewGame(3);
+			Thread t = new Thread(g);
+			t.start();
+			this.setVisible(true);
 		}
 		if(e.getSource().equals(p4)){
+			initComponents();
+			g = new Game(this);
 			g.NewGame(4);
+			Thread t = new Thread(g);
+			t.start();
+			this.setVisible(true);
 		}
 		if(e.getSource().equals(p5)){
+			initComponents();
+			g = new Game(this);
 			g.NewGame(5);
+			Thread t = new Thread(g);
+			t.start();
+			this.setVisible(true);
 		}
 	}
 

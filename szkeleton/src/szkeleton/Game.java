@@ -108,21 +108,26 @@ public class Game implements Runnable {
 		settlers.add(s1);
 		settlers.add(s2);
 
-		Place p3 = map.GetRandomPlace();
-		Place p4 = map.GetRandomPlace();
-		Ufo u1 = new Ufo("u1",this,p3, frame.getView().getUfoView());
-		Ufo u2 = new Ufo("u2",this,p4, frame.getView().getUfoView());
-		ufos.add(u1);
-		ufos.add(u2);
+//		Place p3 = map.GetRandomPlace();
+//		Place p4 = map.GetRandomPlace();
+//		Ufo u1 = new Ufo("u1",this,p3, frame.getView().getUfoView());
+//		Ufo u2 = new Ufo("u2",this,p4, frame.getView().getUfoView());
+//		ufos.add(u1);
+//		ufos.add(u2);
+//
+//		Place p5 = map.GetRandomPlace();
+//		Place p6 = map.GetRandomPlace();
+//		Robot r1 = new Robot("r1",this,p5, frame.getView().getRobotView());
+//		Robot r2 = new Robot("r2",this,p6, frame.getView().getRobotView());
+//		robots.add(r1);
+//		robots.add(r2);
 
-		Place p5 = map.GetRandomPlace();
-		Place p6 = map.GetRandomPlace();
-		Robot r1 = new Robot("r1",this,p5, frame.getView().getRobotView());
-		Robot r2 = new Robot("r2",this,p6, frame.getView().getRobotView());
-		robots.add(r1);
-		robots.add(r2);
-
-
+		int ufoNum = 1 + ran.nextInt(5);
+		for(int i = 0; i < ufoNum; i++){
+			Place p = map.GetRandomPlace();
+			Ufo u = new Ufo("u", this, p, frame.getView().getUfoView());
+			ufos.add(u);
+		}
 	}
 	public void NewGame(int numSettler) {
 		// pálya létrehozása
@@ -154,6 +159,12 @@ public class Game implements Runnable {
 			settlers.add(s);
 		}
 
+		int ufoNum = 1 + ran.nextInt(5);
+		for(int i = 0; i < ufoNum; i++){
+			Place p = map.GetRandomPlace();
+			Ufo u = new Ufo("u", this, p, frame.getView().getUfoView());
+			ufos.add(u);
+		}
 
 	}
     // robot hozzáadása a játékhoz
