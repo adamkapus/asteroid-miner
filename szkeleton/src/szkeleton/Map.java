@@ -100,8 +100,12 @@ public class Map implements Steppable {
      * Az összes place-en lejátszódik az a szcenárió, amikor napvihar van
      */
     public void SolarStorm() {
+        Random random = new Random();
         for (Place place : places) {
-            place.HitByStorm();
+            if (random.nextInt(10) == 0) {
+                place.HitByStorm();
+                System.out.println(place.placeID);
+            }
         }
     }
 
@@ -120,8 +124,8 @@ public class Map implements Steppable {
         Random random = new Random();
         if(random.nextInt(100) < 5) {
         	//TESZT CELJARA KIKAPCSOLVA
-            //SolarStorm();
-            //System.out.println("solar storm");
+            SolarStorm();
+            System.out.println("solar storm");
         }
     }
 
