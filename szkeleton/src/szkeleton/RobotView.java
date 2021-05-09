@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class RobotView {
 	private java.util.Map<Robot, Place> place = new HashMap<>();
-	
+	RobotView(){}
 	public void updateRobot(Robot r) {
 		place.put(r, r.GetPlace());
 	}

@@ -14,8 +14,8 @@ public class Ufo extends Entity{
         super(name);
     }
 
-    public Ufo(String name, UfoView uv){
-        super(name);
+    public Ufo(String name, Game g, Place p, UfoView uv){
+        super(name, g, p);
         ufoView = uv;
         uv.updateUfo(this);
     }

@@ -50,7 +50,9 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 		background= new JLabel("", img, JLabel.CENTER);
 		background.setBounds(0,0, height, width);
 		add(background);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		this.setResizable(false);
 
 
 		//Menü
@@ -88,6 +90,7 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 
 
         initComponents();
+
         g = new Game(this);
         g.NewGame();
         Thread t = new Thread(g);
@@ -231,25 +234,33 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 		if(me.getSource().equals(exit)) {System.exit(0);}
 		if(me.getSource().equals(howTo)) {
 			final JFrame instr = new JFrame("Instructions");
-			instr.setSize(1000,800);
+			instr.setSize(800,800);
 
 			// Text for game instructions
 			final JLabel text = new JLabel(
 					"<html>"
-							+ "<b>SZABALYOK</b><br><br>"
-							+ "<b>Overview:</b><br>"
-							+ "fdgfhjkléá<br>"
-							+ " sdfxcgvhhbnjm,.-<br>"
-							+ "trgaegrg<br><br>"
-							+ "<b>nreat</b><br>"
-							+ "<ol>"
-							+ "<li>atnaer </li>"
-							+ "<li>dfgfghj<br></li> "
-							+ "</ol><br><br>"
-							+ "<b>Additional Settings:</b><br>"
-							+ "<ul>"
-							+ "<li>xcvbnm<br></li>"
-							+ "</ul><br>"
+							+"<p><strong>A S Z T E R O I D A B A N Y A S Z A T</strong></p>"
+							+"<p></p>"
+							+"<p style='margin-right:0cm;margin-left:0cm;font-size:9px;font-family:sans-serif;margin-top:0cm;margin-bottom:12.0pt;line-height:107%;text-align:justify;'>"
+							+"A jatek egy tobbjatekos, korokre osztott strategiai jatek. Ennek soran a jatekosok a telepeseket iranyitjak, es a cel, hogy az egyik aszteroidan felepitsenek egy bazist. Az ehhez szukseges nyersanyagokat aszteroidakrol kell kibanyaszni, &eacute;s osszegyujteni egy helyen. A telepesek egyszemelyes urhajokkal utaznak az aszteroidak kozott.</span></p>"
+							+"<p style='margin-right:0cm;margin-left:0cm;font-size:9px;font-family:sans-serif;margin-top:12.0pt;margin-bottom:12.0pt;line-height:107%;text-align:justify;'><span>"
+							+"A nyersanyagok az aszteroidak magjaban vannak, ezert kibanyaszasukhoz eloszor at kell furni az aszteroida sziklareteget, ami aszteroidankent eltero vastagsagu, ezutan szerezheto csak meg pl. a vizjeg, vas, szen, uran, stb. Az aszteroidak magja mindig homogen, nem keverednek benne a kulonbozo anyagok.</span></p>"
+							+"<p><span style='font-size:9px;line-height:107%;font-family:sans-serif;'>Egy telepes egy l&eacute;p&eacute;sben egyfajta muveletet hajthat v&eacute;gre.&nbsp;</span></p>"
+							+"<p style='margin-right:0cm;margin-left:0cm;font-size:9px;font-family:sans-serif;margin-top:12.0pt;margin-bottom:12.0pt;line-height:107%;text-align:justify;'><span>"
+							+"A telepesekre veszelyek is leselkednek. Ha egy teljesen megfurt, radioaktiv maggal rendelkezo aszteroida eppen napkozelben van, akkor az aszteroida felrobban, ami megoli a rajta levo telepeseket. A radioaktiv anyagok tehat csak naptavolban levo aszteroidabol nyerhetok ki. Veszelyt jelentenek a telepesekre a napviharok is, amelyek idonkent elerik az aszteroidaovet. A napvihar csak ugy elheto tul, ha a telepes egy ureges aszteroida magjaban bujik meg. Termeszetesen előtte a maghoz le kell furni.</span></p>"
+							+"<p style='margin-right:0cm;margin-left:0cm;font-size:9px;font-family:sans-serif;margin-top:12.0pt;margin-bottom:12.0pt;line-height:107%;text-align:justify;'>A jatekban ufok is vannak amik tudjak hasznalni a teleportkapukat es a nyersanyagokat lopkodjak a telepesek elol az aszteroidakbol.</p>"
+							+"<p><strong>Robot epites nyersanyagok:&nbsp;</strong>1x Vas, 1x Szen, 1x Uran</p>"
+							+"<p><strong>Teleportkapu epites nyersanyagok:&nbsp;</strong>2x Vas, 1x Vizjeg, 1x Uran</p>"
+							+"<p><strong>Muveletek:</strong></p>"
+							+"<ul>"
+							+	"<li>Banyaszat</li>"
+    						+	"<li>Mozgas szomszedos aszetroidara (vagy teleportalas): Kattints az egyik szomszedos aszteroidara amivel a jelenlegi (zolddelj jelolt) aszteroidad ossze van kotve.</li>"
+    						+	"<li>Epitesek (robot, teleportkapu): ha a megfelelo mennyisegu nyersanyag nelkul akarsz epiteni a nyersanyagaid elvesznek</li>"
+							+	"<li>Furas: Csokkentsd az szteroidak kerget. Eloszor az action gombra kattints hogy tudd ezt a funkciot hasznalni</li>"
+    						+	"<li>Nyersanyag letetel: Egy ures (feketevel jelzett) Aszteroidaba visszarakhatod a nyersanyagot.</li>"
+							+"</ul>"
+							+"<p><strong>Jatek celja:</strong></p>"
+							+"<p>Osszegyujteni a telepesekkel minden nyersanyagbol 3 darabot es egy kozos aszteroidan felepiteni a bazist.</p>"
 							+ "</html>"
 			);
 			instr.add(text);

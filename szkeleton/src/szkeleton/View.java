@@ -283,17 +283,17 @@ public class View extends JPanel {
 		for (var entry : sv.getPlaceMap().entrySet()){
 			Settler s = entry.getKey();
 			Place p = sv.getPlaceMap().get(s);
-			drawSinglePlaceFIFO(g,p, Color.GREEN);
+			drawSinglePlaceFIFO(g,p, Color.RED);
 		}
 		for (var entry : rv.getPlace().entrySet()){
 			Robot s = entry.getKey();
 			Place p = rv.getPlace().get(s);
-			drawSinglePlaceFIFO(g,p, Color.DARK_GRAY);
+			drawSinglePlaceFIFO(g,p, Color.BLUE);
 		}
 		for (var entry : uv.getPlace().entrySet()){
 			Ufo s = entry.getKey();
 			Place p = uv.getPlace().get(s);
-			drawSinglePlaceFIFO(g,p, Color.WHITE);
+			drawSinglePlaceFIFO(g,p, Color.GREEN);
 		}
 	}
 

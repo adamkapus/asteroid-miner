@@ -108,6 +108,19 @@ public class Game implements Runnable {
 		settlers.add(s1);
 		settlers.add(s2);
 
+		Place p3 = map.GetRandomPlace();
+		Place p4 = map.GetRandomPlace();
+		Ufo u1 = new Ufo("u1",this,p3, frame.getView().getUfoView());
+		Ufo u2 = new Ufo("u2",this,p4, frame.getView().getUfoView());
+		ufos.add(u1);
+		ufos.add(u2);
+
+		Place p5 = map.GetRandomPlace();
+		Place p6 = map.GetRandomPlace();
+		Robot r1 = new Robot("r1",this,p5, frame.getView().getRobotView());
+		Robot r2 = new Robot("r2",this,p6, frame.getView().getRobotView());
+		robots.add(r1);
+		robots.add(r2);
 
 
 	}
@@ -137,6 +150,7 @@ public class Game implements Runnable {
 		for(int i=0; i<numSettler; i++){
 			Place p1 = map.GetRandomPlace();
 			Settler s = new Settler("s"+String.valueOf(i+1),this,p1, frame.getView().getSettlerView());
+			System.out.println(s.name);
 			settlers.add(s);
 		}
 
@@ -185,6 +199,9 @@ public class Game implements Runnable {
     	for(int i =0; i < robots.size(); i++) {
     		robots.get(i).Step();
     	}
+		for(int i =0; i < ufos.size(); i++) {
+			ufos.get(i).Step();
+		}
     	// végül a térkép is lép
     	map.Step();
     }

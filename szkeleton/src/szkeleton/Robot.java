@@ -74,12 +74,14 @@ public class Robot extends Entity{
                     /**
                      * műveletvégzés: aszteroidán fúrás, teleportkapun semmi
                      */
+                    System.out.println("Robot furt");
                     this.Action();
                     break;
                 case 1:
                     /**
                      * mozgás
                      */
+                    System.out.println("Robot mozgott");
                     this.Move(game.GetMap().GetAstNum());
                     break;
             }
