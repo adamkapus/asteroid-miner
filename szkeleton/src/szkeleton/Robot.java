@@ -61,33 +61,12 @@ public class Robot extends Entity{
      */
     public void Step() {
         Random rand1 = new Random();
-
-        /**
-         * random vagy műveletet hajt végre vagy mozog
-         * a random szám 0, vagy 1 lehet
-         */
-        int rand_int = rand1.nextInt(2);
-
-        try {
-            switch (rand_int) {
-                case 0:
-                    /**
-                     * műveletvégzés: aszteroidán fúrás, teleportkapun semmi
-                     */
-                    System.out.println("Robot furt");
-                    this.Action();
-                    break;
-                case 1:
-                    /**
-                     * mozgás
-                     */
-                    System.out.println("Robot mozgott");
-                    this.Move(game.GetMap().GetAstNum());
-                    break;
-            }
-        }catch (Exception e) {
-            System.out.println("Nem jó számot adtál meg");
-        }
+        // random vagy műveletet hajt végre vagy mozog
+        int rand_int = rand1.nextInt(2); // a random szám 0, vagy 1 lehet
+        if (rand_int == 0)
+            Action();
+        else
+            Move(place.GetRandomNeighbor().GetPlaceID());
     }
 
     /**

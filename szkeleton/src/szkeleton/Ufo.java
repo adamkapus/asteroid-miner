@@ -47,24 +47,12 @@ public class Ufo extends Entity{
      */
     public void Step() {
         Random rand1 = new Random();
-
         // random vagy műveletet hajt végre vagy mozog
         int rand_int = rand1.nextInt(2); // a random szám 0, vagy 1 lehet
-
-        try {
-            switch (rand_int) {
-                case 0:
-                    // műveletvégzés: aszteroidán bányászás, teleportkapun semmi
-                    this.Action();
-                    break;
-                case 1:
-                    // mozgás
-                    this.Move(game.GetMap().GetAstNum());
-                    break;
-            }
-        }catch (Exception e) {
-            System.out.println("Nem jó számot adtál meg");
-        }
+        if (rand_int == 0)
+            Action();
+        else
+            Move(place.GetRandomNeighbor().GetPlaceID());
     }
 
     public void UseTeleport() {
