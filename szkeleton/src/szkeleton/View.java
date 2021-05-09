@@ -311,8 +311,8 @@ public class View extends JPanel {
 				Random rand = new Random();
 				boolean correct = false;
 				while (!correct) {
-					int x = rand.nextInt(mf.width - 35);
-					int y = 100 + rand.nextInt(mf.height - 100 - 45);
+					int x = rand.nextInt(mf.width - 70);
+					int y = 100 + rand.nextInt(mf.height - 90 - 300);
 					if (isCoordinatesCorrect(x, y)) {
 						List<Integer> currentCoords = new ArrayList<>();
 						currentCoords.add(x);
