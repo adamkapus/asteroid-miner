@@ -29,6 +29,10 @@ public class View extends JPanel {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * View létrehozásakor megkapja a MainFrame-t, azaz a kontrollert.
+	 */
 	View(MainFrame frame){
 		sv = new SettlerView();
 		rv = new RobotView();
@@ -44,7 +48,9 @@ public class View extends JPanel {
 	    //testCoords.add(intList);
 	}
 
-
+	/**
+	 * Aszteroida kirajzolása
+	 */
 	public void drawAsteroid(Graphics g, Asteroid a){
 		int x = coordinates.get(a).get(0);
 		int y = coordinates.get(a).get(1);
@@ -92,17 +98,20 @@ public class View extends JPanel {
 
 	}
 
-	public void drawSettler(Graphics g, Settler s) {
-		Place place = sv.getPlace(s);
-		g.setColor(Color.GREEN);
-		g.fillOval(coordinates.get(place).get(0), coordinates.get(place).get(1), 31, 31);
-		ArrayList<Place> neighbours = av.getNeighbours().get(place);
-		for(Place p : neighbours) {
-			g.setColor(Color.CYAN);
-			g.fillOval(coordinates.get(p).get(0), coordinates.get(p).get(1), 31, 31);
-		}
-	}
+//	public void drawSettler(Graphics g, Settler s) {
+//		Place place = sv.getPlace(s);
+//		g.setColor(Color.GREEN);
+//		g.fillOval(coordinates.get(place).get(0), coordinates.get(place).get(1), 31, 31);
+//		ArrayList<Place> neighbours = av.getNeighbours().get(place);
+//		for(Place p : neighbours) {
+//			g.setColor(Color.CYAN);
+//			g.fillOval(coordinates.get(p).get(0), coordinates.get(p).get(1), 31, 31);
+//		}
+//	}
 
+	/**
+	 * Teleportkapu pirajzolása
+	 */
 	public void drawTeleport(Graphics g, TeleportGate tg) {
 		g.setColor(Color.MAGENTA);
 		int x = coordinates.get(tg).get(0);
@@ -117,18 +126,21 @@ public class View extends JPanel {
 		}
 	}
 
-	public void drawTeleport(int x, int y, Graphics g){
-		g.setColor(Color.MAGENTA);
-		g.fillOval(x, y, 30, 30);
-		g.setColor(Color.GRAY);
+//	public void drawTeleport(int x, int y, Graphics g){
+//		g.setColor(Color.MAGENTA);
+//		g.fillOval(x, y, 30, 30);
+//		g.setColor(Color.GRAY);
+//
+//		int count = 1;
+//		for(int i = 0; i < 4; i++){
+//			g.fillRect(x + count, y + 35, 5, 5);
+//			count += 8;
+//		}
+//	}
 
-		int count = 1;
-		for(int i = 0; i < 4; i++){
-			g.fillRect(x + count, y + 35, 5, 5);
-			count += 8;
-		}
-	}
-
+	/**
+	 * Info panel kirajzolása, ahonnan leolvasható, melyik szín melyik nyersanyagot jelöli.
+	 */
 	private void drawInfo(int x, int y, Graphics g){
 		g.setColor(Color.YELLOW);
 		g.fillOval(x + 200, y-12, 5, 5);
@@ -160,6 +172,7 @@ public class View extends JPanel {
 	 * *icewater: 11
 	 * *iron: 12
 	 * *uran: 13
+	 * Nyersanyagok inventory-jának kirajzolása, a settlernél lévő nyersanyagokkal együtt, színkódokkal.
 	 */
 	private void drawInventoryResources(int x, int y, Settler s, Graphics g){
 		//draw resources
@@ -193,6 +206,9 @@ public class View extends JPanel {
 		}
 	}
 
+	/**
+	 * Teleportkapuk inventory-jának kirajzolása, a settlernél lévő kapukkal együtt
+	 */
 	private void drawInventoryGates(int x, int y, Settler s, Graphics g){
 		//draw gates
 		g.setColor(Color.BLACK);
@@ -220,6 +236,9 @@ public class View extends JPanel {
 		}
 	}
 
+	/**
+	 * Teljes inventory kirajzolása
+	 */
 	public void drawInventory(int x, int y, Settler s, Graphics g){
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 35, 1000, 63);
@@ -232,6 +251,9 @@ public class View extends JPanel {
 		drawInventoryGates(x, y, s, g);
 	}
 
+	/**
+	 * Szomszédos aszteroidák öszzeköttetésének kirajzolása
+	 */
 	public void drawNeighbourLines(Graphics g, ArrayList<Place> places) {
 		Settler current = mf.getGame().getCurrentSettler();
 
@@ -259,7 +281,10 @@ public class View extends JPanel {
 			}
 		}
 	}
-	
+
+	/**
+	 * Egy p helyhez tartozó fifo kirajzolása
+	 */
 	public void drawSinglePlaceFIFO(Graphics g, Place p, Color c) {
 		int FIFOcount = fifoState.get(p);
 		if(FIFOcount >=4) {
@@ -278,7 +303,11 @@ public class View extends JPanel {
 		fifoState.replace(p, FIFOcount);
 		
 	}
-	
+
+	/**
+	 * Minden Entitást fifo-kban jelenítünk meg a megfelelő aszteroidák alatt. Csak az első 4 entitás látható
+	 * @param g
+	 */
 	public void drawPlaceFIFOs(Graphics g) {
 		for (var entry : sv.getPlaceMap().entrySet()){
 			Settler s = entry.getKey();
@@ -297,6 +326,9 @@ public class View extends JPanel {
 		}
 	}
 
+	/**
+	 * JPanel painComponent-jének felüldefiniálása, minden kirajzolás itt történik.
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -343,7 +375,10 @@ public class View extends JPanel {
 		drawPlaceFIFOs(g);
     }
 
-    private void GenCoordinates(){
+	/**
+	 * Koordinátagenerálás minden aszteroidának, és teleportkapunak
+	 */
+	private void GenCoordinates(){
     	ArrayList<Place> places = new ArrayList<Place>();
 		for (var entry : av.getResource().entrySet()){
 			Asteroid a =  entry.getKey();
@@ -373,6 +408,9 @@ public class View extends JPanel {
 		}
 	}
 
+	/**
+	 * Generált koordináták helyességét ellenőrzi, azaz hogy a játéktéren belül vannak-e.
+	 */
 	private boolean isCoordinatesCorrect(int x, int y) {
 		for (var entry : coordinates.entrySet()) {
 			int xi = entry.getValue().get(0);

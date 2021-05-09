@@ -79,7 +79,7 @@ public class Game implements Runnable {
     // új játék kezdése
     public void NewGame() {
 		// pálya létrehozása
-		map = new Map("map", this, 20);
+		map = new Map("map", this, 50);
 
 		ArrayList<Place> places = map.getPlaces();
 		for (int i = 0; i < places.size()-1; i++){
@@ -131,7 +131,7 @@ public class Game implements Runnable {
 	}
 	public void NewGame(int numSettler) {
 		// pálya létrehozása
-		map = new Map("map", this, 2);
+		map = new Map("map", this, 50);
 
 		// pálya összekötöttségek létrehozása
 		//map.Connect();
