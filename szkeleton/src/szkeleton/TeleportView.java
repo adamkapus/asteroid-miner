@@ -2,6 +2,7 @@ package szkeleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class TeleportView {
 	private java.util.Map<TeleportGate, ArrayList<Place>> neighbours = new HashMap<>();
@@ -10,5 +11,9 @@ public class TeleportView {
 	}
 	TeleportView(){
 		
+	}
+	
+	public Map<TeleportGate, ArrayList<Place>> getNeighbours() {
+		return neighbours;
 	}
 }

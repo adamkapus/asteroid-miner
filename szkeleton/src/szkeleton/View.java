@@ -301,16 +301,30 @@ public class View extends JPanel {
 		//Settler s = new Settler();
 		//sv.updateSettler(s);
 		//drawInventory(50, 100, s, g);
-
-		ArrayList<Place> places = mf.getGame().GetMap().getPlaces();
+		ArrayList<Place> places = new ArrayList<Place>();
+		
+		ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
+		for (var entry : av.getResource().entrySet()){
+			Asteroid a =  entry.getKey();
+			asteroids.add(a);
+			places.add((Place)a);
+		}
+		ArrayList<TeleportGate> teleportgates = new ArrayList<TeleportGate>();
+		for (var entry : tgv.getNeighbours().entrySet()){
+			TeleportGate tg =  entry.getKey();
+			teleportgates.add(tg);
+			places.add((Place)tg);
+		}
 		drawNeighbourLines(g, places);
-		for(Place p : places){
-			//System.out.println("lefutoto");
-			//int x = coordinates.get(p).get(0);
-			//int y = coordinates.get(p).get(1);
+		for(Asteroid a : asteroids){
 			//Be�rjuk hogy minden helyen 0-s szinten van a FIFO
-			fifoState.put(p, 0);
-			drawAsteroid(g, (Asteroid) p);
+			fifoState.put(a, 0);
+			drawAsteroid(g, (Asteroid) a);
+		}
+		for(TeleportGate tg : teleportgates){
+			//Be�rjuk hogy minden helyen 0-s szinten van a FIFO
+			fifoState.put(tg, 0);
+			drawTeleport(g, tg);
 		}
 		Settler s = mf.getGame().getCurrentSettler();
 		drawInventory(40, 70, s, g);
@@ -320,8 +334,17 @@ public class View extends JPanel {
     }
 
     private void GenCoordinates(){
-		for (var entry : av.getNeighbours().entrySet()){
-			if (!coordinates.containsKey(entry.getKey())){
+    	ArrayList<Place> places = new ArrayList<Place>();
+		for (var entry : av.getResource().entrySet()){
+			Asteroid a =  entry.getKey();
+			places.add((Place)a);
+		}
+		for (var entry : tgv.getNeighbours().entrySet()){
+			TeleportGate tg =  entry.getKey();
+			places.add((Place)tg);
+		}
+		for (int i =0; i < places.size(); i++){
+			if (!coordinates.containsKey(places.get(i))){
 				Random rand = new Random();
 				boolean correct = false;
 				while (!correct) {
@@ -331,7 +354,7 @@ public class View extends JPanel {
 						List<Integer> currentCoords = new ArrayList<>();
 						currentCoords.add(x);
 						currentCoords.add(y);
-						coordinates.put(entry.getKey(), currentCoords);
+						coordinates.put(places.get(i), currentCoords);
 						correct = true;
 						System.out.println(x + " " + y);
 					}

@@ -242,8 +242,8 @@ public class Settler extends Entity{
         // ha megvan minden nyersanyag, építhetünk
         if(req.isEmpty()){
             Map m = this.game.GetMap();
-            TeleportGate gate1 = new TeleportGate(nev1, 1, m);
-            TeleportGate gate2 = new TeleportGate(nev2, 2, m);
+            TeleportGate gate1 = new TeleportGate(nev1, 1, m, game.getFrame().getView().getTeleportView());
+            TeleportGate gate2 = new TeleportGate(nev2, 2, m, game.getFrame().getView().getTeleportView());
             //proto.addTeleportgate(gate1);
             //proto.addTeleportgate(gate2);
 
