@@ -1,5 +1,7 @@
 package szkeleton;
 
+import java.util.ArrayList;
+
 /**
  * Class representing a teleport gate
  */
@@ -47,9 +49,13 @@ public class TeleportGate extends Place {
       */
     @Override
     public void HitByStorm() {
-        for(Entity e : entity){
-            e.Die();
-        }
+    	ArrayList<Entity> copy = new ArrayList<Entity>();
+    	for(int i =0; i < entity.size(); i++) {
+    		copy.add(entity.get(i));
+    	}
+    	for(int i =0; i < copy.size(); i++) {
+    		copy.get(i).Die();
+    	}
         isCrazy = true;
     }
 
