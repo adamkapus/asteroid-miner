@@ -170,7 +170,7 @@ public class Settler extends Entity{
         }*/
         // Ha minden nyersanyag leszedte magát, létrehozzuk a robotot
         if(req.isEmpty()){
-            Robot r = new Robot(nev, game, place);
+            Robot r = new Robot(nev, game, place, game.getFrame().getView().getRobotView());
             game.AddRobot(r);
             //proto.addRobot(r);
             if (nev == null) {

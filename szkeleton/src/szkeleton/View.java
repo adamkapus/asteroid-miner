@@ -75,7 +75,7 @@ public class View extends JPanel {
 					g.setColor(Color.PINK);
 					break;
 				case 11 /*ivewater*/ :
-					g.setColor(Color.BLUE);
+					g.setColor(Color.CYAN);
 					break;
 				case 12 : // iron
 					g.setColor(Color.YELLOW);
@@ -288,7 +288,7 @@ public class View extends JPanel {
 		for (var entry : rv.getPlace().entrySet()){
 			Robot s = entry.getKey();
 			Place p = rv.getPlace().get(s);
-			drawSinglePlaceFIFO(g,p, Color.gray);
+			drawSinglePlaceFIFO(g,p, Color.DARK_GRAY);
 		}
 		for (var entry : uv.getPlace().entrySet()){
 			Ufo s = entry.getKey();
