@@ -1,6 +1,7 @@
 package szkeleton;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class RobotView {
 	private java.util.Map<Robot, Place> place = new HashMap<>();
@@ -10,5 +11,9 @@ public class RobotView {
 	}
 	public void robotDied(Robot r) {
 		place.remove(r);
+	}
+	
+	public Map<Robot, Place> getPlace() {
+		return place;
 	}
 }

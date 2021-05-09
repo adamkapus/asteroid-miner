@@ -285,6 +285,16 @@ public class View extends JPanel {
 			Place p = sv.getPlaceMap().get(s);
 			drawSinglePlaceFIFO(g,p, Color.GREEN);
 		}
+		for (var entry : rv.getPlace().entrySet()){
+			Robot s = entry.getKey();
+			Place p = rv.getPlace().get(s);
+			drawSinglePlaceFIFO(g,p, Color.gray);
+		}
+		for (var entry : uv.getPlace().entrySet()){
+			Ufo s = entry.getKey();
+			Place p = uv.getPlace().get(s);
+			drawSinglePlaceFIFO(g,p, Color.WHITE);
+		}
 	}
 
 	@Override

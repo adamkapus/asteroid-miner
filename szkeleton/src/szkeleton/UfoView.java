@@ -1,6 +1,7 @@
 package szkeleton;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class UfoView {
 	private java.util.Map<Ufo, Place> place = new HashMap<>();
@@ -13,5 +14,9 @@ public class UfoView {
 	
 	UfoView(){
 		
+	}
+	
+	public Map<Ufo, Place> getPlace() {
+		return place;
 	}
 }
