@@ -67,6 +67,7 @@ public class Game implements Runnable {
     public void Win() {
         isTerminated = true;
     	System.out.println(name + ".Win()");
+
     }
     // játék elvesztése
     public void Lose() {

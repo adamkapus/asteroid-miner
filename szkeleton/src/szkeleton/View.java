@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class View extends JPanel {
 	private SettlerView sv;
@@ -100,6 +100,20 @@ public class View extends JPanel {
 		for(Place p : neighbours) {
 			g.setColor(Color.CYAN);
 			g.fillOval(coordinates.get(p).get(0), coordinates.get(p).get(1), 31, 31);
+		}
+	}
+
+	public void drawTeleport(Graphics g, TeleportGate tg) {
+		g.setColor(Color.MAGENTA);
+		int x = coordinates.get(tg).get(0);
+		int y = coordinates.get(tg).get(1);
+		g.fillOval(x, y, 30, 30);
+		g.setColor(Color.GRAY);
+
+		int count = 1;
+		for(int i = 0; i < 4; i++){
+			g.fillRect(x + count, y + 35, 5, 5);
+			count += 8;
 		}
 	}
 
@@ -321,6 +335,14 @@ public class View extends JPanel {
 				return false;
 		}
 		return true;
+	}
+
+	public void winWindow() {
+		JOptionPane.showMessageDialog(mf, "Gratulalunk, gyoztel!");
+	}
+
+	public void loseWindow() {
+		JOptionPane.showMessageDialog(mf, "Sajnos elvesztetted ezt a jatekot!");
 	}
 
     public SettlerView getSettlerView(){return sv;}
