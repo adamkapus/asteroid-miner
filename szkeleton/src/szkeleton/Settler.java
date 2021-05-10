@@ -113,17 +113,6 @@ public class Settler extends Entity{
     }
 
     /**
-     * Neyersanyag lerakÃ¡s nyersanyag szerint (proto miatt)
-     */
-    /*public void PlaceResource(Resource r){
-        Asteroid a = (Asteroid) place;
-        if(a.GetLayers() == 0){
-            RemoveResource(r);
-            a.InsertResource(r);
-        }
-    }*/
-
-    /**
      * nyersanyag Ã¡tadÃ¡sa a telepesnek
      */
     public void AddResource(Resource r) {
@@ -139,9 +128,7 @@ public class Settler extends Entity{
         req.add(10);     //szÃ©n
         req.add(12);     //vas
         req.add(13);     //urÃ¡n
-        
-        //KA: lemásoljuk a resourceok listájára mutató referenciákat --> elég ezen masolt a listán egyszer végigmenni
-        // hiszen ezen mindegyik resource rajta van (az eredeti resource listáról persze közben lekerülhetnek elemek)
+
         ArrayList<Resource> copy = new ArrayList<Resource>();
         for(int i = 0; i < resources.size(); i++) {
         	copy.add(resources.get(i));
@@ -150,24 +137,7 @@ public class Settler extends Entity{
         for(int i = 0; i < copy.size(); i++) {
         	req = copy.get(i).RemoveFromList(req, this);
         }
-        
-        /*// minden nyersanyag leszedi sajÃ¡t magÃ¡t a telepesrÅ‘l ha rajta van a listÃ¡n
-        ListIterator<Resource> rIter = resources.listIterator();
-        boolean iterate = true;
-        while (rIter.hasNext() || (iterate)){
-            try {
-                req = rIter.next().RemoveFromList(req, this);
-                if (req.size() == 1)
-                    iterate = true;
-                if (resources.size() == 0)
-                    break;
-            }
-            catch (Exception e){
-                rIter = resources.listIterator();
-                if (req.size() == 1)
-                    iterate = false;
-            }
-        }*/
+
         // Ha minden nyersanyag leszedte magÃ¡t, lÃ©trehozzuk a robotot
         if(req.isEmpty()){
             Robot r = new Robot(nev, game, place, game.getFrame().getView().getRobotView());
@@ -210,9 +180,7 @@ public class Settler extends Entity{
         req.add(12);     //vas
         req.add(12);     //vas
         req.add(13);     //urÃ¡n
-        
-        //KA: lemásoljuk a resourceok listájára mutató referenciákat --> elég ezen masolt a listán egyszer végigmenni
-        // hiszen ezen mindegyik resource rajta van (az eredeti resource listáról persze közben lekerülhetnek elemek)
+
         ArrayList<Resource> copy = new ArrayList<Resource>();
         for(int i = 0; i < resources.size(); i++) {
         	copy.add(resources.get(i));
@@ -221,25 +189,7 @@ public class Settler extends Entity{
         for(int i = 0; i < copy.size(); i++) {
         	req = copy.get(i).RemoveFromList(req, this);
         }
-        
-        
-        /*// minden nyersanyag leszedi magÃ¡t a listÃ¡rÃ³l
-        ListIterator<Resource> rIter = resources.listIterator();
-        boolean iterate = true;
-        while (rIter.hasNext() || (iterate)){
-            try {
-                req = rIter.next().RemoveFromList(req, this);
-                if (req.size() == 1)
-                    iterate = true;
-                if (resources.size() == 0)
-                    break;
-            }
-            catch (Exception e){
-                rIter = resources.listIterator();
-                if (req.size() == 1)
-                    iterate = false;
-            }
-        }*/
+
         // ha megvan minden nyersanyag, Ã©pÃ­thetÃ¼nk
         if(req.isEmpty()){
             Map m = this.game.GetMap();

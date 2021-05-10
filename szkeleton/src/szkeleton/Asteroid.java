@@ -49,8 +49,7 @@ public class Asteroid extends Place{
         Random ran = new Random();
         timeLimit = ran.nextInt(50 - 5) + 5; // random int between 5 and 50
         timeCurrent = 0;
-      //TESZT CELJARA MEGKONNYITVE
-        layers = ran.nextInt(1); // random int between 0 and 10
+        layers = ran.nextInt(10); // random int between 0 and 10
         resource = r;
         if (ran.nextInt(2) == 0) // random state
             state = State.CLOSE;
@@ -106,29 +105,6 @@ public class Asteroid extends Place{
     @Override
     public void Action(Settler s){
         map.getGame().getFrame().activateAsteroidActionButtons();
-        /*System.out.println("1 - Fúrás; 2 - Bányászás; 3 - Nyersanyaglerakás\n");
-        Scanner in = new Scanner(System.in); // get number from the user
-        String str = in.nextLine();
-        try {
-            int num = Integer.parseInt(str);
-            if (num == 1) {
-                s.Drill();
-            }
-            else if (num == 2) {
-                s.Mine();
-            }
-            else if (num == 3){
-                System.out.println("Hányas számú nyersanyagot szeretnéd letenni?");
-                str = in.nextLine(); // get another number from user
-                num = Integer.parseInt(str);
-                if (num >= 0 && num < 10) {
-                    s.PlaceResource(num);
-                }
-            }
-        }
-        catch (Exception e){
-            System.out.println("Nem jó számot adtál meg, buktad a körödet!");
-        }*/
     }
 
     /**
@@ -162,15 +138,6 @@ public class Asteroid extends Place{
         	for(int i =0; i < copy.size(); i++) {
         		copy.get(i).Die();
         	}
-            /*for(Entity e : entity) {
-            	System.out.println("Asteroidot elerte a vihar");
-            	try{
-                e.Die();
-            	}
-            	catch(Exception exception) {
-            		System.out.println("Kivetel elkapva napviharnal");
-            	}
-            }*/
         }
     }
 
@@ -237,14 +204,6 @@ public class Asteroid extends Place{
     	for(int i =0; i < copy.size(); i++) {
     		copy.get(i).BlownUp();
     	}
-        /*for (Entity e : entity) {
-        	try{
-                e.BlownUp();
-            	}
-            	catch(Exception exception) {
-            		System.out.println("Kivetel elkapva felorbbanasnak");
-            	}
-        }*/
     }
 
     /**
@@ -273,7 +232,6 @@ public class Asteroid extends Place{
         if (resource != null && layers == 0) {
         	if(resource.IsRadioactive()) {
         		System.out.println("Aszteroida robban");
-        		//TESZT CELJARA KIKAPCSOLVA
         		Blow();
         	}
         }

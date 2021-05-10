@@ -22,24 +22,47 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame implements MenuListener, ActionListener {
+	/**
+	 * view: a nézet példánya
+	 * g: játék
+	 * topPanel: legfelső panel, ahol a gombok találhatóak
+	 */
 	private View view;
-
 	private Game g;
-
 	private JPanel  topPanel;
+
+	/**
+	 * mineButton, drillButton, placeResourceButton, placeTeleportButton: A felhasználó által kiadható parancsok gombjai
+	 */
 	private JButton mineButton;
 	private JButton drillButton;
 	private JButton placeResourceButton;
 	private JButton placeTeleportButton;
+
+	/**
+	 * Menü, és annak lenyíló gombjai
+	 */
 	JMenuBar menuBar;
 	JMenu newGame, exit, howTo;
 	JMenuItem p2, p3, p4, p5;
+
+	/**
+	 * width: ablak alapértelmezett szélessége
+	 * height: ablak alapértelmezett szélessége
+	 * panelHeight: topPanel alapértelmezett magassága
+	 */
 	int width=927;
 	int height=985;
 	int panelHeight=50;
 
+	/**
+	 * leraktunk-e épp nyersanyagot
+	 */
 	private boolean placingResource = false;
 
+	/**
+	 * Konstruktor: vezérlők kirajzolása, és egy játék automaikusan elindul 2 játékossal, aszteroidákkal.
+	 */
 	MainFrame(){
 		super("Urjatek");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -98,9 +121,11 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
         //initComponents();
         this.setVisible(true);
 	}
-	
+
+	/**
+	 * Vezérlők inicial
+	 */
 	private void initComponents(){
-		//View(panel) kozepen
 		view = new View(this);
 		view.setLayout(null);
 
@@ -162,6 +187,10 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
         topPanel.add(buildTeleportButton);
         topPanel.add(buildRobotButton);
 
+
+		/**
+		 * egérgomb kaddintásának kezelése: megfelelő nyersanyagon kattintva lehelyezi azt az üreges aszteroidára
+		 */
 		view.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -206,11 +235,12 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 			@Override
 			public void mouseExited(MouseEvent e) { }
 		});
-		//this.add(view, BorderLayout.CENTER);
-		 //this.setVisible(true);
 	}
 
 
+	/**
+	 * Ha megnyomtuk az Action gombot, engedélyezzük a megfelelő gombokat
+	 */
 	public void activateAsteroidActionButtons(){
 		mineButton.setEnabled(true);
 		drillButton.setEnabled(true);
@@ -218,6 +248,9 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 		placeTeleportButton.setEnabled(true);
 	}
 
+	/**
+	 * Alapvetően, és a kör végén letiltjuk a megfelelő gombokat
+	 */
 	public void disableAsteroidActionButtons(){
 		mineButton.setEnabled(false);
 		drillButton.setEnabled(false);
@@ -229,6 +262,9 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 		return view;
 	}
 
+	/**
+	 * Menü kezelése
+	 */
 	@Override
 	public void menuSelected(MenuEvent me) {
 		if(me.getSource().equals(exit)) {System.exit(0);}
@@ -280,6 +316,9 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 
 	}
 
+	/**
+	 * Megfelelő menüelemet kiválasztva játszhatunk 2, 3, 4 vagy 5 telepessel is
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(p2)){
@@ -315,14 +354,6 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 			this.setVisible(true);
 		}
 	}
-
-	/*	private class TestActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("test")) {
-				 System.out.println("Gomb figyelt");
-			}
-		}
-	} */
 
 	private static class ActionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {

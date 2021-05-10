@@ -7,12 +7,6 @@ public class Ufo extends Entity{
 
     private ArrayList<Resource> resources = new ArrayList<>();
     private UfoView ufoView;
-    /**
-     * név szerinti konstruktor a tesztesetekhez
-     */
-    public Ufo(String name){
-        super(name);
-    }
 
     public Ufo(String name, Game g, Place p, UfoView uv){
         super(name, g, p);

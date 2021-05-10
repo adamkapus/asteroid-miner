@@ -8,15 +8,6 @@ public class Robot extends Entity{
     private RobotView robotView;
 
     /**
-     * Név szerinti konstruktor a tesztesetekhez
-     */
-    /*public Robot(String name){
-        super(name);
-    }*/
-
-
-
-    /**
      * Konstruktor
      */
 	public Robot(String name, Game g, Place p) {

@@ -22,21 +22,11 @@ public class TeleportGate extends Place {
     //inventory teszteléséhez
     public TeleportGate(){}
 
-    /**
-     * create a teleport gate with name
-     */
-    /*public TeleportGate(String name){
-        super(name);
-        pairIsPlaced = false;
-        pair = null;
-    }*/
-
     public TeleportGate(String name, int id, Map m, TeleportView tv){
         super(name, id, m);
         pairIsPlaced = false;
         pair = null;
         teleportView = tv;
-        //tv.updateTeleport(this);
     }
 
     /**

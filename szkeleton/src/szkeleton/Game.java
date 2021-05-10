@@ -97,9 +97,6 @@ public class Game implements Runnable {
 			}
 		}
 
-		// pálya összekötöttségek létrehozása
-		//map.Connect();
-
 		//Most ket jatekos letrehozasa random kezdőhelyen
 		Place p1 = map.GetRandomPlace();
 		Place p2 = map.GetRandomPlace();
@@ -107,20 +104,6 @@ public class Game implements Runnable {
 		Settler s2 = new Settler("s2",this,p2, frame.getView().getSettlerView());
 		settlers.add(s1);
 		settlers.add(s2);
-
-//		Place p3 = map.GetRandomPlace();
-//		Place p4 = map.GetRandomPlace();
-//		Ufo u1 = new Ufo("u1",this,p3, frame.getView().getUfoView());
-//		Ufo u2 = new Ufo("u2",this,p4, frame.getView().getUfoView());
-//		ufos.add(u1);
-//		ufos.add(u2);
-//
-//		Place p5 = map.GetRandomPlace();
-//		Place p6 = map.GetRandomPlace();
-//		Robot r1 = new Robot("r1",this,p5, frame.getView().getRobotView());
-//		Robot r2 = new Robot("r2",this,p6, frame.getView().getRobotView());
-//		robots.add(r1);
-//		robots.add(r2);
 
 		int ufoNum = 1 + ran.nextInt(5);
 		for(int i = 0; i < ufoNum; i++){
@@ -132,9 +115,6 @@ public class Game implements Runnable {
 	public void NewGame(int numSettler) {
 		// pálya létrehozása
 		map = new Map("map", this, 50);
-
-		// pálya összekötöttségek létrehozása
-		//map.Connect();
 
 		ArrayList<Place> places = map.getPlaces();
 		for (int i = 0; i < places.size()-1; i++){

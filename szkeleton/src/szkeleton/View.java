@@ -42,10 +42,6 @@ public class View extends JPanel {
 	    coordinates = new HashMap<>();
 	    fifoState = new HashMap<>();
 	    mf = frame;
-	    //testCoords = new ArrayList<>();
-	    //List<Integer> intList = new ArrayList<>();
-	    //intList.add(100); intList.add(100);
-	    //testCoords.add(intList);
 	}
 
 	/**
@@ -103,17 +99,6 @@ public class View extends JPanel {
 
 	}
 
-//	public void drawSettler(Graphics g, Settler s) {
-//		Place place = sv.getPlace(s);
-//		g.setColor(Color.GREEN);
-//		g.fillOval(coordinates.get(place).get(0), coordinates.get(place).get(1), 31, 31);
-//		ArrayList<Place> neighbours = av.getNeighbours().get(place);
-//		for(Place p : neighbours) {
-//			g.setColor(Color.CYAN);
-//			g.fillOval(coordinates.get(p).get(0), coordinates.get(p).get(1), 31, 31);
-//		}
-//	}
-
 	/**
 	 * Teleportkapu pirajzolása
 	 */
@@ -130,18 +115,6 @@ public class View extends JPanel {
 			count += 8;
 		}
 	}
-
-//	public void drawTeleport(int x, int y, Graphics g){
-//		g.setColor(Color.MAGENTA);
-//		g.fillOval(x, y, 30, 30);
-//		g.setColor(Color.GRAY);
-//
-//		int count = 1;
-//		for(int i = 0; i < 4; i++){
-//			g.fillRect(x + count, y + 35, 5, 5);
-//			count += 8;
-//		}
-//	}
 
 	/**
 	 * Info panel kirajzolása, ahonnan leolvasható, melyik szín melyik nyersanyagot jelöli.
@@ -339,15 +312,6 @@ public class View extends JPanel {
         super.paintComponent(g);
         GenCoordinates();
 		g.drawImage(img, 0, 50, null);
-        //g.setColor(Color.RED);
-        //g.fillRect(350, 0, 100, 100);
-		//drawAsteroid(200, 200, g); Errort dobott, mert nem kapta meg az asteroidat, de majd iteratorral ugyis vegig kell menni
-		//drawTeleport(400, 200, g);
-
-		//invetory tesztelése
-		//Settler s = new Settler();
-		//sv.updateSettler(s);
-		//drawInventory(50, 100, s, g);
 		ArrayList<Place> places = new ArrayList<Place>();
 		
 		ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
