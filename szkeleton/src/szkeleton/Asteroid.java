@@ -147,13 +147,13 @@ public class Asteroid extends Place{
      */
     public Resource MinedBy(Settler s){
         map.getGame().getFrame().disableAsteroidActionButtons();
-        if(resource!=null){
+        if(resource!=null && layers == 0){
             Resource rTemp = resource;
             resource = null;
             asteroidView.updateAsteroid(this);
             return rTemp;}
         else {
-        	 asteroidView.updateAsteroid(this);
+            asteroidView.updateAsteroid(this);
             return null;
         }
         
@@ -164,13 +164,13 @@ public class Asteroid extends Place{
      * @return resource inside asteroid
      */
     public Resource MinedBy(Ufo u){
-        if(resource!=null){
+        if(resource!=null && layers == 0){
             Resource rTemp = resource;
             resource = null;
             asteroidView.updateAsteroid(this);
             return rTemp;}
         else {
-        	 asteroidView.updateAsteroid(this);
+            asteroidView.updateAsteroid(this);
             return null;
         }
     }
