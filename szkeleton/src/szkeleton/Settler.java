@@ -87,6 +87,8 @@ public class Settler extends Entity{
         place.RemoveEntity(this);
         game.SettlerDied(this);
         settlerView.settlerDied(this);
+        game.getFrame().repaint();
+        System.out.println("settler died");
     }
 
     /**
