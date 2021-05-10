@@ -56,10 +56,6 @@ public class View extends JPanel {
 			g.fillOval(x-2, y-2, 34, 34);
 		}
 
-		if(av.getBlownUp().get(a)){
-			g.setColor(Color.RED);
-			g.fillOval(x-2, y-2, 34, 34);
-		}
 
 		g.setColor(Color.GRAY);
 		g.fillOval(x, y, 30, 30);
@@ -95,6 +91,15 @@ public class View extends JPanel {
 					break;
 			}
 			g.fillOval(x+5, y+5, 20, 20);
+		}
+		
+		if(av.getBlownUp().get(a)){
+			g.setColor(Color.RED);
+			g.drawOval(x+3, y+3, 25, 25);
+		}
+		else {
+			g.setColor(Color.GRAY);
+			g.drawOval(x+3, y+3, 25, 25);
 		}
 
 	}
@@ -370,7 +375,7 @@ public class View extends JPanel {
 						currentCoords.add(y);
 						coordinates.put(places.get(i), currentCoords);
 						correct = true;
-						System.out.println(x + " " + y);
+						//System.out.println(x + " " + y);
 					}
 				}
 			}

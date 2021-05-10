@@ -56,6 +56,7 @@ public class Asteroid extends Place{
         else
             state = State.FAR;
         asteroidView = av;
+        blownUp = false;
         asteroidView.updateAsteroid(this);
     }
 
@@ -197,6 +198,7 @@ public class Asteroid extends Place{
      * Minden Entitásra aki az aszteroidán volt meghívja a blownUp függvényüket.
      */
     public void Blow() {
+    	blownUp = true;
     	ArrayList<Entity> copy = new ArrayList<Entity>();
     	for(int i =0; i < entity.size(); i++) {
     		copy.add(entity.get(i));
@@ -204,6 +206,7 @@ public class Asteroid extends Place{
     	for(int i =0; i < copy.size(); i++) {
     		copy.get(i).BlownUp();
     	}
+    	asteroidView.updateAsteroid(this);
     }
 
     /**
@@ -231,11 +234,14 @@ public class Asteroid extends Place{
         // detonate the entities if conditions are met
         if (resource != null && layers == 0) {
         	if(resource.IsRadioactive()) {
-        		System.out.println("Aszteroida robban");
         		Blow();
         	}
         }
-
+        asteroidView.updateAsteroid(this);
+        if(blownUp) {
+        	asteroidView.updateAsteroid(this);
+        	blownUp = false;
+        }
         // check the victory condition
         CheckResource();
     }

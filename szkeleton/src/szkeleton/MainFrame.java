@@ -194,7 +194,7 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 		view.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(e.getX() + " " + e.getY());
+				//System.out.println(e.getX() + " " + e.getY());
 				if (!placingResource) {
 					Map<Place, List<Integer>> coordinates = view.getCoordinates();
 					for (var entry : coordinates.entrySet()) {
@@ -202,7 +202,7 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 						int y = entry.getValue().get(1);
 						if (Math.abs(e.getX() - (x + 15)) <= 10 && Math.abs(e.getY() - (y + 15)) <= 10) {
 							g.getCurrentSettler().Move(entry.getKey().GetPlaceID());
-							System.out.println("Place found");
+							//System.out.println("Place found");
 							disableAsteroidActionButtons();
 							break;
 						}
@@ -218,7 +218,7 @@ public class MainFrame extends JFrame implements MenuListener, ActionListener {
 					for (int i = 0; i < 10; i++){
 						if (e.getX() > inventoryItemStart.get(i) && e.getX() < inventoryItemStart.get(i) + 10){
 							g.getCurrentSettler().PlaceResource(i);
-							System.out.println("Resource placed " + i);
+							//System.out.println("Resource placed " + i);
 							disableAsteroidActionButtons();
 							placingResource = false;
 							break;
