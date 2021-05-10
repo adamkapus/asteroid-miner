@@ -104,7 +104,7 @@ public class Map implements Steppable {
         for (Place place : places) {
             if (random.nextInt(10) == 0) {
                 place.HitByStorm();
-                System.out.println(place.placeID);
+                //System.out.println(place.placeID);
             }
         }
     }
@@ -124,7 +124,7 @@ public class Map implements Steppable {
         Random random = new Random();
         if(random.nextInt(100) < 5) {
             SolarStorm();
-            System.out.println("solar storm");
+            //System.out.println("solar storm");
         }
     }
 
