@@ -123,7 +123,6 @@ public class Map implements Steppable {
         }
         Random random = new Random();
         if(random.nextInt(100) < 5) {
-        	//TESZT CELJARA KIKAPCSOLVA
             SolarStorm();
             System.out.println("solar storm");
         }

@@ -5,11 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AsteroidView {
+	/**
+	 * neighbours: az aszteroida szomszédai
+	 * layers: az aszteroida kéregvastagsága
+	 * resource: az aszteroidában található nyersanyag
+	 * blownUp: fel van-e robbanva az aszteroida
+	 */
 	private java.util.Map<Asteroid, ArrayList<Place>> neighbours = new HashMap<>();
 	private java.util.Map<Asteroid, Integer> layers = new HashMap<>();
 	private java.util.Map<Asteroid, Integer> resource = new HashMap<>();
 	private java.util.Map<Asteroid, Boolean> blownUp = new HashMap<>();
-	
+
+	/**
+	 * Frissíti az aszteroida minden állapotát, ami szükséges a megjelenítéshez
+	 */
 	public void updateAsteroid(Asteroid a) {
 		neighbours.put(a, a.GetAllNeighbors());
 		ArrayList<Integer> resourceList = new ArrayList<Integer>();
@@ -26,9 +35,10 @@ public class AsteroidView {
 		blownUp.put(a, a.GetBlownUp());
 	}
 
-	AsteroidView(){
-	
-	}
+	/**
+	 * Konstruktor
+	 */
+	AsteroidView(){	}
 
 	public Map<Asteroid, Boolean> getBlownUp() {
 		return blownUp;
