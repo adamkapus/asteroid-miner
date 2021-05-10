@@ -274,7 +274,7 @@ public class Asteroid extends Place{
         	if(resource.IsRadioactive()) {
         		System.out.println("Aszteroida robban");
         		//TESZT CELJARA KIKAPCSOLVA
-        		//Blow();
+        		Blow();
         	}
         }
 

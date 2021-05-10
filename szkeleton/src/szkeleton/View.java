@@ -60,6 +60,11 @@ public class View extends JPanel {
 			g.fillOval(x-2, y-2, 34, 34);
 		}
 
+		if(av.getBlownUp().get(a)){
+			g.setColor(Color.RED);
+			g.fillOval(x-2, y-2, 34, 34);
+		}
+
 		g.setColor(Color.GRAY);
 		g.fillOval(x, y, 30, 30);
 		int count = 1;
